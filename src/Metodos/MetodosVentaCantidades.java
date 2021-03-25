@@ -89,7 +89,8 @@ public class MetodosVentaCantidades {
             con = conectar.conectarMySQL();
             stmt = con.createStatement();
             rs = stmt.executeQuery("select articulo.art_id form,articulo.descripcion,unidad.nombre from  articulo inner join"
-                    + " unidad on unidad.uni_id =articulo.unidadventa;");
+                    + " unidad on unidad.uni_id =articulo.unidadventa where articulo.status !=-1 and articulo.cat_id !=1 "
+                    + " and articulo.descripcion not like '%*%';");
             con2 = conectar.conectarMySQL();
             stmt2 = con.createStatement();
 
@@ -189,7 +190,7 @@ public class MetodosVentaCantidades {
                     celda.setCellValue(new HSSFRichTextString(table.getValueAt(i, j).toString()));
                 }
                 
-                    hoja.autoSizeColumn(j);
+                  //  hoja.autoSizeColumn(j);
                 
             }
 
