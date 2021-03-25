@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 import reportes.ReporteVentasFecha;
 import reportes.conexion;
 
@@ -43,16 +44,20 @@ import reportes.conexion;
          try {
             con = conectar.conectarMySQL();
             stmt = con.createStatement();
-            rs = stmt.executeQuery("select articulo.art_id form,articulo.descripcion articulo");
+            rs = stmt.executeQuery("select articulo.art_id form,articulo.descripcion from  articulo;");
             while(rs.next())
             {
                 filas[0]=rs.getInt(1);
-                filas[2]=rs.getString(2);
+                filas[1]=rs.getString(2);
+                
+                
+                
                 ReporteVentasFecha.modelo.addRow(filas);
                 ReporteVentasFecha.tblbuscar.setModel(ReporteVentasFecha.modelo);
                 
             }
          } catch (SQLException e) {
+             JOptionPane.showMessageDialog(null, e);
          }
      }
     
