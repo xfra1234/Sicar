@@ -224,7 +224,7 @@ public void GeneraExcel2(JTable table,String fecha1,String fecha2,String fechaun
         }
         
         try {
-            FileOutputStream elFichero = new FileOutputStream("C:\\Users\\usuario\\Desktop\\Ventaproductos.xls");
+            FileOutputStream elFichero = new FileOutputStream("C:\\Users\\GHIA\\Desktop\\Ventaporductos del "+fecha1+" al "+fecha2+".xls");
             libro.write(elFichero);
             elFichero.close();
              JOptionPane.showMessageDialog(null, "Guardado");
