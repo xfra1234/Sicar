@@ -44,6 +44,7 @@ public class ReporteVentasFecha extends javax.swing.JFrame {
         btnbuscar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblbuscar = new javax.swing.JTable();
+        btnexportar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,6 +72,13 @@ public class ReporteVentasFecha extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblbuscar);
 
+        btnexportar.setText("Exportar");
+        btnexportar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnexportarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -83,10 +91,13 @@ public class ReporteVentasFecha extends javax.swing.JFrame {
                         .addGap(57, 57, 57)
                         .addComponent(jdcfin, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnbuscar)))
-                .addContainerGap(37, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnexportar)
+                            .addComponent(btnbuscar))))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,7 +109,10 @@ public class ReporteVentasFecha extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnbuscar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnbuscar)
+                        .addGap(61, 61, 61)
+                        .addComponent(btnexportar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -114,6 +128,12 @@ public class ReporteVentasFecha extends javax.swing.JFrame {
         met.buscarcantidades(fechainicio, fechafinal);
        
     }//GEN-LAST:event_btnbuscarActionPerformed
+
+    private void btnexportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnexportarActionPerformed
+        // TODO add your handling code here:
+        met.GeneraExcel(tblbuscar);
+        
+    }//GEN-LAST:event_btnexportarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -152,6 +172,7 @@ public class ReporteVentasFecha extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnbuscar;
+    private javax.swing.JButton btnexportar;
     private javax.swing.JScrollPane jScrollPane1;
     public static com.toedter.calendar.JDateChooser jdcfin;
     public static com.toedter.calendar.JDateChooser jdcinicio;

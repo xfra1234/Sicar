@@ -5,11 +5,18 @@
  */
 package Metodos;
 
+import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFRichTextString;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import reportes.ReporteVentasFecha;
 import reportes.conexion;
 
@@ -76,6 +83,34 @@ public class MetodosVentaCantidades {
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
+    
+    public void GeneraExcel(JTable table) {
+        HSSFWorkbook libro = new HSSFWorkbook();      
+        HSSFSheet hoja = libro.createSheet();
+        for (int i = 0; i < table.getRowCount()-1; i++) {
+            HSSFRow fila = hoja.createRow(i);           
+            if(i==0){
+                for (int j = 0; j < table.getColumnCount()-1; j++) {
+                    HSSFCell celda = fila.createCell(j);
+                    celda.setCellValue(new HSSFRichTextString(table.getColumnModel().getColumn(j).getHeaderValue().toString()));
+                }
+            }else{
+                for (int j = 0; j < table.getColumnCount()-1; j++) {
+                    HSSFCell celda = fila.createCell(j);
+                    if(table.getValueAt(i, j)!=null)
+                        celda.setCellValue(new HSSFRichTextString(table.getValueAt(i, j).toString()));
+                }
+            }
+            try {
+                FileOutputStream elFichero = new FileOutputStream("holamundo.xls");
+                libro.write(elFichero);
+                elFichero.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
