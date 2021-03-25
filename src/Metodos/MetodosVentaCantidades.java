@@ -6,6 +6,7 @@
 package Metodos;
 
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -93,23 +94,23 @@ public class MetodosVentaCantidades {
         for (int i = 0; i < table.getRowCount()-1; i++) {
             HSSFRow fila = hoja.createRow(i);           
             if(i==0){
-                for (int j = 0; j < table.getColumnCount()-1; j++) {
+                for (int j = 0; j <= table.getColumnCount()-1; j++) {
                     HSSFCell celda = fila.createCell(j);
                     celda.setCellValue(new HSSFRichTextString(table.getColumnModel().getColumn(j).getHeaderValue().toString()));
                 }
             }else{
-                for (int j = 0; j < table.getColumnCount()-1; j++) {
+                for (int j = 0; j <= table.getColumnCount()-1; j++) {
                     HSSFCell celda = fila.createCell(j);
                     if(table.getValueAt(i, j)!=null)
                         celda.setCellValue(new HSSFRichTextString(table.getValueAt(i, j).toString()));
                 }
             }
             try {
-                FileOutputStream elFichero = new FileOutputStream("holamundo.xls");
+                FileOutputStream elFichero = new FileOutputStream("C:\\Users\\GHIA\\Desktop\\holamundo.xls");
                 libro.write(elFichero);
                 elFichero.close();
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (IOException e ) {
+                JOptionPane.showMessageDialog(null, e);
             }
         }
     }
