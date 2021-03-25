@@ -118,43 +118,92 @@ public class MetodosVentaCantidades {
         }
     }
     
+//    
+//    public void GeneraExcel(JTable table,String fecha1,String fecha2) {
+//        HSSFWorkbook libro = new HSSFWorkbook();      
+//        HSSFSheet hoja = libro.createSheet();
+//        CellStyle headerStyle = libro.createCellStyle();
+//        HSSFFont font = libro.createFont();
+//        font.setBold(true);
+//        headerStyle.setFont(font);
+//        
+//        CellStyle style = libro.createCellStyle();
+//        style.setFillForegroundColor(IndexedColors.LIGHT_YELLOW.getIndex());
+//        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+//        for (int i = 0; i <= table.getRowCount()-1; i++) {
+//            HSSFRow fila = hoja.createRow(i);           
+//            if(i==0){
+//                for (int j = 0; j <= table.getColumnCount()-1; j++) {
+//                    HSSFCell celda = fila.createCell(j);
+//                    celda.setCellValue(new HSSFRichTextString(table.getColumnModel().getColumn(j).getHeaderValue().toString()));
+//                     celda.setCellStyle(headerStyle);
+//                }
+//            }else{
+//                for (int j = 0; j <= table.getColumnCount()-1; j++) {
+//                    HSSFCell celda = fila.createCell(j);
+//                    if(table.getValueAt(i, j)!=null)
+//                        celda.setCellValue(new HSSFRichTextString(table.getValueAt(i, j).toString()));
+//                 
+//                }
+//            }
+//            try {
+//                FileOutputStream elFichero = new FileOutputStream("C:\\Users\\GHIA\\Desktop\\Ventaporductos del "+fecha1+" al "+fecha2+" .xls");
+//                libro.write(elFichero);
+//                elFichero.close();
+//            } catch (IOException e ) {
+//                JOptionPane.showMessageDialog(null, e);
+//            }
+//        }
+//        JOptionPane.showMessageDialog(null, "Guardado");
+//    }
+
     
-    public void GeneraExcel(JTable table,String fecha1,String fecha2) {
-        HSSFWorkbook libro = new HSSFWorkbook();      
+    
+     public void GeneraExcel(JTable table,String fecha1,String fecha2) {
+        HSSFWorkbook libro = new HSSFWorkbook();
         HSSFSheet hoja = libro.createSheet();
         CellStyle headerStyle = libro.createCellStyle();
         HSSFFont font = libro.createFont();
         font.setBold(true);
         headerStyle.setFont(font);
-        
+
         CellStyle style = libro.createCellStyle();
         style.setFillForegroundColor(IndexedColors.LIGHT_YELLOW.getIndex());
         style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-        for (int i = 0; i <= table.getRowCount()-1; i++) {
-            HSSFRow fila = hoja.createRow(i);           
-            if(i==0){
-                for (int j = 0; j <= table.getColumnCount()-1; j++) {
-                    HSSFCell celda = fila.createCell(j);
-                    celda.setCellValue(new HSSFRichTextString(table.getColumnModel().getColumn(j).getHeaderValue().toString()));
-                     celda.setCellStyle(headerStyle);
+        HSSFCell celda;
+        HSSFRow fila;
+        fila = hoja.createRow(0);
+        for (int j = 0; j <= table.getColumnCount() - 1; j++) {
+            celda = fila.createCell(j);
+            celda.setCellValue(new HSSFRichTextString(table.getColumnModel().getColumn(j).getHeaderValue().toString()));
+            celda.setCellStyle(headerStyle);
+
+        }
+        int contador = 1;
+        for (int i = 0; i <= table.getRowCount() - 1; i++) {
+            fila = hoja.createRow(i + 1);
+
+            for (int j = 0; j <= table.getColumnCount() - 1; j++) {
+                celda = fila.createCell(j);
+                if (table.getValueAt(i, j) != null) {
+                    celda.setCellValue(new HSSFRichTextString(table.getValueAt(i, j).toString()));
                 }
-            }else{
-                for (int j = 0; j <= table.getColumnCount()-1; j++) {
-                    HSSFCell celda = fila.createCell(j);
-                    if(table.getValueAt(i, j)!=null)
-                        celda.setCellValue(new HSSFRichTextString(table.getValueAt(i, j).toString()));
-                 
-                }
+                
+                    hoja.autoSizeColumn(j);
+                
             }
-            try {
-                FileOutputStream elFichero = new FileOutputStream("C:\\Users\\GHIA\\Desktop\\Ventaporductos del '"+fecha1+"' al '"+fecha2+"' .xls");
-                libro.write(elFichero);
-                elFichero.close();
-            } catch (IOException e ) {
-                JOptionPane.showMessageDialog(null, e);
-            }
+
+        }
+        try {
+            FileOutputStream elFichero = new FileOutputStream("C:\\Users\\GHIA\\Desktop\\Ventaporductos del "+fecha1+" al "+fecha2+" .xls");
+            libro.write(elFichero);
+            elFichero.close();
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, e);
         }
         JOptionPane.showMessageDialog(null, "Guardado");
     }
 
+    
+    
 }
