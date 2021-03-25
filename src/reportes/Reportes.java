@@ -18,6 +18,9 @@ public class Reportes {
         // TODO code application logic here
         conexion conectar = new conexion();
         conectar.conectarMySQL();
+        
+        ReporteVentasFecha venta = new ReporteVentasFecha();
+        venta.setVisible(true);
     }
     
 }

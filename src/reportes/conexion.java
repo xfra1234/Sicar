@@ -17,7 +17,7 @@ public class conexion {
     public String driver = "com.mysql.jdbc.Driver";
 
     // Nombre de la base de datos
-    public String database = "prueba";
+    public String database = "sicar";
 //    public String database = "semill13_prueba";
 
     // Host
@@ -31,11 +31,11 @@ public class conexion {
     public String url = "jdbc:mysql://" + hostname + ":" + port + "/" + database + "?serverTimezone=UTC";
 
     // Nombre de usuario
-    public String username = "root";
+    public String username = "consultas";
 //    public String username = "semill13_root";
 
     // Clave de usuario
-    public String password = "0547";
+    public String password = "123456";
 //       public String password = "qscesz@.1047";
      public Connection conectarMySQL() {
         Connection conn = null;
