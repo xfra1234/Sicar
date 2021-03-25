@@ -20,6 +20,7 @@ public class Reportes {
         conectar.conectarMySQL();
         
         ReporteVentasFecha venta = new ReporteVentasFecha();
+        venta.setLocationRelativeTo(null);
         venta.setVisible(true);
     }
     

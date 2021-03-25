@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.table.TableColumnModel;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -44,13 +46,37 @@ public class MetodosVentaCantidades {
             ReporteVentasFecha.modelo.addColumn("Cantidad");
             ReporteVentasFecha.modelo.addColumn("Unidad");
             ReporteVentasFecha.tblbuscar.setModel(ReporteVentasFecha.modelo);
+            acomodofilas();
+            tamañocolumnas();
             ReporteVentasFecha.controlmodelo = true;
         } else {
             ReporteVentasFecha.tblbuscar.setModel(ReporteVentasFecha.modelo);
+            acomodofilas();
+            tamañocolumnas();
 
         }
     }
 
+    public void acomodofilas(){
+        
+        ReporteVentasFecha.tblbuscar.setRowHeight(30);    
+        ReporteVentasFecha.tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        ReporteVentasFecha.tblbuscar.getColumnModel().getColumn(0).setCellRenderer( ReporteVentasFecha.tcr);
+        ReporteVentasFecha.tblbuscar.getColumnModel().getColumn(1).setCellRenderer( ReporteVentasFecha.tcr); 
+        ReporteVentasFecha.tblbuscar.getColumnModel().getColumn(2).setCellRenderer( ReporteVentasFecha.tcr); 
+        ReporteVentasFecha.tblbuscar.getColumnModel().getColumn(3).setCellRenderer( ReporteVentasFecha.tcr);  
+        
+    }
+    public void tamañocolumnas()
+    {
+         TableColumnModel ModeloColumnas = ReporteVentasFecha.tblbuscar.getColumnModel();
+          ModeloColumnas.getColumn(0).setPreferredWidth(40);
+          ModeloColumnas.getColumn(1).setPreferredWidth(200);
+          ModeloColumnas.getColumn(2).setPreferredWidth(60);
+          ModeloColumnas.getColumn(3).setPreferredWidth(60);
+    }
+    
+    
     public void buscarcantidades(String fecha1, String fecha2) {
         try {
             int id;
