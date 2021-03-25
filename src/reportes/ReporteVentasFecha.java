@@ -25,6 +25,8 @@ public class ReporteVentasFecha extends javax.swing.JFrame {
     Date fecha1, fecha2;
     SimpleDateFormat formatomysql = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat formatoexport = new SimpleDateFormat("dd-MM-yyyy");
+    
+    SimpleDateFormat formatoexportar = new SimpleDateFormat("EEEEE dd MMMMM yyyy");
     Metodos.MetodosVentaCantidades met = new MetodosVentaCantidades();
     String fechainicio,fechafinal;
     public static DefaultTableModel modelo = new DefaultTableModel();

@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -118,45 +119,119 @@ public class MetodosVentaCantidades {
         }
     }
     
-//    
-//    public void GeneraExcel(JTable table,String fecha1,String fecha2) {
-//        HSSFWorkbook libro = new HSSFWorkbook();      
-//        HSSFSheet hoja = libro.createSheet();
-//        CellStyle headerStyle = libro.createCellStyle();
-//        HSSFFont font = libro.createFont();
-//        font.setBold(true);
-//        headerStyle.setFont(font);
-//        
-//        CellStyle style = libro.createCellStyle();
-//        style.setFillForegroundColor(IndexedColors.LIGHT_YELLOW.getIndex());
-//        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-//        for (int i = 0; i <= table.getRowCount()-1; i++) {
-//            HSSFRow fila = hoja.createRow(i);           
-//            if(i==0){
-//                for (int j = 0; j <= table.getColumnCount()-1; j++) {
-//                    HSSFCell celda = fila.createCell(j);
-//                    celda.setCellValue(new HSSFRichTextString(table.getColumnModel().getColumn(j).getHeaderValue().toString()));
-//                     celda.setCellStyle(headerStyle);
-//                }
-//            }else{
-//                for (int j = 0; j <= table.getColumnCount()-1; j++) {
-//                    HSSFCell celda = fila.createCell(j);
-//                    if(table.getValueAt(i, j)!=null)
-//                        celda.setCellValue(new HSSFRichTextString(table.getValueAt(i, j).toString()));
-//                 
-//                }
-//            }
-//            try {
-//                FileOutputStream elFichero = new FileOutputStream("C:\\Users\\GHIA\\Desktop\\Ventaporductos del "+fecha1+" al "+fecha2+" .xls");
-//                libro.write(elFichero);
-//                elFichero.close();
-//            } catch (IOException e ) {
-//                JOptionPane.showMessageDialog(null, e);
-//            }
-//        }
-//        JOptionPane.showMessageDialog(null, "Guardado");
-//    }
+public void GeneraExcel2(JTable table,String fecha1,String fecha2,String fechauno,String fechados) {
+        HSSFWorkbook libro = new HSSFWorkbook();
+        HSSFSheet hoja = libro.createSheet();
+        
+        
+        //formato para el nombre de las columnas
+        CellStyle headerStyle = libro.createCellStyle();
+        HSSFFont font = libro.createFont();
+        font.setBold(true);
+        font.setFontName("Arial");
+        font.setFontHeight((short)(14*20));
+        headerStyle.setFont(font);
 
+        
+        //formato para las celdas de la tabla
+        CellStyle style = libro.createCellStyle();
+        style.setFillForegroundColor(IndexedColors.LIGHT_YELLOW.getIndex());
+        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        
+        //formato para encabezados
+        CellStyle encabezados = libro.createCellStyle();
+        HSSFFont font2 = libro.createFont();
+        font2.setBold(true);
+        font2.setFontName("Arial");
+        font2.setFontHeight((short)(10*20));
+        encabezados.setFont(font2);
+        
+        HSSFCell celda;
+        HSSFRow fila;
+        Date fecha = new Date();
+        SimpleDateFormat formatoexport = new SimpleDateFormat("EEEEE dd MMMMM yyyy HH:mm:ss");
+        String f  = formatoexport.format(fecha);
+        f = f.toUpperCase().charAt(0)+f.substring(1, 9)+" "+f.toUpperCase().charAt(10)+f.substring(11, f.length());
+       
+        
+        
+         CellStyle letraprincipal = libro.createCellStyle();
+        HSSFFont font3 = libro.createFont();
+        font3.setBold(true);
+        font3.setFontName("Arial");
+        font3.setFontHeight((short)(15*20));
+        letraprincipal.setFont(font3);
+        
+        fila = hoja.createRow(0);
+        celda = fila.createCell(5);
+        celda.setCellValue(new HSSFRichTextString("LA BUENA SEMILLA"));
+        celda.setCellStyle(letraprincipal);
+        //muestro la fecha de creacion
+        
+        
+        
+        
+        
+        fila =hoja.createRow(1);
+        celda= fila.createCell(0);
+        celda.setCellValue(new HSSFRichTextString("Fecha de Creacion:"));
+        celda.setCellStyle(encabezados);
+        celda = fila.createCell(1);
+        celda.setCellValue(new HSSFRichTextString(f));
+        celda.setCellStyle(encabezados);
+        celda= fila.createCell(5);
+        celda.setCellValue(new HSSFRichTextString("Sucursal: "));
+        celda.setCellStyle(encabezados);
+        
+        
+        fila = hoja.createRow(2);
+        celda= fila.createCell(0);
+        celda.setCellValue(new HSSFRichTextString("Reporte de Cantidad de Productos del "));
+        celda.setCellStyle(encabezados);
+        celda= fila.createCell(1);
+        celda.setCellValue(new HSSFRichTextString(fechauno));
+        celda.setCellStyle(encabezados);
+         celda= fila.createCell(2);
+        celda.setCellValue(new HSSFRichTextString("Al"));
+        celda.setCellStyle(encabezados);
+         celda= fila.createCell(3);
+        celda.setCellValue(new HSSFRichTextString(fechados));
+        celda.setCellStyle(encabezados);
+        
+        fila = hoja.createRow(4);
+        for (int j = 0; j <= table.getColumnCount() - 1; j++) {
+            celda = fila.createCell(j);
+            celda.setCellValue(new HSSFRichTextString(table.getColumnModel().getColumn(j).getHeaderValue().toString()));
+            celda.setCellStyle(headerStyle);
+            
+        }
+        int contador = 1;
+        for (int i = 0; i <= table.getRowCount() - 1; i++) {
+            fila = hoja.createRow(i + 5);
+
+            for (int j = 0; j <= table.getColumnCount() - 1; j++) {
+                celda = fila.createCell(j);
+                if (table.getValueAt(i, j) != null) {
+                    celda.setCellValue(new HSSFRichTextString(table.getValueAt(i, j).toString()));
+                    celda.setCellStyle(style);
+                }
+            }
+
+        }
+        for(int x=0;x<5;x++){
+            hoja.autoSizeColumn(x);
+        }
+        
+        try {
+            FileOutputStream elFichero = new FileOutputStream("C:\\Users\\usuario\\Desktop\\Ventaproductos.xls");
+            libro.write(elFichero);
+            elFichero.close();
+             JOptionPane.showMessageDialog(null, "Guardado");
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+       
+    }
     
     
      public void GeneraExcel(JTable table,String fecha1,String fecha2) {
