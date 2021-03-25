@@ -17,10 +17,14 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.TableColumnModel;
 import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.IndexedColors;
 import reportes.ReporteVentasFecha;
 import reportes.conexion;
 
@@ -118,18 +122,28 @@ public class MetodosVentaCantidades {
     public void GeneraExcel(JTable table,String fecha1,String fecha2) {
         HSSFWorkbook libro = new HSSFWorkbook();      
         HSSFSheet hoja = libro.createSheet();
-        for (int i = 0; i < table.getRowCount()-1; i++) {
+        CellStyle headerStyle = libro.createCellStyle();
+        HSSFFont font = libro.createFont();
+        font.setBold(true);
+        headerStyle.setFont(font);
+        
+        CellStyle style = libro.createCellStyle();
+        style.setFillForegroundColor(IndexedColors.LIGHT_YELLOW.getIndex());
+        style.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        for (int i = 0; i <= table.getRowCount()-1; i++) {
             HSSFRow fila = hoja.createRow(i);           
             if(i==0){
                 for (int j = 0; j <= table.getColumnCount()-1; j++) {
                     HSSFCell celda = fila.createCell(j);
                     celda.setCellValue(new HSSFRichTextString(table.getColumnModel().getColumn(j).getHeaderValue().toString()));
+                     celda.setCellStyle(headerStyle);
                 }
             }else{
                 for (int j = 0; j <= table.getColumnCount()-1; j++) {
                     HSSFCell celda = fila.createCell(j);
                     if(table.getValueAt(i, j)!=null)
                         celda.setCellValue(new HSSFRichTextString(table.getValueAt(i, j).toString()));
+                 
                 }
             }
             try {
@@ -140,6 +154,7 @@ public class MetodosVentaCantidades {
                 JOptionPane.showMessageDialog(null, e);
             }
         }
+        JOptionPane.showMessageDialog(null, "Guardado");
     }
 
 }
