@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
@@ -114,7 +115,7 @@ public class MetodosVentaCantidades {
     }
     
     
-    public void GeneraExcel(JTable table) {
+    public void GeneraExcel(JTable table,String fecha1,String fecha2) {
         HSSFWorkbook libro = new HSSFWorkbook();      
         HSSFSheet hoja = libro.createSheet();
         for (int i = 0; i < table.getRowCount()-1; i++) {
@@ -132,7 +133,7 @@ public class MetodosVentaCantidades {
                 }
             }
             try {
-                FileOutputStream elFichero = new FileOutputStream("C:\\Users\\GHIA\\Desktop\\holamundo.xls");
+                FileOutputStream elFichero = new FileOutputStream("C:\\Users\\GHIA\\Desktop\\Ventaporductos del '"+fecha1+"' al '"+fecha2+"' .xls");
                 libro.write(elFichero);
                 elFichero.close();
             } catch (IOException e ) {

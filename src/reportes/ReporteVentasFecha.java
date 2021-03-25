@@ -24,6 +24,7 @@ public class ReporteVentasFecha extends javax.swing.JFrame {
      */
     Date fecha1, fecha2;
     SimpleDateFormat formatomysql = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat formatoexport = new SimpleDateFormat("dd-MM-yyyy");
     Metodos.MetodosVentaCantidades met = new MetodosVentaCantidades();
     String fechainicio,fechafinal;
     public static DefaultTableModel modelo = new DefaultTableModel();
@@ -146,7 +147,11 @@ public class ReporteVentasFecha extends javax.swing.JFrame {
 
     private void btnexportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnexportarActionPerformed
         // TODO add your handling code here:
-        met.GeneraExcel(tblbuscar);
+        fecha1 = jdcinicio.getDate();
+        fecha2 = jdcfin.getDate();
+        fechainicio = formatoexport.format(fecha1);
+        fechafinal = formatoexport.format(fecha2);
+        met.GeneraExcel(tblbuscar,fechainicio,fechafinal);
         
     }//GEN-LAST:event_btnexportarActionPerformed
 
