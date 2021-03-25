@@ -21,7 +21,8 @@ import reportes.conexion;
  */
  public class MetodosVentaCantidades {
     Connection con = null;
-    static ResultSet rs = null;
+    static ResultSet rs = null; 
+    static ResultSet rs2 = null;
     private Statement stmt = null;
     conexion conectar = new conexion();
 
@@ -42,6 +43,7 @@ import reportes.conexion;
      
      public void buscarcantidades(String fecha1,String fecha2){
          try {
+             double cantidad = 0;
             con = conectar.conectarMySQL();
             stmt = con.createStatement();
             rs = stmt.executeQuery("select articulo.art_id form,articulo.descripcion from  articulo;");
@@ -49,9 +51,17 @@ import reportes.conexion;
             {
                 filas[0]=rs.getInt(1);
                 filas[1]=rs.getString(2);
+                rs2=stmt.executeQuery("select sum(detallev.cantidad) from detallev inner join venta on "
+                        + "detallev.ven_id = venta.ven_id inner join articulo "
+                        + "on detallev.art_id=articulo.art_id" +
+                        "where articulo.art_id=4 and venta.fecha"
+                        + " between '2021-03-24 07:00:00' and '2021-03-24 20:00:00';");
+                if(rs.next())
+                {
+                    cantidad=rs.getDouble(1);
+                }
                 
-                
-                
+                filas[3]=cantidad;
                 ReporteVentasFecha.modelo.addRow(filas);
                 ReporteVentasFecha.tblbuscar.setModel(ReporteVentasFecha.modelo);
                 
