@@ -5,6 +5,8 @@
  */
 package reportes;
 
+import Metodos.conexion;
+
 /**
  *
  * @author usuario
