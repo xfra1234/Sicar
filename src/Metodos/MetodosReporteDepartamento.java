@@ -19,11 +19,17 @@ public class MetodosReporteDepartamento {
     Connection con = null;
     static ResultSet rs = null;
     private Statement stmt = null;
+    
     Connection con2 = null;
     static ResultSet rs2 = null;
     private Statement stmt2 = null;
-    conexion conectar = new conexion();
     
+    Connection con3 = null;
+    static ResultSet rs3 = null;
+    private Statement stmt3 = null;
+    
+    conexion conectar = new conexion();
+    Object datos[]= new Object[3];
     public void buscarventas(String fecha1,String fecha2)
     {
         try {
@@ -32,14 +38,28 @@ public class MetodosReporteDepartamento {
             rs=stmt.executeQuery("select sum(detallev.importenorcon) from articulo  inner join categoria on  "
                     + "articulo.cat_id = categoria.cat_id inner join departamento on categoria.dep_id\n" +
                     "=departamento.dep_id inner join detallev on detallev.art_id = articulo.art_id inner join venta "
+                    + "on detallev.ven_id = venta.ven_id where departamento.dep_id=22\n" +
+                    "and venta.fecha between '"+fecha1+"' and '"+fecha2+"';");
+            if(rs.next()){
+                datos[0]=rs.getFloat(1);
+            }
+             con=conectar.conectarMySQL();
+            stmt=con.createStatement();
+            rs=stmt.executeQuery("select sum(detallev.importenorcon) from articulo  inner join categoria on  "
+                    + "articulo.cat_id = categoria.cat_id inner join departamento on categoria.dep_id\n" +
+                    "=departamento.dep_id inner join detallev on detallev.art_id = articulo.art_id inner join venta "
                     + "on detallev.ven_id = venta.ven_id where departamento.dep_id=23\n" +
                     "and venta.fecha between '"+fecha1+"' and '"+fecha2+"';");
             if(rs.next()){
-                JOptionPane.showMessageDialog(null, rs.getFloat(1));
+                datos[1]=rs.getFloat(1);
             }
+            JOptionPane.showMessageDialog(null, datos[1]+" "+datos[2]);
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
+        
+        
+        
     }
     
 }

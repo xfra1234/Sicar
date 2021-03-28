@@ -20,8 +20,9 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
      * Creates new form frmReporteDepartamento
      */
     Metodos.MetodosReporteDepartamento met = new MetodosReporteDepartamento();
-     SimpleDateFormat formatomysql = new SimpleDateFormat("yyyy-MM-dd");
-     String fecha1,fecha2;
+    SimpleDateFormat formatomysql = new SimpleDateFormat("yyyy-MM-dd");
+    String fecha1, fecha2;
+
     public frmReporteDepartamento() {
         initComponents();
         jdcfinal.setDate(new Date());
@@ -98,16 +99,9 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
 
     private void btncrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncrearActionPerformed
         // TODO add your handling code here:
-       
-        
-        try {
-          fecha1 = formatomysql.format(jdcinicio.getDate())+" 06:00:00";
-        fecha2 = formatomysql.format(jdcfinal.getDate())+" 21:00:00";
-       
-        met.buscarventas(fecha1, fecha2);  
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
+        fecha1 = formatomysql.format(jdcinicio.getDate()) + " 06:00:00";
+        fecha2 = formatomysql.format(jdcfinal.getDate()) + " 21:00:00";
+        met.buscarventas(fecha1, fecha2);
     }//GEN-LAST:event_btncrearActionPerformed
 
     /**
