@@ -167,64 +167,67 @@ public class MetodosReporteDepartamento {
         hoja.autoSizeColumn(0);
 
         try {
-            FileOutputStream elFichero = new FileOutputStream("C:\\Users\\usuario\\Desktop\\prueba del .xls");
+            FileOutputStream elFichero = new FileOutputStream("C:\\Users\\GHIA\\Desktop\\prueba del .xls");
             libro.write(elFichero);
             elFichero.close();
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        JOptionPane.showMessageDialog(null, "Guardado");
+        
     }
 
-    public void cargar(String fecha1, String fecha2) throws IOException, SQLException {
-
-        try {
-            con = conectar.conectarMySQL();
-            stmt = con.createStatement();
-            PreparedStatement ps;
-            FileInputStream file = new FileInputStream(new File("C:\\Users\\usuario\\Desktop\\prueba del .xls"));
-
-            HSSFWorkbook libro = new HSSFWorkbook(file);
-            HSSFSheet hoja = libro.getSheetAt(0);
-            HSSFCell celda;
-            HSSFRow fila;
-
-            CellStyle categoria = libro.createCellStyle();
-            HSSFFont font3 = libro.createFont();
-            font3.setFontName("Calibri");
-            font3.setFontHeight((short) (10 * 22));
-            categoria.setFont(font3);
-
-            int numFilas = hoja.getLastRowNum();
-            int filac = 5, columnadato = 1, nombremes = 3;
-            rs2 = stmt.executeQuery("SET lc_time_names = 'es_ES';");
-            rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes ,sum(detallev.importenorcon) as suma "
-                    + ",year(venta.fecha) as año\n"
-                    + "from detallev inner join  venta on venta.ven_id = detallev.ven_id inner join articulo "
-                    + "on articulo.art_id = detallev.art_id\n"
-                    + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
-                    + "on departamento.dep_id = categoria.dep_id\n"
-                    + "where departamento.dep_id = 23 and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
-                    + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) ;");
-            while (rs.next()) {
-                datos[0] = rs.getString(1);
-                datos[1] = rs.getFloat(2);
-                datos[2] = rs.getString(3);
-                fila = hoja.createRow(columnadato);
-                celda = fila.createCell(filac);
-                celda.setCellValue(new HSSFRichTextString(datos[2].toString()));
-                celda.setCellStyle(categoria);
-                celda = fila.createCell(nombremes);
-                celda.setCellValue(new HSSFRichTextString(datos[1].toString()));
-                celda.setCellStyle(categoria);
-                
-            }
-
-            con.close();
-
-        } catch (FileNotFoundException ex) {
-            JOptionPane.showMessageDialog(null, ex);
-        }
-    }
+//    public void cargar(String fecha1, String fecha2) {
+//
+//        try {
+//            con = conectar.conectarMySQL();
+//            stmt = con.createStatement();
+//            PreparedStatement ps;
+//            File  file = new File("C:\\Users\\GHIA\\Desktop\\prueba del .xls");
+//
+//            XSSFWorkbook  libro = new HSSFWorkbook(file);
+//            HSSFSheet hoja = libro.getSheetAt(0);
+//            HSSFCell celda;
+//            HSSFRow fila;
+//
+//            CellStyle categoria = libro.createCellStyle();
+//            HSSFFont font3 = libro.createFont();
+//            font3.setFontName("Calibri");
+//            font3.setFontHeight((short) (10 * 22));
+//            categoria.setFont(font3);
+//
+//            int numFilas = hoja.getLastRowNum();
+//            int filac = 5, columnadato = 1, nombremes = 3;
+//            rs2 = stmt.executeQuery("SET lc_time_names = 'es_ES';");
+//            rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes ,sum(detallev.importenorcon) as suma "
+//                    + ",year(venta.fecha) as año\n"
+//                    + "from detallev inner join  venta on venta.ven_id = detallev.ven_id inner join articulo "
+//                    + "on articulo.art_id = detallev.art_id\n"
+//                    + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
+//                    + "on departamento.dep_id = categoria.dep_id\n"
+//                    + "where departamento.dep_id = 23 and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
+//                    + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) ;");
+//            while (rs.next()) {
+//                datos[0] = rs.getString(1);
+//                datos[1] = rs.getFloat(2);
+//                datos[2] = rs.getString(3);
+//                fila = hoja.createRow(columnadato);
+//                celda = fila.createCell(filac);
+//                celda.setCellValue(new HSSFRichTextString(datos[2].toString()));
+//                celda.setCellStyle(categoria);
+//                celda = fila.createCell(nombremes);
+//                celda.setCellValue(new HSSFRichTextString(datos[1].toString()));
+//                celda.setCellStyle(categoria);
+//                libro.write(file);
+//            }
+//            JOptionPane.showMessageDialog(null, "Guardado");
+//            con.close();
+//
+//        } catch (IOException ex) {
+//            JOptionPane.showMessageDialog(null, ex);
+//        }
+//        catch (SQLException ex) {
+//            JOptionPane.showMessageDialog(null, ex);
+//        }
+//    }
 
 }

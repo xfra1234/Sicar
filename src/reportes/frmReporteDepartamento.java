@@ -6,6 +6,8 @@
 package reportes;
 
 import Metodos.MetodosReporteDepartamento;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
@@ -14,6 +16,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -155,7 +159,10 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
         fecha1 = formatomysql.format(jdcinicio.getDate()) + " 06:00:00";
         fecha2 = formatomysql.format(jdcfinal.getDate()) + " 21:00:00";
         met.GeneraExcel(fecha1, fecha2);
-        //
+       
+            met.cargar(fecha1, fecha2);
+            //
+       
 
     }//GEN-LAST:event_btncrearActionPerformed
 
