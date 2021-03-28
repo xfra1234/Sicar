@@ -58,7 +58,6 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
                 convertedDate.getMonth().length(convertedDate.isLeapYear()));
         String cadena = convertedDate + "";
         String cadena2 = formatomysql.format(jdcfinal.getDate());
-        JOptionPane.showMessageDialog(null, cadena);
         if (cadena2.equals(cadena)) {
             fecha1 = formatomysql.format(jdcinicio.getDate()) + " 06:00:00";
             fecha2 = formatomysql.format(jdcfinal.getDate()) + " 21:00:00";
