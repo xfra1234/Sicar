@@ -6,8 +6,14 @@
 package reportes;
 
 import Metodos.MetodosReporteDepartamento;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,12 +27,58 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
      */
     Metodos.MetodosReporteDepartamento met = new MetodosReporteDepartamento();
     SimpleDateFormat formatomysql = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat prueba = new SimpleDateFormat("dd/MM/yyyy");
     String fecha1, fecha2;
 
     public frmReporteDepartamento() {
         initComponents();
         jdcfinal.setDate(new Date());
         jdcinicio.setDate(new Date());
+    }
+
+//    public void prueba() {
+//        try {
+//            Calendar inicio = new GregorianCalendar();
+//            Calendar fin = new GregorianCalendar();
+//            inicio.setTime(new SimpleDateFormat("dd/MM/yyyy").parse(prueba.format(jdcinicio.getDate())));
+//            fin.setTime(new SimpleDateFormat("dd/MM/yyyy").parse(prueba.format(jdcfinal.getDate())));
+//            int difA = fin.get(Calendar.YEAR) - inicio.get(Calendar.YEAR);
+//            int difM = difA * 12 + fin.get(Calendar.MONTH) - inicio.get(Calendar.MONTH);
+//
+//            System.out.println(difM);
+//
+//        } catch (ParseException ex) {
+//            JOptionPane.showMessageDialog(null, ex);
+//        }
+//    }
+    private void ultimodiames() {
+        String date = prueba.format(jdcfinal.getDate());
+        LocalDate convertedDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        convertedDate = convertedDate.withDayOfMonth(
+                convertedDate.getMonth().length(convertedDate.isLeapYear()));
+        String cadena = convertedDate + "";
+        String cadena2 = formatomysql.format(jdcfinal.getDate());
+        JOptionPane.showMessageDialog(null, cadena);
+        if (cadena2.equals(cadena)) {
+            fecha1 = formatomysql.format(jdcinicio.getDate()) + " 06:00:00";
+            fecha2 = formatomysql.format(jdcfinal.getDate()) + " 21:00:00";
+            met.buscarventas(fecha1, fecha2,"","");
+        } else {
+            cadena = cadena.substring(8, 10);
+            JOptionPane.showMessageDialog(null, cadena);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(jdcfinal.getDate()); // Configuramos la fecha que se recibe
+            calendar.add(Calendar.MONTH, -1);
+            String fechaultimodia = formatomysql.format(calendar.getTime());
+            fechaultimodia = fechaultimodia.substring(0,8)+calendar.getActualMaximum(calendar.DAY_OF_MONTH)+ " 21:00:00";
+            
+            calendar.setTime(jdcfinal.getDate());
+            calendar.add(Calendar.MONTH,0);
+            String fechaprimerdia = formatomysql.format(calendar.getTime());
+            fechaprimerdia = fechaprimerdia.substring(0,8)+calendar.getActualMinimum(calendar.DAY_OF_MONTH)+ " 06:00:00";
+            met.buscarventas(fecha1, fecha2, fechaprimerdia, fechaultimodia);
+        }
+
     }
 
     /**
@@ -99,9 +151,11 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
 
     private void btncrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncrearActionPerformed
         // TODO add your handling code here:
-        fecha1 = formatomysql.format(jdcinicio.getDate()) + " 06:00:00";
-        fecha2 = formatomysql.format(jdcfinal.getDate()) + " 21:00:00";
-        met.buscarventas(fecha1, fecha2);
+
+        ultimodiames();
+
+        //
+
     }//GEN-LAST:event_btncrearActionPerformed
 
     /**
