@@ -167,11 +167,7 @@ public void GeneraExcel2(JTable table,String fecha1,String fecha2,String fechaun
         celda.setCellValue(new HSSFRichTextString("LA BUENA SEMILLA"));
         celda.setCellStyle(letraprincipal);
         //muestro la fecha de creacion
-        
-        
-        
-        
-        
+      
         fila =hoja.createRow(1);
         celda= fila.createCell(0);
         celda.setCellValue(new HSSFRichTextString("Fecha de Creacion:"));
