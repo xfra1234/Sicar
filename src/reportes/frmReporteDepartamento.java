@@ -8,6 +8,7 @@ package reportes;
 import Metodos.MetodosReporteDepartamento;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -97,10 +98,16 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
 
     private void btncrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncrearActionPerformed
         // TODO add your handling code here:
-        fecha1 = formatomysql.format(jdcinicio.getDate()+" 06:00:00");
-        fecha2 = formatomysql.format(jdcfinal.getDate()+" 21:00:00");
-        met.buscarventas(fecha1, fecha2);
+       
         
+        try {
+          fecha1 = formatomysql.format(jdcinicio.getDate())+" 06:00:00";
+        fecha2 = formatomysql.format(jdcfinal.getDate())+" 21:00:00";
+       
+        met.buscarventas(fecha1, fecha2);  
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_btncrearActionPerformed
 
     /**

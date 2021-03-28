@@ -151,9 +151,12 @@ public class ReporteVentasFecha extends javax.swing.JFrame {
         // TODO add your handling code here:
         fecha1 = jdcinicio.getDate();
         fecha2 = jdcfin.getDate();
+        String fechauno,fechados;
         fechainicio = formatoexport.format(fecha1);
         fechafinal = formatoexport.format(fecha2);
-        met.GeneraExcel(tblbuscar,fechainicio,fechafinal);
+        fechauno=formatoexportar.format(fecha1);
+        fechados= formatoexportar.format(fecha2);
+        met.GeneraExcel2(tblbuscar,fechainicio,fechafinal,fechauno,fechados);
         
     }//GEN-LAST:event_btnexportarActionPerformed
 
