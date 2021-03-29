@@ -160,7 +160,7 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
         fecha2 = formatomysql.format(jdcfinal.getDate()) + " 21:00:00";
         met.GeneraExcel(fecha1, fecha2);
        
-            met.cargar(fecha1, fecha2);
+         
             //
        
 
