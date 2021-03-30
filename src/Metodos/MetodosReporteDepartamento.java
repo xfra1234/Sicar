@@ -165,7 +165,7 @@ public class MetodosReporteDepartamento {
         celda = fila.createCell(0);
         celda.setCellValue(new HSSFRichTextString("Total"));
         celda.setCellStyle(negrita);
-        int filadato = 5, columnadato = 2, nombremes = 4;
+        int filadato = 5, columnadato = 1, nombremes = 4;
          fila = hoja.createRow(4);
         String mes,anio;
         float cantidad;
@@ -206,7 +206,7 @@ public class MetodosReporteDepartamento {
          try {
             con = conectar.conectarMySQL();
             stmt = con.createStatement();
-            columnadato=2;
+            columnadato=1;
             filadato = 6;
             rs2 = stmt.executeQuery("SET lc_time_names = 'es_ES';");
             rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes ,sum(detallev.importenorcon) as suma "
@@ -237,7 +237,7 @@ public class MetodosReporteDepartamento {
           try {
             con = conectar.conectarMySQL();
             stmt = con.createStatement();
-            columnadato=2;
+            columnadato=1;
             filadato = 7;
             rs2 = stmt.executeQuery("SET lc_time_names = 'es_ES';");
             rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes ,sum(detallev.importenorcon) as suma "
