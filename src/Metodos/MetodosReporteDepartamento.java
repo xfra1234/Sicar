@@ -246,7 +246,8 @@ public class MetodosReporteDepartamento {
            ///inicia consultas de compras por departamento
         try {
             con = conectar.conectarMySQL();
-            stmt = con.createStatement();      
+            stmt = con.createStatement();   
+            rs2 = stmt.executeQuery("SET lc_time_names = 'es_ES';");
             rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes ,sum(detallev.importeCompra) as suma "
                     + ",year(venta.fecha) as año\n"
                     + "from detallev inner join  venta on venta.ven_id = detallev.ven_id inner join articulo "
