@@ -65,7 +65,7 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
         if (cadena2.equals(cadena)) {
             fecha1 = formatomysql.format(jdcinicio.getDate()) + " 06:00:00";
             fecha2 = formatomysql.format(jdcfinal.getDate()) + " 21:00:00";
-            met.buscarventas(fecha1, fecha2,"","");
+           
         } else {
             cadena = cadena.substring(8, 10);
             JOptionPane.showMessageDialog(null, cadena);
@@ -79,7 +79,7 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
             calendar.add(Calendar.MONTH,0);
             String fechaprimerdia = formatomysql.format(calendar.getTime());
             fechaprimerdia = fechaprimerdia.substring(0,8)+calendar.getActualMinimum(calendar.DAY_OF_MONTH)+ " 06:00:00";
-            met.buscarventas(fecha1, fecha2, fechaprimerdia, fechaultimodia);
+          
         }
 
     }
