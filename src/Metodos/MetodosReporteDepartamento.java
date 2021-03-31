@@ -121,8 +121,9 @@ public class MetodosReporteDepartamento {
         String mes,anio;
         float total=0;
         float cantidad;
+         Row  row = hoja.getRow(6);
         ///inicia consultas de ventas por departamento
-        try {
+      try {
             con = conectar.conectarMySQL();
             stmt = con.createStatement();
             
@@ -142,7 +143,6 @@ public class MetodosReporteDepartamento {
                 anio = rs.getString(3);
                 fila = hoja.getRow(filadato);
                 celda = fila.createCell(columnadato);
-                JOptionPane.showMessageDialog(null, fila.getCell(columnadato));
                 celda.setCellValue(new HSSFRichTextString(cantidad+""));
                 celda.setCellStyle(categoria);
                 mes=mes.toUpperCase().charAt(0)+mes.substring(1, mes.length());
@@ -157,6 +157,7 @@ public class MetodosReporteDepartamento {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
+        
         
          try {
             con = conectar.conectarMySQL();
@@ -342,15 +343,60 @@ public class MetodosReporteDepartamento {
             JOptionPane.showMessageDialog(null, e);
         }
          //finaliza compras por departamento 
-          
-          
-          
-          
+        
+         int columna=1;
+       
+          for (int x=1;x<columnadato;x+=2){
+              total=0;
+               filadato=8;
+              /////Total de ventas
+               row = hoja.getRow(5); //fila
+               total= total+Float.parseFloat(row.getCell(columna).toString()); //columna
+               
+               row = hoja.getRow(6); //fila
+               total= total+Float.parseFloat(row.getCell(columna).toString()); 
+               
+               row = hoja.getRow(7); //fila
+               total= total+Float.parseFloat(row.getCell(columna).toString()); 
+  
+                fila = hoja.getRow(filadato);
+                celda = fila.createCell(columna);
+                celda.setCellValue(new HSSFRichTextString(total+""));
+                celda.setCellStyle(negrita);
+//               Fin de Total de Ventas
+
+
+            // Total de Compras
+            total =0;
+            filadato=13;
+                row = hoja.getRow(10); //fila
+               total= total+Float.parseFloat(row.getCell(columna).toString()); //columna
+               
+               row = hoja.getRow(11); //fila
+               total= total+Float.parseFloat(row.getCell(columna).toString()); 
+               
+               row = hoja.getRow(12); //fila
+               total= total+Float.parseFloat(row.getCell(columna).toString()); 
+  
+                fila = hoja.getRow(filadato);
+                celda = fila.createCell(columna);
+                celda.setCellValue(new HSSFRichTextString(total+""));
+                celda.setCellStyle(negrita);
+
+                  // final total de compras
+                columna=columna+2;
+              
+        }
+//          
+//          
         for (int x=0;x<columnadato;x++){
+            
+             
                hoja.autoSizeColumn(x);
         }
      
-
+            
+              
         try {
             FileOutputStream elFichero = new FileOutputStream("C:\\Users\\GHIA\\Desktop\\prueba del .xls");
             libro.write(elFichero);
