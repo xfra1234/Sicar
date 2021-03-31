@@ -119,6 +119,7 @@ public class MetodosReporteDepartamento {
         int filadato = 5, columnadato = 1, nombremes = 4;
         fila = hoja.createRow(4);
         String mes,anio;
+        float total=0;
         float cantidad;
         ///inicia consultas de ventas por departamento
         try {
@@ -141,6 +142,7 @@ public class MetodosReporteDepartamento {
                 anio = rs.getString(3);
                 fila = hoja.getRow(filadato);
                 celda = fila.createCell(columnadato);
+                JOptionPane.showMessageDialog(null, fila.getCell(columnadato));
                 celda.setCellValue(new HSSFRichTextString(cantidad+""));
                 celda.setCellStyle(categoria);
                 mes=mes.toUpperCase().charAt(0)+mes.substring(1, mes.length());
@@ -150,6 +152,7 @@ public class MetodosReporteDepartamento {
                 celda.setCellStyle(negrita);
                
                columnadato=columnadato+2;
+               
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
@@ -179,7 +182,7 @@ public class MetodosReporteDepartamento {
                 celda.setCellValue(new HSSFRichTextString(cantidad+""));
                 celda.setCellStyle(categoria);
                
-               
+                
                columnadato=columnadato+2;
             }
         } catch (SQLException e) {
@@ -209,7 +212,7 @@ public class MetodosReporteDepartamento {
                 celda = fila.createCell(columnadato);
                 celda.setCellValue(new HSSFRichTextString(cantidad+""));
                 celda.setCellStyle(categoria);
-               
+                
                
                columnadato=columnadato+2;
             }
