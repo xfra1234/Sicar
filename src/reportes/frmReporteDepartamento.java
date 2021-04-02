@@ -153,13 +153,13 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btncrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncrearActionPerformed
-        // TODO add your handling code here:
+        // TODO add your andling code here:
 
         //ultimodiames();
         fecha1 = formatomysql.format(jdcinicio.getDate()) + " 06:00:00";
         fecha2 = formatomysql.format(jdcfinal.getDate()) + " 21:00:00";
-        met.GeneraExcel(fecha1, fecha2);
-       
+        //met.GeneraExcel(fecha1, fecha2);
+        met.modificaexcel(fecha1,fecha2);
          
             //
        
