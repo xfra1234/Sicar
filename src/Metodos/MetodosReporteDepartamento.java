@@ -26,6 +26,7 @@ import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.IndexedColors;
@@ -399,9 +400,10 @@ public class MetodosReporteDepartamento {
     }
 
     public void modificaexcel(String fecha1, String fecha2) {
-        try ( FileInputStream file = new FileInputStream(new File("C:\\Users\\GHIA\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Magisterio.xls"))) {
+        try ( FileInputStream file = new FileInputStream(new File("C:\\Users\\usuario\\Desktop\\Cuotas-de-Venta-y-Rentabilidad-Sucursales_-Magisterio.xls"))) {
             // leer archivo excel
-            HSSFWorkbook libro = new HSSFWorkbook(file);
+             POIFSFileSystem fs = new POIFSFileSystem(file);
+            HSSFWorkbook libro = new HSSFWorkbook(fs);
             //obtener la hoja que se va leer
             HSSFSheet hoja = libro.getSheetAt(0);
             //obtener todas las filas de la hoja excel
@@ -634,15 +636,14 @@ public class MetodosReporteDepartamento {
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
             }
-
-            FileOutputStream elFichero = new FileOutputStream("C:\\Users\\GHIA\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Magisterio.xls");
+             
+            FileOutputStream elFichero = new FileOutputStream("C:\\Users\\usuario\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Magisterio2.xls");
             libro.write(elFichero);
             elFichero.close();
-            File archivo = new File("C:\\Users\\GHIA\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Magisterio.xls");
+            File archivo = new File("C:\\Users\\usuario\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Magisterio2.xls");
             Desktop.getDesktop().open(archivo);
             // se recorre cada fila hasta el final
-            row = hoja.getRow(0);
-            System.out.println(row.getCell(0));
+          
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
