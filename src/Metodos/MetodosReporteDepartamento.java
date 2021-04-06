@@ -400,9 +400,9 @@ public class MetodosReporteDepartamento {
     }
 
     public void modificaexcel(String fecha1, String fecha2) {
-        try ( FileInputStream file = new FileInputStream(new File("C:\\Users\\usuario\\Desktop\\Cuotas-de-Venta-y-Rentabilidad-Sucursales_-Magisterio.xls"))) {
+        try ( FileInputStream file = new FileInputStream(new File("C:\\Users\\GHIA\\Desktop\\Cuotas-de-Venta-y-Rentabilidad-Sucursales_-Magisterio.xls"))) {
             // leer archivo excel
-             POIFSFileSystem fs = new POIFSFileSystem(file);
+            POIFSFileSystem fs = new POIFSFileSystem(file);
             HSSFWorkbook libro = new HSSFWorkbook(fs);
             //obtener la hoja que se va leer
             HSSFSheet hoja = libro.getSheetAt(0);
@@ -436,8 +436,8 @@ public class MetodosReporteDepartamento {
             negrita.setWrapText(true);
             negrita.setFont(font4);
 
-            int filadato = 5, columnadato = 1, nombremes = 4;
-            fila = hoja.createRow(4);
+            int filadato = 5, columnadato = 1, nombremes = 3;
+            fila = hoja.createRow(3);
             String mes, anio;
             float total = 0;
             float cantidad;
@@ -454,7 +454,7 @@ public class MetodosReporteDepartamento {
                         + "on articulo.art_id = detallev.art_id\n"
                         + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
                         + "on departamento.dep_id = categoria.dep_id\n"
-                        + "where departamento.dep_id = 22 and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
+                        + "where departamento.dep_id = 24 and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
                         + "order by  year(fecha), month(fecha) ;");
                 while (rs.next()) {
@@ -463,7 +463,7 @@ public class MetodosReporteDepartamento {
                     anio = rs.getString(3);
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
-                    celda.setCellValue(new HSSFRichTextString(cantidad + ""));
+                    celda.setCellValue(cantidad);
                     celda.setCellStyle(categoria);
                     mes = mes.toUpperCase().charAt(0) + mes.substring(1, mes.length());
                     fila = hoja.getRow(nombremes);
@@ -499,7 +499,7 @@ public class MetodosReporteDepartamento {
                     anio = rs.getString(3);
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
-                    celda.setCellValue(new HSSFRichTextString(cantidad + ""));
+                    celda.setCellValue(cantidad);
                     celda.setCellStyle(categoria);
 
                     columnadato = columnadato + 2;
@@ -520,7 +520,7 @@ public class MetodosReporteDepartamento {
                         + "on articulo.art_id = detallev.art_id\n"
                         + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
                         + "on departamento.dep_id = categoria.dep_id\n"
-                        + "where departamento.dep_id = 24 and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
+                        + "where departamento.dep_id = 22 and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
                         + "order by  year(fecha), month(fecha) ;");
                 while (rs.next()) {
@@ -529,7 +529,7 @@ public class MetodosReporteDepartamento {
                     anio = rs.getString(3);
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
-                    celda.setCellValue(new HSSFRichTextString(cantidad + ""));
+                    celda.setCellValue(cantidad);
                     celda.setCellStyle(categoria);
 
                     columnadato = columnadato + 2;
@@ -554,7 +554,7 @@ public class MetodosReporteDepartamento {
                         + "on articulo.art_id = detallev.art_id\n"
                         + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
                         + "on departamento.dep_id = categoria.dep_id\n"
-                        + "where departamento.dep_id = 22 and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
+                        + "where departamento.dep_id = 24 and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
                         + "order by  year(fecha), month(fecha) ;");
                 while (rs.next()) {
@@ -563,13 +563,13 @@ public class MetodosReporteDepartamento {
                     anio = rs.getString(3);
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
-                    celda.setCellValue(new HSSFRichTextString(cantidad + ""));
+                    celda.setCellValue(cantidad);
                     celda.setCellStyle(categoria);
-                    mes = mes.toUpperCase().charAt(0) + mes.substring(1, mes.length());
-                    fila = hoja.getRow(nombremes);
-                    celda = fila.createCell(columnadato);
-                    celda.setCellValue(new HSSFRichTextString(mes + " " + anio));
-                    celda.setCellStyle(negrita);
+//                    mes = mes.toUpperCase().charAt(0) + mes.substring(1, mes.length());
+//                    fila = hoja.getRow(nombremes);
+//                    celda = fila.createCell(columnadato);
+//                    celda.setCellValue(new HSSFRichTextString(mes + " " + anio));
+//                    celda.setCellStyle(negrita);
 
                     columnadato = columnadato + 2;
                 }
@@ -598,7 +598,7 @@ public class MetodosReporteDepartamento {
                     anio = rs.getString(3);
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
-                    celda.setCellValue(new HSSFRichTextString(cantidad + ""));
+                    celda.setCellValue(cantidad);
                     celda.setCellStyle(categoria);
 
                     columnadato = columnadato + 2;
@@ -619,7 +619,7 @@ public class MetodosReporteDepartamento {
                         + "on articulo.art_id = detallev.art_id\n"
                         + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
                         + "on departamento.dep_id = categoria.dep_id\n"
-                        + "where departamento.dep_id = 24 and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
+                        + "where departamento.dep_id = 22 and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
                         + "order by  year(fecha), month(fecha) ;");
                 while (rs.next()) {
@@ -628,7 +628,7 @@ public class MetodosReporteDepartamento {
                     anio = rs.getString(3);
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
-                    celda.setCellValue(new HSSFRichTextString(cantidad + ""));
+                    celda.setCellValue(cantidad);
                     celda.setCellStyle(categoria);
 
                     columnadato = columnadato + 2;
@@ -636,14 +636,17 @@ public class MetodosReporteDepartamento {
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
             }
-             
-            FileOutputStream elFichero = new FileOutputStream("C:\\Users\\usuario\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Magisterio2.xls");
+            for (int x = 1; x < columnadato; x++) {
+
+                hoja.autoSizeColumn(x);
+            }
+            FileOutputStream elFichero = new FileOutputStream("C:\\Users\\GHIA\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Magisterio2.xls");
             libro.write(elFichero);
             elFichero.close();
-            File archivo = new File("C:\\Users\\usuario\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Magisterio2.xls");
+            File archivo = new File("C:\\Users\\GHIA\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Magisterio2.xls");
             Desktop.getDesktop().open(archivo);
             // se recorre cada fila hasta el final
-          
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
