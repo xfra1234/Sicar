@@ -139,12 +139,12 @@ public class ReporteVentasFecha extends javax.swing.JFrame {
 
     private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
         // TODO add your handling code here:
-//        fecha1 = jdcinicio.getDate();
-//        fecha2 = jdcfin.getDate();
-//        fechainicio = formatomysql.format(fecha1)+" 07:00:00";
-//        fechafinal = formatomysql.format(fecha2)+" 20:00:00";
+        fecha1 = jdcinicio.getDate();
+        fecha2 = jdcfin.getDate();
+        fechainicio = formatomysql.format(fecha1)+" 07:00:00";
+        fechafinal = formatomysql.format(fecha2)+" 20:00:00";
         //met.buscarcantidades(fechainicio, fechafinal);
-        met.prueba();
+        met.prueba(fechainicio,fechafinal);
        
     }//GEN-LAST:event_btnbuscarActionPerformed
 
