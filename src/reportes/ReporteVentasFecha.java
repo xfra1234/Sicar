@@ -31,12 +31,13 @@ public class ReporteVentasFecha extends javax.swing.JFrame {
     String fechainicio,fechafinal;
     public static DefaultTableModel modelo = new DefaultTableModel();
     public static boolean controlmodelo = false;
+     String fechauno,fechados;
     
     public static  DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
     public ReporteVentasFecha() {
         initComponents();
-        met.modeloTabla();
-        tamañopantalla();
+       
+        //tamañopantalla();
     }
     
     public void tamañopantalla(){
@@ -57,9 +58,6 @@ public class ReporteVentasFecha extends javax.swing.JFrame {
         jdcfin = new com.toedter.calendar.JDateChooser();
         jdcinicio = new com.toedter.calendar.JDateChooser();
         btnbuscar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblbuscar = new javax.swing.JTable();
-        btnexportar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,64 +72,32 @@ public class ReporteVentasFecha extends javax.swing.JFrame {
             }
         });
 
-        tblbuscar.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane1.setViewportView(tblbuscar);
-
-        btnexportar.setText("Exportar");
-        btnexportar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnexportarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(87, 87, 87)
-                .addComponent(jdcinicio, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
-                .addComponent(jdcfin, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jScrollPane1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnexportar)
-                    .addComponent(btnbuscar))
-                .addGap(27, 27, 27))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(jdcinicio, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(75, 75, 75)
+                        .addComponent(jdcfin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(161, 161, 161)
+                        .addComponent(btnbuscar)))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(jdcfin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jdcinicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnbuscar)
-                        .addGap(65, 65, 65)
-                        .addComponent(btnexportar)
-                        .addGap(0, 284, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(jdcfin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jdcinicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addComponent(btnbuscar)
+                .addGap(45, 45, 45))
         );
 
         pack();
@@ -141,25 +107,16 @@ public class ReporteVentasFecha extends javax.swing.JFrame {
         // TODO add your handling code here:
         fecha1 = jdcinicio.getDate();
         fecha2 = jdcfin.getDate();
+        
         fechainicio = formatomysql.format(fecha1)+" 07:00:00";
         fechafinal = formatomysql.format(fecha2)+" 20:00:00";
+         fechauno=formatoexportar.format(fecha1);
+        fechados= formatoexportar.format(fecha2);
+        
         //met.buscarcantidades(fechainicio, fechafinal);
-        met.prueba(fechainicio,fechafinal);
+        met.prueba(fechainicio,fechafinal,fechauno,fechados);
        
     }//GEN-LAST:event_btnbuscarActionPerformed
-
-    private void btnexportarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnexportarActionPerformed
-        // TODO add your handling code here:
-        fecha1 = jdcinicio.getDate();
-        fecha2 = jdcfin.getDate();
-        String fechauno,fechados;
-        fechainicio = formatoexport.format(fecha1);
-        fechafinal = formatoexport.format(fecha2);
-        fechauno=formatoexportar.format(fecha1);
-        fechados= formatoexportar.format(fecha2);
-        met.GeneraExcel2(tblbuscar,fechainicio,fechafinal,fechauno,fechados);
-        
-    }//GEN-LAST:event_btnexportarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,10 +155,7 @@ public class ReporteVentasFecha extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnbuscar;
-    private javax.swing.JButton btnexportar;
-    private javax.swing.JScrollPane jScrollPane1;
     public static com.toedter.calendar.JDateChooser jdcfin;
     public static com.toedter.calendar.JDateChooser jdcinicio;
-    public static javax.swing.JTable tblbuscar;
     // End of variables declaration//GEN-END:variables
 }

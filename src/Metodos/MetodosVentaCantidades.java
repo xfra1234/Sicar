@@ -5,6 +5,8 @@
  */
 package Metodos;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -17,8 +19,6 @@ import java.util.Date;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.SwingConstants;
-import javax.swing.table.TableColumnModel;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFRichTextString;
@@ -28,7 +28,6 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.IndexedColors;
-import reportes.ReporteVentasFecha;
 
 /**
  *
@@ -48,84 +47,53 @@ public class MetodosVentaCantidades {
 
     conexion conectar = new conexion();
     protected ArrayList<Integer> idNumeros = new ArrayList();
+    
+    protected ArrayList<Float> Cantidadproducto = new ArrayList();
+    protected ArrayList<String> Nombreproducto = new ArrayList();
+    protected ArrayList<String> Unidadproducto = new ArrayList();
 
     Object filas[] = new Object[4];
+    int contador = 0;//total de porductos
 
-    public void modeloTabla() {
-        if (ReporteVentasFecha.controlmodelo == false) {
-            ReporteVentasFecha.modelo.addColumn("ID Articulo");
-            ReporteVentasFecha.modelo.addColumn("Nombre");
-            ReporteVentasFecha.modelo.addColumn("Cantidad");
-            ReporteVentasFecha.modelo.addColumn("Unidad");
-            ReporteVentasFecha.tblbuscar.setModel(ReporteVentasFecha.modelo);
-            acomodofilas();
-            tamañocolumnas();
-            ReporteVentasFecha.controlmodelo = true;
-        } else {
-            ReporteVentasFecha.tblbuscar.setModel(ReporteVentasFecha.modelo);
-            acomodofilas();
-            tamañocolumnas();
+    
 
-        }
-    }
-
-    public void acomodofilas() {
-
-        ReporteVentasFecha.tblbuscar.setRowHeight(30);
-        ReporteVentasFecha.tcr.setHorizontalAlignment(SwingConstants.CENTER);
-        ReporteVentasFecha.tblbuscar.getColumnModel().getColumn(0).setCellRenderer(ReporteVentasFecha.tcr);
-        ReporteVentasFecha.tblbuscar.getColumnModel().getColumn(1).setCellRenderer(ReporteVentasFecha.tcr);
-        ReporteVentasFecha.tblbuscar.getColumnModel().getColumn(2).setCellRenderer(ReporteVentasFecha.tcr);
-        ReporteVentasFecha.tblbuscar.getColumnModel().getColumn(3).setCellRenderer(ReporteVentasFecha.tcr);
-
-    }
-
-    public void tamañocolumnas() {
-        TableColumnModel ModeloColumnas = ReporteVentasFecha.tblbuscar.getColumnModel();
-        ModeloColumnas.getColumn(0).setPreferredWidth(40);
-        ModeloColumnas.getColumn(1).setPreferredWidth(200);
-        ModeloColumnas.getColumn(2).setPreferredWidth(60);
-        ModeloColumnas.getColumn(3).setPreferredWidth(60);
-    }
-
-    public void buscarcantidades(String fecha1, String fecha2) {
-        try {
-            int id;
-            double cantidad = 0;
-            con = conectar.conectarMySQL();
-            stmt = con.createStatement();
-            rs = stmt.executeQuery("select articulo.art_id form,articulo.descripcion,unidad.nombre from  articulo inner join"
-                    + " unidad on unidad.uni_id =articulo.unidadventa where articulo.status !=-1 and articulo.cat_id !=1 "
-                    + " and articulo.descripcion not like '%*%';");
-            con2 = conectar.conectarMySQL();
-            stmt2 = con.createStatement();
-
-            while (rs.next()) {
-                id = rs.getInt(1);
-                filas[0] = id;
-                filas[1] = rs.getString(2);
-                rs2 = stmt2.executeQuery("select sum(detallev.cantidad) from detallev inner join venta\n"
-                        + "on detallev.ven_id = venta.ven_id inner join articulo on\n"
-                        + " detallev.art_id=articulo.art_id\n"
-                        + "where articulo.art_id='" + id + "' and\n"
-                        + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "';");
-                while (rs2.next()) {
-                    cantidad = rs2.getDouble(1);
-
-                }
-
-                filas[2] = cantidad;
-                filas[3] = rs.getString(3);
-                ReporteVentasFecha.modelo.addRow(filas);
-                ReporteVentasFecha.tblbuscar.setModel(ReporteVentasFecha.modelo);
-
-            }
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-    }
-
-    public void prueba(String fecha1, String fecha2) {
+//    public void buscarcantidades(String fecha1, String fecha2) {
+//        try {
+//            int id;
+//            double cantidad = 0;
+//            con = conectar.conectarMySQL();
+//            stmt = con.createStatement();
+//            rs = stmt.executeQuery("select articulo.art_id form,articulo.descripcion,unidad.nombre from  articulo inner join"
+//                    + " unidad on unidad.uni_id =articulo.unidadventa where articulo.status !=-1 and articulo.cat_id !=1 "
+//                    + " and articulo.descripcion not like '%*%';");
+//            con2 = conectar.conectarMySQL();
+//            stmt2 = con.createStatement();
+//
+//            while (rs.next()) {
+//                id = rs.getInt(1);
+//                filas[0] = id;
+//                filas[1] = rs.getString(2);
+//                rs2 = stmt2.executeQuery("select sum(detallev.cantidad) from detallev inner join venta\n"
+//                        + "on detallev.ven_id = venta.ven_id inner join articulo on\n"
+//                        + " detallev.art_id=articulo.art_id\n"
+//                        + "where articulo.art_id='" + id + "' and\n"
+//                        + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "';");
+//                while (rs2.next()) {
+//                    cantidad = rs2.getDouble(1);
+//
+//                }
+//
+//                filas[2] = cantidad;
+//                filas[3] = rs.getString(3);
+//                ReporteVentasFecha.modelo.addRow(filas);
+//                ReporteVentasFecha.tblbuscar.setModel(ReporteVentasFecha.modelo);
+//
+//            }
+//        } catch (SQLException e) {
+//            JOptionPane.showMessageDialog(null, e);
+//        }
+//    }
+    public void prueba(String fecha1, String fecha2, String fechauno, String fechados) {
         try {
             int id;
             double cantidad = 0;
@@ -157,14 +125,15 @@ public class MetodosVentaCantidades {
         }
         Iterator<Integer> it = idNumeros.iterator();
         System.out.println(it);
-        int contador = 0;
+
         while (it.hasNext()) {
             contador = contador + 1;
             System.out.println(it.next());
         }
         float cantidadproducto = 0;
         int alv = 0;
-        
+        String nombreproducto = "", unidad = "";
+
         try {
             for (int i = 0; i < contador; i++) {
                 int valor = idNumeros.get(i);
@@ -176,90 +145,74 @@ public class MetodosVentaCantidades {
 
                     con = conectar.conectarMySQL();
                     stmt = con.createStatement();
-                    rs = stmt.executeQuery("select paquete.paquete from paquete where paquete.articulo= '" + valor + "';");
+                    rs = stmt.executeQuery("select paquete.paquete,paquete.cantidad from paquete where paquete.articulo= '" + valor + "';");
                     while (rs.next()) {
                         int idarticulo;
                         idarticulo = rs.getInt(1);
-                        alv = alv + 1;
-                        con2= conectar.conectarMySQL();
-                        stmt2= con2.createStatement();
-                        rs2=stmt2.executeQuery("select sum(detallev.importenorcon) from detallev inner join venta\n"
-                        + "on detallev.ven_id = venta.ven_id inner join articulo on\n"
-                        + " detallev.art_id=articulo.art_id\n"
-                        + "where articulo.art_id='" + idarticulo + "' and\n"
-                        + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "';");
-                        while(rs2.next()){
-                           
-                          cantidadproducto= cantidadproducto+rs2.getFloat(1);
-                         
+
+                        con2 = conectar.conectarMySQL();
+                        stmt2 = con2.createStatement();
+                        float multiplicar = rs.getFloat(2);
+                        rs2 = stmt2.executeQuery("select sum(detallev.cantidad) from detallev inner join venta\n"
+                                + "on detallev.ven_id = venta.ven_id inner join articulo on\n"
+                                + " detallev.art_id=articulo.art_id\n"
+                                + "where articulo.art_id='" + idarticulo + "' and\n"
+                                + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "';");
+                        while (rs2.next()) {
+
+                            cantidadproducto = cantidadproducto + (rs2.getFloat(1) * multiplicar);
+
                         }
                         con2.close();
-                        
-                        con2= conectar.conectarMySQL();
-                        stmt2= con2.createStatement();
-                        rs2=stmt2.executeQuery("select sum(detallev.importenorcon) from detallev inner join venta\n"
-                        + "on detallev.ven_id = venta.ven_id inner join articulo on\n"
-                        + " detallev.art_id=articulo.art_id\n"
-                        + "where articulo.art_id='" + valor + "' and\n"
-                        + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "';");
-                        if(rs2.next()){
-                            cantidadproducto= cantidadproducto+rs2.getFloat(1);
-                        }
-                       
-                    }
-                    
-                    
-                    con.close();
-                }else{
-                    con2= conectar.conectarMySQL();
-                        stmt2= con2.createStatement();
-                        rs2=stmt2.executeQuery("select sum(detallev.importenorcon) from detallev inner join venta\n"
-                        + "on detallev.ven_id = venta.ven_id inner join articulo on\n"
-                        + " detallev.art_id=articulo.art_id\n"
-                        + "where articulo.art_id='" + valor + "' and\n"
-                        + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "';");
-                        if(rs2.next()){
-                            cantidadproducto= cantidadproducto+rs2.getFloat(1);
-                        }
-                }
-                
-                
-                
-                
-                
-                
-                
 
-//                System.out.println(valor+"    "+cantidadproducto);
+                        con2 = conectar.conectarMySQL();
+                        stmt2 = con2.createStatement();
+                        rs2 = stmt2.executeQuery("select sum(detallev.cantidad),articulo.descripcion,unidad.nombre from detallev inner join venta\n"
+                                + "on detallev.ven_id = venta.ven_id inner join articulo on\n"
+                                + " detallev.art_id=articulo.art_id inner join unidad on uni_id= articulo.unidadventa\n"
+                                + "where articulo.art_id='" + valor + "' and\n"
+                                + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "';");
+                        if (rs2.next()) {
+                            cantidadproducto = cantidadproducto + rs2.getFloat(1);
+                            nombreproducto = rs2.getString(2);
+                            unidad = rs2.getString(3);
+                        }
+                        con2.close();
+                    }
+
+                    con.close();
+                } else {
+                    con2 = conectar.conectarMySQL();
+                    stmt2 = con2.createStatement();
+                    rs2 = stmt2.executeQuery("select sum(detallev.cantidad),articulo.descripcion,unidad.nombre  from detallev inner join venta\n"
+                            + "on detallev.ven_id = venta.ven_id inner join articulo on\n"
+                            + " detallev.art_id=articulo.art_id inner join unidad on uni_id= articulo.unidadventa\n"
+                            + "where articulo.art_id='" + valor + "' and\n"
+                            + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "';");
+                    if (rs2.next()) {
+                        cantidadproducto = cantidadproducto + rs2.getFloat(1);
+                        nombreproducto = rs2.getString(2);
+                        unidad = rs2.getString(3);
+                    }
+                    con2.close();
+                }
+                Cantidadproducto.add(cantidadproducto);
+                Nombreproducto.add(nombreproducto);
+                Unidadproducto.add(unidad);
                 cantidadproducto = 0;
                 con3.close();
+                alv = alv + 1;
 
             }
+            GeneraExcel2(fechauno, fechados);
             System.out.println(alv + " final ");
         } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
         }
-//        JOptionPane.showMessageDialog(null, ReporteVentasFecha.modelo.getRowCount());
-        //System.out.println(contador);
-//        leerid();
+
     }
 
-//    public void leerid(){
-//      int totalproductos=  ReporteVentasFecha.modelo.getRowCount();
-//     
-//        for(int x= 0;x<totalproductos;x++){
-//            
-//            try{
-//                idproducto[x]=Integer.parseInt(ReporteVentasFecha.tblbuscar.getValueAt(x, 0).toString());
-//                System.out.println(idproducto[x]);
-//            }
-//            catch(NumberFormatException e){
-//                
-//            }
-//            
-//        }
-//    }
-//    
-    public void GeneraExcel2(JTable table, String fecha1, String fecha2, String fechauno, String fechados) {
+    public void GeneraExcel2(String fechauno, String fechados) {
         HSSFWorkbook libro = new HSSFWorkbook();
         HSSFSheet hoja = libro.createSheet();
 
@@ -330,23 +283,38 @@ public class MetodosVentaCantidades {
         celda.setCellStyle(encabezados);
 
         fila = hoja.createRow(4);
-        for (int j = 0; j <= table.getColumnCount() - 1; j++) {
-            celda = fila.createCell(j);
-            celda.setCellValue(new HSSFRichTextString(table.getColumnModel().getColumn(j).getHeaderValue().toString()));
-            celda.setCellStyle(headerStyle);
 
-        }
-        int contador = 1;
-        for (int i = 0; i <= table.getRowCount() - 1; i++) {
-            fila = hoja.createRow(i + 5);
+        celda = fila.createCell(0);
+        celda.setCellValue(new HSSFRichTextString("Producto"));
+        celda.setCellStyle(headerStyle);
 
-            for (int j = 0; j <= table.getColumnCount() - 1; j++) {
-                celda = fila.createCell(j);
-                if (table.getValueAt(i, j) != null) {
-                    celda.setCellValue(new HSSFRichTextString(table.getValueAt(i, j).toString()));
-                    celda.setCellStyle(style);
-                }
-            }
+        celda = fila.createCell(1);
+        celda.setCellValue(new HSSFRichTextString("Cantidad"));
+        celda.setCellStyle(headerStyle);
+
+        celda = fila.createCell(1);
+        celda.setCellValue(new HSSFRichTextString("Unidad"));
+        celda.setCellStyle(headerStyle);
+
+         int i=5;
+
+            for (int j = 0; j < contador; j++) {
+                fila = hoja.createRow(i );
+                celda = fila.createCell(0);
+                celda.setCellValue(new HSSFRichTextString(Nombreproducto.get(j)));
+                celda.setCellStyle(style);
+                
+                 celda = fila.createCell(1);
+                celda.setCellValue(new HSSFRichTextString(Cantidadproducto.get(j)+""));
+                celda.setCellStyle(style);
+                
+                
+                 celda = fila.createCell(2);
+                celda.setCellValue(new HSSFRichTextString(Unidadproducto.get(j)));
+                celda.setCellStyle(style);
+                
+                i=i+1;
+            
 
         }
         for (int x = 0; x < 5; x++) {
@@ -354,7 +322,7 @@ public class MetodosVentaCantidades {
         }
 
         try {
-            FileOutputStream elFichero = new FileOutputStream("C:\\Users\\GHIA\\Desktop\\Ventaporductos del " + fecha1 + " al " + fecha2 + ".xls");
+            FileOutputStream elFichero = new FileOutputStream("C:\\Users\\GHIA\\Desktop\\Ventaporductos del "+fechauno+" al "+fechados+".xls");
             libro.write(elFichero);
             elFichero.close();
             JOptionPane.showMessageDialog(null, "Guardado");
@@ -402,10 +370,14 @@ public class MetodosVentaCantidades {
             FileOutputStream elFichero = new FileOutputStream("C:\\Users\\GHIA\\Desktop\\Ventaporductos del " + fecha1 + " al " + fecha2 + " .xls");
             libro.write(elFichero);
             elFichero.close();
+            JOptionPane.showMessageDialog(null, "Guardado");
+           
+            
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        JOptionPane.showMessageDialog(null, "Guardado");
+        
+        
     }
 
 }
