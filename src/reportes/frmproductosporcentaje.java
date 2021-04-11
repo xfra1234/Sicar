@@ -5,47 +5,32 @@
  */
 package reportes;
 
-import Metodos.MetodosVentaCantidades;
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import Metodos.Metodosporcentajeproducto;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author GHIA
  */
-public class ReporteVentasFecha extends javax.swing.JFrame {
+public class frmproductosporcentaje extends javax.swing.JFrame {
 
     /**
-     * Creates new form ReporteVentasFecha
+     * Creates new form frmproductosporcentaje
      */
     Date fecha1, fecha2;
     SimpleDateFormat formatomysql = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat formatoexport = new SimpleDateFormat("dd-MM-yyyy");
     
     SimpleDateFormat formatoexportar = new SimpleDateFormat("EEEEE dd MMMMM yyyy");
-    Metodos.MetodosVentaCantidades met = new MetodosVentaCantidades();
+    Metodos.Metodosporcentajeproducto met = new Metodosporcentajeproducto();
     String fechainicio,fechafinal;
-    public static DefaultTableModel modelo = new DefaultTableModel();
     public static boolean controlmodelo = false;
      String fechauno,fechados;
-    
-    public static  DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
-    public ReporteVentasFecha() {
+    public frmproductosporcentaje() {
         initComponents();
-       
-        //tamañopantalla();
     }
-    
-    public void tamañopantalla(){
-        Toolkit t = Toolkit.getDefaultToolkit();
-       Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-       this.setSize(new Dimension((int) (screenSize.width/1.8), (int) (screenSize.height/1.4)));
-    }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -79,25 +64,25 @@ public class ReporteVentasFecha extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
+                        .addGap(43, 43, 43)
                         .addComponent(jdcinicio, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(75, 75, 75)
                         .addComponent(jdcfin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(161, 161, 161)
+                        .addGap(200, 200, 200)
                         .addComponent(btnbuscar)))
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(62, 62, 62)
+                .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jdcfin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jdcinicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addGap(84, 84, 84)
                 .addComponent(btnbuscar)
-                .addGap(45, 45, 45))
+                .addContainerGap(197, Short.MAX_VALUE))
         );
 
         pack();
@@ -107,15 +92,15 @@ public class ReporteVentasFecha extends javax.swing.JFrame {
         // TODO add your handling code here:
         fecha1 = jdcinicio.getDate();
         fecha2 = jdcfin.getDate();
-        
+
         fechainicio = formatomysql.format(fecha1)+" 07:00:00";
         fechafinal = formatomysql.format(fecha2)+" 20:00:00";
-         fechauno=formatoexportar.format(fecha1);
+        fechauno=formatoexportar.format(fecha1);
         fechados= formatoexportar.format(fecha2);
-        
+
         //met.buscarcantidades(fechainicio, fechafinal);
         met.prueba(fechainicio,fechafinal,fechauno,fechados);
-     
+
     }//GEN-LAST:event_btnbuscarActionPerformed
 
     /**
@@ -135,20 +120,20 @@ public class ReporteVentasFecha extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ReporteVentasFecha.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmproductosporcentaje.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ReporteVentasFecha.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmproductosporcentaje.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ReporteVentasFecha.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmproductosporcentaje.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ReporteVentasFecha.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(frmproductosporcentaje.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ReporteVentasFecha().setVisible(true);
+                new frmproductosporcentaje().setVisible(true);
             }
         });
     }

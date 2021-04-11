@@ -5,6 +5,7 @@
  */
 package Metodos;
 
+import static Metodos.Metodosporcentajeproducto.Persona.imprimeArrayPersonas;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -13,6 +14,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
@@ -28,10 +31,11 @@ import org.apache.poi.ss.usermodel.IndexedColors;
 
 /**
  *
- * @author usuario
+ * @author GHIA
  */
-public class MetodosVentaCantidades {
+public class Metodosporcentajeproducto {
 
+    int contador = 0;
     Connection con = null;
     static ResultSet rs = null;
     private Statement stmt = null;
@@ -44,50 +48,15 @@ public class MetodosVentaCantidades {
 
     conexion conectar = new conexion();
     protected ArrayList<Integer> idNumeros = new ArrayList();
+    static float totalcantidad = 0;
 
-    protected ArrayList<Float> Cantidadproducto = new ArrayList();
-    protected ArrayList<String> Nombreproducto = new ArrayList();
-    protected ArrayList<String> Unidadproducto = new ArrayList();
+    static protected ArrayList<Float> Cantidadproducto = new ArrayList();
+    static protected ArrayList<String> Nombreproducto = new ArrayList();
+    static protected ArrayList<Float> Porcentajeproducto = new ArrayList();
 
-    Object filas[] = new Object[4];
-    int contador = 0;//total de porductos
+    static int productosnum = 0;
+    static float sumaproductos = 0, porcentajeporducto = 0;
 
-//    public void buscarcantidades(String fecha1, String fecha2) {
-//        try {
-//            int id;
-//            double cantidad = 0;
-//            con = conectar.conectarMySQL();
-//            stmt = con.createStatement();
-//            rs = stmt.executeQuery("select articulo.art_id form,articulo.descripcion,unidad.nombre from  articulo inner join"
-//                    + " unidad on unidad.uni_id =articulo.unidadventa where articulo.status !=-1 and articulo.cat_id !=1 "
-//                    + " and articulo.descripcion not like '%*%';");
-//            con2 = conectar.conectarMySQL();
-//            stmt2 = con.createStatement();
-//
-//            while (rs.next()) {
-//                id = rs.getInt(1);
-//                filas[0] = id;
-//                filas[1] = rs.getString(2);
-//                rs2 = stmt2.executeQuery("select sum(detallev.cantidad) from detallev inner join venta\n"
-//                        + "on detallev.ven_id = venta.ven_id inner join articulo on\n"
-//                        + " detallev.art_id=articulo.art_id\n"
-//                        + "where articulo.art_id='" + id + "' and\n"
-//                        + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "';");
-//                while (rs2.next()) {
-//                    cantidad = rs2.getDouble(1);
-//
-//                }
-//
-//                filas[2] = cantidad;
-//                filas[3] = rs.getString(3);
-//                ReporteVentasFecha.modelo.addRow(filas);
-//                ReporteVentasFecha.tblbuscar.setModel(ReporteVentasFecha.modelo);
-//
-//            }
-//        } catch (SQLException e) {
-//            JOptionPane.showMessageDialog(null, e);
-//        }
-//    }
     public void prueba(String fecha1, String fecha2, String fechauno, String fechados) {
         try {
             int id;
@@ -171,6 +140,7 @@ public class MetodosVentaCantidades {
                             cantidadproducto = cantidadproducto + rs2.getFloat(1);
                             nombreproducto = rs2.getString(2);
                             unidad = rs2.getString(3);
+
                         }
                         con2.close();
                     }
@@ -188,29 +158,28 @@ public class MetodosVentaCantidades {
                         cantidadproducto = cantidadproducto + rs2.getFloat(1);
                         nombreproducto = rs2.getString(2);
                         unidad = rs2.getString(3);
+
                     }
                     con2.close();
                 }
-                Cantidadproducto.add(cantidadproducto);
-                Nombreproducto.add(nombreproducto);
-                Unidadproducto.add(unidad);
-                 arrayPersonas[i] = new Persona(nombreproducto, cantidadproducto, unidad);
+
+                arrayPersonas[i] = new Persona(nombreproducto, cantidadproducto, unidad);
+                totalcantidad = totalcantidad + cantidadproducto;
                 cantidadproducto = 0;
                 con3.close();
                 alv = alv + 1;
 
             }
+
+            Arrays.sort(arrayPersonas, Collections.reverseOrder());
+            imprimeArrayPersonas(arrayPersonas);
             GeneraExcel2(fechauno, fechados);
+            System.out.println(totalcantidad);
             System.out.println(alv + " final ");
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
-    
-           
-           
-//            System.out.println("Array sin ordenar por altura");
-//            imprimeArrayPersonas(arrayPersonas);
-            // Ordeno el array de personas por altura (de menor a mayor)
+
     }
 
     public void GeneraExcel2(String fechauno, String fechados) {
@@ -237,6 +206,10 @@ public class MetodosVentaCantidades {
         font2.setFontName("Arial");
         font2.setFontHeight((short) (10 * 20));
         encabezados.setFont(font2);
+
+        CellStyle porcentaje = libro.createCellStyle();
+        porcentaje.setDataFormat(libro.createDataFormat().getFormat("0.000%"));
+        porcentaje.setFont(font2);
 
         HSSFCell celda;
         HSSFRow fila;
@@ -271,7 +244,7 @@ public class MetodosVentaCantidades {
 
         fila = hoja.createRow(2);
         celda = fila.createCell(0);
-        celda.setCellValue(new HSSFRichTextString("Reporte de Cantidad de Productos del "));
+        celda.setCellValue(new HSSFRichTextString("Reporte de Productos que conforman el 80% de ventas  del "));
         celda.setCellStyle(encabezados);
         celda = fila.createCell(1);
         celda.setCellValue(new HSSFRichTextString(fechauno));
@@ -282,36 +255,44 @@ public class MetodosVentaCantidades {
         celda = fila.createCell(3);
         celda.setCellValue(new HSSFRichTextString(fechados));
         celda.setCellStyle(encabezados);
-
+        
         fila = hoja.createRow(4);
-
+        celda=fila.createCell(0);
+        celda.setCellValue(new HSSFRichTextString("Total de Productos "));
+        celda.setCellStyle(encabezados);
+        
+        celda= fila.createCell(1);
+        celda.setCellValue(productosnum);
+         celda.setCellStyle(encabezados);
+        
+        fila = hoja.createRow(5);
         celda = fila.createCell(0);
         celda.setCellValue(new HSSFRichTextString("Producto"));
         celda.setCellStyle(headerStyle);
 
         celda = fila.createCell(1);
-        celda.setCellValue(new HSSFRichTextString("Cantidad"));
+        celda.setCellValue(new HSSFRichTextString("Porcentaje"));
         celda.setCellStyle(headerStyle);
 
-        celda = fila.createCell(2);
-        celda.setCellValue(new HSSFRichTextString("Unidad"));
-        celda.setCellStyle(headerStyle);
+//        celda = fila.createCell(2);
+//        celda.setCellValue(new HSSFRichTextString("Unidad"));
+//        celda.setCellStyle(headerStyle);
 
-        int i = 5;
+        int i = 6;
 
-        for (int j = 0; j < contador; j++) {
+        for (int j = 0; j < productosnum; j++) {
             fila = hoja.createRow(i);
             celda = fila.createCell(0);
             celda.setCellValue(new HSSFRichTextString(Nombreproducto.get(j)));
             celda.setCellStyle(style);
 
-            celda = fila.createCell(1);
-            celda.setCellValue((Cantidadproducto.get(j)));
-            celda.setCellStyle(style);
+//            celda = fila.createCell(1);
+//            celda.setCellValue((Cantidadproducto.get(j)));
+//            celda.setCellStyle(style);
 
-            celda = fila.createCell(2);
-            celda.setCellValue(new HSSFRichTextString(Unidadproducto.get(j)));
-            celda.setCellStyle(style);
+            celda = fila.createCell(1);
+            celda.setCellValue((Porcentajeproducto.get(j)));
+            celda.setCellStyle(porcentaje);
 
             i = i + 1;
 
@@ -321,7 +302,7 @@ public class MetodosVentaCantidades {
         }
 
         try {
-            FileOutputStream elFichero = new FileOutputStream("C:\\Users\\GHIA\\Desktop\\Ventaporductos del " + fechauno + " al " + fechados + ".xls");
+            FileOutputStream elFichero = new FileOutputStream("C:\\Users\\GHIA\\Desktop\\Productos Conforman el 80% de venta " + fechauno + " al " + fechados + ".xls");
             libro.write(elFichero);
             elFichero.close();
             JOptionPane.showMessageDialog(null, "Guardado");
@@ -331,11 +312,9 @@ public class MetodosVentaCantidades {
 
     }
 
-
-
     static class Persona implements Comparable<Persona> {
 
-        public String nombrep,unidadp;
+        public String nombrep, unidadp;
         public float cantidadp;
 
         public Persona(String nombrep, Float cantidadp, String unidadp) {
@@ -356,16 +335,28 @@ public class MetodosVentaCantidades {
         }
 
         static void imprimeArrayPersonas(Persona[] array) {
-//            for (int i = 0; i < array.length; i++) {
-//                System.out.println((i + 1) + ". " + array[i].nombrep + " - Cantidad: " + array[i].cantidadp + " - Unidad: " + array[i].unidadp);
-//            }
-            System.out.println(array[1].nombrep);
+
+            for (int i = 0; i < array.length; i++) {
+                //
+
+                if (sumaproductos > .80) {
+                    break;
+                } else {
+                    porcentajeporducto = (array[i].cantidadp / totalcantidad) ;
+                    sumaproductos = sumaproductos + porcentajeporducto;
+                    System.out.println((i + 1) + ". " + array[i].nombrep + " - Cantidad: " + array[i].cantidadp + " Porcentaje  " + porcentajeporducto + " - total procentaje " + sumaproductos);
+                    Nombreproducto.add(array[i].nombrep);
+                    Porcentajeproducto.add(porcentajeporducto);
+                    porcentajeporducto = 0;
+                    productosnum = productosnum + 1;
+                }
+
+            }
+            System.out.println("Productos que formal el 80%" + productosnum);
+            //System.out.println(array[1].nombrep);
         }
-        
-        public void imprimirarrays() {
-           
-            return ;
-        }
+
+       
 
     }
 }
