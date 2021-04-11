@@ -8,6 +8,8 @@ package reportes;
 import Metodos.Metodosporcentajeproducto;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,14 +23,20 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
     Date fecha1, fecha2;
     SimpleDateFormat formatomysql = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat formatoexport = new SimpleDateFormat("dd-MM-yyyy");
-    
+
     SimpleDateFormat formatoexportar = new SimpleDateFormat("EEEEE dd MMMMM yyyy");
     Metodos.Metodosporcentajeproducto met = new Metodosporcentajeproducto();
-    String fechainicio,fechafinal;
+    String fechainicio, fechafinal;
     public static boolean controlmodelo = false;
-     String fechauno,fechados;
+    String fechauno, fechados;
+
     public frmproductosporcentaje() {
         initComponents();
+        jdcfin.setDate(new Date());
+        jdcinicio.setDate(new Date());
+        ImageIcon img = new ImageIcon("C:\\Users\\usuario\\Documents\\NetBeansProjects\\Sicar\\logo.png");
+//define el icon a tu JFrame
+        this.setIconImage(img.getImage());
     }
 
     /**
@@ -45,6 +53,7 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
         btnbuscar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Reporte de Productos 80%");
 
         jdcfin.setDateFormatString("dd/MM/y");
 
@@ -93,13 +102,19 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
         fecha1 = jdcinicio.getDate();
         fecha2 = jdcfin.getDate();
 
-        fechainicio = formatomysql.format(fecha1)+" 07:00:00";
-        fechafinal = formatomysql.format(fecha2)+" 20:00:00";
-        fechauno=formatoexportar.format(fecha1);
-        fechados= formatoexportar.format(fecha2);
+        fechainicio = formatomysql.format(fecha1) + " 07:00:00";
+        fechafinal = formatomysql.format(fecha2) + " 20:00:00";
+        fechauno = formatoexportar.format(fecha1);
+        fechados = formatoexportar.format(fecha2);
 
         //met.buscarcantidades(fechainicio, fechafinal);
-        met.prueba(fechainicio,fechafinal,fechauno,fechados);
+        if (jdcinicio.getDate().after(jdcfin.getDate())) {
+            JOptionPane.showMessageDialog(null, "Error en las Fechas", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+
+            met.prueba(fechainicio, fechafinal, fechauno, fechados);
+        }
+
 
     }//GEN-LAST:event_btnbuscarActionPerformed
 

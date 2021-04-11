@@ -18,6 +18,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -38,6 +39,9 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
         initComponents();
         jdcfinal.setDate(new Date());
         jdcinicio.setDate(new Date());
+        ImageIcon img = new ImageIcon("C:\\Users\\usuario\\Documents\\NetBeansProjects\\Sicar\\logo.png");
+//define el icon a tu JFrame
+        this.setIconImage(img.getImage());
     }
 
 //    public void prueba() {
@@ -65,7 +69,7 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
         if (cadena2.equals(cadena)) {
             fecha1 = formatomysql.format(jdcinicio.getDate()) + " 06:00:00";
             fecha2 = formatomysql.format(jdcfinal.getDate()) + " 21:00:00";
-           
+
         } else {
             cadena = cadena.substring(8, 10);
             JOptionPane.showMessageDialog(null, cadena);
@@ -73,13 +77,13 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
             calendar.setTime(jdcfinal.getDate()); // Configuramos la fecha que se recibe
             calendar.add(Calendar.MONTH, -1);
             String fechaultimodia = formatomysql.format(calendar.getTime());
-            fechaultimodia = fechaultimodia.substring(0,8)+calendar.getActualMaximum(calendar.DAY_OF_MONTH)+ " 21:00:00";
-            
+            fechaultimodia = fechaultimodia.substring(0, 8) + calendar.getActualMaximum(calendar.DAY_OF_MONTH) + " 21:00:00";
+
             calendar.setTime(jdcfinal.getDate());
-            calendar.add(Calendar.MONTH,0);
+            calendar.add(Calendar.MONTH, 0);
             String fechaprimerdia = formatomysql.format(calendar.getTime());
-            fechaprimerdia = fechaprimerdia.substring(0,8)+calendar.getActualMinimum(calendar.DAY_OF_MONTH)+ " 06:00:00";
-          
+            fechaprimerdia = fechaprimerdia.substring(0, 8) + calendar.getActualMinimum(calendar.DAY_OF_MONTH) + " 06:00:00";
+
         }
 
     }
@@ -99,6 +103,7 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
         btncrear = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Reporte Por Departamentos");
 
         jdcinicio.setDateFormatString("dd/MM/yyyy");
 
@@ -115,38 +120,42 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addComponent(jdcinicio, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
-                .addComponent(jdcfinal, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(148, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btncrear)
+                .addGap(54, 54, 54)
+                .addComponent(jdcinicio, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jdcfinal, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(173, 173, 173))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(222, 222, 222)
+                .addComponent(btncrear)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(110, 110, 110)
+                .addGap(72, 72, 72)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jdcfinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jdcinicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(96, 96, 96)
+                    .addComponent(jdcinicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jdcfinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(75, 75, 75)
                 .addComponent(btncrear)
-                .addContainerGap(202, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 21, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 20, Short.MAX_VALUE))
         );
 
         pack();
@@ -156,13 +165,16 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
         // TODO add your andling code here:
 
         //ultimodiames();
-        fecha1 = formatomysql.format(jdcinicio.getDate()) + " 06:00:00";
-        fecha2 = formatomysql.format(jdcfinal.getDate()) + " 21:00:00";
-        //met.GeneraExcel(fecha1, fecha2);
-        met.modificaexcel(fecha1,fecha2);
-         
-            //
-       
+        if (jdcinicio.getDate().after(jdcfinal.getDate())) {
+            JOptionPane.showMessageDialog(null, "Error en las Fechas","Error",JOptionPane.ERROR_MESSAGE);
+        } else {
+            fecha1 = formatomysql.format(jdcinicio.getDate()) + " 06:00:00";
+            fecha2 = formatomysql.format(jdcfinal.getDate()) + " 21:00:00";
+            //met.GeneraExcel(fecha1, fecha2);
+            met.modificaexcel(fecha1, fecha2);
+        }
+
+        //
 
     }//GEN-LAST:event_btncrearActionPerformed
 

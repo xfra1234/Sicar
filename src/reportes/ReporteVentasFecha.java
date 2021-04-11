@@ -10,6 +10,8 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,24 +30,29 @@ public class ReporteVentasFecha extends javax.swing.JFrame {
     
     SimpleDateFormat formatoexportar = new SimpleDateFormat("EEEEE dd MMMMM yyyy");
     Metodos.MetodosVentaCantidades met = new MetodosVentaCantidades();
-    String fechainicio,fechafinal;
+    String fechainicio, fechafinal;
     public static DefaultTableModel modelo = new DefaultTableModel();
     public static boolean controlmodelo = false;
-     String fechauno,fechados;
+    String fechauno, fechados;
     
-    public static  DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+    public static DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+
     public ReporteVentasFecha() {
         initComponents();
-       
+        jdcfin.setDate(new Date());
+        jdcinicio.setDate(new Date());
         //tamañopantalla();
+        ImageIcon img = new ImageIcon("C:\\Users\\usuario\\Documents\\NetBeansProjects\\Sicar\\logo.png");
+//define el icon a tu JFrame
+        this.setIconImage(img.getImage());
     }
     
-    public void tamañopantalla(){
+    public void tamañopantalla() {
         Toolkit t = Toolkit.getDefaultToolkit();
-       Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-       this.setSize(new Dimension((int) (screenSize.width/1.8), (int) (screenSize.height/1.4)));
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setSize(new Dimension((int) (screenSize.width / 1.8), (int) (screenSize.height / 1.4)));
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,6 +67,7 @@ public class ReporteVentasFecha extends javax.swing.JFrame {
         btnbuscar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Reporte de Ventas");
 
         jdcfin.setDateFormatString("dd/MM/y");
 
@@ -108,14 +116,20 @@ public class ReporteVentasFecha extends javax.swing.JFrame {
         fecha1 = jdcinicio.getDate();
         fecha2 = jdcfin.getDate();
         
-        fechainicio = formatomysql.format(fecha1)+" 07:00:00";
-        fechafinal = formatomysql.format(fecha2)+" 20:00:00";
-         fechauno=formatoexportar.format(fecha1);
-        fechados= formatoexportar.format(fecha2);
-        
+        fechainicio = formatomysql.format(fecha1) + " 07:00:00";
+        fechafinal = formatomysql.format(fecha2) + " 20:00:00";
+        fechauno = formatoexportar.format(fecha1);
+        fechados = formatoexportar.format(fecha2);
+
         //met.buscarcantidades(fechainicio, fechafinal);
-        met.prueba(fechainicio,fechafinal,fechauno,fechados);
-     
+        if (jdcinicio.getDate().after(jdcfin.getDate())) {
+            JOptionPane.showMessageDialog(null, "Error en las Fechas", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+
+             met.prueba(fechainicio, fechafinal, fechauno, fechados);
+        }
+       
+        
     }//GEN-LAST:event_btnbuscarActionPerformed
 
     /**
