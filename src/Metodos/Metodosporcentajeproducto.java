@@ -53,6 +53,7 @@ public class Metodosporcentajeproducto {
     static protected ArrayList<Float> Cantidadproducto = new ArrayList();
     static protected ArrayList<String> Nombreproducto = new ArrayList();
     static protected ArrayList<Float> Porcentajeproducto = new ArrayList();
+    static protected ArrayList<Float> Ventaproducto = new ArrayList();
 
     static int productosnum = 0;
     static float sumaproductos = 0, porcentajeporducto = 0;
@@ -94,7 +95,7 @@ public class Metodosporcentajeproducto {
             contador = contador + 1;
             System.out.println(it.next());
         }
-        float cantidadproducto = 0;
+        float cantidadproducto = 0,ventaproducto=0;
         int alv = 0;
         String nombreproducto = "", unidad = "";
         Persona[] arrayPersonas = new Persona[contador];
@@ -117,7 +118,7 @@ public class Metodosporcentajeproducto {
                         con2 = conectar.conectarMySQL();
                         stmt2 = con2.createStatement();
                         float multiplicar = rs.getFloat(2);
-                        rs2 = stmt2.executeQuery("select sum(detallev.cantidad) from detallev inner join venta\n"
+                        rs2 = stmt2.executeQuery("select sum(detallev.cantidad),sum(detallev.importenorcon) from detallev inner join venta\n"
                                 + "on detallev.ven_id = venta.ven_id inner join articulo on\n"
                                 + " detallev.art_id=articulo.art_id\n"
                                 + "where articulo.art_id='" + idarticulo + "' and\n"
@@ -125,13 +126,14 @@ public class Metodosporcentajeproducto {
                         while (rs2.next()) {
 
                             cantidadproducto = cantidadproducto + (rs2.getFloat(1) * multiplicar);
+                            ventaproducto= ventaproducto+(rs2.getFloat(2));
 
                         }
                         con2.close();
 
                         con2 = conectar.conectarMySQL();
                         stmt2 = con2.createStatement();
-                        rs2 = stmt2.executeQuery("select sum(detallev.cantidad),articulo.descripcion,unidad.nombre from detallev inner join venta\n"
+                        rs2 = stmt2.executeQuery("select sum(detallev.cantidad),articulo.descripcion,unidad.nombre,sum(detallev.importenorcon) from detallev inner join venta\n"
                                 + "on detallev.ven_id = venta.ven_id inner join articulo on\n"
                                 + " detallev.art_id=articulo.art_id inner join unidad on uni_id= articulo.unidadventa\n"
                                 + "where articulo.art_id='" + valor + "' and\n"
@@ -140,6 +142,7 @@ public class Metodosporcentajeproducto {
                             cantidadproducto = cantidadproducto + rs2.getFloat(1);
                             nombreproducto = rs2.getString(2);
                             unidad = rs2.getString(3);
+                             ventaproducto= ventaproducto+(rs2.getFloat(4));
 
                         }
                         con2.close();
@@ -149,7 +152,7 @@ public class Metodosporcentajeproducto {
                 } else {
                     con2 = conectar.conectarMySQL();
                     stmt2 = con2.createStatement();
-                    rs2 = stmt2.executeQuery("select sum(detallev.cantidad),articulo.descripcion,unidad.nombre  from detallev inner join venta\n"
+                    rs2 = stmt2.executeQuery("select sum(detallev.cantidad),articulo.descripcion,unidad.nombre,sum(detallev.importenorcon)  from detallev inner join venta\n"
                             + "on detallev.ven_id = venta.ven_id inner join articulo on\n"
                             + " detallev.art_id=articulo.art_id inner join unidad on uni_id= articulo.unidadventa\n"
                             + "where articulo.art_id='" + valor + "' and\n"
@@ -158,14 +161,16 @@ public class Metodosporcentajeproducto {
                         cantidadproducto = cantidadproducto + rs2.getFloat(1);
                         nombreproducto = rs2.getString(2);
                         unidad = rs2.getString(3);
+                         ventaproducto= ventaproducto+(rs2.getFloat(4));
 
                     }
                     con2.close();
                 }
 
-                arrayPersonas[i] = new Persona(nombreproducto, cantidadproducto, unidad);
-                totalcantidad = totalcantidad + cantidadproducto;
+                arrayPersonas[i] = new Persona(nombreproducto, cantidadproducto, ventaproducto);
+                totalcantidad = totalcantidad + ventaproducto;
                 cantidadproducto = 0;
+                ventaproducto =0;
                 con3.close();
                 alv = alv + 1;
 
@@ -271,8 +276,20 @@ public class Metodosporcentajeproducto {
         celda.setCellStyle(headerStyle);
 
         celda = fila.createCell(1);
+        celda.setCellValue(new HSSFRichTextString("Cantidad"));
+        celda.setCellStyle(headerStyle);
+        
+        
+        celda = fila.createCell(2);
+        celda.setCellValue(new HSSFRichTextString("Venta"));
+        celda.setCellStyle(headerStyle);
+        
+        
+        celda = fila.createCell(3);
         celda.setCellValue(new HSSFRichTextString("Porcentaje"));
         celda.setCellStyle(headerStyle);
+        
+        
 
 //        celda = fila.createCell(2);
 //        celda.setCellValue(new HSSFRichTextString("Unidad"));
@@ -284,13 +301,23 @@ public class Metodosporcentajeproducto {
             fila = hoja.createRow(i);
             celda = fila.createCell(0);
             celda.setCellValue(new HSSFRichTextString(Nombreproducto.get(j)));
-            celda.setCellStyle(style);
+            celda.setCellStyle(encabezados);
 
 //            celda = fila.createCell(1);
 //            celda.setCellValue((Cantidadproducto.get(j)));
 //            celda.setCellStyle(style);
 
             celda = fila.createCell(1);
+            celda.setCellValue((Cantidadproducto.get(j)));
+            celda.setCellStyle(encabezados);
+            
+            
+            celda = fila.createCell(2);
+            celda.setCellValue((Ventaproducto.get(j)));
+            celda.setCellStyle(encabezados);
+            
+            
+            celda = fila.createCell(3);
             celda.setCellValue((Porcentajeproducto.get(j)));
             celda.setCellStyle(porcentaje);
 
@@ -314,21 +341,21 @@ public class Metodosporcentajeproducto {
 
     static class Persona implements Comparable<Persona> {
 
-        public String nombrep, unidadp;
-        public float cantidadp;
+        public String nombrep;
+        public float cantidadp,ventap;
 
-        public Persona(String nombrep, Float cantidadp, String unidadp) {
+        public Persona(String nombrep, Float cantidadp, Float ventap) {
             this.nombrep = nombrep;
             this.cantidadp = cantidadp;
-            this.unidadp = unidadp;
+            this.ventap = ventap;
         }
 
         @Override
         public int compareTo(Persona o) {
-            if (cantidadp < o.cantidadp) {
+            if (ventap < o.ventap) {
                 return -1;
             }
-            if (cantidadp > o.cantidadp) {
+            if (ventap > o.ventap) {
                 return 1;
             }
             return 0;
@@ -342,10 +369,12 @@ public class Metodosporcentajeproducto {
                 if (sumaproductos > .80) {
                     break;
                 } else {
-                    porcentajeporducto = (array[i].cantidadp / totalcantidad) ;
+                    porcentajeporducto = (array[i].ventap / totalcantidad) ;
                     sumaproductos = sumaproductos + porcentajeporducto;
-                    System.out.println((i + 1) + ". " + array[i].nombrep + " - Cantidad: " + array[i].cantidadp + " Porcentaje  " + porcentajeporducto + " - total procentaje " + sumaproductos);
+                    System.out.println((i + 1) + ". " + array[i].nombrep + " - Cantidad: " + array[i].cantidadp +array[i].ventap + " Porcentaje  " + porcentajeporducto + " - total procentaje " + sumaproductos);
                     Nombreproducto.add(array[i].nombrep);
+                    Cantidadproducto.add(array[i].cantidadp);
+                    Ventaproducto.add(array[i].ventap);
                     Porcentajeproducto.add(porcentajeporducto);
                     porcentajeporducto = 0;
                     productosnum = productosnum + 1;

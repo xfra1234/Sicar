@@ -19,7 +19,7 @@ public class frmPrinicipal extends javax.swing.JFrame {
      */
     public frmPrinicipal() {
         initComponents();
-        ImageIcon img = new ImageIcon("C:\\Users\\usuario\\Documents\\NetBeansProjects\\Sicar\\logo.png");
+        ImageIcon img = new ImageIcon("C:\\Users\\GHIA\\Documents\\NetBeansProjects\\Sicar\\logo.png");
 //define el icon a tu JFrame
         this.setIconImage(img.getImage());
     }
