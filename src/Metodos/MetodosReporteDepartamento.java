@@ -8,18 +8,13 @@ package Metodos;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFRichTextString;
@@ -28,11 +23,7 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.FillPatternType;
-import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -400,7 +391,7 @@ public class MetodosReporteDepartamento {
     }
 
     public void modificaexcel(String fecha1, String fecha2) {
-        try ( FileInputStream file = new FileInputStream(new File("C:\\Users\\GHIA\\Desktop\\Cuotas-de-Venta-y-Rentabilidad-Sucursales_-Magisterio.xls"))) {
+        try ( FileInputStream file = new FileInputStream(new File("C:\\Users\\Cpu\\Documents\\Cuotas-de-Venta-y-Rentabilidad-Sucursales_-Magisterio.xls"))) {
             // leer archivo excel
             POIFSFileSystem fs = new POIFSFileSystem(file);
             HSSFWorkbook libro = new HSSFWorkbook(fs);
@@ -640,10 +631,10 @@ public class MetodosReporteDepartamento {
 
                 hoja.autoSizeColumn(x);
             }
-            FileOutputStream elFichero = new FileOutputStream("C:\\Users\\GHIA\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Magisterio2.xls");
+            FileOutputStream elFichero = new FileOutputStream("C:\\Users\\Cpu\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Magisterio2.xls");
             libro.write(elFichero);
             elFichero.close();
-            File archivo = new File("C:\\Users\\GHIA\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Magisterio2.xls");
+            File archivo = new File("C:\\Users\\Cpu\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Magisterio2.xls");
             Desktop.getDesktop().open(archivo);
             // se recorre cada fila hasta el final
 
