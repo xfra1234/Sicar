@@ -55,7 +55,12 @@ public class Metodosporcentajeproducto {
     static protected ArrayList<Float> Porcentajeproducto = new ArrayList();
     static protected ArrayList<Float> Ventaproducto = new ArrayList();
 
-    static int productosnum = 0;
+    static protected ArrayList<Float> Cantidadproducto20 = new ArrayList();
+    static protected ArrayList<String> Nombreproducto20 = new ArrayList();
+    static protected ArrayList<Float> Porcentajeproducto20 = new ArrayList();
+    static protected ArrayList<Float> Ventaproducto20 = new ArrayList();
+
+    static int productosnum = 0,productosnum20=0;
     static float sumaproductos = 0, porcentajeporducto = 0;
 
     public void prueba(String fecha1, String fecha2, String fechauno, String fechados) {
@@ -95,7 +100,7 @@ public class Metodosporcentajeproducto {
             contador = contador + 1;
             System.out.println(it.next());
         }
-        float cantidadproducto = 0,ventaproducto=0;
+        float cantidadproducto = 0, ventaproducto = 0;
         int alv = 0;
         String nombreproducto = "", unidad = "";
         Persona[] arrayPersonas = new Persona[contador];
@@ -124,35 +129,34 @@ public class Metodosporcentajeproducto {
                                 + "where articulo.art_id='" + idarticulo + "' and\n"
                                 + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "';");
                         while (rs2.next()) {
-                                if(idarticulo==1191||idarticulo==1385||idarticulo==1458||idarticulo==1487||idarticulo==1488||idarticulo==1500||idarticulo==1501){
+                            if (idarticulo == 1191 || idarticulo == 1385 || idarticulo == 1458 || idarticulo == 1487 || idarticulo == 1488 || idarticulo == 1500 || idarticulo == 1501) {
                                 JOptionPane.showMessageDialog(null, (rs2.getFloat(1) * multiplicar));
                             }
                             cantidadproducto = cantidadproducto + (rs2.getFloat(1) * multiplicar);
-                            ventaproducto= ventaproducto+(rs2.getFloat(2));
+                            ventaproducto = ventaproducto + (rs2.getFloat(2));
 
                         }
                         con2.close();
                     }
-                        con2 = conectar.conectarMySQL();
-                        stmt2 = con2.createStatement();
-                        rs2 = stmt2.executeQuery("select sum(detallev.cantidad),articulo.descripcion,unidad.nombre,sum(detallev.importenorcon) from detallev inner join venta\n"
-                                + "on detallev.ven_id = venta.ven_id inner join articulo on\n"
-                                + " detallev.art_id=articulo.art_id inner join unidad on uni_id= articulo.unidadventa\n"
-                                + "where articulo.art_id='" + valor + "' and\n"
-                                + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "';");
-                        if (rs2.next()) {
-                            
-                            if (valor==2){
-                                JOptionPane.showMessageDialog(null, rs2.getFloat(1));
-                            }
-                            cantidadproducto = cantidadproducto + rs2.getFloat(1);
-                            nombreproducto = rs2.getString(2);
-                            unidad = rs2.getString(3);
-                             ventaproducto= ventaproducto+(rs2.getFloat(4));
+                    con2 = conectar.conectarMySQL();
+                    stmt2 = con2.createStatement();
+                    rs2 = stmt2.executeQuery("select sum(detallev.cantidad),articulo.descripcion,unidad.nombre,sum(detallev.importenorcon) from detallev inner join venta\n"
+                            + "on detallev.ven_id = venta.ven_id inner join articulo on\n"
+                            + " detallev.art_id=articulo.art_id inner join unidad on uni_id= articulo.unidadventa\n"
+                            + "where articulo.art_id='" + valor + "' and\n"
+                            + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "';");
+                    if (rs2.next()) {
 
+                        if (valor == 2) {
+                            JOptionPane.showMessageDialog(null, rs2.getFloat(1));
                         }
-                        con2.close();
-                    
+                        cantidadproducto = cantidadproducto + rs2.getFloat(1);
+                        nombreproducto = rs2.getString(2);
+                        unidad = rs2.getString(3);
+                        ventaproducto = ventaproducto + (rs2.getFloat(4));
+
+                    }
+                    con2.close();
 
                     con.close();
                 } else {
@@ -167,7 +171,7 @@ public class Metodosporcentajeproducto {
                         cantidadproducto = cantidadproducto + rs2.getFloat(1);
                         nombreproducto = rs2.getString(2);
                         unidad = rs2.getString(3);
-                         ventaproducto= ventaproducto+(rs2.getFloat(4));
+                        ventaproducto = ventaproducto + (rs2.getFloat(4));
 
                     }
                     con2.close();
@@ -176,7 +180,7 @@ public class Metodosporcentajeproducto {
                 arrayPersonas[i] = new Persona(nombreproducto, cantidadproducto, ventaproducto);
                 totalcantidad = totalcantidad + ventaproducto;
                 cantidadproducto = 0;
-                ventaproducto =0;
+                ventaproducto = 0;
                 con3.close();
                 alv = alv + 1;
 
@@ -266,16 +270,16 @@ public class Metodosporcentajeproducto {
         celda = fila.createCell(3);
         celda.setCellValue(new HSSFRichTextString(fechados));
         celda.setCellStyle(encabezados);
-        
+
         fila = hoja.createRow(4);
-        celda=fila.createCell(0);
+        celda = fila.createCell(0);
         celda.setCellValue(new HSSFRichTextString("Total de Productos "));
         celda.setCellStyle(encabezados);
-        
-        celda= fila.createCell(1);
+
+        celda = fila.createCell(1);
         celda.setCellValue(productosnum);
-         celda.setCellStyle(encabezados);
-        
+        celda.setCellStyle(encabezados);
+
         fila = hoja.createRow(5);
         celda = fila.createCell(0);
         celda.setCellValue(new HSSFRichTextString("Producto"));
@@ -284,23 +288,18 @@ public class Metodosporcentajeproducto {
         celda = fila.createCell(1);
         celda.setCellValue(new HSSFRichTextString("Cantidad"));
         celda.setCellStyle(headerStyle);
-        
-        
+
         celda = fila.createCell(2);
         celda.setCellValue(new HSSFRichTextString("Venta"));
         celda.setCellStyle(headerStyle);
-        
-        
+
         celda = fila.createCell(3);
         celda.setCellValue(new HSSFRichTextString("Porcentaje"));
         celda.setCellStyle(headerStyle);
-        
-        
 
 //        celda = fila.createCell(2);
 //        celda.setCellValue(new HSSFRichTextString("Unidad"));
 //        celda.setCellStyle(headerStyle);
-
         int i = 6;
 
         for (int j = 0; j < productosnum; j++) {
@@ -312,17 +311,14 @@ public class Metodosporcentajeproducto {
 //            celda = fila.createCell(1);
 //            celda.setCellValue((Cantidadproducto.get(j)));
 //            celda.setCellStyle(style);
-
             celda = fila.createCell(1);
             celda.setCellValue((Cantidadproducto.get(j)));
             celda.setCellStyle(encabezados);
-            
-            
+
             celda = fila.createCell(2);
             celda.setCellValue((Ventaproducto.get(j)));
             celda.setCellStyle(encabezados);
-            
-            
+
             celda = fila.createCell(3);
             celda.setCellValue((Porcentajeproducto.get(j)));
             celda.setCellStyle(porcentaje);
@@ -330,6 +326,33 @@ public class Metodosporcentajeproducto {
             i = i + 1;
 
         }
+       
+         for (int j = 0; j < productosnum; j++) {
+            fila = hoja.createRow(i);
+            celda = fila.createCell(0);
+            celda.setCellValue(new HSSFRichTextString(Nombreproducto20.get(j)));
+            celda.setCellStyle(encabezados);
+
+//            celda = fila.createCell(1);
+//            celda.setCellValue((Cantidadproducto.get(j)));
+//            celda.setCellStyle(style);
+            celda = fila.createCell(1);
+            celda.setCellValue((Cantidadproducto20.get(j)));
+            celda.setCellStyle(encabezados);
+
+            celda = fila.createCell(2);
+            celda.setCellValue((Ventaproducto20.get(j)));
+            celda.setCellStyle(encabezados);
+
+            celda = fila.createCell(3);
+            celda.setCellValue((Porcentajeproducto20.get(j)));
+            celda.setCellStyle(porcentaje);
+
+            i = i + 1;
+
+        }
+        
+        
         for (int x = 0; x < 5; x++) {
             hoja.autoSizeColumn(x);
         }
@@ -348,7 +371,7 @@ public class Metodosporcentajeproducto {
     static class Persona implements Comparable<Persona> {
 
         public String nombrep;
-        public float cantidadp,ventap;
+        public float cantidadp, ventap;
 
         public Persona(String nombrep, Float cantidadp, Float ventap) {
             this.nombrep = nombrep;
@@ -373,11 +396,22 @@ public class Metodosporcentajeproducto {
                 //
 
                 if (sumaproductos > .80) {
-                    break;
+                    if (sumaproductos == 1) {
+                        break;
+                    } else {
+                        porcentajeporducto = (array[i].ventap / totalcantidad);
+                        Nombreproducto20.add(array[i].nombrep);
+                        Cantidadproducto20.add(array[i].cantidadp);
+                        Ventaproducto20.add(array[i].ventap);
+                        Porcentajeproducto20.add(porcentajeporducto);
+                        porcentajeporducto = 0;
+                        productosnum20 = productosnum20 + 1;
+                    }
+
                 } else {
-                    porcentajeporducto = (array[i].ventap / totalcantidad) ;
+                    porcentajeporducto = (array[i].ventap / totalcantidad);
                     sumaproductos = sumaproductos + porcentajeporducto;
-                    System.out.println((i + 1) + ". " + array[i].nombrep + " - Cantidad: " + array[i].cantidadp +array[i].ventap + " Porcentaje  " + porcentajeporducto + " - total procentaje " + sumaproductos);
+                    System.out.println((i + 1) + ". " + array[i].nombrep + " - Cantidad: " + array[i].cantidadp + array[i].ventap + " Porcentaje  " + porcentajeporducto + " - total procentaje " + sumaproductos);
                     Nombreproducto.add(array[i].nombrep);
                     Cantidadproducto.add(array[i].cantidadp);
                     Ventaproducto.add(array[i].ventap);
@@ -391,10 +425,6 @@ public class Metodosporcentajeproducto {
             //System.out.println(array[1].nombrep);
         }
 
-       
-
     }
-    
-    
 
 }
