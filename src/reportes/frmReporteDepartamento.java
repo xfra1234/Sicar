@@ -39,7 +39,7 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
         initComponents();
         jdcfinal.setDate(new Date());
         jdcinicio.setDate(new Date());
-        ImageIcon img = new ImageIcon("C:\\Users\\GHIA\\Documents\\NetBeansProjects\\Sicar\\logo.png");
+        ImageIcon img = new ImageIcon("C:\\Users\\\\Cpu\\Documents\\NetBeansProjects\\Sicar\\logo.png");
 //define el icon a tu JFrame
         this.setIconImage(img.getImage());
     }

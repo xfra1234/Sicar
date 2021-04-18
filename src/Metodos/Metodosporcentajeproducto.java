@@ -124,13 +124,15 @@ public class Metodosporcentajeproducto {
                                 + "where articulo.art_id='" + idarticulo + "' and\n"
                                 + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "';");
                         while (rs2.next()) {
-
+                                if(idarticulo==1191||idarticulo==1385||idarticulo==1458||idarticulo==1487||idarticulo==1488||idarticulo==1500||idarticulo==1501){
+                                JOptionPane.showMessageDialog(null, (rs2.getFloat(1) * multiplicar));
+                            }
                             cantidadproducto = cantidadproducto + (rs2.getFloat(1) * multiplicar);
                             ventaproducto= ventaproducto+(rs2.getFloat(2));
 
                         }
                         con2.close();
-
+                    }
                         con2 = conectar.conectarMySQL();
                         stmt2 = con2.createStatement();
                         rs2 = stmt2.executeQuery("select sum(detallev.cantidad),articulo.descripcion,unidad.nombre,sum(detallev.importenorcon) from detallev inner join venta\n"
@@ -139,6 +141,10 @@ public class Metodosporcentajeproducto {
                                 + "where articulo.art_id='" + valor + "' and\n"
                                 + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "';");
                         if (rs2.next()) {
+                            
+                            if (valor==2){
+                                JOptionPane.showMessageDialog(null, rs2.getFloat(1));
+                            }
                             cantidadproducto = cantidadproducto + rs2.getFloat(1);
                             nombreproducto = rs2.getString(2);
                             unidad = rs2.getString(3);
@@ -146,7 +152,7 @@ public class Metodosporcentajeproducto {
 
                         }
                         con2.close();
-                    }
+                    
 
                     con.close();
                 } else {
@@ -329,7 +335,7 @@ public class Metodosporcentajeproducto {
         }
 
         try {
-            FileOutputStream elFichero = new FileOutputStream("C:\\Users\\GHIA\\Desktop\\Productos Conforman el 80% de venta " + fechauno + " al " + fechados + ".xls");
+            FileOutputStream elFichero = new FileOutputStream("C:\\Users\\\\Cpu\\Desktop\\Productos Conforman el 80% de venta " + fechauno + " al " + fechados + ".xls");
             libro.write(elFichero);
             elFichero.close();
             JOptionPane.showMessageDialog(null, "Guardado");
@@ -388,4 +394,7 @@ public class Metodosporcentajeproducto {
        
 
     }
+    
+    
+
 }
