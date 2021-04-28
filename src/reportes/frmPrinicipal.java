@@ -5,15 +5,27 @@
  */
 package reportes;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.image.ImageObserver;
+import java.net.URL;
+import javax.swing.BorderFactory;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.LineBorder;
+
 
 /**
  *
  * @author usuario
  */
 public class frmPrinicipal extends javax.swing.JFrame {
-
+    public Image imagenFondo;
+    public URL fondo;
+    
     /**
      * Creates new form frmPrinicipal
      */
@@ -22,7 +34,42 @@ public class frmPrinicipal extends javax.swing.JFrame {
         ImageIcon img = new ImageIcon("C:\\Users\\\\Cpu\\Documents\\NetBeansProjects\\Sicar\\logo.png");
 //define el icon a tu JFrame
         this.setIconImage(img.getImage());
+          
+        
+        ImageIcon imageVentas= new ImageIcon("src/Imagenes/ventas.png");
+        Icon iconoVentas = new ImageIcon(imageVentas.getImage().getScaledInstance(btnventasfecha.getWidth(),btnventasfecha.getHeight() , Image.SCALE_DEFAULT));
+        btnventasfecha.setIcon(iconoVentas);
+        btnventasfecha.setOpaque(false);
+        btnventasfecha.setBackground(new Color(0,0,0,0));
+        this.repaint();
+        
+        //imagen boton btnreportedepartamento
+        ImageIcon imageDepartamento= new ImageIcon("src/Imagenes/departamento.png");
+        Icon iconoDepartamento = new ImageIcon(imageDepartamento.getImage().getScaledInstance(btnreportedepartamento.getWidth(),btnreportedepartamento.getHeight() , Image.SCALE_DEFAULT));
+        btnreportedepartamento.setIcon(iconoDepartamento);
+        btnreportedepartamento.setOpaque(false);
+        btnreportedepartamento.setBackground(new Color(0,0,0,0));
+        this.repaint();
+        
+        
+        //imagen boton btnreporteporcentaje
+        ImageIcon imagePorcentaje= new ImageIcon("src/Imagenes/porcentaje.png");
+        Icon iconoPorcentaje = new ImageIcon(imagePorcentaje.getImage().getScaledInstance(btnreporteporcentaje.getWidth(),btnreporteporcentaje.getHeight() , Image.SCALE_DEFAULT));
+        btnreporteporcentaje.setIcon(iconoPorcentaje);
+        btnreporteporcentaje.setOpaque(false);
+        btnreporteporcentaje.setBackground(new Color(0,0,0,0));
+        this.repaint();
+        
+        
+        
+        
     }
+    
+    public JPanel panel = new JPanel(){
+    public void paintComponet(Graphics g){
+        g.drawImage(imagenFondo, 0, 0, getWidth(),getHeight(), (ImageObserver) this);
+    }
+    };
     public void mostrar(JFrame reporte){
         reporte.setLocationRelativeTo(null);
         reporte.setVisible(true);
@@ -40,58 +87,93 @@ public class frmPrinicipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btnventasfecha = new javax.swing.JButton();
+        ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/fondo.png"));
+        Image image2 = icon.getImage();
+        jDesktopPane1 = new javax.swing.JDesktopPane(){
+            public void paintComponent(Graphics g){
+                g.drawImage(image2,0,0,getWidth(),getHeight(),this);
+            }
+        };
         btnreporteporcentaje = new javax.swing.JButton();
+        btnventasfecha = new javax.swing.JButton();
         btnreportedepartamento = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Reportes ");
+        setResizable(false);
 
-        btnventasfecha.setText("Ventas Por Fecha");
-        btnventasfecha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnventasfechaActionPerformed(evt);
-            }
-        });
+        jPanel1.setBackground(new java.awt.Color(255, 255, 191));
 
-        btnreporteporcentaje.setText("Productos 80% Venta");
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 187, Short.MAX_VALUE)
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 135, Short.MAX_VALUE)
+        );
+
+        btnreporteporcentaje.setToolTipText("Reporte de Productos que Conforman el 80% de ventas");
+        btnreporteporcentaje.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnreporteporcentaje.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnreporteporcentajeActionPerformed(evt);
             }
         });
 
-        btnreportedepartamento.setText("Reporte Por Departamentos");
+        btnventasfecha.setToolTipText("Reporte de Salidas");
+        btnventasfecha.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnventasfecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnventasfechaActionPerformed(evt);
+            }
+        });
+
+        btnreportedepartamento.setToolTipText("Reporte De ventas Por Departamento");
+        btnreportedepartamento.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnreportedepartamento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnreportedepartamentoActionPerformed(evt);
             }
         });
 
+        jLabel1.setText("Reporte departamentos");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(47, 47, 47)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnreporteporcentaje)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnventasfecha)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnreportedepartamento)))
-                .addContainerGap(218, Short.MAX_VALUE))
+                        .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(125, 125, 125)
+                        .addComponent(btnventasfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(93, 93, 93)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnreportedepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGap(123, 123, 123)
+                        .addComponent(btnreporteporcentaje, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(137, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnventasfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnreportedepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
-                .addComponent(btnreporteporcentaje, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(204, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnventasfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnreportedepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnreporteporcentaje, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -102,7 +184,9 @@ public class frmPrinicipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 3, Short.MAX_VALUE))
         );
 
         pack();
@@ -165,6 +249,8 @@ public class frmPrinicipal extends javax.swing.JFrame {
     private javax.swing.JButton btnreportedepartamento;
     private javax.swing.JButton btnreporteporcentaje;
     private javax.swing.JButton btnventasfecha;
+    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

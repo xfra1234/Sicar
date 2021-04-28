@@ -6,9 +6,13 @@
 package reportes;
 
 import Metodos.Metodosporcentajeproducto;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,6 +29,7 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
     SimpleDateFormat formatoexport = new SimpleDateFormat("dd-MM-yyyy");
 
     SimpleDateFormat formatoexportar = new SimpleDateFormat("EEEEE dd MMMMM yyyy");
+    SimpleDateFormat formatorestameses = new SimpleDateFormat("dd/MM/yyyy");
     Metodos.Metodosporcentajeproducto met = new Metodosporcentajeproducto();
     String fechainicio, fechafinal;
     public static boolean controlmodelo = false;
@@ -37,8 +42,25 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
         ImageIcon img = new ImageIcon("C:\\Users\\\\Cpu\\Documents\\NetBeansProjects\\Sicar\\logo.png");
 //define el icon a tu JFrame
         this.setIconImage(img.getImage());
+      
     }
 
+    public int RestarMeses() {
+        int difM = 0;
+        try {
+            Calendar inicio = new GregorianCalendar();
+            Calendar fin = new GregorianCalendar();
+            inicio.setTime(new SimpleDateFormat("dd/MM/yyyy").parse(formatorestameses.format(jdcinicio.getDate())));
+            fin.setTime(new SimpleDateFormat("dd/MM/yyyy").parse(formatorestameses.format(jdcfin.getDate())));
+            int difA = fin.get(Calendar.YEAR) - inicio.get(Calendar.YEAR);
+            difM = difA * 12 + fin.get(Calendar.MONTH) - inicio.get(Calendar.MONTH);
+
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+        return difM;
+    }
+     
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,16 +70,21 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jdcfin = new com.toedter.calendar.JDateChooser();
+        jPanel1 = new javax.swing.JPanel();
         jdcinicio = new com.toedter.calendar.JDateChooser();
+        jdcfin = new com.toedter.calendar.JDateChooser();
         btnbuscar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Reporte de Productos 80%");
 
-        jdcfin.setDateFormatString("dd/MM/y");
+        jPanel1.setBackground(new java.awt.Color(255, 255, 191));
 
         jdcinicio.setDateFormatString("dd/MM/y");
+        jdcinicio.setOpaque(false);
+
+        jdcfin.setDateFormatString("dd/MM/y");
+        jdcfin.setOpaque(false);
 
         btnbuscar.setText("Buscar");
         btnbuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -66,32 +93,42 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jdcinicio, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addComponent(jdcfin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(51, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnbuscar)
+                .addGap(169, 169, 169))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jdcfin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jdcinicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addComponent(btnbuscar)
+                .addGap(41, 41, 41))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(jdcinicio, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(75, 75, 75)
-                        .addComponent(jdcfin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(200, 200, 200)
-                        .addComponent(btnbuscar)))
-                .addContainerGap(75, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jdcfin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jdcinicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(84, 84, 84)
-                .addComponent(btnbuscar)
-                .addContainerGap(197, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -106,13 +143,19 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
         fechafinal = formatomysql.format(fecha2) + " 20:00:00";
         fechauno = formatoexportar.format(fecha1);
         fechados = formatoexportar.format(fecha2);
+      
 
         //met.buscarcantidades(fechainicio, fechafinal);
-        if (jdcinicio.getDate().after(jdcfin.getDate())) {
-            JOptionPane.showMessageDialog(null, "Error en las Fechas", "Error", JOptionPane.ERROR_MESSAGE);
+        if (RestarMeses() >0) {
+            JOptionPane.showMessageDialog(null, "Solo Puede Seleccionar un Mes", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
+            if (jdcinicio.getDate().after(jdcfin.getDate())) {
+                JOptionPane.showMessageDialog(null, "Error en las Fechas", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
 
-            met.prueba(fechainicio, fechafinal, fechauno, fechados);
+                met.prueba(fechainicio, fechafinal, fechauno, fechados);
+            }
+
         }
 
 
@@ -155,6 +198,7 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnbuscar;
+    private javax.swing.JPanel jPanel1;
     public static com.toedter.calendar.JDateChooser jdcfin;
     public static com.toedter.calendar.JDateChooser jdcinicio;
     // End of variables declaration//GEN-END:variables
