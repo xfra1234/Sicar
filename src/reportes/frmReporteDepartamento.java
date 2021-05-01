@@ -167,7 +167,7 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
             } else {
                 fecha1 = formatomysql.format(jdcinicio.getDate()) + " 06:00:00";
                 fecha2 = formatomysql.format(jdcfinal.getDate()) + " 21:00:00";
-                met.GeneraExcel(fecha1, fecha2);
+               
                 met.modificaexcel(fecha1, fecha2);
             }
         }
