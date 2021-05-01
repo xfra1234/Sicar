@@ -46,6 +46,10 @@ public class MetodosReporteDepartamento {
     conexion conectar = new conexion();
     Object datos[] = new Object[3];
 
+    
+    
+    ///Putos todos
+    
     public void GeneraExcel(String fecha1, String fecha2) {
         HSSFWorkbook libro = new HSSFWorkbook();
         HSSFSheet hoja = libro.createSheet();
