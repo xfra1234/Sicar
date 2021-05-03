@@ -119,23 +119,35 @@ public class Metodosporcentajeproducto {
                     while (rs.next()) {
                         int idarticulo;
                         idarticulo = rs.getInt(1);
-                       
+
                         con2 = conectar.conectarMySQL();
                         stmt2 = con2.createStatement();
-                        float multiplicar = rs.getFloat(2);
                         rs2 = stmt2.executeQuery("select sum(detallev.cantidad),sum(detallev.importenorcon) from detallev inner join venta\n"
                                 + "on detallev.ven_id = venta.ven_id inner join articulo on\n"
                                 + " detallev.art_id=articulo.art_id\n"
                                 + "where articulo.art_id='" + idarticulo + "' and\n"
                                 + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "'"
-                                        + "and venta.status!= -1;");
+                                + "and venta.status!= -1;");
                         while (rs2.next()) {
-
-                            cantidadproducto = cantidadproducto + (rs2.getFloat(1) * multiplicar);
                             ventaproducto = ventaproducto + (rs2.getFloat(2));
 
                         }
                         con2.close();
+
+                        con2 = conectar.conectarMySQL();
+                        stmt2 = con2.createStatement();
+                        rs2 = stmt2.executeQuery("select sum(detallep.cantidad) from detallep inner join venta\n"
+                                + "on detallep.ven_id = venta.ven_id inner join articulo on\n"
+                                + " detallep.paquete=articulo.art_id\n"
+                                + "where articulo.art_id='" + idarticulo + "' and\n"
+                                + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "'"
+                                + "and venta.status!= -1;");
+                        if (rs2.next()) {
+                            cantidadproducto = cantidadproducto + (rs2.getFloat(1));
+                            
+                        }
+                        con2.close();
+
                     }
                     con2 = conectar.conectarMySQL();
                     stmt2 = con2.createStatement();
@@ -144,20 +156,21 @@ public class Metodosporcentajeproducto {
                             + " detallev.art_id=articulo.art_id inner join unidad on uni_id= articulo.unidadventa\n"
                             + "where articulo.art_id='" + valor + "' and\n"
                             + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "'"
-                                    + "and venta.status!= -1;");
+                            + "and venta.status!= -1;");
                     if (rs2.next()) {
 
                         cantidadproducto = cantidadproducto + rs2.getFloat(1);
                         nombreproducto = rs2.getString(2);
                         unidad = rs2.getString(3);
                         ventaproducto = ventaproducto + (rs2.getFloat(4));
+                        
 
                     }
                     con2.close();
 
                     con.close();
                 } else {
-                     
+
                     con2 = conectar.conectarMySQL();
                     stmt2 = con2.createStatement();
                     rs2 = stmt2.executeQuery("select sum(detallev.cantidad),articulo.descripcion,unidad.nombre,sum(detallev.importenorcon)  from detallev inner join venta\n"
@@ -165,7 +178,7 @@ public class Metodosporcentajeproducto {
                             + " detallev.art_id=articulo.art_id inner join unidad on uni_id= articulo.unidadventa\n"
                             + "where articulo.art_id='" + valor + "' and\n"
                             + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "'"
-                                    + "and venta.status!= -1;");
+                            + "and venta.status!= -1;");
                     while (rs2.next()) {
                         cantidadproducto = cantidadproducto + rs2.getFloat(1);
                         nombreproducto = rs2.getString(2);
@@ -291,8 +304,7 @@ public class Metodosporcentajeproducto {
         celda = fila.createCell(0);
         celda.setCellValue(new HSSFRichTextString("Productos que Conforman el 80%"));
         celda.setCellStyle(headerStyle);
-        
-        
+
         fila = hoja.createRow(6);
         celda = fila.createCell(0);
         celda.setCellValue(new HSSFRichTextString("Producto"));
@@ -345,16 +357,16 @@ public class Metodosporcentajeproducto {
         celda.setCellValue(new HSSFRichTextString("Productos que Conforman el 20% "));
         celda.setCellStyle(headerStyle);
         i = i + 1;
-        
+
         fila = hoja.createRow(i);
         celda = fila.createCell(0);
         celda.setCellValue(new HSSFRichTextString("Total de Productos"));
         celda.setCellStyle(encabezados);
-        
+
         celda = fila.createCell(1);
         celda.setCellValue(productosnum20);
         celda.setCellStyle(encabezados);
-        
+
         i = i + 1;
         fila = hoja.createRow(i);
         celda = fila.createCell(0);
@@ -397,9 +409,7 @@ public class Metodosporcentajeproducto {
             i = i + 1;
 
         }
-        
-        
-        
+
         for (int x = 0; x < 5; x++) {
             hoja.autoSizeColumn(x);
         }
@@ -438,12 +448,12 @@ public class Metodosporcentajeproducto {
         }
 
         static void imprimeArrayPersonas(Persona[] array) {
-            
+
             for (int i = 0; i < array.length; i++) {
                 //
 
                 if (sumaproductos > .80) {
-                     porcentajeporducto = (array[i].ventap / totalcantidad);
+                    porcentajeporducto = (array[i].ventap / totalcantidad);
                     if (porcentajeporducto == 0) {
                         break;
                     } else {
