@@ -6,6 +6,8 @@
 package Metodos;
 
 import static Metodos.Metodosporcentajeproducto.Persona.imprimeArrayPersonas;
+import java.awt.Desktop;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -63,7 +65,7 @@ public class Metodosporcentajeproducto {
     static int productosnum = 0, productosnum20 = 0;
     static float sumaproductos = 0, porcentajeporducto = 0;
 
-    public void prueba(String fecha1, String fecha2, String fechauno, String fechados) {
+    public void prueba(String fecha1, String fecha2, String fechauno, String fechados,int sucursal) {
         try {
             int id;
             double cantidad = 0;
@@ -144,7 +146,7 @@ public class Metodosporcentajeproducto {
                                 + "and venta.status!= -1  and venta.tic_id is not null;");
                         if (rs2.next()) {
                             cantidadproducto = cantidadproducto + (rs2.getFloat(1));
-                            
+
                         }
                         con2.close();
 
@@ -163,7 +165,6 @@ public class Metodosporcentajeproducto {
                         nombreproducto = rs2.getString(2);
                         unidad = rs2.getString(3);
                         ventaproducto = ventaproducto + (rs2.getFloat(4));
-                        
 
                     }
                     con2.close();
@@ -200,7 +201,7 @@ public class Metodosporcentajeproducto {
 
             Arrays.sort(arrayPersonas, Collections.reverseOrder());
             imprimeArrayPersonas(arrayPersonas);
-            GeneraExcel2(fechauno, fechados);
+            GeneraExcel2(fechauno, fechados,sucursal);
             System.out.println(totalcantidad);
             System.out.println(alv + " final ");
         } catch (SQLException e) {
@@ -209,7 +210,8 @@ public class Metodosporcentajeproducto {
 
     }
 
-    public void GeneraExcel2(String fechauno, String fechados) {
+    public void GeneraExcel2(String fechauno, String fechados,int sucursal) {
+
         HSSFWorkbook libro = new HSSFWorkbook();
         HSSFSheet hoja = libro.createSheet();
 
@@ -415,9 +417,23 @@ public class Metodosporcentajeproducto {
         }
 
         try {
-            FileOutputStream elFichero = new FileOutputStream("C:\\Users\\\\Cpu\\Desktop\\Productos Conforman el 80% de venta " + fechauno + " al " + fechados + ".xls");
+
+            int a = 0;
+            String abrirarchivo = "", guardararchivo = "";
+            switch (a) {
+                case 1:
+                    guardararchivo = ("C:\\Users\\Cpu\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Magisterio del " + fechauno + " al " + fechados + ".xls");
+                    break;
+                 case 2:
+               
+                 guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Coapinole del " + fechauno + " al " + fechados + ".xls");
+                    break;     
+            }
+            FileOutputStream elFichero = new FileOutputStream(guardararchivo);
             libro.write(elFichero);
             elFichero.close();
+            File archivo = new File(guardararchivo);
+            Desktop.getDesktop().open(archivo);
             JOptionPane.showMessageDialog(null, "Guardado");
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, e);

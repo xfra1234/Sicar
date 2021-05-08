@@ -34,6 +34,7 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
     String fechainicio, fechafinal;
     public static boolean controlmodelo = false;
     String fechauno, fechados;
+    int sucursal;
 
     public frmproductosporcentaje() {
         initComponents();
@@ -60,7 +61,19 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
         }
         return difM;
     }
-     
+     public int valorsucursal(){
+         if(rbtnbodega.isSelected()){
+             sucursal=3;
+         }else if(rbtnmagisterio.isSelected()){
+             sucursal=1;
+         }else if(rbtncoapinole.isSelected()){
+             sucursal=2;
+         }else{
+             sucursal=0;
+         }
+         
+         return sucursal;
+     }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -70,10 +83,14 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        grbtnsucursal = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jdcinicio = new com.toedter.calendar.JDateChooser();
         jdcfin = new com.toedter.calendar.JDateChooser();
         btnbuscar = new javax.swing.JButton();
+        rbtnbodega = new javax.swing.JRadioButton();
+        rbtnmagisterio = new javax.swing.JRadioButton();
+        rbtncoapinole = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Reporte de Productos 80%");
@@ -93,20 +110,40 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
             }
         });
 
+        grbtnsucursal.add(rbtnbodega);
+        rbtnbodega.setText("Bodega");
+        rbtnbodega.setOpaque(false);
+
+        grbtnsucursal.add(rbtnmagisterio);
+        rbtnmagisterio.setText("Magisterio");
+        rbtnmagisterio.setOpaque(false);
+
+        grbtnsucursal.add(rbtncoapinole);
+        rbtncoapinole.setText("Coapinole");
+        rbtncoapinole.setOpaque(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jdcinicio, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addComponent(jdcfin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jdcinicio, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46)
+                        .addComponent(jdcfin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(149, 149, 149)
+                        .addComponent(btnbuscar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(rbtnbodega)
+                        .addGap(18, 18, 18)
+                        .addComponent(rbtnmagisterio)
+                        .addGap(18, 18, 18)
+                        .addComponent(rbtncoapinole)))
                 .addContainerGap(51, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnbuscar)
-                .addGap(169, 169, 169))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,9 +152,14 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jdcfin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jdcinicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbtnbodega)
+                    .addComponent(rbtnmagisterio)
+                    .addComponent(rbtncoapinole))
+                .addGap(18, 18, 18)
                 .addComponent(btnbuscar)
-                .addGap(41, 41, 41))
+                .addGap(25, 25, 25))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -136,6 +178,8 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
 
     private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
         // TODO add your handling code here:
+        
+        
         fecha1 = jdcinicio.getDate();
         fecha2 = jdcfin.getDate();
 
@@ -143,7 +187,10 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
         fechafinal = formatomysql.format(fecha2) + " 20:00:00";
         fechauno = formatoexportar.format(fecha1);
         fechados = formatoexportar.format(fecha2);
-      
+       if(valorsucursal()==0){
+            JOptionPane.showMessageDialog(null, "Favor de Seleccionar una sucursal","Error",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
         //met.buscarcantidades(fechainicio, fechafinal);
         if (RestarMeses() >0) {
@@ -153,7 +200,7 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Error en las Fechas", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
 
-                met.prueba(fechainicio, fechafinal, fechauno, fechados);
+                met.prueba(fechainicio, fechafinal, fechauno, fechados,valorsucursal());
             }
 
         }
@@ -198,8 +245,12 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnbuscar;
+    private javax.swing.ButtonGroup grbtnsucursal;
     private javax.swing.JPanel jPanel1;
     public static com.toedter.calendar.JDateChooser jdcfin;
     public static com.toedter.calendar.JDateChooser jdcinicio;
+    private javax.swing.JRadioButton rbtnbodega;
+    private javax.swing.JRadioButton rbtncoapinole;
+    private javax.swing.JRadioButton rbtnmagisterio;
     // End of variables declaration//GEN-END:variables
 }

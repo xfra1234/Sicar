@@ -26,7 +26,10 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
     Metodos.MetodosReporteDepartamento met = new MetodosReporteDepartamento();
     SimpleDateFormat formatomysql = new SimpleDateFormat("yyyy-MM-dd");
     SimpleDateFormat formatorestameses = new SimpleDateFormat("dd/MM/yyyy");
+    SimpleDateFormat formatoexportar = new SimpleDateFormat("EEEEE dd MMMMM yyyy");
     String fecha1, fecha2;
+    String fechauno, fechados;
+     int sucursal;
 
     public frmReporteDepartamento() {
         initComponents();
@@ -35,6 +38,7 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
         ImageIcon img = new ImageIcon("C:\\Users\\\\Cpu\\Documents\\NetBeansProjects\\Sicar\\logo.png");
 //define el icon a tu JFrame
         this.setIconImage(img.getImage());
+        
     }
 
     public int RestarMeses() {
@@ -52,7 +56,7 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
         }
         return difM;
     }
-     
+
 //    private void ultimodiames() {
 //        String date = prueba.format(jdcfinal.getDate());
 //        LocalDate convertedDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
@@ -81,6 +85,19 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
 //        }
 //
 //    }
+     public int valorsucursal(){
+         if(rbtnbodega.isSelected()){
+             sucursal=3;
+         }else if(rbtnmagisterio.isSelected()){
+             sucursal=1;
+         }else if(rbtncoapinole.isSelected()){
+             sucursal=2;
+         }else{
+             sucursal=0;
+         }
+         
+         return sucursal;
+     }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -90,10 +107,14 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        grbtnsucursal = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jdcinicio = new com.toedter.calendar.JDateChooser();
         jdcfinal = new com.toedter.calendar.JDateChooser();
         btncrear = new javax.swing.JButton();
+        rbtnbodega = new javax.swing.JRadioButton();
+        rbtnmagisterio = new javax.swing.JRadioButton();
+        rbtncoapinole = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Reporte Por Departamentos");
@@ -114,6 +135,18 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
             }
         });
 
+        grbtnsucursal.add(rbtnbodega);
+        rbtnbodega.setText("Bodega");
+        rbtnbodega.setOpaque(false);
+
+        grbtnsucursal.add(rbtnmagisterio);
+        rbtnmagisterio.setText("Magisterio");
+        rbtnmagisterio.setOpaque(false);
+
+        grbtnsucursal.add(rbtncoapinole);
+        rbtncoapinole.setText("Coapinole");
+        rbtncoapinole.setOpaque(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -121,13 +154,21 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jdcinicio, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jdcfinal, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(150, 150, 150)
+                        .addComponent(btncrear))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(155, 155, 155)
-                        .addComponent(btncrear)))
+                        .addGap(35, 35, 35)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(rbtnbodega)
+                                .addGap(18, 18, 18)
+                                .addComponent(rbtnmagisterio)
+                                .addGap(18, 18, 18)
+                                .addComponent(rbtncoapinole))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jdcinicio, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jdcfinal, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -137,9 +178,14 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jdcinicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jdcfinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbtnbodega)
+                    .addComponent(rbtnmagisterio)
+                    .addComponent(rbtncoapinole))
                 .addGap(30, 30, 30)
                 .addComponent(btncrear)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -150,7 +196,7 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -158,6 +204,10 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
 
     private void btncrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncrearActionPerformed
         // TODO add your andling code here:
+        if(valorsucursal()==0){
+            JOptionPane.showMessageDialog(null, "Favor de Seleccionar una sucursal","Error",JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         System.out.println(RestarMeses());
         if (RestarMeses() > 11) {
             JOptionPane.showMessageDialog(null, "Solo Puede Seleccionar un Plazo de 12 Meses", "Error", JOptionPane.ERROR_MESSAGE);
@@ -167,12 +217,13 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
             } else {
                 fecha1 = formatomysql.format(jdcinicio.getDate()) + " 06:00:00";
                 fecha2 = formatomysql.format(jdcfinal.getDate()) + " 21:00:00";
-               
-                met.modificaexcel(fecha1, fecha2);
+                fechauno = formatoexportar.format(jdcinicio.getDate());
+                fechados = formatoexportar.format(jdcfinal.getDate());
+
+                met.modificaexcel(fecha1, fecha2,fechauno,fechados,valorsucursal());
             }
         }
 
-  
 
     }//GEN-LAST:event_btncrearActionPerformed
 
@@ -213,8 +264,12 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btncrear;
+    private javax.swing.ButtonGroup grbtnsucursal;
     private javax.swing.JPanel jPanel1;
     public static com.toedter.calendar.JDateChooser jdcfinal;
     public static com.toedter.calendar.JDateChooser jdcinicio;
+    private javax.swing.JRadioButton rbtnbodega;
+    private javax.swing.JRadioButton rbtncoapinole;
+    private javax.swing.JRadioButton rbtnmagisterio;
     // End of variables declaration//GEN-END:variables
 }
