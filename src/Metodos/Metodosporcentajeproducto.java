@@ -129,7 +129,7 @@ public class Metodosporcentajeproducto {
                                 + " detallev.art_id=articulo.art_id\n"
                                 + "where articulo.art_id='" + idarticulo + "' and\n"
                                 + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "'"
-                                + "and venta.status!= -1 and venta.tic_id is not null; ");
+                                + "and venta.status!= -1 ; ");
                         while (rs2.next()) {
                             ventaproducto = ventaproducto + (rs2.getFloat(2));
 
