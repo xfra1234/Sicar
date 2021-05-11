@@ -65,14 +65,14 @@ public class Metodosporcentajeproducto {
     static int productosnum = 0, productosnum20 = 0;
     static float sumaproductos = 0, porcentajeporducto = 0;
 
-    public void prueba(String fecha1, String fecha2, String fechauno, String fechados,int sucursal) {
+    public void prueba(String fecha1, String fecha2, String fechauno, String fechados, int sucursal) {
         try {
             int id;
             double cantidad = 0;
             con = conectar.conectarMySQL();
             stmt = con.createStatement();
             rs = stmt.executeQuery("select articulo.art_id form,articulo.descripcion,unidad.nombre from  articulo inner join"
-                    + " unidad on unidad.uni_id =articulo.unidadventa where articulo.status !=-1 and articulo.cat_id !=1 "
+                    + " unidad on unidad.uni_id =articulo.unidadventa where  articulo.cat_id !=1"
             );
             con2 = conectar.conectarMySQL();
             stmt2 = con.createStatement();
@@ -82,7 +82,11 @@ public class Metodosporcentajeproducto {
                 id = rs.getInt(1);
 
                 rs2 = stmt2.executeQuery("select paquete.paquete from paquete where paquete.paquete= '" + id + "';");
-
+//                while(rs2.next()){
+//                    if(rs2.getInt(1)==2079){
+//                        JOptionPane.showMessageDialog(null, "olo");
+//                    }
+//                }
                 if (rs2.next()) {
 
                 } else {
@@ -121,10 +125,14 @@ public class Metodosporcentajeproducto {
                     while (rs.next()) {
                         int idarticulo;
                         idarticulo = rs.getInt(1);
-
+//                         if(idarticulo==2078||idarticulo==190){
+//                        JOptionPane.showMessageDialog(null, "olo2");
+//                    }
                         con2 = conectar.conectarMySQL();
                         stmt2 = con2.createStatement();
-                        rs2 = stmt2.executeQuery("select sum(detallev.cantidad),sum(detallev.importecon) from detallev inner join venta\n"
+
+                        rs2 = stmt2.executeQuery("select sum(detallev.cantidad),sum(detallev.importecon) "
+                                + "from detallev inner join venta\n"
                                 + "on detallev.ven_id = venta.ven_id inner join articulo on\n"
                                 + " detallev.art_id=articulo.art_id\n"
                                 + "where articulo.art_id='" + idarticulo + "' and\n"
@@ -139,9 +147,9 @@ public class Metodosporcentajeproducto {
                         con2 = conectar.conectarMySQL();
                         stmt2 = con2.createStatement();
                         rs2 = stmt2.executeQuery("select sum(detallep.cantidad) from detallep inner join venta\n"
-                                + "on detallep.ven_id = venta.ven_id inner join articulo on\n"
-                                + " detallep.paquete=articulo.art_id\n"
-                                + "where articulo.art_id='" + idarticulo + "' and\n"
+                                + "on detallep.ven_id = venta.ven_id \n"
+                                + "where detallep.articulo='" + valor + "'"
+                                + "and detallep.paquete='" + idarticulo + "' and\n"
                                 + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "'"
                                 + "and venta.status!= -1  ;");
                         if (rs2.next()) {
@@ -201,7 +209,7 @@ public class Metodosporcentajeproducto {
 
             Arrays.sort(arrayPersonas, Collections.reverseOrder());
             imprimeArrayPersonas(arrayPersonas);
-            GeneraExcel2(fechauno, fechados,sucursal);
+            GeneraExcel2(fechauno, fechados, sucursal);
             System.out.println(totalcantidad);
             System.out.println(alv + " final ");
         } catch (SQLException e) {
@@ -210,7 +218,7 @@ public class Metodosporcentajeproducto {
 
     }
 
-    public void GeneraExcel2(String fechauno, String fechados,int sucursal) {
+    public void GeneraExcel2(String fechauno, String fechados, int sucursal) {
 
         HSSFWorkbook libro = new HSSFWorkbook();
         HSSFSheet hoja = libro.createSheet();
@@ -418,23 +426,22 @@ public class Metodosporcentajeproducto {
 
         try {
 
-            int a = 0;
             String abrirarchivo = "", guardararchivo = "";
-            switch (a) {
+            switch (sucursal) {
                 case 1:
-                    guardararchivo = ("C:\\Users\\Cpu\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Magisterio del " + fechauno + " al " + fechados + ".xls");
+                    guardararchivo = ("C:\\Users\\Cpu\\Desktop\\Productos Conforman el 80% de venta Magisterio del " + fechauno + " al " + fechados + ".xls");
                     break;
-                 case 2:
-               
-                 guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Coapinole del " + fechauno + " al " + fechados + ".xls");
-                    break;     
+                case 2:
+
+                    guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Productos Conforman el 80% de venta Coapinole  del " + fechauno + " al " + fechados + ".xls");
+                    break;
             }
             FileOutputStream elFichero = new FileOutputStream(guardararchivo);
             libro.write(elFichero);
             elFichero.close();
             File archivo = new File(guardararchivo);
             Desktop.getDesktop().open(archivo);
-            JOptionPane.showMessageDialog(null, "Guardado");
+//            JOptionPane.showMessageDialog(null, "Guardado");
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, e);
         }

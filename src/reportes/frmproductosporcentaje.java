@@ -183,8 +183,8 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
         fecha1 = jdcinicio.getDate();
         fecha2 = jdcfin.getDate();
 
-        fechainicio = formatomysql.format(fecha1) + " 07:00:00";
-        fechafinal = formatomysql.format(fecha2) + " 20:00:00";
+        fechainicio = formatomysql.format(fecha1) + " 00:00:00";
+        fechafinal = formatomysql.format(fecha2) + " 23:59:59";
         fechauno = formatoexportar.format(fecha1);
         fechados = formatoexportar.format(fecha2);
        if(valorsucursal()==0){
