@@ -38,7 +38,7 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
         ImageIcon img = new ImageIcon("C:\\Users\\\\Cpu\\Documents\\NetBeansProjects\\Sicar\\logo.png");
 //define el icon a tu JFrame
         this.setIconImage(img.getImage());
-        
+        rbtnbodega.setSelected(true);
     }
 
     public int RestarMeses() {
@@ -115,6 +115,7 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
         rbtnbodega = new javax.swing.JRadioButton();
         rbtnmagisterio = new javax.swing.JRadioButton();
         rbtncoapinole = new javax.swing.JRadioButton();
+        btnRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Reporte Por Departamentos");
@@ -147,15 +148,19 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
         rbtncoapinole.setText("Coapinole");
         rbtncoapinole.setOpaque(false);
 
+        btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addComponent(btncrear))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,7 +173,12 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jdcinicio, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jdcfinal, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jdcfinal, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(btnRegresar)
+                        .addGap(54, 54, 54)
+                        .addComponent(btncrear)))
                 .addContainerGap(43, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -184,7 +194,9 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
                     .addComponent(rbtnmagisterio)
                     .addComponent(rbtncoapinole))
                 .addGap(30, 30, 30)
-                .addComponent(btncrear)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btncrear)
+                    .addComponent(btnRegresar))
                 .addContainerGap())
         );
 
@@ -227,6 +239,15 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btncrearActionPerformed
 
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        // TODO add your handling code here:
+        frmPrinicipal principal=new frmPrinicipal();
+        principal.setVisible(true);
+        principal.setLocationRelativeTo(null);
+        principal.setResizable(false);
+        this.dispose();
+    }//GEN-LAST:event_btnRegresarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -263,6 +284,7 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btncrear;
     private javax.swing.ButtonGroup grbtnsucursal;
     private javax.swing.JPanel jPanel1;

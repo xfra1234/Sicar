@@ -43,7 +43,8 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
         ImageIcon img = new ImageIcon("C:\\Users\\\\Cpu\\Documents\\NetBeansProjects\\Sicar\\logo.png");
 //define el icon a tu JFrame
         this.setIconImage(img.getImage());
-      
+        rbtnbodega.setSelected(true);
+
     }
 
     public int RestarMeses() {
@@ -61,19 +62,21 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
         }
         return difM;
     }
-     public int valorsucursal(){
-         if(rbtnbodega.isSelected()){
-             sucursal=3;
-         }else if(rbtnmagisterio.isSelected()){
-             sucursal=1;
-         }else if(rbtncoapinole.isSelected()){
-             sucursal=2;
-         }else{
-             sucursal=0;
-         }
-         
-         return sucursal;
-     }
+
+    public int valorsucursal() {
+        if (rbtnbodega.isSelected()) {
+            sucursal = 3;
+        } else if (rbtnmagisterio.isSelected()) {
+            sucursal = 1;
+        } else if (rbtncoapinole.isSelected()) {
+            sucursal = 2;
+        } else {
+            sucursal = 0;
+        }
+
+        return sucursal;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -91,6 +94,7 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
         rbtnbodega = new javax.swing.JRadioButton();
         rbtnmagisterio = new javax.swing.JRadioButton();
         rbtncoapinole = new javax.swing.JRadioButton();
+        btnRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Reporte de Productos 80%");
@@ -122,28 +126,39 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
         rbtncoapinole.setText("Coapinole");
         rbtncoapinole.setOpaque(false);
 
+        btnRegresar.setText("Regresar");
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(31, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jdcinicio, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(46, 46, 46)
+                                .addComponent(jdcfin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(44, 44, 44)
+                                .addComponent(rbtnbodega)
+                                .addGap(18, 18, 18)
+                                .addComponent(rbtnmagisterio)
+                                .addGap(18, 18, 18)
+                                .addComponent(rbtncoapinole))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jdcinicio, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
-                        .addComponent(jdcfin, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(149, 149, 149)
-                        .addComponent(btnbuscar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(rbtnbodega)
-                        .addGap(18, 18, 18)
-                        .addComponent(rbtnmagisterio)
-                        .addGap(18, 18, 18)
-                        .addComponent(rbtncoapinole)))
-                .addContainerGap(51, Short.MAX_VALUE))
+                        .addComponent(btnRegresar)
+                        .addGap(87, 87, 87)
+                        .addComponent(btnbuscar)))
+                .addGap(30, 30, 30))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,8 +173,13 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
                     .addComponent(rbtnmagisterio)
                     .addComponent(rbtncoapinole))
                 .addGap(18, 18, 18)
-                .addComponent(btnbuscar)
-                .addGap(25, 25, 25))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnbuscar)
+                        .addGap(25, 25, 25))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnRegresar)
+                        .addContainerGap())))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -178,8 +198,7 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
 
     private void btnbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarActionPerformed
         // TODO add your handling code here:
-        
-        
+
         fecha1 = jdcinicio.getDate();
         fecha2 = jdcfin.getDate();
 
@@ -187,26 +206,35 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
         fechafinal = formatomysql.format(fecha2) + " 23:59:59";
         fechauno = formatoexportar.format(fecha1);
         fechados = formatoexportar.format(fecha2);
-       if(valorsucursal()==0){
-            JOptionPane.showMessageDialog(null, "Favor de Seleccionar una sucursal","Error",JOptionPane.ERROR_MESSAGE);
-            return;
-        }
 
         //met.buscarcantidades(fechainicio, fechafinal);
-        if (RestarMeses() >0) {
+        if (RestarMeses() > 0) {
             JOptionPane.showMessageDialog(null, "Solo Puede Seleccionar un Mes", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             if (jdcinicio.getDate().after(jdcfin.getDate())) {
                 JOptionPane.showMessageDialog(null, "Error en las Fechas", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-
-                met.prueba(fechainicio, fechafinal, fechauno, fechados,valorsucursal());
+                if (valorsucursal() == 3) {
+                     met.Consultabodega(fechainicio, fechafinal, fechauno, fechados, valorsucursal());
+                }else{
+                     met.consultasucrusales(fechainicio, fechafinal, fechauno, fechados, valorsucursal());
+                }
+               
             }
 
         }
 
 
     }//GEN-LAST:event_btnbuscarActionPerformed
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        // TODO add your handling code here:
+        frmPrinicipal principal=new frmPrinicipal();
+        principal.setVisible(true);
+        principal.setLocationRelativeTo(null);
+        principal.setResizable(false);
+        this.dispose();
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -244,6 +272,7 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btnbuscar;
     private javax.swing.ButtonGroup grbtnsucursal;
     private javax.swing.JPanel jPanel1;
