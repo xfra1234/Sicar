@@ -232,7 +232,7 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
                 fechauno = formatoexportar.format(jdcinicio.getDate());
                 fechados = formatoexportar.format(jdcfinal.getDate());
 
-                met.modificaexcel(fecha1, fecha2,fechauno,fechados,valorsucursal());
+                met.sucursales(fecha1, fecha2,fechauno,fechados,valorsucursal());
             }
         }
 
