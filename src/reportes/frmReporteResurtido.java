@@ -80,8 +80,8 @@ public class frmReporteResurtido extends javax.swing.JFrame {
         }
         
  //////////////////////// Fin //////////////////////////////////
-            System.out.println(fecha3mad);
-         System.out.println(fehca1mud);
+            System.out.println(fechad1mud);
+         System.out.println(fechad3md);
          met.resurtido(fecha3mad, fehca1mud, fechad1mud, fechad3md);
         
     }

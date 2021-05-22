@@ -408,7 +408,34 @@ public class MetodosResurtido {
                         cantidad3ma = cantidad3ma + rs2.getFloat(1);
                     }
                     con2.close();
-
+                    
+                    con2 = conectar.conectarMySQL();
+                    stmt2 = con2.createStatement();
+                    rs2 = stmt2.executeQuery("select sum(cantidad) from detallep "
+                            + "inner join venta on venta.ven_id = detallep.ven_id "
+                            + " where detallep.articulo=" + valor + " and "
+                            + " venta.fecha between '" + fecha1md  + "' and '" + fecha3md + "'"
+                            + " and venta.status!=-1");
+                    if (rs2.next()) {
+                      
+                        cantidad3md = cantidad3md + rs2.getFloat(1);
+                         
+                    }
+                    con2.close();
+                    
+                     con2 = conectar.conectarMySQL();
+                    stmt2 = con2.createStatement();
+                    rs2 = stmt2.executeQuery("select sum(cantidad) from detallev "
+                            + "inner join venta on venta.ven_id = detallev.ven_id "
+                            + " where detallev.art_id=" + valor + " and "
+                            + " venta.fecha between '" + fecha1md  + "' and '" + fecha3md + "'"
+                            + " and venta.status!=-1");
+                    if (rs2.next()) {
+                        cantidad3md = cantidad3md + rs2.getFloat(1);
+                    }
+                    con2.close();
+                    
+                    
                     con2 = conectar.conectarMySQL();
                     stmt2 = con2.createStatement();
                     rs2 = stmt2.executeQuery("select articulo.clave,articulo.existencia,articulo.descripcion,categoria.nombre"
@@ -431,9 +458,18 @@ public class MetodosResurtido {
                         celda = fila.createCell(2);
                         celda.setCellValue(existencia);
                         celda.setCellStyle(encabezados);
+                        
+                        celda = fila.createCell(4);
+                        celda.setCellValue(existencia);
+                        celda.setCellStyle(encabezados);
 
+                        
                         celda = fila.createCell(6);
                         celda.setCellValue(cantidad3ma);
+                        celda.setCellStyle(encabezados);
+                        
+                        celda = fila.createCell(7);
+                        celda.setCellValue(cantidad3md);
                         celda.setCellStyle(encabezados);
 //                    
                         filaa = filaa + 1;
@@ -457,9 +493,17 @@ public class MetodosResurtido {
                         celda = fila.createCell(2);
                         celda.setCellValue(existencia);
                         celda.setCellStyle(encabezados);
-
+                        
+                         celda = fila.createCell(4);
+                        celda.setCellValue(existencia);
+                        celda.setCellStyle(encabezados);
+                        
                         celda = fila.createCell(6);
                         celda.setCellValue(cantidad3ma);
+                        celda.setCellStyle(encabezados);
+                        
+                        celda = fila.createCell(7);
+                        celda.setCellValue(cantidad3md);
                         celda.setCellStyle(encabezados);
 //                    
 //                    
@@ -481,7 +525,19 @@ public class MetodosResurtido {
                         cantidad3ma = cantidad3ma + rs2.getFloat(1);
                     }
                     con2.close();
-
+                    
+                    con2 = conectar.conectarMySQL();
+                    stmt2 = con2.createStatement();
+                    rs2 = stmt2.executeQuery("select sum(cantidad) from detallev "
+                            + "inner join venta on venta.ven_id = detallev.ven_id "
+                            + " where detallev.art_id=" + valor + " and "
+                            + " venta.fecha between '" + fecha1md  + "' and '" + fecha3md + "'"
+                            + " and venta.status!=-1");
+                    if (rs2.next()) {
+                        cantidad3md = cantidad3md + rs2.getFloat(1);
+                    }
+                    con2.close();
+                    
                     con2 = conectar.conectarMySQL();
                     stmt2 = con2.createStatement();
                     rs2 = stmt2.executeQuery("select articulo.clave,articulo.existencia,articulo.descripcion,categoria.nombre"
@@ -504,9 +560,17 @@ public class MetodosResurtido {
                         celda = fila.createCell(2);
                         celda.setCellValue(existencia);
                         celda.setCellStyle(encabezados);
+                        
+                         celda = fila.createCell(4);
+                        celda.setCellValue(existencia);
+                        celda.setCellStyle(encabezados);
 
                         celda = fila.createCell(6);
                         celda.setCellValue(cantidad3ma);
+                        celda.setCellStyle(encabezados);
+                        
+                        celda = fila.createCell(7);
+                        celda.setCellValue(cantidad3md);
                         celda.setCellStyle(encabezados);
 //                    
 //                    
@@ -531,9 +595,17 @@ public class MetodosResurtido {
                         celda = fila.createCell(2);
                         celda.setCellValue(existencia);
                         celda.setCellStyle(encabezados);
+                        
+                         celda = fila.createCell(4);
+                        celda.setCellValue(existencia);
+                        celda.setCellStyle(encabezados);
 
                         celda = fila.createCell(6);
                         celda.setCellValue(cantidad3ma);
+                        celda.setCellStyle(encabezados);
+                        
+                        celda = fila.createCell(7);
+                        celda.setCellValue(cantidad3md);
                         celda.setCellStyle(encabezados);
 //                    
 //                    
@@ -546,6 +618,7 @@ public class MetodosResurtido {
 
                 existencia = 0;
                 cantidad3ma = 0;
+                cantidad3md=0;
             }
 
         } catch (SQLException e) {
