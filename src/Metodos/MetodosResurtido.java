@@ -348,8 +348,19 @@ public class MetodosResurtido {
                     filaa = filaa + 1;
 
                 } else {
+                    
+                    filaa = filaa+1;
                     fila = hoja.createRow(filaa);
-
+                    
+                    celda = fila.createCell(0);
+                    celda.setCellValue(rs.getString(4));
+                    celda.setCellStyle(letraprincipal);
+                    
+                    
+                    
+                    filaa = filaa+1;
+                    fila = hoja.createRow(filaa);
+                    
                     celda = fila.createCell(0);
                     celda.setCellValue(new HSSFRichTextString(rs.getString(1)));
                     celda.setCellStyle(encabezados);
