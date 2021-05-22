@@ -322,7 +322,7 @@ public class Metodosporcentajeproducto {
                                 + "where articulo.art_id='" + idarticulo + "' and\n"
                                 + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "'"
                                 + "and venta.status!= -1 and"
-                                + "venta.tic_id is not null; ");
+                                + " venta.tic_id is not null; ");
                         while (rs2.next()) {
                             ventaproducto = ventaproducto + (rs2.getFloat(2));
 
@@ -337,7 +337,7 @@ public class Metodosporcentajeproducto {
                                 + "and detallep.paquete='" + idarticulo + "' and\n"
                                 + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "'"
                                 + "and venta.status!= -1 "
-                                + "and venta.tic_id is not null ;");
+                                + " and venta.tic_id is not null ;");
                         if (rs2.next()) {
                             cantidadproducto = cantidadproducto + (rs2.getFloat(1));
 
@@ -353,7 +353,7 @@ public class Metodosporcentajeproducto {
                             + "where articulo.art_id='" + valor + "' and\n"
                             + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "'"
                             + "and venta.status!= -1  "
-                            + "and venta.tic_id is not null;");
+                            + " and venta.tic_id is not null;");
                     if (rs2.next()) {
 
                         cantidadproducto = cantidadproducto + rs2.getFloat(1);
@@ -375,7 +375,7 @@ public class Metodosporcentajeproducto {
                             + "where articulo.art_id='" + valor + "' and\n"
                             + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "'"
                             + "and venta.status!= -1  "
-                            + "and venta.tic_id is not null; ");
+                            + " and venta.tic_id is not null; ");
                     while (rs2.next()) {
                         cantidadproducto = cantidadproducto + rs2.getFloat(1);
                         nombreproducto = rs2.getString(2);

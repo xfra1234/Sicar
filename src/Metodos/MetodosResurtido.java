@@ -333,21 +333,35 @@ public class MetodosResurtido {
             while (rs.next()) {
                 if (descripcion == rs.getString(2)) {
                     fila = hoja.createRow(filaa);
-                    
+
                     celda = fila.createCell(0);
                     celda.setCellValue(new HSSFRichTextString(rs.getString(1)));
                     celda.setCellStyle(encabezados);
-                     
+
                     celda = fila.createCell(1);
                     celda.setCellValue(new HSSFRichTextString(rs.getString(2)));
                     celda.setCellStyle(encabezados);
-                    
-                    celda = fila.createCell(0);
-                    celda.setCellValue(rs.getFloat(2));
-                    celda.setCellStyle(encabezados);
-                    
-                } else {
 
+                    celda = fila.createCell(2);
+                    celda.setCellValue(rs.getFloat(3));
+                    celda.setCellStyle(encabezados);
+                    filaa = filaa + 1;
+
+                } else {
+                    fila = hoja.createRow(filaa);
+
+                    celda = fila.createCell(0);
+                    celda.setCellValue(new HSSFRichTextString(rs.getString(1)));
+                    celda.setCellStyle(encabezados);
+
+                    celda = fila.createCell(1);
+                    celda.setCellValue(new HSSFRichTextString(rs.getString(2)));
+                    celda.setCellStyle(encabezados);
+
+                    celda = fila.createCell(2);
+                    celda.setCellValue(rs.getFloat(3));
+                    celda.setCellStyle(encabezados);
+                    filaa = filaa + 1;
                 }
             }
 
@@ -359,10 +373,10 @@ public class MetodosResurtido {
         }
 
         try {
-            FileOutputStream elFichero = new FileOutputStream("C:\\Users\\usuario\\Desktop\\olo.xls");
+            FileOutputStream elFichero = new FileOutputStream("C:\\Users\\\\GHIA\\Desktop\\olo.xls");
             libro.write(elFichero);
             elFichero.close();
-            File archivo = new File("C:\\Users\\usuario\\Desktop\\olo.xls");
+            File archivo = new File("C:\\Users\\\\GHIA\\Desktop\\olo.xls");
             Desktop.getDesktop().open(archivo);
             //JOptionPane.showMessageDialog(null, "Guardado");
         } catch (IOException e) {
