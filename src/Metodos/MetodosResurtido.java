@@ -399,7 +399,8 @@ public class MetodosResurtido {
                     celda.setCellStyle(encabezados);
 
                     filaa = filaa + 1;
-                    con2.close();
+                    con.close();
+                   
                 } else {
                     con2 = conectar.conectarMySQL();
                     stmt2 = con2.createStatement();
@@ -422,12 +423,13 @@ public class MetodosResurtido {
                     celda.setCellStyle(encabezados);
 
                     filaa = filaa + 1;
+                    con.close();
                     con2.close();
                 }
 
                 existencia = 0;
             }
-            con.close();
+            
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
