@@ -14,6 +14,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFFont;
@@ -40,6 +41,8 @@ public class MetodosResurtido {
     private Statement stmt3 = null;
     conexion conectar = new conexion();
     String abrirarchivo = "", guardararchivo = "";
+    int contador = 0, contador1 = 0;
+    protected ArrayList<Integer> idNumeros = new ArrayList();
 
     public void sucursales(String fecha1, String fecha2, String fechauno, String fechados, int sucursal) {
         switch (sucursal) {
@@ -324,61 +327,111 @@ public class MetodosResurtido {
         celda.setCellStyle(encabezados);
         int filaa = 9;
         String descripcion = "";
+
         try {
+            int id;
+            double cantidad = 0;
             con = conectar.conectarMySQL();
             stmt = con.createStatement();
-            rs = stmt.executeQuery("select articulo.clave, articulo.descripcion,articulo.existencia,categoria.nombre "
-                    + "from articulo inner join categoria on categoria.cat_id = articulo.cat_id\n"
-                    + " where articulo.existencia > 0 order  by categoria.nombre,articulo.descripcion");
+            rs = stmt.executeQuery("select articulo.art_id form,articulo.descripcionfrom  articulo inner join"
+                    + " categoria on categoria.cat_id = articulo.cat_id order by categoria.nombre,articulo.descripcion  "
+            );
+            con2 = conectar.conectarMySQL();
+            stmt2 = con.createStatement();
+
             while (rs.next()) {
-                if (descripcion == rs.getString(2)) {
-                    fila = hoja.createRow(filaa);
 
-                    celda = fila.createCell(0);
-                    celda.setCellValue(new HSSFRichTextString(rs.getString(1)));
-                    celda.setCellStyle(encabezados);
+                id = rs.getInt(1);
 
-                    celda = fila.createCell(1);
-                    celda.setCellValue(new HSSFRichTextString(rs.getString(2)));
-                    celda.setCellStyle(encabezados);
-
-                    celda = fila.createCell(2);
-                    celda.setCellValue(rs.getFloat(3));
-                    celda.setCellStyle(encabezados);
-                    filaa = filaa + 1;
+                rs2 = stmt2.executeQuery("select paquete.paquete from paquete where paquete.paquete= '" + id + "';");
+                if (rs2.next()) {
 
                 } else {
-                    
-                    filaa = filaa+1;
-                    fila = hoja.createRow(filaa);
-                    
-                    celda = fila.createCell(0);
-                    celda.setCellValue(rs.getString(4));
-                    celda.setCellStyle(letraprincipal);
-                    
-                    
-                    
-                    filaa = filaa+1;
-                    fila = hoja.createRow(filaa);
-                    
-                    celda = fila.createCell(0);
-                    celda.setCellValue(new HSSFRichTextString(rs.getString(1)));
-                    celda.setCellStyle(encabezados);
-
-                    celda = fila.createCell(1);
-                    celda.setCellValue(new HSSFRichTextString(rs.getString(2)));
-                    celda.setCellStyle(encabezados);
-
-                    celda = fila.createCell(2);
-                    celda.setCellValue(rs.getFloat(3));
-                    celda.setCellStyle(encabezados);
-                    filaa = filaa + 1;
+                    idNumeros.add(id);
+                    contador = contador + 1;
                 }
+
             }
+            con.close();
+            con2.close();
+            int valor = 0;
+            float existencia = 0;
+            for (int x = 0; x < contador; x++) {
+                valor = idNumeros.get(x);
+                con = conectar.conectarMySQL();
+                stmt = con.createStatement();
+                rs = stmt.executeQuery("select * from paquete where paquete.articulo=" + valor + "");
+                if (rs.next()) {
+                    con2 = conectar.conectarMySQL();
+                    stmt2 = con2.createStatement();
+                    rs2 = stmt.executeQuery("select paquete.paquete from paquete where paquete.articulo=" + valor + "");
+                    while (rs2.next()) {
+                        con3 = conectar.conectarMySQL();
+                        stmt3 = con3.createStatement();
+                        rs3 = stmt.executeQuery("select articulo.existencia*paquete.cantidad  from articulo"
+                                + " inner join paquete on paquete.paquete = articulo.art_id "
+                                + "where articulo.art_id=" + rs2.getInt(1) + "");
+                        while (rs3.next()) {
+                            existencia = rs.getFloat(1);
+                        }
+                    }
+                    con2.close();
+                    con3.close();
+
+                    con2 = conectar.conectarMySQL();
+                    stmt2 = con.createStatement();
+                    rs2 = stmt2.executeQuery("select existencia,clave,descripcion from articulo where art_id=" + valor + "");
+                    while (rs2.next()) {
+                        existencia = existencia + rs2.getFloat(1);
+                    }
+                    fila = hoja.createRow(filaa);
+                    celda = fila.createCell(0);
+                    celda.setCellValue(new HSSFRichTextString(rs2.getString(2)));
+                    celda.setCellStyle(encabezados);
+                    
+                     celda = fila.createCell(1);
+                    celda.setCellValue(existencia);
+                    celda.setCellStyle(encabezados);
+                    
+                     celda = fila.createCell(2);
+                    celda.setCellValue(new HSSFRichTextString(rs2.getString(3)));
+                    celda.setCellStyle(encabezados);
+                    
+                    filaa= filaa+1;
+                    con2.close();
+                } else {
+                    con2 = conectar.conectarMySQL();
+                    stmt2 = con.createStatement();
+                    rs2 = stmt2.executeQuery("select existencia,clave from articulo where art_id=" + valor + "");
+                    while (rs2.next()) {
+                        existencia = existencia + rs2.getFloat(1);
+                    }
+                    
+                     fila = hoja.createRow(filaa);
+                    celda = fila.createCell(0);
+                    celda.setCellValue(new HSSFRichTextString(rs2.getString(2)));
+                    celda.setCellStyle(encabezados);
+                    
+                     celda = fila.createCell(1);
+                    celda.setCellValue(existencia);
+                    celda.setCellStyle(encabezados);
+                    
+                     celda = fila.createCell(2);
+                    celda.setCellValue(new HSSFRichTextString(rs2.getString(3)));
+                    celda.setCellStyle(encabezados);
+                    
+                    filaa= filaa+1;
+                    con2.close();
+                }
+
+                existencia = 0;
+            }
+            con.close();
 
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
+
         for (int x = 0; x < 20; x++) {
             hoja.autoSizeColumn(x);
         }
