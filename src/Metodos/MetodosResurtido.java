@@ -343,7 +343,6 @@ public class MetodosResurtido {
                 
                 con2 = conectar.conectarMySQL();
                 stmt2 = con.createStatement();
-
                 rs2 = stmt2.executeQuery("select paquete.paquete from paquete where paquete.paquete= '" + id + "';");
                 if (rs2.next()) {
 
@@ -352,9 +351,9 @@ public class MetodosResurtido {
                     contador = contador + 1;
                 }
 
+            con2.close();
             }
             con.close();
-            con2.close();
             int valor = 0;
             float existencia = 0;
             for (int x = 0; x < contador; x++) {
