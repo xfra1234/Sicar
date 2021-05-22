@@ -42,19 +42,19 @@ public class frmReporteResurtido extends javax.swing.JFrame {
         fechaactual.setTime(cmbmes.getDate());
         fechaactual.add(fechaactual.MONTH, -3);
         if (fechaactual.get(fechaactual.MONTH) < 9) {
-            fecha3mad = "0"
-                    + (fechaactual.get(fechaactual.MONTH) + 1) + "-" + "01" + "-" + fechaactual.get(fechaactual.YEAR) + " 00:00:00";
+            fecha3mad =  fechaactual.get(fechaactual.YEAR)+ "-" + "0"
+                    + (fechaactual.get(fechaactual.MONTH) + 1) + "-" + "01"+" 00:00:00";
         } else {
-            fecha3mad = (fechaactual.get(fechaactual.MONTH) + 1) + "-" + "01" + "-" + fechaactual.get(fechaactual.YEAR) + " 00:00:00";
+            fecha3mad = fechaactual.get(fechaactual.YEAR) + "-"  +(fechaactual.get(fechaactual.MONTH) + 1) + "-" + "01"  +  " 00:00:00";
         }
 
         fechaactual.setTime(cmbmes.getDate());
         fechaactual.add(fechaactual.MONTH, -1);
         if (fechaactual.get(fechaactual.MONTH) < 9) {
-            fehca1mud = "0"
-                    + (fechaactual.get(fechaactual.MONTH) + 1) + "-" + fechaactual.getMaximum(fechaactual.DAY_OF_MONTH) + "-" + fechaactual.get(fechaactual.YEAR) + " 23:59:59";
+            fehca1mud = fechaactual.get(fechaactual.YEAR)+ "-" +"0"
+                    + (fechaactual.get(fechaactual.MONTH) + 1) + "-" + fechaactual.getMaximum(fechaactual.DAY_OF_MONTH)  +  " 23:59:59";
         } else {
-            fehca1mud = (fechaactual.get(fechaactual.MONTH) + 1) + "-" + fechaactual.getMaximum(fechaactual.DAY_OF_MONTH) + "-" + fechaactual.get(fechaactual.YEAR) + " 23:59:59";
+            fehca1mud = fechaactual.get(fechaactual.YEAR) + "-"  +(fechaactual.get(fechaactual.MONTH) + 1) + "-" + fechaactual.getMaximum(fechaactual.DAY_OF_MONTH)+  " 23:59:59";
         }
 
  /////////////////////fin ////////////////       
@@ -64,24 +64,26 @@ public class frmReporteResurtido extends javax.swing.JFrame {
         fechaactual.setTime(cmbmes.getDate());
         fechaactual.add(fechaactual.MONTH, 1);
         if (fechaactual.get(fechaactual.MONTH) < 9) {
-            fechad1mud = "0"
-                    + (fechaactual.get(fechaactual.MONTH) + 1) + "-" + "01" + "-" + (fechaactual.get(fechaactual.YEAR)-1) + " 00:00:00";
+            fechad1mud = (fechaactual.get(fechaactual.YEAR)-1) + "-"+"0"
+                    + (fechaactual.get(fechaactual.MONTH) + 1) + "-" + "01"  +  " 00:00:00";
         } else {
-            fechad1mud = (fechaactual.get(fechaactual.MONTH) + 1) + "-" + "01" + "-" + (fechaactual.get(fechaactual.YEAR)-1) + " 00:00:00";
+            fechad1mud = (fechaactual.get(fechaactual.YEAR)-1) + "-" + (fechaactual.get(fechaactual.MONTH) + 1) + "-" + "01" + " 00:00:00";
         }
 
         fechaactual.setTime(cmbmes.getDate());
         fechaactual.add(fechaactual.MONTH, 3);
         if (fechaactual.get(fechaactual.MONTH) < 9) {
-            fechad3md = "0"
-                    + (fechaactual.get(fechaactual.MONTH) + 1) + "-" + fechaactual.getMaximum(fechaactual.DAY_OF_MONTH) + "-" + (fechaactual.get(fechaactual.YEAR)-1) + " 23:59:59";
+            fechad3md =(fechaactual.get(fechaactual.YEAR)-1)+ "-" + "0"
+                    + (fechaactual.get(fechaactual.MONTH) + 1) + "-" + fechaactual.getMaximum(fechaactual.DAY_OF_MONTH)  +  " 23:59:59";
         } else {
-            fechad3md = (fechaactual.get(fechaactual.MONTH) + 1) + "-" + fechaactual.getMaximum(fechaactual.DAY_OF_MONTH) + "-" +(fechaactual.get(fechaactual.YEAR)-1) + " 23:59:59";
+            fechad3md = (fechaactual.get(fechaactual.YEAR)-1) + "-" +(fechaactual.get(fechaactual.MONTH) + 1) + "-" + fechaactual.getMaximum(fechaactual.DAY_OF_MONTH) + " 23:59:59";
         }
         
  //////////////////////// Fin //////////////////////////////////
-           
-         met.resurtido(fehca1mud, fecha3mad, fechad1mud, fechad3md);
+            System.out.println(fecha3mad);
+         System.out.println(fehca1mud);
+         met.resurtido(fecha3mad, fehca1mud, fechad1mud, fechad3md);
+        
     }
 
     /**
