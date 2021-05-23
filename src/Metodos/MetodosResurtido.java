@@ -628,10 +628,10 @@ public class MetodosResurtido {
         }
 
         try {
-            FileOutputStream elFichero = new FileOutputStream("C:\\Users\\\\GHIA\\Desktop\\olo.xls");
+            FileOutputStream elFichero = new FileOutputStream(guardararchivo);
             libro.write(elFichero);
             elFichero.close();
-            File archivo = new File("C:\\Users\\\\GHIA\\Desktop\\olo.xls");
+            File archivo = new File(guardararchivo);
             Desktop.getDesktop().open(archivo);
             //JOptionPane.showMessageDialog(null, "Guardado");
         } catch (IOException e) {
