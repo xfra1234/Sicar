@@ -47,21 +47,18 @@ public class MetodosResurtido {
     int idpaquete;
     protected ArrayList<Integer> idNumeros = new ArrayList();
 
-    public void sucursales(String fecha1, String fecha2, String fechauno, String fechados, int sucursal) {
+    public void sucursales(String fecha1, String fecha2, String fechauno, String fechados, int sucursal,String mes) {
         switch (sucursal) {
             case 1:
-                abrirarchivo = ("C:\\Users\\Cpu\\Documents\\Cuotas-de-Venta-y-Rentabilidad-Sucursales_-Magisterio.xls");
-                guardararchivo = ("C:\\Users\\Cpu\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Magisterio del " + fechauno + " al " + fechados + ".xls");
+                guardararchivo = ("C:\\Users\\Cpu\\Desktop\\Resurtido de sucursal_Magisterio de "+mes+".xls");
                 resurtido(fecha1, fecha2, fechauno, fechados);
                 break;
             case 2:
-                abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Cuotas-de-Venta-y-Rentabilidad-Sucursales_-Coapinole.xls");
-                guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Coapinole del " + fechauno + " al " + fechados + ".xls");
+                guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Resurtido de sucursal_Coapinole de"+ mes + ".xls");
                 resurtido(fecha1, fecha2, fechauno, fechados);
                 break;
             case 3:
-                abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Cuotas-de-Venta-y-Rentabilidad-Sucursales_-Bodega.xls");
-                guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Bodega del " + fechauno + " al " + fechados + ".xls");
+                guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Resurtido de sucursal_ Bodega del " + mes + ".xls");
                 resurtido(fecha1, fecha2, fechauno, fechados);
                 break;
         }
