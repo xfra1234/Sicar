@@ -381,9 +381,10 @@ public class MetodosResurtido {
                         while (rs3.next()) {
                             existencia = rs.getFloat(1);
                         }
+                        con3.close();
                     }
                     con2.close();
-                    con3.close();
+                    
 
                     con2 = conectar.conectarMySQL();
                     stmt2 = con2.createStatement();
@@ -511,6 +512,7 @@ public class MetodosResurtido {
                     }
                     descripcion = rs2.getString(4);
                     con.close();
+                    con2.close();
 
                 } else {
 
