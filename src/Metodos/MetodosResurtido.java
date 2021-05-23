@@ -58,7 +58,7 @@ public class MetodosResurtido {
                 resurtido(fecha1, fecha2, fechauno, fechados);
                 break;
             case 3:
-                guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Resurtido de sucursal_ Bodega del " + mes + ".xls");
+                guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Resurtido de sucursal_ Bodega de" + mes + ".xls");
                 resurtido(fecha1, fecha2, fechauno, fechados);
                 break;
         }
@@ -637,6 +637,7 @@ public class MetodosResurtido {
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, e);
         }
+        idNumeros.clear();
     }
 
 }
