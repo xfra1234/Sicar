@@ -7,7 +7,6 @@ package Metodos;
 
 import java.awt.Desktop;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -46,15 +45,22 @@ public class MetodosResurtido {
     String descripcion = "";
     int idpaquete;
     protected ArrayList<Integer> idNumeros = new ArrayList();
+    public void limpiarVariables(){
+        cantidad3ma=0;
+        cantidad3md=0;
+        contador=0;
+        contador1=0;
+        idpaquete=0;
+    }
 
-    public void sucursales(String fecha1, String fecha2, String fechauno, String fechados, int sucursal,String mes) {
+    public void sucursales(String fecha1, String fecha2, String fechauno, String fechados, int sucursal, String mes) {
         switch (sucursal) {
             case 1:
-                guardararchivo = ("C:\\Users\\Cpu\\Desktop\\Resurtido de sucursal_Magisterio de "+mes+".xls");
+                guardararchivo = ("C:\\Users\\Cpu\\Desktop\\Resurtido de sucursal_Magisterio de " + mes + ".xls");
                 resurtido(fecha1, fecha2, fechauno, fechados);
                 break;
             case 2:
-                guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Resurtido de sucursal_Coapinole de"+ mes + ".xls");
+                guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Resurtido de sucursal_Coapinole de" + mes + ".xls");
                 resurtido(fecha1, fecha2, fechauno, fechados);
                 break;
             case 3:
@@ -330,7 +336,6 @@ public class MetodosResurtido {
 
         try {
             int id;
-            double cantidad = 0;
             con = conectar.conectarMySQL();
             stmt = con.createStatement();
             rs = stmt.executeQuery("select articulo.art_id from articulo inner join"
@@ -362,7 +367,7 @@ public class MetodosResurtido {
                 stmt = con.createStatement();
                 rs = stmt.executeQuery("select paquete.paquete from paquete where paquete.articulo=" + valor + "");
                 if (rs.next()) {
-                    
+
                     idpaquete = rs.getInt(1);
                     con2 = conectar.conectarMySQL();
                     stmt2 = con2.createStatement();
@@ -388,9 +393,9 @@ public class MetodosResurtido {
                             + " venta.fecha between '" + fecha1ma + "' and '" + fecha3ma + "'"
                             + " and venta.status!=-1");
                     if (rs2.next()) {
-                      
+
                         cantidad3ma = cantidad3ma + rs2.getFloat(1);
-                         
+
                     }
                     con2.close();
 
@@ -405,34 +410,33 @@ public class MetodosResurtido {
                         cantidad3ma = cantidad3ma + rs2.getFloat(1);
                     }
                     con2.close();
-                    
+
                     con2 = conectar.conectarMySQL();
                     stmt2 = con2.createStatement();
                     rs2 = stmt2.executeQuery("select sum(cantidad) from detallep "
                             + "inner join venta on venta.ven_id = detallep.ven_id "
                             + " where detallep.articulo=" + valor + " and "
-                            + " venta.fecha between '" + fecha1md  + "' and '" + fecha3md + "'"
+                            + " venta.fecha between '" + fecha1md + "' and '" + fecha3md + "'"
                             + " and venta.status!=-1");
                     if (rs2.next()) {
-                      
+
                         cantidad3md = cantidad3md + rs2.getFloat(1);
-                         
+
                     }
                     con2.close();
-                    
-                     con2 = conectar.conectarMySQL();
+
+                    con2 = conectar.conectarMySQL();
                     stmt2 = con2.createStatement();
                     rs2 = stmt2.executeQuery("select sum(cantidad) from detallev "
                             + "inner join venta on venta.ven_id = detallev.ven_id "
                             + " where detallev.art_id=" + valor + " and "
-                            + " venta.fecha between '" + fecha1md  + "' and '" + fecha3md + "'"
+                            + " venta.fecha between '" + fecha1md + "' and '" + fecha3md + "'"
                             + " and venta.status!=-1");
                     if (rs2.next()) {
                         cantidad3md = cantidad3md + rs2.getFloat(1);
                     }
                     con2.close();
-                    
-                    
+
                     con2 = conectar.conectarMySQL();
                     stmt2 = con2.createStatement();
                     rs2 = stmt2.executeQuery("select articulo.clave,articulo.existencia,articulo.descripcion,categoria.nombre"
@@ -455,16 +459,15 @@ public class MetodosResurtido {
                         celda = fila.createCell(2);
                         celda.setCellValue(existencia);
                         celda.setCellStyle(encabezados);
-                        
+
                         celda = fila.createCell(4);
                         celda.setCellValue(existencia);
                         celda.setCellStyle(encabezados);
 
-                        
                         celda = fila.createCell(6);
                         celda.setCellValue(cantidad3ma);
                         celda.setCellStyle(encabezados);
-                        
+
                         celda = fila.createCell(7);
                         celda.setCellValue(cantidad3md);
                         celda.setCellStyle(encabezados);
@@ -490,15 +493,15 @@ public class MetodosResurtido {
                         celda = fila.createCell(2);
                         celda.setCellValue(existencia);
                         celda.setCellStyle(encabezados);
-                        
-                         celda = fila.createCell(4);
+
+                        celda = fila.createCell(4);
                         celda.setCellValue(existencia);
                         celda.setCellStyle(encabezados);
-                        
+
                         celda = fila.createCell(6);
                         celda.setCellValue(cantidad3ma);
                         celda.setCellStyle(encabezados);
-                        
+
                         celda = fila.createCell(7);
                         celda.setCellValue(cantidad3md);
                         celda.setCellStyle(encabezados);
@@ -522,19 +525,19 @@ public class MetodosResurtido {
                         cantidad3ma = cantidad3ma + rs2.getFloat(1);
                     }
                     con2.close();
-                    
+
                     con2 = conectar.conectarMySQL();
                     stmt2 = con2.createStatement();
                     rs2 = stmt2.executeQuery("select sum(cantidad) from detallev "
                             + "inner join venta on venta.ven_id = detallev.ven_id "
                             + " where detallev.art_id=" + valor + " and "
-                            + " venta.fecha between '" + fecha1md  + "' and '" + fecha3md + "'"
+                            + " venta.fecha between '" + fecha1md + "' and '" + fecha3md + "'"
                             + " and venta.status!=-1");
                     if (rs2.next()) {
                         cantidad3md = cantidad3md + rs2.getFloat(1);
                     }
                     con2.close();
-                    
+
                     con2 = conectar.conectarMySQL();
                     stmt2 = con2.createStatement();
                     rs2 = stmt2.executeQuery("select articulo.clave,articulo.existencia,articulo.descripcion,categoria.nombre"
@@ -557,15 +560,15 @@ public class MetodosResurtido {
                         celda = fila.createCell(2);
                         celda.setCellValue(existencia);
                         celda.setCellStyle(encabezados);
-                        
-                         celda = fila.createCell(4);
+
+                        celda = fila.createCell(4);
                         celda.setCellValue(existencia);
                         celda.setCellStyle(encabezados);
 
                         celda = fila.createCell(6);
                         celda.setCellValue(cantidad3ma);
                         celda.setCellStyle(encabezados);
-                        
+
                         celda = fila.createCell(7);
                         celda.setCellValue(cantidad3md);
                         celda.setCellStyle(encabezados);
@@ -592,15 +595,15 @@ public class MetodosResurtido {
                         celda = fila.createCell(2);
                         celda.setCellValue(existencia);
                         celda.setCellStyle(encabezados);
-                        
-                         celda = fila.createCell(4);
+
+                        celda = fila.createCell(4);
                         celda.setCellValue(existencia);
                         celda.setCellStyle(encabezados);
 
                         celda = fila.createCell(6);
                         celda.setCellValue(cantidad3ma);
                         celda.setCellStyle(encabezados);
-                        
+
                         celda = fila.createCell(7);
                         celda.setCellValue(cantidad3md);
                         celda.setCellStyle(encabezados);
@@ -615,7 +618,7 @@ public class MetodosResurtido {
 
                 existencia = 0;
                 cantidad3ma = 0;
-                cantidad3md=0;
+                cantidad3md = 0;
             }
 
         } catch (SQLException e) {
@@ -638,6 +641,11 @@ public class MetodosResurtido {
             JOptionPane.showMessageDialog(null, e);
         }
         idNumeros.clear();
+        System.out.println(idNumeros);
+        limpiarVariables();
+        System.gc();
+        System.runFinalization();
+        System.gc();
     }
 
 }
