@@ -23,7 +23,7 @@ public class frmReporteResurtido extends javax.swing.JFrame {
     String fehca1mud;//variable para obtener el ultimo dia del mes 1 mes atras
     String fechad3md;//Variable para obtener el primer dial del mes 1 meses adelante año ´pasadp
     String fechad1mud;// Variable para obtener el uliimo dia 3  meseses  despues año pasado
-    SimpleDateFormat Mes = new SimpleDateFormat("MMMMM yyyy");
+    SimpleDateFormat Mes = new SimpleDateFormat("EEEE dd MMMMM yyyy");
     
     int sucursal;
     Metodos.MetodosResurtido met= new MetodosResurtido();
