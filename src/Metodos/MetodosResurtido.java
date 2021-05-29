@@ -339,7 +339,8 @@ public class MetodosResurtido {
             con = conectar.conectarMySQL();
             stmt = con.createStatement();
             rs = stmt.executeQuery("select articulo.art_id from articulo inner join"
-                    + " categoria on categoria.cat_id = articulo.cat_id order by categoria.nombre,articulo.descripcion  "
+                    + " categoria on categoria.cat_id = articulo.cat_id  where articulo.status !=-1  order"
+                    + " by categoria.nombre,articulo.descripcion"
             );
 
             while (rs.next()) {
@@ -377,7 +378,7 @@ public class MetodosResurtido {
                         stmt3 = con3.createStatement();
                         rs3 = stmt3.executeQuery("select articulo.existencia*paquete.cantidad  from articulo"
                                 + " inner join paquete on paquete.paquete = articulo.art_id "
-                                + "where articulo.art_id=" + rs2.getInt(1) + "");
+                                + "where articulo.art_id=" + rs2.getInt(1) + "  and articulo.status !=-1 ");
                         while (rs3.next()) {
                             existencia = rs.getFloat(1);
                         }
