@@ -88,6 +88,12 @@ public class MetodosVentaCantidades {
 //            JOptionPane.showMessageDialog(null, e);
 //        }
 //    }
+    
+    
+    
+    
+    
+    
     public void prueba(String fecha1, String fecha2, String fechauno, String fechados) {
         try {
             int id;
