@@ -115,17 +115,12 @@ public class MetodosResurtido {
             font3.setFontHeight((short) (15 * 20));
             letraprincipal.setFont(font3);
 
-            fila = hoja.createRow(9);
-            celda = fila.createCell(1);
-            celda.setCellValue("olo");
-            celda.setCellStyle(encabezados);
-
             int filaa = 9;
             try {
 
                 con = conectar.conectarMySQL();
                 stmt = con.createStatement();
-                rs = stmt.executeQuery("select articulo.art_id,articulo.clave,articulo.existencia"
+                rs = stmt.executeQuery("select articulo.art_id,articulo.clave,articulo.existencia,"
                         + "articulo.descripcion,categoria.nombre"
                         + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id "
                         + " where articulo.status !=-1  order by categoria.nombre,articulo.descripcion");
@@ -161,14 +156,14 @@ public class MetodosResurtido {
                     con2.close();
 
                     if (categoria.equals(descripcion2)) {
-                        fila = hoja.createRow(filaa);
+                        fila = hoja.getRow(filaa);
 //                    
                         celda = fila.createCell(0);
                         celda.setCellValue(clave);
                         celda.setCellStyle(encabezados);
 
                         celda = fila.createCell(1);
-                        celda.setCellValue(new HSSFRichTextString(descripcion));
+                        celda.setCellValue(descripcion);
                         celda.setCellStyle(encabezados);
 
                         celda = fila.createCell(2);
@@ -190,7 +185,7 @@ public class MetodosResurtido {
                         filaa = filaa + 1;
                     } else {
                         filaa = filaa + 1;
-                        fila = hoja.createRow(filaa);
+                        fila = hoja.getRow(filaa);
                         celda = fila.createCell(0);
                         celda.setCellValue(categoria);
                         celda.setCellStyle(letraprincipal);
@@ -202,7 +197,7 @@ public class MetodosResurtido {
                         celda.setCellStyle(encabezados);
 
                         celda = fila.createCell(1);
-                        celda.setCellValue(new HSSFRichTextString(descripcion));
+                        celda.setCellValue(descripcion);
                         celda.setCellStyle(encabezados);
 
                         celda = fila.createCell(2);
