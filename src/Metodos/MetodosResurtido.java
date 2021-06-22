@@ -191,7 +191,7 @@ public class MetodosResurtido {
                         celda.setCellStyle(letraprincipal);
 
                         filaa = filaa + 1;
-                        fila = hoja.createRow(filaa);
+                        fila = hoja.getRow(filaa);
                         celda = fila.createCell(0);
                         celda.setCellValue(clave);
                         celda.setCellStyle(encabezados);
@@ -225,14 +225,17 @@ public class MetodosResurtido {
                     cantidad3ma = 0;
                     cantidad3md = 0;
                 }
+                con.close();
 
                 //////////////////////////////////////////////////////////////////
               
                     existencia = 0;
                     cantidad3ma = 0;
                     cantidad3md = 0;
-                
-        
+                for(int x=0;x<19;x++){
+                    hoja.autoSizeColumn(x);
+                }
+                  
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
                 e.printStackTrace();
@@ -245,6 +248,7 @@ public class MetodosResurtido {
             Desktop.getDesktop().open(archivo);
         } catch (Exception e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e);
         }
 
     }
