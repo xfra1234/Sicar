@@ -175,11 +175,11 @@ public class MetodosResurtido {
                         celda.setCellStyle(encabezados);
 
                         celda = fila.createCell(6);
-                        celda.setCellValue(cantidad3ma);
+                        celda.setCellValue((cantidad3ma/3));
                         celda.setCellStyle(encabezados);
 
                         celda = fila.createCell(7);
-                        celda.setCellValue(cantidad3md);
+                        celda.setCellValue((cantidad3md/3));
                         celda.setCellStyle(encabezados);
 //                    
                         filaa = filaa + 1;
@@ -209,11 +209,11 @@ public class MetodosResurtido {
                         celda.setCellStyle(encabezados);
 
                         celda = fila.createCell(6);
-                        celda.setCellValue(cantidad3ma);
+                        celda.setCellValue((cantidad3ma/3));
                         celda.setCellStyle(encabezados);
 
                         celda = fila.createCell(7);
-                        celda.setCellValue(cantidad3md);
+                        celda.setCellValue((cantidad3md/3));
                         celda.setCellStyle(encabezados);
 //                    
 //                    
