@@ -21,8 +21,8 @@ public class conexion {
 //    public String database = "semill13_prueba";
 
     // Host
-    public String hostname = "localhost";
-//    public String hostname = "162.241.62.141";
+//    public String hostname = "localhost";
+    public String hostname = "26.69.36.74";
 
     // Puerto
     public String port = "3306";
@@ -43,7 +43,7 @@ public class conexion {
         try {
             Class.forName(driver);
             conn = DriverManager.getConnection(url, username, password);
-            //JOptionPane.showMessageDialog(null, "Exito");
+//            JOptionPane.showMessageDialog(null, "Exito");
         } catch (ClassNotFoundException | SQLException e) {
             JOptionPane.showMessageDialog(null,e);
         }

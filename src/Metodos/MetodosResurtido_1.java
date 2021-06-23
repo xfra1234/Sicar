@@ -117,125 +117,322 @@ public class MetodosResurtido_1 {
 
             int filaa = 9;
             try {
-
+                int id;
                 con = conectar.conectarMySQL();
                 stmt = con.createStatement();
-                rs = stmt.executeQuery("select articulo.art_id,articulo.clave,articulo.existencia,"
-                        + "articulo.descripcion,categoria.nombre"
-                        + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id "
-                        + " where articulo.status !=-1  order by categoria.nombre,articulo.descripcion");
+                rs = stmt.executeQuery("select articulo.art_id from articulo inner join"
+                        + " categoria on categoria.cat_id = articulo.cat_id  where articulo.status !=-1  order"
+                        + " by categoria.nombre,articulo.descripcion"
+                );
+
                 while (rs.next()) {
-                    int idart = rs.getInt(1);
-                    clave = rs.getString(2);
-                    existencia = rs.getFloat(3);
-                    descripcion = rs.getString(4);
-                    categoria = rs.getString(5);
+
+                    id = rs.getInt(1);
 
                     con2 = conectar.conectarMySQL();
-                    stmt2 = con2.createStatement();
-                    rs2 = stmt2.executeQuery("select sum(cantidad) from detallev "
-                            + "inner join venta on venta.ven_id = detallev.ven_id "
-                            + " where detallev.art_id=" + idart + " and "
-                            + " venta.fecha between '" + fecha1ma + "' and '" + fecha3ma + "'"
-                            + " and venta.status!=-1");
+                    stmt2 = con.createStatement();
+                    rs2 = stmt2.executeQuery("select paquete.paquete from paquete where paquete.paquete= '" + id + "';");
                     if (rs2.next()) {
-                        cantidad3ma = cantidad3ma + rs2.getFloat(1);
-                    }
-                    con2.close();
 
-                    con2 = conectar.conectarMySQL();
-                    stmt2 = con2.createStatement();
-                    rs2 = stmt2.executeQuery("select sum(cantidad) from detallev "
-                            + "inner join venta on venta.ven_id = detallev.ven_id "
-                            + " where detallev.art_id=" + idart + " and "
-                            + " venta.fecha between '" + fecha1md + "' and '" + fecha3md + "'"
-                            + " and venta.status!=-1");
-                    if (rs2.next()) {
-                        cantidad3md = cantidad3md + rs2.getFloat(1);
-                    }
-                    con2.close();
-
-                    if (categoria.equals(descripcion2)) {
-                        fila = hoja.getRow(filaa);
-//                    
-                        celda = fila.createCell(0);
-                        celda.setCellValue(clave);
-                        celda.setCellStyle(encabezados);
-
-                        celda = fila.createCell(1);
-                        celda.setCellValue(descripcion);
-                        celda.setCellStyle(encabezados);
-
-                        celda = fila.createCell(2);
-                        celda.setCellValue(existencia);
-                        celda.setCellStyle(encabezados);
-
-                        celda = fila.createCell(4);
-                        celda.setCellValue(existencia);
-                        celda.setCellStyle(encabezados);
-
-                        celda = fila.createCell(6);
-                        celda.setCellValue((cantidad3ma/3));
-                        celda.setCellStyle(encabezados);
-
-                        celda = fila.createCell(7);
-                        celda.setCellValue((cantidad3md/3));
-                        celda.setCellStyle(encabezados);
-//                    
-                        filaa = filaa + 1;
                     } else {
-                        filaa = filaa + 1;
-                        fila = hoja.getRow(filaa);
-                        celda = fila.createCell(0);
-                        celda.setCellValue(categoria);
-                        celda.setCellStyle(letraprincipal);
 
-                        filaa = filaa + 1;
-                        fila = hoja.getRow(filaa);
-                        celda = fila.createCell(0);
-                        celda.setCellValue(clave);
-                        celda.setCellStyle(encabezados);
-
-                        celda = fila.createCell(1);
-                        celda.setCellValue(descripcion);
-                        celda.setCellStyle(encabezados);
-
-                        celda = fila.createCell(2);
-                        celda.setCellValue(existencia);
-                        celda.setCellStyle(encabezados);
-
-                        celda = fila.createCell(4);
-                        celda.setCellValue(existencia);
-                        celda.setCellStyle(encabezados);
-
-                        celda = fila.createCell(6);
-                        celda.setCellValue((cantidad3ma/3));
-                        celda.setCellStyle(encabezados);
-
-                        celda = fila.createCell(7);
-                        celda.setCellValue((cantidad3md/3));
-                        celda.setCellStyle(encabezados);
-//                    
-//                    
-                        filaa = filaa + 1;
-                        descripcion2 = categoria;
+                        idNumeros.add(id);
+                        contador = contador + 1;
                     }
 
-                    existencia = 0;
-                    cantidad3ma = 0;
-                    cantidad3md = 0;
+                    con2.close();
                 }
                 con.close();
+                int valor = 0;
+                float existencia = 0;
+                for (int x = 0; x < contador; x++) {
+                    valor = idNumeros.get(x);
+                    con = conectar.conectarMySQL();
+                    stmt = con.createStatement();
+                    rs = stmt.executeQuery("select paquete.paquete from paquete where paquete.articulo=" + valor + "");
+                    if (rs.next()) {
 
-                //////////////////////////////////////////////////////////////////
-              
+                        con2 = conectar.conectarMySQL();
+                        stmt2 = con2.createStatement();
+                        rs2 = stmt2.executeQuery("select paquete.paquete,paquete.cantidad from paquete where paquete.articulo=" + valor + "");
+                        while (rs2.next()) {
+                            id = rs2.getInt(1);
+                            con3 = conectar.conectarMySQL();
+                            stmt3 = con3.createStatement();
+                            rs3 = stmt3.executeQuery("select existencia,status from articulo where art_id='" + id + "'"
+                                    + " and status !=-1");
+
+                            while (rs3.next()) {
+                                existencia = existencia + (rs3.getFloat(1) * rs2.getFloat(2));
+                            }
+
+                            con3.close();
+                        }
+                        con2.close();
+
+                        con2 = conectar.conectarMySQL();
+                        stmt2 = con2.createStatement();
+                        rs2 = stmt2.executeQuery("select sum(cantidad) from detallep "
+                                + "inner join venta on venta.ven_id = detallep.ven_id "
+                                + " where detallep.articulo=" + valor + " and "
+                                + " venta.fecha between '" + fecha1ma + "' and '" + fecha3ma + "'"
+                                + " and venta.status!=-1");
+                        if (rs2.next()) {
+
+                            cantidad3ma = cantidad3ma + rs2.getFloat(1);
+
+                        }
+                        con2.close();
+
+                        con2 = conectar.conectarMySQL();
+                        stmt2 = con2.createStatement();
+                        rs2 = stmt2.executeQuery("select sum(cantidad) from detallep "
+                                + "inner join venta on venta.ven_id = detallep.ven_id "
+                                + " where detallep.articulo=" + valor + " and "
+                                + " venta.fecha between '" + fecha1ma + "' and '" + fecha3ma + "'"
+                                + " and venta.status!=-1");
+                        if (rs2.next()) {
+
+                            cantidad3ma = cantidad3ma + rs2.getFloat(1);
+
+                        }
+                        con2.close();
+
+                        con2 = conectar.conectarMySQL();
+                        stmt2 = con2.createStatement();
+                        rs2 = stmt2.executeQuery("select sum(detallepaqt.cantidad)  FROM detallepaqt   "
+                                + "inner join traspaso on traspaso.tra_id = detallepaqt.tra_id\n"
+                                + " where articulo  = " + valor + " and  traspaso.fecha between '" + fecha1ma + "'"
+                                + " and '" + fecha3ma + "';");
+                        if (rs2.next()) {
+                            cantidad3ma = cantidad3ma + rs2.getFloat(1);
+                        }
+                        con2.close();
+
+                        con2 = conectar.conectarMySQL();
+                        stmt2 = con2.createStatement();
+                        rs2 = stmt2.executeQuery("select sum(cantidad) from detallep "
+                                + "inner join venta on venta.ven_id = detallep.ven_id "
+                                + " where detallep.articulo=" + valor + " and "
+                                + " venta.fecha between '" + fecha1md + "' and '" + fecha3md + "'"
+                                + " and venta.status!=-1");
+                        if (rs2.next()) {
+
+                            cantidad3md = cantidad3md + rs2.getFloat(1);
+
+                        }
+                        con2.close();
+
+                        con2 = conectar.conectarMySQL();
+                        stmt2 = con2.createStatement();
+                        rs2 = stmt2.executeQuery("select sum(detallepaqt.cantidad)  FROM detallepaqt   "
+                                + "inner join traspaso on traspaso.tra_id = detallepaqt.tra_id\n"
+                                + " where articulo  = " + valor + " and  traspaso.fecha between '" + fecha1md + "'"
+                                + " and '" + fecha3md + "';");
+                        if (rs2.next()) {
+
+                            cantidad3md = cantidad3md + rs2.getFloat(1);
+
+                        }
+                        con2.close();
+
+                        con2 = conectar.conectarMySQL();
+                        stmt2 = con2.createStatement();
+                        rs2 = stmt2.executeQuery("select sum(cantidad) from detallev "
+                                + "inner join venta on venta.ven_id = detallev.ven_id "
+                                + " where detallev.art_id=" + valor + " and "
+                                + " venta.fecha between '" + fecha1md + "' and '" + fecha3md + "'"
+                                + " and venta.status!=-1");
+                        if (rs2.next()) {
+                            cantidad3md = cantidad3md + rs2.getFloat(1);
+                        }
+                        con2.close();
+
+                        con2 = conectar.conectarMySQL();
+                        stmt2 = con2.createStatement();
+                        rs2 = stmt2.executeQuery("select articulo.clave,articulo.existencia,articulo.descripcion,categoria.nombre"
+                                + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id where art_id=" + valor + "");
+                        if (rs2.next()) {
+                            existencia = existencia + rs2.getFloat(2);
+                        }
+
+                        if (descripcion.equals(rs2.getString(4))) {
+                            fila = hoja.createRow(filaa);
+//                    
+                            celda = fila.createCell(0);
+                            celda.setCellValue(rs2.getString(1));
+                            celda.setCellStyle(encabezados);
+
+                            celda = fila.createCell(1);
+                            celda.setCellValue(new HSSFRichTextString(rs2.getString(3)));
+                            celda.setCellStyle(encabezados);
+
+                            celda = fila.createCell(2);
+                            celda.setCellValue(existencia);
+                            celda.setCellStyle(encabezados);
+
+                            celda = fila.createCell(4);
+                            celda.setCellValue(existencia);
+                            celda.setCellStyle(encabezados);
+
+                            celda = fila.createCell(6);
+                            celda.setCellValue((cantidad3ma/3));
+                            celda.setCellStyle(encabezados);
+
+                            celda = fila.createCell(7);
+                            celda.setCellValue((cantidad3md/3));
+                            celda.setCellStyle(encabezados);
+//                    
+                            filaa = filaa + 1;
+                        } else {
+                            filaa = filaa + 1;
+                            fila = hoja.createRow(filaa);
+                            celda = fila.createCell(0);
+                            celda.setCellValue(rs2.getString(4));
+                            celda.setCellStyle(letraprincipal);
+
+                            filaa = filaa + 1;
+                            fila = hoja.createRow(filaa);
+                            celda = fila.createCell(0);
+                            celda.setCellValue(rs2.getString(1));
+                            celda.setCellStyle(encabezados);
+
+                            celda = fila.createCell(1);
+                            celda.setCellValue(new HSSFRichTextString(rs2.getString(3)));
+                            celda.setCellStyle(encabezados);
+
+                            celda = fila.createCell(2);
+                            celda.setCellValue(existencia);
+                            celda.setCellStyle(encabezados);
+
+                            celda = fila.createCell(4);
+                            celda.setCellValue(existencia);
+                            celda.setCellStyle(encabezados);
+
+                            celda = fila.createCell(6);
+                            celda.setCellValue((cantidad3ma/3));
+                            celda.setCellStyle(encabezados);
+
+                            celda = fila.createCell(7);
+                            celda.setCellValue((cantidad3md/3));
+                            celda.setCellStyle(encabezados);
+//                    
+//                    
+                            filaa = filaa + 1;
+                        }
+                        descripcion = rs2.getString(4);
+                        con.close();
+                        con2.close();
+
+                    } else {
+
+                        con2 = conectar.conectarMySQL();
+                        stmt2 = con2.createStatement();
+                        rs2 = stmt2.executeQuery("select sum(cantidad) from detallev "
+                                + "inner join venta on venta.ven_id = detallev.ven_id "
+                                + " where detallev.art_id=" + valor + " and "
+                                + " venta.fecha between '" + fecha1ma + "' and '" + fecha3ma + "'"
+                                + " and venta.status!=-1");
+                        if (rs2.next()) {
+                            cantidad3ma = cantidad3ma + rs2.getFloat(1);
+                        }
+                        con2.close();
+
+                        con2 = conectar.conectarMySQL();
+                        stmt2 = con2.createStatement();
+                        rs2 = stmt2.executeQuery("select sum(cantidad) from detallev "
+                                + "inner join venta on venta.ven_id = detallev.ven_id "
+                                + " where detallev.art_id=" + valor + " and "
+                                + " venta.fecha between '" + fecha1md + "' and '" + fecha3md + "'"
+                                + " and venta.status!=-1");
+                        if (rs2.next()) {
+                            cantidad3md = cantidad3md + rs2.getFloat(1);
+                        }
+                        con2.close();
+
+                        con2 = conectar.conectarMySQL();
+                        stmt2 = con2.createStatement();
+                        rs2 = stmt2.executeQuery("select articulo.clave,articulo.existencia,articulo.descripcion,categoria.nombre"
+                                + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id where art_id=" + valor + "");
+                        if (rs2.next()) {
+                            existencia = existencia + rs2.getFloat(2);
+                        }
+
+                        if (descripcion.equals(rs2.getString(4))) {
+                            fila = hoja.createRow(filaa);
+//                    
+                            celda = fila.createCell(0);
+                            celda.setCellValue(rs2.getString(1));
+                            celda.setCellStyle(encabezados);
+
+                            celda = fila.createCell(1);
+                            celda.setCellValue(new HSSFRichTextString(rs2.getString(3)));
+                            celda.setCellStyle(encabezados);
+
+                            celda = fila.createCell(2);
+                            celda.setCellValue(existencia);
+                            celda.setCellStyle(encabezados);
+
+                            celda = fila.createCell(4);
+                            celda.setCellValue(existencia);
+                            celda.setCellStyle(encabezados);
+
+                            celda = fila.createCell(6);
+                            celda.setCellValue((cantidad3ma/3));
+                            celda.setCellStyle(encabezados);
+
+                            celda = fila.createCell(7);
+                            celda.setCellValue((cantidad3md/3));
+                            celda.setCellStyle(encabezados);
+//                    
+//                    
+                            filaa = filaa + 1;
+                        } else {
+                            filaa = filaa + 1;
+                            fila = hoja.createRow(filaa);
+                            celda = fila.createCell(0);
+                            celda.setCellValue(rs2.getString(4));
+                            celda.setCellStyle(letraprincipal);
+
+                            filaa = filaa + 1;
+                            fila = hoja.createRow(filaa);
+                            celda = fila.createCell(0);
+                            celda.setCellValue(rs2.getString(1));
+                            celda.setCellStyle(encabezados);
+
+                            celda = fila.createCell(1);
+                            celda.setCellValue(new HSSFRichTextString(rs2.getString(3)));
+                            celda.setCellStyle(encabezados);
+
+                            celda = fila.createCell(2);
+                            celda.setCellValue(existencia);
+                            celda.setCellStyle(encabezados);
+
+                            celda = fila.createCell(4);
+                            celda.setCellValue(existencia);
+                            celda.setCellStyle(encabezados);
+
+                            celda = fila.createCell(6);
+                            celda.setCellValue((cantidad3ma/3));
+                            celda.setCellStyle(encabezados);
+
+                            celda = fila.createCell(7);
+                            celda.setCellValue((cantidad3md/3));
+                            celda.setCellStyle(encabezados);
+//                    
+//                    
+                            filaa = filaa + 1;
+                        }
+                        descripcion = rs2.getString(4);
+                        con.close();
+                        con2.close();
+                    }
+
                     existencia = 0;
                     cantidad3ma = 0;
                     cantidad3md = 0;
-                for(int x=0;x<19;x++){
-                    hoja.autoSizeColumn(x);
                 }
-                  
+
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
                 e.printStackTrace();
