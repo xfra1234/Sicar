@@ -30,7 +30,7 @@ import org.apache.poi.ss.usermodel.Row;
  *
  * @author usuario
  */
-public class MetodosResurtido {
+public class MetodosResurtido_1 {
 
     Connection con = null;
     static ResultSet rs = null;
@@ -142,19 +142,6 @@ public class MetodosResurtido {
                         cantidad3ma = cantidad3ma + rs2.getFloat(1);
                     }
                     con2.close();
-                    
-                    con2 = conectar.conectarMySQL();
-                    stmt2 = con2.createStatement();
-                    rs2 = stmt2.executeQuery("select sum(cantidad) as traspaso from detallet "
-                            + "inner join traspaso on traspaso.tra_id = detallet.tra_id where "
-                            + "detallet.art_id=" + idart + "\n"
-                            + "and traspaso.fecha between '" + fecha1ma + "' and "
-                            + "'" + fecha3ma + "'  and traspaso.status=2;");
-                    if (rs2.next()) {
-                        cantidad3ma = cantidad3ma + rs2.getFloat(1);
-                    }
-                    
-                    con2.close();
 
                     con2 = conectar.conectarMySQL();
                     stmt2 = con2.createStatement();
@@ -166,20 +153,6 @@ public class MetodosResurtido {
                     if (rs2.next()) {
                         cantidad3md = cantidad3md + rs2.getFloat(1);
                     }
-                    con2.close();
-                    
-                    con2 = conectar.conectarMySQL();
-                    stmt2 = con2.createStatement();
-                    rs2 = stmt2.executeQuery("select sum(cantidad) as traspaso from detallet "
-                            + "inner join traspaso on traspaso.tra_id = detallet.tra_id where "
-                            + "detallet.art_id=" + idart + "\n"
-                            + "and traspaso.fecha between '" + fecha1md + "' and "
-                            + "'" + fecha3md + "'  and traspaso.status=2;");
-                    if (rs2.next()) {
-                        cantidad3md = cantidad3md + rs2.getFloat(1);
-                    }
-                    
-                    
                     con2.close();
 
                     if (categoria.equals(descripcion2)) {
@@ -202,11 +175,11 @@ public class MetodosResurtido {
                         celda.setCellStyle(encabezados);
 
                         celda = fila.createCell(6);
-                        celda.setCellValue((cantidad3ma / 3));
+                        celda.setCellValue((cantidad3ma/3));
                         celda.setCellStyle(encabezados);
 
                         celda = fila.createCell(7);
-                        celda.setCellValue((cantidad3md / 3));
+                        celda.setCellValue((cantidad3md/3));
                         celda.setCellStyle(encabezados);
 //                    
                         filaa = filaa + 1;
@@ -236,11 +209,11 @@ public class MetodosResurtido {
                         celda.setCellStyle(encabezados);
 
                         celda = fila.createCell(6);
-                        celda.setCellValue((cantidad3ma / 3));
+                        celda.setCellValue((cantidad3ma/3));
                         celda.setCellStyle(encabezados);
 
                         celda = fila.createCell(7);
-                        celda.setCellValue((cantidad3md / 3));
+                        celda.setCellValue((cantidad3md/3));
                         celda.setCellStyle(encabezados);
 //                    
 //                    
@@ -255,13 +228,14 @@ public class MetodosResurtido {
                 con.close();
 
                 //////////////////////////////////////////////////////////////////
-                existencia = 0;
-                cantidad3ma = 0;
-                cantidad3md = 0;
-                for (int x = 0; x < 19; x++) {
+              
+                    existencia = 0;
+                    cantidad3ma = 0;
+                    cantidad3md = 0;
+                for(int x=0;x<19;x++){
                     hoja.autoSizeColumn(x);
                 }
-
+                  
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
                 e.printStackTrace();
@@ -331,11 +305,11 @@ public class MetodosResurtido {
         celda.setCellStyle(encabezados);
 
         celda = fila.createCell(6);
-        celda.setCellValue(new HSSFRichTextString("Prom. de Ventas y Traspaso"));
+        celda.setCellValue(new HSSFRichTextString("Ventas Prom."));
         celda.setCellStyle(encabezados);
 
         celda = fila.createCell(7);
-        celda.setCellValue(new HSSFRichTextString("Prom. de Ventas y Traspaso"));
+        celda.setCellValue(new HSSFRichTextString("Ventas Promedio"));
         celda.setCellStyle(encabezados);
 
         celda = fila.createCell(8);

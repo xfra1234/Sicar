@@ -9,6 +9,7 @@ import Metodos.MetodosResurtido;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 public class frmReporteResurtido extends javax.swing.JFrame {
 
@@ -73,7 +74,8 @@ public class frmReporteResurtido extends javax.swing.JFrame {
         } else {
             fehca1mud = fechaactual.get(fechaactual.YEAR) + "-"  +(fechaactual.get(fechaactual.MONTH) + 1) + "-" + fechaactual.getMaximum(fechaactual.DAY_OF_MONTH)+  " 23:59:59";
         }
-
+        System.out.println(fehca1mud);
+        System.out.println(fecha3mad);
  /////////////////////fin ////////////////       
      
  
