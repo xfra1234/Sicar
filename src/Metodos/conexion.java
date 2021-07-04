@@ -21,8 +21,8 @@ public class conexion {
 //    public String database = "semill13_prueba";
 
     // Host
-//    public String hostname = "localhost";
-    public String hostname = "26.69.36.74";
+    public String hostname = "localhost";
+//    public String hostname = "26.69.36.74";
 
     // Puerto
     public String port = "3306";

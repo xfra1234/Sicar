@@ -644,7 +644,8 @@ public class Metodosporcentajeproducto {
         }
 
         try {
-
+            File Archivo = new File(guardararchivo);
+            Archivo.createNewFile();
             FileOutputStream elFichero = new FileOutputStream(guardararchivo);
             libro.write(elFichero);
             elFichero.close();

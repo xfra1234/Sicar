@@ -341,6 +341,8 @@ public class MetodosReporteDepartamento {
 
                 hoja.autoSizeColumn(x);
             }
+            File Archivo = new File(guardararchivo);
+            Archivo.createNewFile();
             FileOutputStream elFichero = new FileOutputStream(guardararchivo);
             libro.write(elFichero);
             elFichero.close();
@@ -634,6 +636,8 @@ public class MetodosReporteDepartamento {
 
                 hoja.autoSizeColumn(x);
             }
+            File Archivo = new File(guardararchivo);
+            Archivo.createNewFile();
             FileOutputStream elFichero = new FileOutputStream(guardararchivo);
             libro.write(elFichero);
             elFichero.close();
