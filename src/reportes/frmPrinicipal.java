@@ -294,12 +294,15 @@ public class frmPrinicipal extends javax.swing.JFrame {
 
     private void panresurtidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panresurtidoMouseClicked
         // TODO add your handling code here:
-        frmReporteResurtidoBodega resurtido = new frmReporteResurtidoBodega();
+        frmReporteResurtido resurtido = new frmReporteResurtido();
         mostrar(resurtido);
     }//GEN-LAST:event_panresurtidoMouseClicked
 
     private void panresurtido1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panresurtido1MouseClicked
         // TODO add your handling code here:
+        // TODO add your handling code here:
+        frmReporteResurtidoBodega resurtido = new frmReporteResurtidoBodega();
+        mostrar(resurtido);
     }//GEN-LAST:event_panresurtido1MouseClicked
 
     /**
