@@ -62,18 +62,18 @@ public class MetodosResurtido_1 {
 //                abrirarchivo = ("C:\\Users\\usuario\\Desktop\\Resurtido.xls");
 //                guardararchivo = ("C:\\Users\\usuario\\Desktop\\Resurtido de sucursal2.xls");
                 abrirarchivo = ("C:\\Users\\Cpu\\Documents\\Resurtido de sucursal.xls");
-                guardararchivo = ("C:\\Users\\Cpu\\Desktop\\Resurtido de sucursal_Magisterio de " + mes + ".xls");
+                guardararchivo = ("C:\\Users\\Cpu\\Desktop\\Resurtido de sucursal_Magisterio solo productos de " + mes + ".xls");
                 resurtidocopiabodega(fecha1, fecha2, fechauno, fechados);
                 break;
             case 2:
 
                 abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Resurtido de sucursal.xls");
-                guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Resurtido de sucursal_Coapinole de" + mes + ".xls");
+                guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Resurtido de sucursal_Coapinole solo productos de " + mes + ".xls");
                 resurtidocopiabodega(fecha1, fecha2, fechauno, fechados);
                 break;
             case 3:
                 abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Resurtido de sucursal.xls");
-                guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Resurtido de sucursal_ Bodega de" + mes + ".xls");
+                guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Resurtido de sucursal_ Bodega solo productos de" + mes + ".xls");
                 resurtidocopiabodega(fecha1, fecha2, fechauno, fechados);
                 break;
         }
