@@ -369,31 +369,31 @@ public class MetodosResurtido_1 {
                         }
                         con2.close();
 
-                        con2 = conectar.conectarMySQL();
-                        stmt2 = con2.createStatement();
-                        rs2 = stmt2.executeQuery("select sum(cantidad) as traspaso from detallet "
-                                + "inner join traspaso on traspaso.tra_id = detallet.tra_id where "
-                                + "detallet.art_id=" + valor + "\n"
-                                + "and traspaso.fecha between '" + fecha1ma + "' and "
-                                + "'" + fecha3ma + "'  and traspaso.status=2;");
-                        if (rs2.next()) {
-                            cantidad3ma = cantidad3ma + rs2.getFloat(1);
-                        }
+//                        con2 = conectar.conectarMySQL();
+//                        stmt2 = con2.createStatement();
+//                        rs2 = stmt2.executeQuery("select sum(cantidad) as traspaso from detallet "
+//                                + "inner join traspaso on traspaso.tra_id = detallet.tra_id where "
+//                                + "detallet.art_id=" + valor + "\n"
+//                                + "and traspaso.fecha between '" + fecha1ma + "' and "
+//                                + "'" + fecha3ma + "'  and traspaso.status=2;");
+//                        if (rs2.next()) {
+//                            cantidad3ma = cantidad3ma + rs2.getFloat(1);
+//                        }
+//
+//                        con2.close();
 
-                        con2.close();
-
-                        con2 = conectar.conectarMySQL();
-                        stmt2 = con2.createStatement();
-                        rs2 = stmt2.executeQuery("select sum(cantidad) as traspaso from detallet "
-                                + "inner join traspaso on traspaso.tra_id = detallet.tra_id where "
-                                + "detallet.art_id=" + valor + "\n"
-                                + "and traspaso.fecha between '" + fecha1md + "' and "
-                                + "'" + fecha3md + "'  and traspaso.status=2;");
-                        if (rs2.next()) {
-                            cantidad3md = cantidad3md + rs2.getFloat(1);
-                        }
-
-                        con2.close();
+//                        con2 = conectar.conectarMySQL();
+//                        stmt2 = con2.createStatement();
+//                        rs2 = stmt2.executeQuery("select sum(cantidad) as traspaso from detallet "
+//                                + "inner join traspaso on traspaso.tra_id = detallet.tra_id where "
+//                                + "detallet.art_id=" + valor + "\n"
+//                                + "and traspaso.fecha between '" + fecha1md + "' and "
+//                                + "'" + fecha3md + "'  and traspaso.status=2;");
+//                        if (rs2.next()) {
+//                            cantidad3md = cantidad3md + rs2.getFloat(1);
+//                        }
+//
+//                        con2.close();
 
                         con2 = conectar.conectarMySQL();
                         stmt2 = con2.createStatement();

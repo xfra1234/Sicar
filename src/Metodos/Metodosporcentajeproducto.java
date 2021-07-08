@@ -655,6 +655,7 @@ public class Metodosporcentajeproducto {
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, e);
         }
+        
 
     }
 
