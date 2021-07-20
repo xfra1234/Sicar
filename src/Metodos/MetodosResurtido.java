@@ -200,7 +200,7 @@ public class MetodosResurtido {
                             celda = fila.getCell(8);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
-
+                            
                             //// Formula 7 dias año  anterior
                             Formula = "H" + filaformula + "/4";
                             celda = fila.getCell(9);
