@@ -16,6 +16,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFDataFormat;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -89,6 +90,8 @@ public class MetodosResurtido {
             HSSFCell celda;
             HSSFRow fila;
             Row row;
+            HSSFDataFormat format = libro.createDataFormat();
+
             /// creacion de estilos de letra 
             //formato para el nombre de las columnas
             CellStyle headerStyle = libro.createCellStyle();
@@ -112,6 +115,14 @@ public class MetodosResurtido {
             font3.setFontName("Arial");
             font3.setFontHeight((short) (15 * 20));
             letraprincipal.setFont(font3);
+
+            CellStyle Numerico = libro.createCellStyle();
+            HSSFFont fontnumerico = libro.createFont();
+            fontnumerico.setBold(true);
+            fontnumerico.setFontName("Arial");
+            fontnumerico.setFontHeight((short) (10 * 20));
+            Numerico.setDataFormat(format.getFormat("###,##0.00"));
+            Numerico.setFont(fontnumerico);
 
             int filaa = 9;
             try {
@@ -140,13 +151,13 @@ public class MetodosResurtido {
                         cantidad3ma = cantidad3ma + rs2.getFloat(1);
                     }
                     con2.close();
-                    
+
                     con2 = conectar.conectarMySQL();
                     stmt2 = con2.createStatement();
                     rs2 = stmt2.executeQuery("select sum(cantidad) from detallev "
                             + "inner join venta on venta.ven_id = detallev.ven_id "
                             + " where detallev.art_id=" + idart + " and "
-                            + " venta.fecha between '" + fecha1md  + "' and '" + fecha3md + "'"
+                            + " venta.fecha between '" + fecha1md + "' and '" + fecha3md + "'"
                             + " and venta.status!=-1");
                     if (rs2.next()) {
                         cantidad3md = cantidad3md + rs2.getFloat(1);
@@ -166,20 +177,73 @@ public class MetodosResurtido {
 
                         celda = fila.createCell(2);
                         celda.setCellValue(existencia);
-                        celda.setCellStyle(encabezados);
+                        celda.setCellStyle(Numerico);
 
                         celda = fila.createCell(4);
                         celda.setCellValue(existencia);
-                        celda.setCellStyle(encabezados);
+                        celda.setCellStyle(Numerico);
 
                         celda = fila.createCell(6);
                         celda.setCellValue((cantidad3ma / 3));
-                        celda.setCellStyle(encabezados);
+                        celda.setCellStyle(Numerico);
 
                         celda = fila.createCell(7);
                         celda.setCellValue((cantidad3md / 3));
-                        celda.setCellStyle(encabezados);
-//                    
+                        celda.setCellStyle(Numerico);
+
+                        if (filaa > 10) {
+                            int filaformula = filaa + 1;
+                            String Formula;
+
+                            //// Formula 7 dias mes anterior
+                            Formula = "G" + filaformula + "/4";
+                            celda = fila.getCell(8);
+                            celda.setCellFormula(Formula);
+                            celda.setCellStyle(Numerico);
+
+                            //// Formula 7 dias año  anterior
+                            Formula = "H" + filaformula + "/4";
+                            celda = fila.getCell(9);
+                            celda.setCellFormula(Formula);
+                            celda.setCellStyle(Numerico);
+
+                            //// Formula Resurtido mes   anterior
+                            Formula = "I" + filaformula + "-E" + filaformula;
+                            celda = fila.getCell(11);
+                            celda.setCellFormula(Formula);
+                            celda.setCellStyle(Numerico);
+
+                            //// Formula Resurtido año Anterior  
+                            Formula = "J" + filaformula + "-E" + filaformula;
+                            celda = fila.getCell(12);
+                            celda.setCellFormula(Formula);
+                            celda.setCellStyle(Numerico);
+
+                            //// Formula Dias Inventario Mes  Anterior  
+                            Formula = "E" + filaformula + "*30/G" + filaformula;
+                            celda = fila.getCell(14);
+                            celda.setCellFormula(Formula);
+                            celda.setCellStyle(Numerico);
+
+                            //// Formula Dias Inventario Año  Anterior  
+                            Formula = "E" + filaformula + "*30/H" + filaformula;
+                            celda = fila.getCell(15);
+                            celda.setCellFormula(Formula);
+                            celda.setCellStyle(Numerico);
+
+                            //// Formula semanas  Inventario Mes  Anterior  
+                            Formula = "O" + filaformula + "/7";
+                            celda = fila.getCell(17);
+                            celda.setCellFormula(Formula);
+                            celda.setCellStyle(Numerico);
+
+                            //// Formula semanas  Inventario AÑo  Anterior  
+                            Formula = "P" + filaformula + "/7";
+                            celda = fila.getCell(18);
+                            celda.setCellFormula(Formula);
+                            celda.setCellStyle(Numerico);
+
+                        }
                         filaa = filaa + 1;
                     } else {
                         filaa = filaa + 1;
@@ -200,21 +264,72 @@ public class MetodosResurtido {
 
                         celda = fila.createCell(2);
                         celda.setCellValue(existencia);
-                        celda.setCellStyle(encabezados);
+                        celda.setCellStyle(Numerico);
 
                         celda = fila.createCell(4);
                         celda.setCellValue(existencia);
-                        celda.setCellStyle(encabezados);
+                        celda.setCellStyle(Numerico);
 
                         celda = fila.createCell(6);
                         celda.setCellValue((cantidad3ma / 3));
-                        celda.setCellStyle(encabezados);
+                        celda.setCellStyle(Numerico);
 
                         celda = fila.createCell(7);
                         celda.setCellValue((cantidad3md / 3));
-                        celda.setCellStyle(encabezados);
+                        celda.setCellStyle(Numerico);
 //                    
 //                    
+                        if (filaa > 10) {
+                            int filaformula = filaa +1 ;
+                            String Formula;
+
+                            //// Formula 7 dias mes anterior
+                            Formula = "G" + filaformula + "/4";
+                            celda = fila.getCell(8);
+                            celda.setCellFormula(Formula);
+                            celda.setCellStyle(Numerico);
+
+                            //// Formula 7 dias año  anterior
+                            Formula = "H" + filaformula + "/4";
+                            celda = fila.getCell(9);
+                            celda.setCellFormula(Formula);
+                            celda.setCellStyle(Numerico);
+
+                            //// Formula Resurtido mes   anterior
+                            Formula = "I" + filaformula + "-E" + filaformula;
+                            celda = fila.getCell(11);
+                            celda.setCellFormula(Formula);
+                            celda.setCellStyle(Numerico);
+
+                            //// Formula Resurtido año Anterior  
+                            Formula = "J" + filaformula + "-E" + filaformula;
+                            celda = fila.getCell(12);
+                            celda.setCellFormula(Formula);
+                            celda.setCellStyle(Numerico);
+
+                            //// Formula Dias Inventario Mes  Anterior  
+                            Formula = "E" + filaformula + "*30/G" + filaformula;
+                            celda = fila.getCell(14);
+                            celda.setCellFormula(Formula);
+                            celda.setCellStyle(Numerico);
+
+                            //// Formula Dias Inventario Año  Anterior  
+                            Formula = "E" + filaformula + "*30/H" + filaformula;
+                            celda = fila.getCell(15);
+                            celda.setCellFormula(Formula);
+                            celda.setCellStyle(Numerico);
+                            //// Formula semanas  Inventario Mes  Anterior  
+                            Formula = "O" + filaformula + "/7";
+                            celda = fila.getCell(17);
+                            celda.setCellFormula(Formula);
+                            celda.setCellStyle(Numerico);
+
+                            //// Formula semanas  Inventario AÑo  Anterior  
+                            Formula = "P" + filaformula + "/7";
+                            celda = fila.getCell(18);
+                            celda.setCellFormula(Formula);
+                            celda.setCellStyle(Numerico);
+                        }
                         filaa = filaa + 1;
                         descripcion2 = categoria;
                     }
@@ -250,9 +365,5 @@ public class MetodosResurtido {
         }
 
     }
-
-  
-
-    
 
 }
