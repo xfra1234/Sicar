@@ -140,6 +140,18 @@ public class MetodosResurtido {
                         cantidad3ma = cantidad3ma + rs2.getFloat(1);
                     }
                     con2.close();
+                    
+                    con2 = conectar.conectarMySQL();
+                    stmt2 = con2.createStatement();
+                    rs2 = stmt2.executeQuery("select sum(cantidad) from detallev "
+                            + "inner join venta on venta.ven_id = detallev.ven_id "
+                            + " where detallev.art_id=" + idart + " and "
+                            + " venta.fecha between '" + fecha1md  + "' and '" + fecha3md + "'"
+                            + " and venta.status!=-1");
+                    if (rs2.next()) {
+                        cantidad3md = cantidad3md + rs2.getFloat(1);
+                    }
+                    con2.close();
 
                     if (categoria.equals(descripcion2)) {
                         fila = hoja.getRow(filaa);
