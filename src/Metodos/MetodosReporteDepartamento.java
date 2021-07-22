@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFDataFormat;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -44,30 +45,29 @@ public class MetodosReporteDepartamento {
 
     conexion conectar = new conexion();
     Object datos[] = new Object[3];
-     String abrirarchivo="",guardararchivo="";
-    
-    
-    public void sucursales(String fecha1, String fecha2,String fechauno, String fechados,int sucursal){
-         switch(sucursal){
+    String abrirarchivo = "", guardararchivo = "";
+
+    public void sucursales(String fecha1, String fecha2, String fechauno, String fechados, int sucursal) {
+        switch (sucursal) {
             case 1:
                 abrirarchivo = ("C:\\Users\\Cpu\\Documents\\Cuotas-de-Venta-y-Rentabilidad-Sucursales_-Magisterio.xls");
-                guardararchivo =("C:\\Users\\Cpu\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Magisterio del " + fechauno + " al " + fechados + ".xls");
-                excelsucursales(fecha1,  fecha2, fechauno,  fechados);
-                break;  
-             case 2:
+                guardararchivo = ("C:\\Users\\Cpu\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Magisterio del " + fechauno + " al " + fechados + ".xls");
+                excelsucursales(fecha1, fecha2, fechauno, fechados);
+                break;
+            case 2:
                 abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Cuotas-de-Venta-y-Rentabilidad-Sucursales_-Coapinole.xls");
-                guardararchivo =("C:\\Users\\GHIA\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Coapinole del " + fechauno + " al " + fechados + ".xls");
-                 excelsucursales(fecha1,  fecha2, fechauno,  fechados);
-                break;  
+                guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Coapinole del " + fechauno + " al " + fechados + ".xls");
+                excelsucursales(fecha1, fecha2, fechauno, fechados);
+                break;
             case 3:
                 abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Cuotas-de-Venta-y-Rentabilidad-Sucursales_-Bodega.xls");
-                guardararchivo =("C:\\Users\\GHIA\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Bodega del " + fechauno + " al " + fechados + ".xls");
-                excelbodega(fecha1,  fecha2, fechauno,  fechados);
-                break;  
+                guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Bodega del " + fechauno + " al " + fechados + ".xls");
+                excelbodega(fecha1, fecha2, fechauno, fechados);
+                break;
         }
     }
-    
-    public void excelsucursales(String fecha1, String fecha2,String fechauno, String fechados) {
+
+    public void excelsucursales(String fecha1, String fecha2, String fechauno, String fechados) {
         try ( FileInputStream file = new FileInputStream(new File(abrirarchivo))) {
             // leer archivo excel
             POIFSFileSystem fs = new POIFSFileSystem(file);
@@ -78,6 +78,8 @@ public class MetodosReporteDepartamento {
             HSSFCell celda;
             HSSFRow fila;
             Row row;
+            HSSFDataFormat format = libro.createDataFormat();
+
             CellStyle headerStyle = libro.createCellStyle();
             HSSFFont font = libro.createFont();
             font.setBold(true);
@@ -103,6 +105,14 @@ public class MetodosReporteDepartamento {
             font4.setFontHeight((short) (10 * 20));
             negrita.setWrapText(true);
             negrita.setFont(font4);
+
+            CellStyle Numerico = libro.createCellStyle();
+            HSSFFont fontnumerico = libro.createFont();
+            fontnumerico.setBold(true);
+            fontnumerico.setFontName("Arial");
+            fontnumerico.setFontHeight((short) (10 * 20));
+            Numerico.setDataFormat(format.getFormat("###,##0.00"));
+            Numerico.setFont(fontnumerico);
 
             int filadato = 5, columnadato = 1, nombremes = 3;
             fila = hoja.createRow(3);
@@ -130,10 +140,12 @@ public class MetodosReporteDepartamento {
                     mes = rs.getString(1);
                     cantidad = rs.getFloat(2);
                     anio = rs.getString(3);
+
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
-                    celda.setCellStyle(categoria);
+                    celda.setCellStyle(Numerico);
+
                     mes = mes.toUpperCase().charAt(0) + mes.substring(1, mes.length());
                     fila = hoja.getRow(nombremes);
                     celda = fila.createCell(columnadato);
@@ -170,7 +182,7 @@ public class MetodosReporteDepartamento {
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
-                    celda.setCellStyle(categoria);
+                    celda.setCellStyle(Numerico);
 
                     columnadato = columnadato + 2;
                 }
@@ -201,7 +213,7 @@ public class MetodosReporteDepartamento {
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
-                    celda.setCellStyle(categoria);
+                    celda.setCellStyle(Numerico);
 
                     columnadato = columnadato + 2;
                 }
@@ -236,7 +248,7 @@ public class MetodosReporteDepartamento {
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
-                    celda.setCellStyle(categoria);
+                    celda.setCellStyle(Numerico);
 //                    mes = mes.toUpperCase().charAt(0) + mes.substring(1, mes.length());
 //                    fila = hoja.getRow(nombremes);
 //                    celda = fila.createCell(columnadato);
@@ -272,7 +284,7 @@ public class MetodosReporteDepartamento {
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
-                    celda.setCellStyle(categoria);
+                    celda.setCellStyle(Numerico);
 
                     columnadato = columnadato + 2;
                 }
@@ -303,15 +315,15 @@ public class MetodosReporteDepartamento {
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
-                    celda.setCellStyle(categoria);
+                    celda.setCellStyle(Numerico);
 
                     columnadato = columnadato + 2;
                 }
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
             }
-            
-              try {
+
+            try {
                 con = conectar.conectarMySQL();
                 stmt = con.createStatement();
                 columnadato = 1;
@@ -329,8 +341,8 @@ public class MetodosReporteDepartamento {
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
-                    celda.setCellStyle(categoria);
-                  
+                    celda.setCellStyle(Numerico);
+
                     columnadato = columnadato + 2;
                 }
             } catch (SQLException e) {
@@ -354,8 +366,8 @@ public class MetodosReporteDepartamento {
         }
 
     }
-    
-    public void excelbodega(String fecha1, String fecha2,String fechauno, String fechados) {
+
+    public void excelbodega(String fecha1, String fecha2, String fechauno, String fechados) {
         try ( FileInputStream file = new FileInputStream(new File(abrirarchivo))) {
             // leer archivo excel
             POIFSFileSystem fs = new POIFSFileSystem(file);
@@ -366,6 +378,7 @@ public class MetodosReporteDepartamento {
             HSSFCell celda;
             HSSFRow fila;
             Row row;
+            HSSFDataFormat format = libro.createDataFormat();
             CellStyle headerStyle = libro.createCellStyle();
             HSSFFont font = libro.createFont();
             font.setBold(true);
@@ -391,6 +404,14 @@ public class MetodosReporteDepartamento {
             font4.setFontHeight((short) (10 * 20));
             negrita.setWrapText(true);
             negrita.setFont(font4);
+
+            CellStyle Numerico = libro.createCellStyle();
+            HSSFFont fontnumerico = libro.createFont();
+            fontnumerico.setBold(true);
+            fontnumerico.setFontName("Arial");
+            fontnumerico.setFontHeight((short) (10 * 20));
+            Numerico.setDataFormat(format.getFormat("###,##0.00"));
+            Numerico.setFont(fontnumerico);
 
             int filadato = 5, columnadato = 1, nombremes = 3;
             fila = hoja.createRow(3);
@@ -419,11 +440,14 @@ public class MetodosReporteDepartamento {
                     mes = rs.getString(1);
                     cantidad = rs.getFloat(2);
                     anio = rs.getString(3);
+                    
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
-                    celda.setCellStyle(categoria);
+                    celda.setCellStyle(Numerico);
+                    
                     mes = mes.toUpperCase().charAt(0) + mes.substring(1, mes.length());
+                    
                     fila = hoja.getRow(nombremes);
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(new HSSFRichTextString(mes + " " + anio));
@@ -460,7 +484,7 @@ public class MetodosReporteDepartamento {
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
-                    celda.setCellStyle(categoria);
+                    celda.setCellStyle(Numerico);
 
                     columnadato = columnadato + 2;
                 }
@@ -492,7 +516,7 @@ public class MetodosReporteDepartamento {
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
-                    celda.setCellStyle(categoria);
+                    celda.setCellStyle(Numerico);
 
                     columnadato = columnadato + 2;
                 }
@@ -528,7 +552,7 @@ public class MetodosReporteDepartamento {
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
-                    celda.setCellStyle(categoria);
+                    celda.setCellStyle(Numerico);
 //                    mes = mes.toUpperCase().charAt(0) + mes.substring(1, mes.length());
 //                    fila = hoja.getRow(nombremes);
 //                    celda = fila.createCell(columnadato);
@@ -565,7 +589,7 @@ public class MetodosReporteDepartamento {
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
-                    celda.setCellStyle(categoria);
+                    celda.setCellStyle(Numerico);
 
                     columnadato = columnadato + 2;
                 }
@@ -597,15 +621,15 @@ public class MetodosReporteDepartamento {
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
-                    celda.setCellStyle(categoria);
+                    celda.setCellStyle(Numerico);
 
                     columnadato = columnadato + 2;
                 }
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
             }
-            
-              try {
+
+            try {
                 con = conectar.conectarMySQL();
                 stmt = con.createStatement();
                 columnadato = 1;
@@ -624,8 +648,8 @@ public class MetodosReporteDepartamento {
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
-                    celda.setCellStyle(categoria);
-                  
+                    celda.setCellStyle(Numerico);
+
                     columnadato = columnadato + 2;
                 }
             } catch (SQLException e) {
@@ -649,5 +673,5 @@ public class MetodosReporteDepartamento {
         }
 
     }
-    
+
 }

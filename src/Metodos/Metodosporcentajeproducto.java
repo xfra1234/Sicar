@@ -461,7 +461,15 @@ public class Metodosporcentajeproducto {
         encabezados.setFont(font2);
 
         CellStyle porcentaje = libro.createCellStyle();
-        porcentaje.setDataFormat(libro.createDataFormat().getFormat("0.000%"));
+        porcentaje.setDataFormat(libro.createDataFormat().getFormat("0.00%"));
+        porcentaje.setFont(font2);
+        
+        CellStyle contabilidad = libro.createCellStyle();
+        porcentaje.setDataFormat(libro.createDataFormat().getFormat("$###,##0.00"));
+        porcentaje.setFont(font2);
+
+        CellStyle Numerico = libro.createCellStyle();
+        porcentaje.setDataFormat(libro.createDataFormat().getFormat("###,##0.00"));
         porcentaje.setFont(font2);
 
         HSSFCell celda;
@@ -625,11 +633,11 @@ public class Metodosporcentajeproducto {
 //            celda.setCellStyle(style);
             celda = fila.createCell(1);
             celda.setCellValue((Cantidadproducto20.get(j)));
-            celda.setCellStyle(encabezados);
+            celda.setCellStyle(Numerico);
 
             celda = fila.createCell(2);
             celda.setCellValue((Ventaproducto20.get(j)));
-            celda.setCellStyle(encabezados);
+            celda.setCellStyle(contabilidad);
 
             celda = fila.createCell(3);
             celda.setCellValue((Porcentajeproducto20.get(j)));
