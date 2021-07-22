@@ -22,6 +22,7 @@ import java.util.Date;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
 import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFDataFormat;
 import org.apache.poi.hssf.usermodel.HSSFFont;
 import org.apache.poi.hssf.usermodel.HSSFRichTextString;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -31,7 +32,8 @@ import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.IndexedColors;
 
-/**p
+/**
+ * p
  *
  * @author GHIA
  */
@@ -426,7 +428,7 @@ public class Metodosporcentajeproducto {
                 nombresucursal = "Coapinole";
                 GeneraExcelsucursales(fechauno, fechados, nombresucursal);
                 break;
-            case 3:                
+            case 3:
                 guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Productos Conforman el 80% de venta Bodega tickets  del " + fechauno + " al " + fechados + ".xls");
                 nombresucursal = "Bodega";
                 GeneraExcelsucursales(fechauno, fechados, nombresucursal);
@@ -438,7 +440,8 @@ public class Metodosporcentajeproducto {
 
         HSSFWorkbook libro = new HSSFWorkbook();
         HSSFSheet hoja = libro.createSheet();
-
+        
+         HSSFDataFormat format = libro.createDataFormat();
         //formato para el nombre de las columnas
         CellStyle headerStyle = libro.createCellStyle();
         HSSFFont font = libro.createFont();
@@ -461,17 +464,33 @@ public class Metodosporcentajeproducto {
         encabezados.setFont(font2);
 
         CellStyle porcentaje = libro.createCellStyle();
-        porcentaje.setDataFormat(libro.createDataFormat().getFormat("0.00%"));
-        porcentaje.setFont(font2);
+        HSSFFont fontporcentaje = libro.createFont();
+        fontporcentaje.setBold(true);
+        fontporcentaje.setFontName("Arial");
+        fontporcentaje.setFontHeight((short) (10 * 20));
+        porcentaje.setDataFormat(format.getFormat("0.00%"));
+        porcentaje.setFont(fontporcentaje);
+
         
-        CellStyle contabilidad = libro.createCellStyle();
-        porcentaje.setDataFormat(libro.createDataFormat().getFormat("$###,##0.00"));
-        porcentaje.setFont(font2);
-
+        
+        
         CellStyle Numerico = libro.createCellStyle();
-        porcentaje.setDataFormat(libro.createDataFormat().getFormat("###,##0.00"));
-        porcentaje.setFont(font2);
+        HSSFFont fontnumerico = libro.createFont();
+        fontnumerico.setBold(true);
+        fontnumerico.setFontName("Arial");
+        fontnumerico.setFontHeight((short) (10 * 20));
+        Numerico.setDataFormat(format.getFormat("###,##0.00"));
+        Numerico.setFont(fontnumerico);
 
+        
+         CellStyle conta = libro.createCellStyle();
+        HSSFFont fontconta = libro.createFont();
+        fontconta.setBold(true);
+        fontconta.setFontName("Arial");
+        fontconta.setFontHeight((short) (10 * 20));
+        conta.setDataFormat(format.getFormat("$ ###,##0.00"));
+        conta.setFont(fontporcentaje);
+        
         HSSFCell celda;
         HSSFRow fila;
         Date fecha = new Date();
@@ -527,7 +546,7 @@ public class Metodosporcentajeproducto {
 
         celda = fila.createCell(1);
         celda.setCellValue(productosnum);
-        celda.setCellStyle(encabezados);
+        celda.setCellStyle(Numerico);
 
         celda = fila.createCell(3);
         celda.setCellValue(new HSSFRichTextString("Total de Venta "));
@@ -535,7 +554,7 @@ public class Metodosporcentajeproducto {
 
         celda = fila.createCell(4);
         celda.setCellValue(totalcantidad);
-        celda.setCellStyle(encabezados);
+        celda.setCellStyle(conta);
 
         fila = hoja.createRow(5);
         celda = fila.createCell(0);
@@ -575,11 +594,11 @@ public class Metodosporcentajeproducto {
 //            celda.setCellStyle(style);
             celda = fila.createCell(1);
             celda.setCellValue((Cantidadproducto.get(j)));
-            celda.setCellStyle(encabezados);
+            celda.setCellStyle(Numerico);
 
             celda = fila.createCell(2);
             celda.setCellValue((Ventaproducto.get(j)));
-            celda.setCellStyle(encabezados);
+            celda.setCellStyle(conta);
 
             celda = fila.createCell(3);
             celda.setCellValue((Porcentajeproducto.get(j)));
@@ -602,7 +621,7 @@ public class Metodosporcentajeproducto {
 
         celda = fila.createCell(1);
         celda.setCellValue(productosnum20);
-        celda.setCellStyle(encabezados);
+        celda.setCellStyle(Numerico);
 
         i = i + 1;
         fila = hoja.createRow(i);
@@ -637,7 +656,7 @@ public class Metodosporcentajeproducto {
 
             celda = fila.createCell(2);
             celda.setCellValue((Ventaproducto20.get(j)));
-            celda.setCellStyle(contabilidad);
+            celda.setCellStyle(conta);
 
             celda = fila.createCell(3);
             celda.setCellValue((Porcentajeproducto20.get(j)));
@@ -663,7 +682,6 @@ public class Metodosporcentajeproducto {
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        
 
     }
 
