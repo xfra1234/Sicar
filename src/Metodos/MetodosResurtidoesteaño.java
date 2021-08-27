@@ -48,6 +48,7 @@ public class MetodosResurtidoesteaño {
     int idpaquete;
     Double cero = 0.0;
     CellStyle Numerico;
+    int filaa;
     protected ArrayList<Integer> idNumeros = new ArrayList();
 
     POIFSFileSystem fs;
@@ -91,7 +92,7 @@ public class MetodosResurtidoesteaño {
 
     public void enviar0() {
         for (int x = 4; x < 7; x++) {
-
+            fila = hoja.getRow(filaa);
             celda = fila.createCell(x);
             celda.setCellValue(cero);
             celda.setCellStyle(Numerico);
@@ -140,7 +141,7 @@ public class MetodosResurtidoesteaño {
             Numerico.setDataFormat(format.getFormat("###,##0.00"));
             Numerico.setFont(fontnumerico);
 
-            int filaa = 3;
+            filaa = 3;
             try {
 
                 con = conectar.conectarMySQL();
