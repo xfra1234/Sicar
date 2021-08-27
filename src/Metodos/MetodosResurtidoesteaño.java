@@ -91,7 +91,7 @@ public class MetodosResurtidoesteaño {
     }
 
     public void enviar0() {
-        for (int x = 4; x < 7; x++) {
+        for (int x = 2; x < 8; x++) {
             fila = hoja.getRow(filaa);
             celda = fila.createCell(x);
             celda.setCellValue(cero);
@@ -141,7 +141,7 @@ public class MetodosResurtidoesteaño {
             Numerico.setDataFormat(format.getFormat("###,##0.00"));
             Numerico.setFont(fontnumerico);
 
-            filaa = 3; 
+            filaa = 1; 
             try {
 
                 con = conectar.conectarMySQL();
@@ -188,8 +188,9 @@ public class MetodosResurtidoesteaño {
                         celda.setCellValue((cantidad3ma / 3));
                         celda.setCellStyle(Numerico);
 
-                        if (filaa > 4) {
+                        if (filaa > 2) {
                             int filaformula = filaa + 1;
+                           
                             String Formula;
 
                             //// Formula 7 dias mes anterior
@@ -247,8 +248,9 @@ public class MetodosResurtidoesteaño {
                         celda.setCellValue((cantidad3ma / 3));
                         celda.setCellStyle(Numerico);
 
-                        if (filaa > 10) {
+                        if (filaa > 2) {
                             int filaformula = filaa + 1;
+                          
                             String Formula;
 
                              //// Formula 7 dias mes anterior
