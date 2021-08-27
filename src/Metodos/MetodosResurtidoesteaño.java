@@ -141,7 +141,7 @@ public class MetodosResurtidoesteaño {
             Numerico.setDataFormat(format.getFormat("###,##0.00"));
             Numerico.setFont(fontnumerico);
 
-            filaa = 3;
+            filaa = 3; 
             try {
 
                 con = conectar.conectarMySQL();
