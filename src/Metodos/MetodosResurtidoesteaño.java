@@ -194,26 +194,26 @@ public class MetodosResurtidoesteaño {
                         celda.setCellValue((cantidad3ma / 3));
                         celda.setCellStyle(Numerico);
 
-                        if (filaa > 2) {
+                        if (filaa > 0) {
                             int filaformula = filaa + 1;
 
                             String Formula;
 
                             //// Formula 7 dias mes anterior
                             Formula = "C" + filaformula + "/4";
-                            celda = fila.getCell(3);
+                            celda = fila.createCell(3);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
 
                             //// Formula Resurtido mes   anterior
                             Formula = "D" + filaformula + "-B" + filaformula;
-                            celda = fila.getCell(4);
+                            celda = fila.createCell(4);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
 
                             //// Formula Dias Inventario Mes  Anterior  
                             Formula = "B" + filaformula + "*30/C" + filaformula;
-                            celda = fila.getCell(6);
+                            celda = fila.createCell(6);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
 
@@ -221,7 +221,7 @@ public class MetodosResurtidoesteaño {
                         filaa = filaa + 1;
 //                        enviar0();
                     } else {
-                        filaa = filaa + 1;
+//                        filaa = filaa + 1;
 //                        enviar0();
 //                        fila = hoja.getRow(filaa);
 //                        celda = fila.createCell(0);
@@ -247,26 +247,26 @@ public class MetodosResurtidoesteaño {
                         celda.setCellValue((cantidad3ma / 3));
                         celda.setCellStyle(Numerico);
 
-                        if (filaa > 2) {
+                        if (filaa > 0) {
                             int filaformula = filaa + 1;
 
                             String Formula;
 
                             //// Formula 7 dias mes anterior
                             Formula = "C" + filaformula + "/4";
-                            celda = fila.getCell(3);
+                            celda = fila.createCell(3);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
 
                             //// Formula Resurtido mes   anterior
                             Formula = "D" + filaformula + "-B" + filaformula;
-                            celda = fila.getCell(4);
+                            celda = fila.createCell(4);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
 
                             //// Formula Dias Inventario Mes  Anterior  
                             Formula = "B" + filaformula + "*30/C" + filaformula;
-                            celda = fila.getCell(6);
+                            celda = fila.createCell(6);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
                         }
