@@ -24,6 +24,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.util.CellRangeAddress;
 
 /**
  *
@@ -108,6 +109,12 @@ public class MetodosResurtidoesteaño {
             hoja = libro.getSheetAt(0);
             //obtener todas las filas de la hoja excel
             format = libro.createDataFormat();
+
+            // aplicar filtro al archivo
+            hoja.setAutoFilter(new CellRangeAddress(0, 0, 0, 6));
+            // dejar fija la primera fila
+            hoja.createFreezePane(0, 1);
+
             /// creacion de estilos de letra 
             //formato para el nombre de las columnas
             CellStyle headerStyle = libro.createCellStyle();
@@ -141,7 +148,7 @@ public class MetodosResurtidoesteaño {
             Numerico.setDataFormat(format.getFormat("###,##0.00"));
             Numerico.setFont(fontnumerico);
 
-            filaa = 1; 
+            filaa = 1;
             try {
 
                 con = conectar.conectarMySQL();
@@ -172,113 +179,99 @@ public class MetodosResurtidoesteaño {
                     if (categoria.equals(descripcion2)) {
                         fila = hoja.getRow(filaa);
 
+//                        celda = fila.createCell(0);
+//                        celda.setCellValue(clave);
+//                        celda.setCellStyle(encabezados);
                         celda = fila.createCell(0);
-                        celda.setCellValue(clave);
-                        celda.setCellStyle(encabezados);
-
-                        celda = fila.createCell(1);
                         celda.setCellValue(descripcion);
                         celda.setCellStyle(encabezados);
 
-                        celda = fila.createCell(2);
+                        celda = fila.createCell(1);
                         celda.setCellValue(existencia);
                         celda.setCellStyle(Numerico);
 
-                        celda = fila.createCell(3);
+                        celda = fila.createCell(2);
                         celda.setCellValue((cantidad3ma / 3));
                         celda.setCellStyle(Numerico);
 
                         if (filaa > 2) {
                             int filaformula = filaa + 1;
-                           
+
                             String Formula;
 
                             //// Formula 7 dias mes anterior
-                            Formula = "D" + filaformula + "/4";
-                            celda = fila.getCell(4);
+                            Formula = "C" + filaformula + "/4";
+                            celda = fila.getCell(3);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
 
                             //// Formula Resurtido mes   anterior
-                            Formula = "E" + filaformula + "-C" + filaformula;
-                            celda = fila.getCell(5);
+                            Formula = "D" + filaformula + "-B" + filaformula;
+                            celda = fila.getCell(4);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
 
                             //// Formula Dias Inventario Mes  Anterior  
-                            Formula = "C" + filaformula + "*30/D" + filaformula;
+                            Formula = "B" + filaformula + "*30/C" + filaformula;
                             celda = fila.getCell(6);
-                            celda.setCellFormula(Formula);
-                            celda.setCellStyle(Numerico);
-
-                            //// Formula semanas  Inventario Mes  Anterior  
-                            Formula = "G" + filaformula + "/7";
-                            celda = fila.getCell(7);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
 
                         }
                         filaa = filaa + 1;
-                        enviar0();
+//                        enviar0();
                     } else {
                         filaa = filaa + 1;
-                        enviar0();
+//                        enviar0();
+//                        fila = hoja.getRow(filaa);
+//                        celda = fila.createCell(0);
+//                        celda.setCellValue(categoria);
+//                        celda.setCellStyle(letraprincipal);
+
+//                        filaa = filaa + 1;
+//                        enviar0();
                         fila = hoja.getRow(filaa);
+
+//                        celda = fila.createCell(0);
+//                        celda.setCellValue(clave);
+//                        celda.setCellStyle(encabezados);
                         celda = fila.createCell(0);
-                        celda.setCellValue(categoria);
-                        celda.setCellStyle(letraprincipal);
-
-                        filaa = filaa + 1;
-                        enviar0();
-                        fila = hoja.getRow(filaa);
-
-                        celda = fila.createCell(0);
-                        celda.setCellValue(clave);
-                        celda.setCellStyle(encabezados);
-
-                        celda = fila.createCell(1);
                         celda.setCellValue(descripcion);
                         celda.setCellStyle(encabezados);
 
-                        celda = fila.createCell(2);
+                        celda = fila.createCell(1);
                         celda.setCellValue(existencia);
                         celda.setCellStyle(Numerico);
 
-                        celda = fila.createCell(3);
+                        celda = fila.createCell(2);
                         celda.setCellValue((cantidad3ma / 3));
                         celda.setCellStyle(Numerico);
 
                         if (filaa > 2) {
                             int filaformula = filaa + 1;
-                          
+
                             String Formula;
 
-                             //// Formula 7 dias mes anterior
-                            Formula = "D" + filaformula + "/4";
-                            celda = fila.getCell(4);
+                            //// Formula 7 dias mes anterior
+                            Formula = "C" + filaformula + "/4";
+                            celda = fila.getCell(3);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
 
                             //// Formula Resurtido mes   anterior
-                            Formula = "E" + filaformula + "-C" + filaformula;
-                            celda = fila.getCell(5);
+                            Formula = "D" + filaformula + "-B" + filaformula;
+                            celda = fila.getCell(4);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
 
                             //// Formula Dias Inventario Mes  Anterior  
-                            Formula = "C" + filaformula + "*30/D" + filaformula;
+                            Formula = "B" + filaformula + "*30/C" + filaformula;
                             celda = fila.getCell(6);
-                            celda.setCellFormula(Formula);
-                            celda.setCellStyle(Numerico);
-
-                            //// Formula semanas  Inventario Mes  Anterior  
-                            Formula = "G" + filaformula + "/7";
-                            celda = fila.getCell(7);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
                         }
                         filaa = filaa + 1;
-                        enviar0();
+//                        enviar0();
                         descripcion2 = categoria;
                     }
 
