@@ -132,7 +132,7 @@ public class MetodosResurtidoesteaño {
             font2.setFontHeight((short) (10 * 20));
             encabezados.setFont(font2);
 
-            CellStyle letraprincipal = libro.createCellStyle();
+            CellStyle letraprincipal  = libro.createCellStyle();
             HSSFFont font3 = libro.createFont();
             font3.setBold(true);
             font3.setFontName("Arial");
