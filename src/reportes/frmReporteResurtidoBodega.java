@@ -5,6 +5,7 @@
  */
 package reportes;
 
+import Metodos.MetodosResurtidosoloproductos_esteaño;
 import Metodos.MetodosResurtido_1;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -24,28 +25,31 @@ public class frmReporteResurtidoBodega extends javax.swing.JFrame {
     String fechad3md;//Variable para obtener el primer dial del mes 1 meses adelante año ´pasadp
     String fechad1mud;// Variable para obtener el uliimo dia 3  meseses  despues año pasado
     SimpleDateFormat Mes = new SimpleDateFormat("EEEE dd MMMMM yyyy");
-    
+
     int sucursal;
-    Metodos.MetodosResurtido_1 met= new MetodosResurtido_1();
+    Metodos.MetodosResurtido_1 met = new MetodosResurtido_1();
+    Metodos.MetodosResurtidosoloproductos_esteaño met2 = new MetodosResurtidosoloproductos_esteaño();
+
     public frmReporteResurtidoBodega() {
         initComponents();
         cmbmes.setDate(new Date());
         rbtnbodega.setSelected(true);
     }
 
-    public int valorsucursal(){
-         if(rbtnbodega.isSelected()){
-             sucursal=3;
-         }else if(rbtnmagisterio.isSelected()){
-             sucursal=1;
-         }else if(rbtncoapinole.isSelected()){
-             sucursal=2;
-         }else{
-             sucursal=0;
-         }
-         
-         return sucursal;
-     }
+    public int valorsucursal() {
+        if (rbtnbodega.isSelected()) {
+            sucursal = 3;
+        } else if (rbtnmagisterio.isSelected()) {
+            sucursal = 1;
+        } else if (rbtncoapinole.isSelected()) {
+            sucursal = 2;
+        } else {
+            sucursal = 0;
+        }
+
+        return sucursal;
+    }
+
     public void Mesesañoanterior() {
         int difM = 0;
         int difA = 0;
@@ -54,57 +58,60 @@ public class frmReporteResurtidoBodega extends javax.swing.JFrame {
         Calendar fechaactual = Calendar.getInstance();
 
         promfechaadelante.setTime(cmbmes.getDate());
-        
+
 ////////////// Obtener fechas 3 meses atras del mismo año
         fechaactual.setTime(cmbmes.getDate());
         fechaactual.add(fechaactual.MONTH, -3);
         if (fechaactual.get(fechaactual.MONTH) < 9) {
-            fecha3mad =  fechaactual.get(fechaactual.YEAR)+ "-" + "0"
-                    + (fechaactual.get(fechaactual.MONTH) + 1) + "-" + "01"+" 00:00:00";
+            fecha3mad = fechaactual.get(fechaactual.YEAR) + "-" + "0"
+                    + (fechaactual.get(fechaactual.MONTH) + 1) + "-" + "01" + " 00:00:00";
         } else {
-            fecha3mad = fechaactual.get(fechaactual.YEAR) + "-"  +(fechaactual.get(fechaactual.MONTH) + 1) + "-" + "01"  +  " 00:00:00";
+            fecha3mad = fechaactual.get(fechaactual.YEAR) + "-" + (fechaactual.get(fechaactual.MONTH) + 1) + "-" + "01" + " 00:00:00";
         }
 
         fechaactual.setTime(cmbmes.getDate());
         fechaactual.add(fechaactual.MONTH, -1);
         if (fechaactual.get(fechaactual.MONTH) < 9) {
-            fehca1mud = fechaactual.get(fechaactual.YEAR)+ "-" +"0"
-                    + (fechaactual.get(fechaactual.MONTH) + 1) + "-" + fechaactual.getMaximum(fechaactual.DAY_OF_MONTH)  +  " 23:59:59";
+            fehca1mud = fechaactual.get(fechaactual.YEAR) + "-" + "0"
+                    + (fechaactual.get(fechaactual.MONTH) + 1) + "-" + fechaactual.getMaximum(fechaactual.DAY_OF_MONTH) + " 23:59:59";
         } else {
-            fehca1mud = fechaactual.get(fechaactual.YEAR) + "-"  +(fechaactual.get(fechaactual.MONTH) + 1) + "-" + fechaactual.getMaximum(fechaactual.DAY_OF_MONTH)+  " 23:59:59";
+            fehca1mud = fechaactual.get(fechaactual.YEAR) + "-" + (fechaactual.get(fechaactual.MONTH) + 1) + "-" + fechaactual.getMaximum(fechaactual.DAY_OF_MONTH) + " 23:59:59";
         }
         System.out.println(fehca1mud);
         System.out.println(fecha3mad);
- /////////////////////fin ////////////////       
-     
- 
- ///// obtener 3 meses adelante año pasado ///////////////////////
+        /////////////////////fin ////////////////       
+
+        ///// obtener 3 meses adelante año pasado ///////////////////////
         fechaactual.setTime(cmbmes.getDate());
         fechaactual.add(fechaactual.MONTH, 1);
         if (fechaactual.get(fechaactual.MONTH) < 9) {
-            fechad1mud = (fechaactual.get(fechaactual.YEAR)-1) + "-"+"0"
-                    + (fechaactual.get(fechaactual.MONTH) + 1) + "-" + "01"  +  " 00:00:00";
+            fechad1mud = (fechaactual.get(fechaactual.YEAR) - 1) + "-" + "0"
+                    + (fechaactual.get(fechaactual.MONTH) + 1) + "-" + "01" + " 00:00:00";
         } else {
-            fechad1mud = (fechaactual.get(fechaactual.YEAR)-1) + "-" + (fechaactual.get(fechaactual.MONTH) + 1) + "-" + "01" + " 00:00:00";
+            fechad1mud = (fechaactual.get(fechaactual.YEAR) - 1) + "-" + (fechaactual.get(fechaactual.MONTH) + 1) + "-" + "01" + " 00:00:00";
         }
 
         fechaactual.setTime(cmbmes.getDate());
         fechaactual.add(fechaactual.MONTH, 3);
         if (fechaactual.get(fechaactual.MONTH) < 9) {
-            fechad3md =(fechaactual.get(fechaactual.YEAR)-1)+ "-" + "0"
-                    + (fechaactual.get(fechaactual.MONTH) + 1) + "-" + fechaactual.getMaximum(fechaactual.DAY_OF_MONTH)  +  " 23:59:59";
+            fechad3md = (fechaactual.get(fechaactual.YEAR) - 1) + "-" + "0"
+                    + (fechaactual.get(fechaactual.MONTH) + 1) + "-" + fechaactual.getMaximum(fechaactual.DAY_OF_MONTH) + " 23:59:59";
         } else {
-            fechad3md = (fechaactual.get(fechaactual.YEAR)-1) + "-" +(fechaactual.get(fechaactual.MONTH) + 1) + "-" + fechaactual.getMaximum(fechaactual.DAY_OF_MONTH) + " 23:59:59";
+            fechad3md = (fechaactual.get(fechaactual.YEAR) - 1) + "-" + (fechaactual.get(fechaactual.MONTH) + 1) + "-" + fechaactual.getMaximum(fechaactual.DAY_OF_MONTH) + " 23:59:59";
         }
-        
- //////////////////////// Fin //////////////////////////////////
-            System.out.println(fechad1mud);
-         System.out.println(fechad3md);
-         Date actual = cmbmes.getDate();
-         String Mesnueva;
-         Mesnueva = Mes.format(actual);
-         met.sucursales(fecha3mad, fehca1mud, fechad1mud, fechad3md,valorsucursal(),Mesnueva);
-        
+
+        //////////////////////// Fin //////////////////////////////////
+        System.out.println(fechad1mud);
+        System.out.println(fechad3md);
+        Date actual = cmbmes.getDate();
+        String Mesnueva;
+        Mesnueva = Mes.format(actual);
+        if (rdbCompleto.isSelected()) {
+            met.sucursales(fecha3mad, fehca1mud, fechad1mud, fechad3md, valorsucursal(), Mesnueva);
+        } else {
+            met2.sucursales(fecha3mad, fehca1mud, fechad1mud, fechad3md, valorsucursal(), Mesnueva);
+        }
+
     }
 
     /**
@@ -117,6 +124,7 @@ public class frmReporteResurtidoBodega extends javax.swing.JFrame {
     private void initComponents() {
 
         rdbComercios = new javax.swing.ButtonGroup();
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         cmbmes = new com.toedter.calendar.JDateChooser();
         rbtnbodega = new javax.swing.JRadioButton();
@@ -126,6 +134,8 @@ public class frmReporteResurtidoBodega extends javax.swing.JFrame {
         btnRegresar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        rdbMensual = new javax.swing.JRadioButton();
+        rdbCompleto = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Reporte Resurtido de Bodega");
@@ -172,33 +182,49 @@ public class frmReporteResurtidoBodega extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Reporte  Para Resurtido de Bodega");
 
+        buttonGroup1.add(rdbMensual);
+        rdbMensual.setText("Mensual");
+        rdbMensual.setActionCommand("rdbmensual");
+        rdbMensual.setOpaque(false);
+
+        buttonGroup1.add(rdbCompleto);
+        rdbCompleto.setText("Completo");
+        rdbCompleto.setOpaque(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(rbtnbodega)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(rbtnmagisterio))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(rbtncoapinole))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1)))
-                .addContainerGap(29, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(cmbmes, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(76, 76, 76))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(32, 32, 32)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(rbtnbodega)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(rbtnmagisterio))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel2)
+                                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(rbtncoapinole))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel1))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(99, 99, 99)
+                        .addComponent(rdbCompleto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(rdbMensual)))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -215,9 +241,13 @@ public class frmReporteResurtidoBodega extends javax.swing.JFrame {
                     .addComponent(rbtnbodega)
                     .addComponent(rbtnmagisterio)
                     .addComponent(rbtncoapinole))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rdbCompleto)
+                    .addComponent(rdbMensual))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 4, Short.MAX_VALUE)
                 .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel2))
         );
 
@@ -225,11 +255,15 @@ public class frmReporteResurtidoBodega extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -237,12 +271,13 @@ public class frmReporteResurtidoBodega extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         // TODO add your handling code here:
+
         Mesesañoanterior();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         // TODO add your handling code here:
-        frmPrinicipal principal=new frmPrinicipal();
+        frmPrinicipal principal = new frmPrinicipal();
         principal.setVisible(true);
         principal.setLocationRelativeTo(null);
         principal.setResizable(false);
@@ -287,6 +322,7 @@ public class frmReporteResurtidoBodega extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnRegresar;
+    private javax.swing.ButtonGroup buttonGroup1;
     private com.toedter.calendar.JDateChooser cmbmes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -295,5 +331,7 @@ public class frmReporteResurtidoBodega extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtncoapinole;
     private javax.swing.JRadioButton rbtnmagisterio;
     private javax.swing.ButtonGroup rdbComercios;
+    private javax.swing.JRadioButton rdbCompleto;
+    private javax.swing.JRadioButton rdbMensual;
     // End of variables declaration//GEN-END:variables
 }
