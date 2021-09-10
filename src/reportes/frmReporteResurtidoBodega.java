@@ -34,6 +34,7 @@ public class frmReporteResurtidoBodega extends javax.swing.JFrame {
         initComponents();
         cmbmes.setDate(new Date());
         rbtnbodega.setSelected(true);
+        rdbCompleto.setSelected(true);
     }
 
     public int valorsucursal() {
