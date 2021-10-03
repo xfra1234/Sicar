@@ -46,8 +46,7 @@ public class MetodosReporteDepartamento {
     conexion conectar = new conexion();
     Object datos[] = new Object[3];
     float ventas[] = new float[12];
-    float credito[] = new float[12];
-    Object meses[] = new Object[12];
+    Object meses[] = new Object[13];
     String abrirarchivo = "", guardararchivo = "";
 
     public void sucursales(String fecha1, String fecha2, String fechauno, String fechados, int sucursal) {
@@ -65,7 +64,7 @@ public class MetodosReporteDepartamento {
             case 3:
                 abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Cuotas-de-Venta-y-Rentabilidad-Sucursales_-Bodega.xls");
                 guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Bodega del " + fechauno + " al " + fechados + ".xls");
-                excelbodega(fecha1, fecha2, fechauno, fechados);
+                excelsucursales(fecha1, fecha2, fechauno, fechados);
                 break;
         }
     }
@@ -168,7 +167,7 @@ public class MetodosReporteDepartamento {
                         + "order by  year(fecha), month(fecha) ;");
                 while (rs.next()) {
 
-                    cantidad = ventas[totalmeses] - rs.getFloat(1);
+                    cantidad = ventas[totalmeses] - rs.getFloat(2);
 
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
@@ -192,7 +191,8 @@ public class MetodosReporteDepartamento {
             /////////////// final ventas departamento alta              
             
             //////////// vaciar arreglo
-            for(int x =0;x<= ventas.length;x++){
+            totalmeses=0;
+            for(int x =0;x< ventas.length;x++){
                 ventas[x]=0;
             }
             /////////////////
@@ -237,7 +237,7 @@ public class MetodosReporteDepartamento {
                         + "order by  year(fecha), month(fecha) ;");
                 while (rs.next()) {
 
-                    cantidad = ventas[totalmeses] - rs.getFloat(1);
+                    cantidad = ventas[totalmeses] - rs.getFloat(2);
 
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
@@ -259,7 +259,8 @@ public class MetodosReporteDepartamento {
             
             
             //////////// vaciar arreglo
-            for(int x =0;x<= ventas.length;x++){
+            totalmeses=0;
+            for(int x =0;x< ventas.length;x++){
                 ventas[x]=0;
             }
             /////////////////
@@ -304,7 +305,7 @@ public class MetodosReporteDepartamento {
                         + "order by  year(fecha), month(fecha) ;");
                 while (rs.next()) {
 
-                    cantidad = ventas[totalmeses] - rs.getFloat(1);
+                    cantidad = ventas[totalmeses] - rs.getFloat(2);
 
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
@@ -323,7 +324,12 @@ public class MetodosReporteDepartamento {
                 JOptionPane.showMessageDialog(null, e);
             }
             
-
+            //////////// vaciar arreglo
+            totalmeses=0;
+            for(int x =0;x< ventas.length;x++){
+                ventas[x]=0;
+            }
+            /////////////////
             //finaliza ventas por departamento 
             filadato = 10;
             columnadato = 1;
