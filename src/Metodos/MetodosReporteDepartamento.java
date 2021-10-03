@@ -189,17 +189,17 @@ public class MetodosReporteDepartamento {
                 JOptionPane.showMessageDialog(null, e);
             }
             /////////////// final ventas departamento alta              
-            
+
             //////////// vaciar arreglo
-            totalmeses=0;
-            for(int x =0;x< ventas.length;x++){
-                ventas[x]=0;
+            totalmeses = 0;
+            for (int x = 0; x < ventas.length; x++) {
+                ventas[x] = 0;
             }
             /////////////////
             try {
                 con = conectar.conectarMySQL();
                 stmt = con.createStatement();
-
+                filadato = filadato + 1;
                 rs2 = stmt.executeQuery("SET lc_time_names = 'es_ES';");
                 rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes ,sum(detallev.importecon) as suma "
                         + ",year(venta.fecha) as año\n"
@@ -212,12 +212,10 @@ public class MetodosReporteDepartamento {
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
                         + "order by  year(fecha), month(fecha) ;");
                 while (rs.next()) {
-                    
+
                     cantidad = rs.getFloat(2);
-                   
 
                     ventas[totalmeses] = cantidad;
-                    
 
                 }
                 con.close();
@@ -244,8 +242,6 @@ public class MetodosReporteDepartamento {
                     celda.setCellValue(cantidad);
                     celda.setCellStyle(Numerico);
 
-                    
-
                     totalmeses = totalmeses + 1;
 
                     columnadato = columnadato + 2;
@@ -256,18 +252,17 @@ public class MetodosReporteDepartamento {
                 JOptionPane.showMessageDialog(null, e);
             }
             //// fin ventas de media
-            
-            
+
             //////////// vaciar arreglo
-            totalmeses=0;
-            for(int x =0;x< ventas.length;x++){
-                ventas[x]=0;
+            totalmeses = 0;
+            for (int x = 0; x < ventas.length; x++) {
+                ventas[x] = 0;
             }
             /////////////////
             try {
                 con = conectar.conectarMySQL();
                 stmt = con.createStatement();
-
+                filadato = filadato + 1;
                 rs2 = stmt.executeQuery("SET lc_time_names = 'es_ES';");
                 rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes ,sum(detallev.importecon) as suma "
                         + ",year(venta.fecha) as año\n"
@@ -280,12 +275,10 @@ public class MetodosReporteDepartamento {
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
                         + "order by  year(fecha), month(fecha) ;");
                 while (rs.next()) {
-                    
+
                     cantidad = rs.getFloat(2);
-                   
 
                     ventas[totalmeses] = cantidad;
-                    
 
                 }
                 con.close();
@@ -312,8 +305,6 @@ public class MetodosReporteDepartamento {
                     celda.setCellValue(cantidad);
                     celda.setCellStyle(Numerico);
 
-                    
-
                     totalmeses = totalmeses + 1;
 
                     columnadato = columnadato + 2;
@@ -323,11 +314,11 @@ public class MetodosReporteDepartamento {
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
             }
-            
+
             //////////// vaciar arreglo
-            totalmeses=0;
-            for(int x =0;x< ventas.length;x++){
-                ventas[x]=0;
+            totalmeses = 0;
+            for (int x = 0; x < ventas.length; x++) {
+                ventas[x] = 0;
             }
             /////////////////
             //finaliza ventas por departamento 
