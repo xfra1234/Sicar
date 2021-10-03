@@ -168,7 +168,7 @@ public class MetodosReporteDepartamento {
                 while (rs.next()) {
 
                     cantidad = ventas[totalmeses] - rs.getFloat(2);
-
+                       JOptionPane.showMessageDialog(null, cantidad);
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
@@ -236,7 +236,7 @@ public class MetodosReporteDepartamento {
                 while (rs.next()) {
 
                     cantidad = ventas[totalmeses] - rs.getFloat(2);
-
+                        JOptionPane.showMessageDialog(null, cantidad);
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
@@ -299,7 +299,7 @@ public class MetodosReporteDepartamento {
                 while (rs.next()) {
 
                     cantidad = ventas[totalmeses] - rs.getFloat(2);
-
+                    JOptionPane.showMessageDialog(null, cantidad);
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
