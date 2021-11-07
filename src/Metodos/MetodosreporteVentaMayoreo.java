@@ -247,9 +247,9 @@ public class MetodosreporteVentaMayoreo {
                 columnadato = 1;
                 filadato = 27;
                 rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes, count(nota.not_id),year(venta.fecha) as año"
-                        + " from venta inner join ticket on nota.not_id = venta.not_id "
-                        + "where venta.status !=-1 and venta.total>1000 and nota.cli_id !=1  "
-                        + "and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
+                        + " from venta inner join nota on nota.not_id = venta.not_id "
+                        + " where venta.status !=-1 and venta.total> 1000 and nota.cli_id !=1  "
+                        + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(venta.fecha ) "
                         + " order by  year(venta.fecha), month(venta.fecha) ;");
                 while (rs.next()) {

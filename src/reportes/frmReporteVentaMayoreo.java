@@ -223,8 +223,8 @@ public class frmReporteVentaMayoreo extends javax.swing.JFrame {
             if (jdcinicio.getDate().after(jdcfinal.getDate())) {
                 JOptionPane.showMessageDialog(null, "Error en las Fechas", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                fecha1 = formatomysql.format(jdcinicio.getDate()) + " 06:00:00";
-                fecha2 = formatomysql.format(jdcfinal.getDate()) + " 21:00:00";
+                fecha1 = formatomysql.format(jdcinicio.getDate()) + " 00:00:00";
+                fecha2 = formatomysql.format(jdcfinal.getDate()) + " 23:59:59";
                 fechauno = formatoexportar.format(jdcinicio.getDate());
                 fechados = formatoexportar.format(jdcfinal.getDate());
 
