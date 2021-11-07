@@ -159,6 +159,7 @@ public class MetodosreporteVentaMayoreo {
                
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
+                 e.printStackTrace();
             }
           
             columnadato=1;
@@ -197,12 +198,7 @@ public class MetodosreporteVentaMayoreo {
                 JOptionPane.showMessageDialog(null, e);
                 e.printStackTrace();
             }
-         
-
-           
-
-
-           
+       
             //finaliza ventas por departamento 
             filadato = 10;
             columnadato = 1;
