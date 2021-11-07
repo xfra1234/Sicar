@@ -237,8 +237,6 @@ public class MetodosreporteVentaMayoreo {
              try {
                 con = conectar.conectarMySQL();
                 stmt = con.createStatement();
-                columnadato = 1;
-                filadato = 27;
                 rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes, count(nota.not_id),year(venta.fecha) as año"
                         + " from venta inner join nota on nota.not_id = venta.not_id "
                         + " where venta.status !=-1 and venta.total> "+1000+" and nota.cli_id !=1  "
