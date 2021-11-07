@@ -131,7 +131,7 @@ public class MetodosReporteDepartamento {
                  /////////////// obtener las notas de credito            
                 con = conectar.conectarMySQL();
                 stmt = con.createStatement();
-                rs = stmt.executeQuery("select MONTHNAME(notacredito.fecha) mes ,sum(notacredito.importecon) as suma "
+                rs = stmt.executeQuery("select MONTHNAME(notacredito.fecha) mes ,sum(notacredito.total) as suma "
                         + ",year(notacredito.fecha) as año\n"
                         + "from notacredito "
                         + "where notacredito.status!= -1 "
