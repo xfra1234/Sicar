@@ -201,6 +201,7 @@ public class MetodosReporteDepartamento {
             }
             /////////////////
             columnadato=1;
+            filadato = 6;
             try {
                
                 
@@ -257,6 +258,7 @@ public class MetodosReporteDepartamento {
             }
             /////////////////
             columnadato=1;
+            filadato = 7;
             try {
               
                 
