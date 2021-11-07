@@ -127,8 +127,8 @@ public class MetodosreporteVentaMayoreo {
                 totalmeses=0;
                 rs2 = stmt.executeQuery("SET lc_time_names = 'es_ES';");
                 rs = stmt.executeQuery("select monthname(fecha) as mes, sum(total), year (fecha) from venta "
-                        + "inner join ticket on ticket.tic_id = venta.tic_id where ticket.cli_id !=1" +
-                        "and venta.status!=-1 and total>1000  and fecha>= date_sub('" + fecha1 + "'"
+                        + "inner join ticket on ticket.tic_id = venta.tic_id where ticket.cli_id !=1" 
+                        +" and venta.status!=-1 and total>"+10003+"  and fecha>= date_sub('" + fecha1 + "'"
                         + ", interval 0 month) and fecha <=date_sub('" + fecha2 + "', interval 0 month)"
                         + " group by month(fecha ) order by  year(fecha), month(fecha) ;");
                 while (rs.next()) {
@@ -175,7 +175,7 @@ public class MetodosreporteVentaMayoreo {
                 rs2 = stmt.executeQuery("SET lc_time_names = 'es_ES';");
                 rs = stmt.executeQuery("select monthname(fecha) as mes, sum(total), year (fecha) from venta "
                         + "inner join nota on nota.not_id = venta.not_id where nota.cli_id !=1 " +
-                        "and venta.status!=-1 and total>1000  and fecha>= date_sub('" + fecha1 + "'"
+                        "and venta.status!=-1 and total>"+10002+"  and fecha>= date_sub('" + fecha1 + "'"
                         + ", interval 0 month) and fecha <=date_sub('" + fecha2 + "', interval 0 month)"
                         + " group by month(fecha )" +
                         "order by  year(fecha), month(fecha) ;");
