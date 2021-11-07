@@ -275,6 +275,7 @@ public class MetodosreporteVentaMayoreo {
             // se recorre cada fila hasta el final
 
         } catch (Exception e) {
+            e.printStackTrace();
             JOptionPane.showMessageDialog(null, e);
         }
 
