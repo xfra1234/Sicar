@@ -48,6 +48,8 @@ public class MetodosReporteDepartamento {
     float ventas[] = new float[12];
     Object meses[] = new Object[13];
     String abrirarchivo = "", guardararchivo = "";
+    float baja= 0.15f;
+    float media=0.85f;
 
     public void sucursales(String fecha1, String fecha2, String fechauno, String fechados, int sucursal) {
         switch (sucursal) {
@@ -129,13 +131,10 @@ public class MetodosReporteDepartamento {
                  /////////////// obtener las notas de credito            
                 con = conectar.conectarMySQL();
                 stmt = con.createStatement();
-                rs = stmt.executeQuery("select MONTHNAME(notacredito.fecha) mes ,sum(detallen.importecon) as suma "
+                rs = stmt.executeQuery("select MONTHNAME(notacredito.fecha) mes ,sum(notacredito.importecon) as suma "
                         + ",year(notacredito.fecha) as año\n"
-                        + "from detallen inner join  notacredito on notacredito.ncr_id = detallen.ncr_id inner join articulo "
-                        + "on articulo.art_id = detallen.art_id\n"
-                        + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
-                        + "on departamento.dep_id = categoria.dep_id\n"
-                        + "where departamento.dep_id = 24 and notacredito.status!= -1 "
+                        + "from notacredito "
+                        + "where notacredito.status!= -1 "
                         + " and notacredito.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
                         + " and notacredito.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
                         + "order by  year(fecha), month(fecha) ;");
@@ -168,8 +167,8 @@ public class MetodosReporteDepartamento {
                 while (rs.next()) {
                     mes = rs.getString(1);
                     anio = rs.getString(3);
-                    cantidad= rs.getFloat(2)-ventas[totalmeses];
-                    totalmeses = totalmeses + 1;
+                    cantidad= rs.getFloat(2);
+                    
                     mes = mes.toUpperCase().charAt(0) + mes.substring(1, mes.length());
 
                     meses[totalmeses] = mes + " " + anio;
@@ -202,29 +201,7 @@ public class MetodosReporteDepartamento {
             }
             /////////////////
             try {
-                /////////////// obtener las notas de credito            
-                con = conectar.conectarMySQL();
-                stmt = con.createStatement();
-                rs = stmt.executeQuery("select MONTHNAME(notacredito.fecha) mes ,sum(detallen.importecon) as suma "
-                        + ",year(notacredito.fecha) as año\n"
-                        + "from detallen inner join  notacredito on notacredito.ncr_id = detallen.ncr_id inner join articulo "
-                        + "on articulo.art_id = detallen.art_id\n"
-                        + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
-                        + "on departamento.dep_id = categoria.dep_id\n"
-                        + "where departamento.dep_id = 23 and notacredito.status!= -1 "
-                        + " and notacredito.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
-                        + " and notacredito.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
-                        + "order by  year(fecha), month(fecha) ;");
-                while (rs.next()) {
-
-                    ventas[totalmeses] = rs.getFloat(2);
-                    
-                    totalmeses = totalmeses + 1;
-
-                    
-
-                }
-                con.close();
+               
                 
                 con = conectar.conectarMySQL();
                 stmt = con.createStatement();
@@ -244,7 +221,7 @@ public class MetodosReporteDepartamento {
                 while (rs.next()) {
                     mes = rs.getString(1);
                     anio = rs.getString(3);
-                    cantidad= rs.getFloat(2)-ventas[totalmeses];
+                    cantidad= rs.getFloat(2)-(ventas[totalmeses]*media);
                     totalmeses = totalmeses + 1;
                     mes = mes.toUpperCase().charAt(0) + mes.substring(1, mes.length());
 
@@ -278,29 +255,7 @@ public class MetodosReporteDepartamento {
             }
             /////////////////
             try {
-                 /////////////// obtener las notas de credito            
-                con = conectar.conectarMySQL();
-                stmt = con.createStatement();
-                rs = stmt.executeQuery("select MONTHNAME(notacredito.fecha) mes ,sum(detallen.importecon) as suma "
-                        + ",year(notacredito.fecha) as año\n"
-                        + "from detallen inner join  notacredito on notacredito.ncr_id = detallen.ncr_id inner join articulo "
-                        + "on articulo.art_id = detallen.art_id\n"
-                        + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
-                        + "on departamento.dep_id = categoria.dep_id\n"
-                        + "where departamento.dep_id = 22 and notacredito.status!= -1 "
-                        + " and notacredito.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
-                        + " and notacredito.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
-                        + "order by  year(fecha), month(fecha) ;");
-                while (rs.next()) {
-
-                    ventas[totalmeses] = rs.getFloat(2);
-                    
-                    totalmeses = totalmeses + 1;
-
-                    
-
-                }
-                con.close();
+              
                 
                 con = conectar.conectarMySQL();
                 stmt = con.createStatement();
@@ -320,7 +275,7 @@ public class MetodosReporteDepartamento {
                 while (rs.next()) {
                     mes = rs.getString(1);
                     anio = rs.getString(3);
-                    cantidad= rs.getFloat(2)-ventas[totalmeses];
+                    cantidad= rs.getFloat(2)-(ventas[totalmeses]*baja);
                     totalmeses = totalmeses + 1;
                     mes = mes.toUpperCase().charAt(0) + mes.substring(1, mes.length());
 
