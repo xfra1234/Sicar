@@ -223,19 +223,19 @@ public class MetodosReporteDepartamento {
                     anio = rs.getString(3);
                     cantidad= rs.getFloat(2)-(ventas[totalmeses]*media);
                     totalmeses = totalmeses + 1;
-                    mes = mes.toUpperCase().charAt(0) + mes.substring(1, mes.length());
-
-                    meses[totalmeses] = mes + " " + anio;
+//                    mes = mes.toUpperCase().charAt(0) + mes.substring(1, mes.length());
+//
+//                    meses[totalmeses] = mes + " " + anio;
                     
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
                     celda.setCellStyle(Numerico);
 
-                    fila = hoja.getRow(nombremes);
-                    celda = fila.createCell(columnadato);
-                    celda.setCellValue(meses[totalmeses] + "");
-                    celda.setCellStyle(negrita);
+//                    fila = hoja.getRow(nombremes);
+//                    celda = fila.createCell(columnadato);
+//                    celda.setCellValue(meses[totalmeses] + "");
+//                    celda.setCellStyle(negrita);
                     
                     columnadato = columnadato + 2;
                 }
@@ -277,19 +277,19 @@ public class MetodosReporteDepartamento {
                     anio = rs.getString(3);
                     cantidad= rs.getFloat(2)-(ventas[totalmeses]*baja);
                     totalmeses = totalmeses + 1;
-                    mes = mes.toUpperCase().charAt(0) + mes.substring(1, mes.length());
-
-                    meses[totalmeses] = mes + " " + anio;
+//                    mes = mes.toUpperCase().charAt(0) + mes.substring(1, mes.length());
+//
+//                    meses[totalmeses] = mes + " " + anio;
                     
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
                     celda.setCellStyle(Numerico);
 
-                    fila = hoja.getRow(nombremes);
-                    celda = fila.createCell(columnadato);
-                    celda.setCellValue(meses[totalmeses] + "");
-                    celda.setCellStyle(negrita);
+//                    fila = hoja.getRow(nombremes);
+//                    celda = fila.createCell(columnadato);
+//                    celda.setCellValue(meses[totalmeses] + "");
+//                    celda.setCellStyle(negrita);
                     
                     columnadato = columnadato + 2;
                 }
