@@ -35,8 +35,6 @@ public class frmReporteVentaMayoreo extends javax.swing.JFrame {
         initComponents();
         jdcfinal.setDate(new Date());
         jdcinicio.setDate(new Date());
-        ImageIcon img = new ImageIcon("C:\\Users\\\\Cpu\\Documents\\NetBeansProjects\\Sicar\\logo.png");
-        this.setIconImage(img.getImage());
         rbtnbodega.setSelected(true);
     }
 
