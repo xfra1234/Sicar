@@ -141,7 +141,7 @@ public class MetodosReporteDepartamento {
                 while (rs.next()) {
 
                     ventas[totalmeses] = rs.getFloat(2);
-                    JOptionPane.showMessageDialog(null, ventas[totalmeses]);
+                    
                     totalmeses = totalmeses + 1;
 
                     
@@ -188,17 +188,13 @@ public class MetodosReporteDepartamento {
                 con.close();
                 totalmeses = 0;
                
-                //////////////// fin de las notas de credito 
+               
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
             }
             /////////////// final ventas departamento alta              
 
-            //////////// vaciar arreglo
-            totalmeses = 0;
-            for (int x = 0; x < ventas.length; x++) {
-                ventas[x] = 0;
-            }
+           
             /////////////////
             columnadato=1;
             filadato = 6;
@@ -224,7 +220,7 @@ public class MetodosReporteDepartamento {
                     mes = rs.getString(1);
                     anio = rs.getString(3);
                     cantidad= rs.getFloat(2)-(ventas[totalmeses]*media);
-                    
+                    JOptionPane.showMessageDialog(null, ventas[totalmeses]);
                     totalmeses = totalmeses + 1;
 //                    mes = mes.toUpperCase().charAt(0) + mes.substring(1, mes.length());
 //
@@ -251,12 +247,7 @@ public class MetodosReporteDepartamento {
             }
             //// fin ventas de media
 
-            //////////// vaciar arreglo
-            totalmeses = 0;
-            for (int x = 0; x < ventas.length; x++) {
-                ventas[x] = 0;
-            }
-            /////////////////
+           
             columnadato=1;
             filadato = 7;
             try {
@@ -301,17 +292,12 @@ public class MetodosReporteDepartamento {
                 con.close();
                 totalmeses = 0;
                
-                //////////////// fin de las notas de credito 
+               
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
             }
 
-            //////////// vaciar arreglo
-            totalmeses = 0;
-            for (int x = 0; x < ventas.length; x++) {
-                ventas[x] = 0;
-            }
-            /////////////////
+           
             //finaliza ventas por departamento 
             filadato = 10;
             columnadato = 1;
