@@ -79,6 +79,7 @@ public class frmReporteVentaMayoreo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnsucursales = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jdcinicio = new com.toedter.calendar.JDateChooser();
         jdcfinal = new com.toedter.calendar.JDateChooser();
@@ -108,12 +109,15 @@ public class frmReporteVentaMayoreo extends javax.swing.JFrame {
             }
         });
 
+        btnsucursales.add(rbtnbodega);
         rbtnbodega.setText("Bodega");
         rbtnbodega.setOpaque(false);
 
+        btnsucursales.add(rbtnmagisterio);
         rbtnmagisterio.setText("Magisterio");
         rbtnmagisterio.setOpaque(false);
 
+        btnsucursales.add(rbtncoapinole);
         rbtncoapinole.setText("Coapinole");
         rbtncoapinole.setOpaque(false);
         rbtncoapinole.addActionListener(new java.awt.event.ActionListener() {
@@ -204,7 +208,7 @@ public class frmReporteVentaMayoreo extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -285,6 +289,7 @@ public class frmReporteVentaMayoreo extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegresar;
     private javax.swing.JButton btncrear;
+    private javax.swing.ButtonGroup btnsucursales;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

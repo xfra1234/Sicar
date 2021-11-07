@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.sound.midi.Track;
 import javax.swing.JOptionPane;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFDataFormat;
@@ -159,10 +160,7 @@ public class MetodosreporteVentaMayoreo {
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
             }
-            /////////////// final ventas departamento alta              
-
-           
-            /////////////////
+          
             columnadato=1;
             filadato = 6;
             try {
@@ -195,11 +193,11 @@ public class MetodosreporteVentaMayoreo {
                 con.close();
                 totalmeses = 0;
                
-                //////////////// fin de las notas de credito 
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
+                e.printStackTrace();
             }
-            //// fin ventas de media
+         
 
            
 
