@@ -200,6 +200,7 @@ public class MetodosReporteDepartamento {
                 ventas[x] = 0;
             }
             /////////////////
+            columnadato=1;
             try {
                
                 
@@ -222,6 +223,7 @@ public class MetodosReporteDepartamento {
                     mes = rs.getString(1);
                     anio = rs.getString(3);
                     cantidad= rs.getFloat(2)-(ventas[totalmeses]*media);
+                    JOptionPane.showMessageDialog(null, ventas[totalmeses]);
                     totalmeses = totalmeses + 1;
 //                    mes = mes.toUpperCase().charAt(0) + mes.substring(1, mes.length());
 //
@@ -254,6 +256,7 @@ public class MetodosReporteDepartamento {
                 ventas[x] = 0;
             }
             /////////////////
+            columnadato=1;
             try {
               
                 
