@@ -31,6 +31,7 @@ public class Reportes {
             frmPrinicipal venta = new frmPrinicipal();
             venta.setLocationRelativeTo(null);
             venta.setVisible(true);
+            iniciar=iniciar+1;
         }
 
     }
