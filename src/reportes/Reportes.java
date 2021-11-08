@@ -6,6 +6,7 @@
 package reportes;
 
 import Metodos.conexion;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,14 +17,22 @@ public class Reportes {
     /**
      * @param args the command line arguments
      */
+    static int iniciar = 0;
+
     public static void main(String[] args) {
         // TODO code application logic here
-       
+
 //        conexion cone = new conexion();
 //        cone.conectarMySQL();
-        frmPrinicipal venta = new frmPrinicipal();
-        venta.setLocationRelativeTo(null);
-        venta.setVisible(true);
+        if (iniciar > 0) {
+            JOptionPane.showMessageDialog(null,"El sistema ya se encuentra ejecutandose");
+
+        } else {
+            frmPrinicipal venta = new frmPrinicipal();
+            venta.setLocationRelativeTo(null);
+            venta.setVisible(true);
+        }
+
     }
-    
+
 }

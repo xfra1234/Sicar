@@ -21,7 +21,7 @@ public class frmPrinicipal extends javax.swing.JFrame {
 
     public Image imagenFondo;
     public URL fondo;
-
+    
     /**
      * Creates new form frmPrinicipal
      */
