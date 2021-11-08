@@ -98,6 +98,14 @@ public class frmPrinicipal extends javax.swing.JFrame {
             }
         };
         jLabel4 = new javax.swing.JLabel();
+        ImageIcon icon9 = new ImageIcon(getClass().getResource("/Imagenes/ventas-mayoreo.jpg"));
+        Image image9 = icon9.getImage();
+        panventamayoreo = new javax.swing.JDesktopPane(){
+            public void paintComponent(Graphics g){
+                g.drawImage(image9,0,0,getWidth(),getHeight(),this);
+            }
+        };
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Reportes ");
@@ -116,7 +124,7 @@ public class frmPrinicipal extends javax.swing.JFrame {
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 177, Short.MAX_VALUE)
+            .addGap(0, 227, Short.MAX_VALUE)
         );
 
         jLabel1.setText("Reporte departamentos");
@@ -140,7 +148,7 @@ public class frmPrinicipal extends javax.swing.JFrame {
         );
         pandepartamentosLayout.setVerticalGroup(
             pandepartamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 118, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         panreporte80porciernto.setBackground(new java.awt.Color(255, 255, 191));
@@ -162,7 +170,7 @@ public class frmPrinicipal extends javax.swing.JFrame {
         );
         panreporte80porcierntoLayout.setVerticalGroup(
             panreporte80porcierntoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 118, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jLabel2.setText("Productos que conforman el 80%");
@@ -215,6 +223,29 @@ public class frmPrinicipal extends javax.swing.JFrame {
 
         jLabel4.setText("Reporte de Resurtido de Bodega");
 
+        panventamayoreo.setBackground(new java.awt.Color(255, 255, 191));
+        panventamayoreo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panventamayoreo.setToolTipText("Reporte Venta Mayoreo");
+        panventamayoreo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panventamayoreo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panventamayoreoMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panventamayoreoLayout = new javax.swing.GroupLayout(panventamayoreo);
+        panventamayoreo.setLayout(panventamayoreoLayout);
+        panventamayoreoLayout.setHorizontalGroup(
+            panventamayoreoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 153, Short.MAX_VALUE)
+        );
+        panventamayoreoLayout.setVerticalGroup(
+            panventamayoreoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 118, Short.MAX_VALUE)
+        );
+
+        jLabel5.setText("Reporte Ventas Mayoreo");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -229,11 +260,19 @@ public class frmPrinicipal extends javax.swing.JFrame {
                 .addGap(56, 56, 56)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(panresurtido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(panreporte80porciernto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel2))
-                .addContainerGap(46, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(panresurtido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(panreporte80porciernto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(panventamayoreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(15, 15, 15)))))
+                .addContainerGap(14, Short.MAX_VALUE))
             .addComponent(jDesktopPane1)
         );
         jPanel1Layout.setVerticalGroup(
@@ -241,14 +280,17 @@ public class frmPrinicipal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jDesktopPane1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pandepartamentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panreporte80porciernto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(panventamayoreo)
+                    .addComponent(pandepartamentos)
+                    .addComponent(panreporte80porciernto))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel5))
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(panresurtido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -303,6 +345,13 @@ public class frmPrinicipal extends javax.swing.JFrame {
         mostrar(resurtido);
     }//GEN-LAST:event_panresurtido1MouseClicked
 
+    private void panventamayoreoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panventamayoreoMouseClicked
+        // TODO add your handling code here:
+        frmReporteVentaMayoreo mayoreo = new frmReporteVentaMayoreo();
+        mostrar(mayoreo);
+        
+    }//GEN-LAST:event_panventamayoreoMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -344,10 +393,13 @@ public class frmPrinicipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JDesktopPane pandepartamentos;
     private javax.swing.JDesktopPane panreporte80porciernto;
+    private javax.swing.JDesktopPane panreporte80porciernto1;
     private javax.swing.JDesktopPane panresurtido;
     private javax.swing.JDesktopPane panresurtido1;
+    private javax.swing.JDesktopPane panventamayoreo;
     // End of variables declaration//GEN-END:variables
 }
