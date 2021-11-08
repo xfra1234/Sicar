@@ -11,6 +11,7 @@ import java.awt.image.ImageObserver;
 import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -21,18 +22,21 @@ public class frmPrinicipal extends javax.swing.JFrame {
 
     public Image imagenFondo;
     public URL fondo;
-    
+    int iniciar = 0;
+
     /**
      * Creates new form frmPrinicipal
      */
     public frmPrinicipal() {
-        initComponents();
-        ImageIcon img = new ImageIcon("C:\\Users\\\\Cpu\\Documents\\NetBeansProjects\\Sicar\\logo.png");
+        if (iniciar == 0) {
+            initComponents();
+            ImageIcon img = new ImageIcon("C:\\Users\\\\Cpu\\Documents\\NetBeansProjects\\Sicar\\logo.png");
 //define el icon a tu JFrame
-        this.setIconImage(img.getImage());
-
-      
-      
+            this.setIconImage(img.getImage());
+            iniciar=iniciar+1;
+        }else{
+            JOptionPane.showMessageDialog(null, "El sistema ya esta iniciado");
+        }
 
     }
 
@@ -349,7 +353,7 @@ public class frmPrinicipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         frmReporteVentaMayoreo mayoreo = new frmReporteVentaMayoreo();
         mostrar(mayoreo);
-        
+
     }//GEN-LAST:event_panventamayoreoMouseClicked
 
     /**

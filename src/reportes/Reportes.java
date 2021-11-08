@@ -24,15 +24,12 @@ public class Reportes {
 
 //        conexion cone = new conexion();
 //        cone.conectarMySQL();
-        if (iniciar > 0) {
-            JOptionPane.showMessageDialog(null,"El sistema ya se encuentra ejecutandose");
-
-        } else {
+        
             frmPrinicipal venta = new frmPrinicipal();
             venta.setLocationRelativeTo(null);
             venta.setVisible(true);
             iniciar=iniciar+1;
-        }
+        
 
     }
 
