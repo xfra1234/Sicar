@@ -168,7 +168,7 @@ public class MetodosReporteVentaDiario {
                
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
-                e.getStackTrace();
+                 e.printStackTrace();
             }
             /////////////// final ventas departamento alta              
 
@@ -216,7 +216,7 @@ public class MetodosReporteVentaDiario {
 
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
-                e.getStackTrace();
+                 e.printStackTrace();
             }
           
 
@@ -261,7 +261,7 @@ public class MetodosReporteVentaDiario {
                
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
-                e.getStackTrace();
+                 e.printStackTrace();
             }
 
            
@@ -312,7 +312,7 @@ public class MetodosReporteVentaDiario {
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
-            e.getStackTrace();
+             e.printStackTrace();
         }
 
     }
