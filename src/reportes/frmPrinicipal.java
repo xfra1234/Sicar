@@ -89,11 +89,11 @@ public class frmPrinicipal extends javax.swing.JFrame {
             }
         };
         jLabel3 = new javax.swing.JLabel();
-        ImageIcon icon5 = new ImageIcon(getClass().getResource("/Imagenes/resurtido.png"));
-        Image image6 = icon5.getImage();
+        ImageIcon icon10 = new ImageIcon(getClass().getResource("/Imagenes/ventas diaria.jpg"));
+        Image image10 = icon10.getImage();
         panresurtido1 = new javax.swing.JDesktopPane(){
             public void paintComponent(Graphics g){
-                g.drawImage(image5,0,0,getWidth(),getHeight(),this);
+                g.drawImage(image10,0,0,getWidth(),getHeight(),this);
             }
         };
         jLabel4 = new javax.swing.JLabel();
@@ -105,6 +105,14 @@ public class frmPrinicipal extends javax.swing.JFrame {
             }
         };
         jLabel5 = new javax.swing.JLabel();
+        ImageIcon icon5 = new ImageIcon(getClass().getResource("/Imagenes/resurtido.png"));
+        Image image6 = icon5.getImage();
+        panresurtido2 = new javax.swing.JDesktopPane(){
+            public void paintComponent(Graphics g){
+                g.drawImage(image5,0,0,getWidth(),getHeight(),this);
+            }
+        };
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Reportes ");
@@ -123,7 +131,7 @@ public class frmPrinicipal extends javax.swing.JFrame {
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 227, Short.MAX_VALUE)
+            .addGap(0, 244, Short.MAX_VALUE)
         );
 
         jLabel1.setText("Reporte departamentos");
@@ -213,7 +221,7 @@ public class frmPrinicipal extends javax.swing.JFrame {
         panresurtido1.setLayout(panresurtido1Layout);
         panresurtido1Layout.setHorizontalGroup(
             panresurtido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 148, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         panresurtido1Layout.setVerticalGroup(
             panresurtido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,6 +253,30 @@ public class frmPrinicipal extends javax.swing.JFrame {
 
         jLabel5.setText("Reporte Ventas Mayoreo");
 
+        panresurtido2.setBackground(new java.awt.Color(255, 255, 191));
+        panresurtido2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panresurtido2.setToolTipText("Reporte de Resurtido Bodega");
+        panresurtido2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panresurtido2.setOpaque(false);
+        panresurtido2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panresurtido2MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panresurtido2Layout = new javax.swing.GroupLayout(panresurtido2);
+        panresurtido2.setLayout(panresurtido2Layout);
+        panresurtido2Layout.setHorizontalGroup(
+            panresurtido2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 148, Short.MAX_VALUE)
+        );
+        panresurtido2Layout.setVerticalGroup(
+            panresurtido2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 118, Short.MAX_VALUE)
+        );
+
+        jLabel6.setText("Reporte Ventas Diaria");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -258,46 +290,52 @@ public class frmPrinicipal extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addGap(56, 56, 56)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panreporte80porciernto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
                     .addComponent(jLabel4)
+                    .addComponent(panresurtido2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(panresurtido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(panreporte80porciernto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel2))
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(panventamayoreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(panventamayoreo)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
-                                .addGap(15, 15, 15)))))
-                .addContainerGap(14, Short.MAX_VALUE))
+                                .addGap(15, 15, 15))
+                            .addComponent(panresurtido1))
+                        .addContainerGap(20, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel6)
+                        .addGap(44, 44, 44))))
             .addComponent(jDesktopPane1)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jDesktopPane1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(panventamayoreo)
                     .addComponent(pandepartamentos)
                     .addComponent(panreporte80porciernto))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel5))
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(panresurtido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(panresurtido1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(jLabel5))
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panresurtido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panresurtido2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(panresurtido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel4))
+                    .addComponent(jLabel6))
                 .addContainerGap())
         );
 
@@ -340,8 +378,8 @@ public class frmPrinicipal extends javax.swing.JFrame {
     private void panresurtido1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panresurtido1MouseClicked
         // TODO add your handling code here:
         // TODO add your handling code here:
-        frmReporteResurtidoBodega resurtido = new frmReporteResurtidoBodega();
-        mostrar(resurtido);
+        frmReporteVentaDiario diaria = new frmReporteVentaDiario();
+        mostrar(diaria);
     }//GEN-LAST:event_panresurtido1MouseClicked
 
     private void panventamayoreoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panventamayoreoMouseClicked
@@ -350,6 +388,10 @@ public class frmPrinicipal extends javax.swing.JFrame {
         mostrar(mayoreo);
 
     }//GEN-LAST:event_panventamayoreoMouseClicked
+
+    private void panresurtido2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panresurtido2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_panresurtido2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -393,12 +435,13 @@ public class frmPrinicipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JDesktopPane pandepartamentos;
     private javax.swing.JDesktopPane panreporte80porciernto;
-    private javax.swing.JDesktopPane panreporte80porciernto1;
     private javax.swing.JDesktopPane panresurtido;
     private javax.swing.JDesktopPane panresurtido1;
+    private javax.swing.JDesktopPane panresurtido2;
     private javax.swing.JDesktopPane panventamayoreo;
     // End of variables declaration//GEN-END:variables
 }
