@@ -75,7 +75,7 @@
                                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="panresurtido1" max="32767" attributes="0"/>
+                              <Component id="panventadiaria" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace pref="20" max="32767" attributes="0"/>
                       </Group>
@@ -111,7 +111,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="panresurtido" min="-2" max="-2" attributes="0"/>
                       <Component id="panresurtido2" min="-2" max="-2" attributes="0"/>
-                      <Component id="panresurtido1" min="-2" max="-2" attributes="0"/>
+                      <Component id="panventadiaria" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -280,7 +280,7 @@
             <Property name="text" type="java.lang.String" value="Reporte de Resurtido de Sucursal"/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JDesktopPane" name="panresurtido1">
+        <Container class="javax.swing.JDesktopPane" name="panventadiaria">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="bf" green="ff" red="ff" type="rgb"/>
@@ -297,7 +297,7 @@
             <Property name="opaque" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panresurtido1MouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panventadiariaMouseClicked"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JDesktopPane(){&#xa;    public void paintComponent(Graphics g){&#xa;        g.drawImage(image10,0,0,getWidth(),getHeight(),this);&#xa;    }&#xa;}"/>

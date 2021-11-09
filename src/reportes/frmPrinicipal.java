@@ -91,7 +91,7 @@ public class frmPrinicipal extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         ImageIcon icon10 = new ImageIcon(getClass().getResource("/Imagenes/ventas diaria.jpg"));
         Image image10 = icon10.getImage();
-        panresurtido1 = new javax.swing.JDesktopPane(){
+        panventadiaria = new javax.swing.JDesktopPane(){
             public void paintComponent(Graphics g){
                 g.drawImage(image10,0,0,getWidth(),getHeight(),this);
             }
@@ -206,25 +206,25 @@ public class frmPrinicipal extends javax.swing.JFrame {
 
         jLabel3.setText("Reporte de Resurtido de Sucursal");
 
-        panresurtido1.setBackground(new java.awt.Color(255, 255, 191));
-        panresurtido1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        panresurtido1.setToolTipText("Reporte de Resurtido Bodega");
-        panresurtido1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        panresurtido1.setOpaque(false);
-        panresurtido1.addMouseListener(new java.awt.event.MouseAdapter() {
+        panventadiaria.setBackground(new java.awt.Color(255, 255, 191));
+        panventadiaria.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panventadiaria.setToolTipText("Reporte de Resurtido Bodega");
+        panventadiaria.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panventadiaria.setOpaque(false);
+        panventadiaria.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                panresurtido1MouseClicked(evt);
+                panventadiariaMouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout panresurtido1Layout = new javax.swing.GroupLayout(panresurtido1);
-        panresurtido1.setLayout(panresurtido1Layout);
-        panresurtido1Layout.setHorizontalGroup(
-            panresurtido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panventadiariaLayout = new javax.swing.GroupLayout(panventadiaria);
+        panventadiaria.setLayout(panventadiariaLayout);
+        panventadiariaLayout.setHorizontalGroup(
+            panventadiariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        panresurtido1Layout.setVerticalGroup(
-            panresurtido1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panventadiariaLayout.setVerticalGroup(
+            panventadiariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 118, Short.MAX_VALUE)
         );
 
@@ -302,7 +302,7 @@ public class frmPrinicipal extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addGap(15, 15, 15))
-                            .addComponent(panresurtido1))
+                            .addComponent(panventadiaria))
                         .addContainerGap(20, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -329,7 +329,7 @@ public class frmPrinicipal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panresurtido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panresurtido2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panresurtido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(panventadiaria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -375,12 +375,12 @@ public class frmPrinicipal extends javax.swing.JFrame {
         mostrar(resurtido);
     }//GEN-LAST:event_panresurtidoMouseClicked
 
-    private void panresurtido1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panresurtido1MouseClicked
+    private void panventadiariaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panventadiariaMouseClicked
         // TODO add your handling code here:
         // TODO add your handling code here:
         frmReporteVentaDiario diaria = new frmReporteVentaDiario();
         mostrar(diaria);
-    }//GEN-LAST:event_panresurtido1MouseClicked
+    }//GEN-LAST:event_panventadiariaMouseClicked
 
     private void panventamayoreoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panventamayoreoMouseClicked
         // TODO add your handling code here:
@@ -440,8 +440,8 @@ public class frmPrinicipal extends javax.swing.JFrame {
     private javax.swing.JDesktopPane pandepartamentos;
     private javax.swing.JDesktopPane panreporte80porciernto;
     private javax.swing.JDesktopPane panresurtido;
-    private javax.swing.JDesktopPane panresurtido1;
     private javax.swing.JDesktopPane panresurtido2;
+    private javax.swing.JDesktopPane panventadiaria;
     private javax.swing.JDesktopPane panventamayoreo;
     // End of variables declaration//GEN-END:variables
 }
