@@ -11,7 +11,6 @@ import java.awt.image.ImageObserver;
 import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -28,15 +27,11 @@ public class frmPrinicipal extends javax.swing.JFrame {
      * Creates new form frmPrinicipal
      */
     public frmPrinicipal() {
-        if (iniciar == 0) {
-            initComponents();
-            ImageIcon img = new ImageIcon("C:\\Users\\\\Cpu\\Documents\\NetBeansProjects\\Sicar\\logo.png");
+
+        initComponents();
+        ImageIcon img = new ImageIcon("C:\\Users\\\\Cpu\\Documents\\NetBeansProjects\\Sicar\\logo.png");
 //define el icon a tu JFrame
-            this.setIconImage(img.getImage());
-            iniciar=iniciar+1;
-        }else{
-            JOptionPane.showMessageDialog(null, "El sistema ya esta iniciado");
-        }
+        this.setIconImage(img.getImage());
 
     }
 
