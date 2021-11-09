@@ -114,7 +114,8 @@ public class MetodosReporteVentaDiario {
             Numerico.setDataFormat(format.getFormat("###,##0.00"));
             Numerico.setFont(fontnumerico);
 
-            int filadato = 11, columnadato = 9, nombremes = 3;
+            int filadato = 11, columnadato = 9, nombremes = 3,filadia=11;
+            
             fila = hoja.createRow(3);
             String mes, anio,dia;
             float total = 0;
@@ -148,8 +149,8 @@ public class MetodosReporteVentaDiario {
                     dia = dia.toUpperCase().charAt(0) + dia.substring(1, dia.length());
                     meses[totalmeses] = dia +" "+mes + " " + anio;
                     
-                    fila = hoja.getRow(filadato);
-                    celda = fila.createCell(columnadato);
+                    fila = hoja.getRow(filadia);
+                    celda = fila.createCell(0);
                     celda.setCellValue(cantidad);
                     celda.setCellStyle(Numerico);
 
@@ -159,6 +160,7 @@ public class MetodosReporteVentaDiario {
                     celda.setCellStyle(negrita);
                     
                     columnadato = columnadato + 2;
+                    filadia= filadia+1;
                 }
                 con.close();
                 totalmeses = 0;
