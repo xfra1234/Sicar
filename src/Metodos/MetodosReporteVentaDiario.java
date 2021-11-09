@@ -222,7 +222,7 @@ public class MetodosReporteVentaDiario {
 
            
             columnadato=11;
-            filadato = 9;
+            filadato = 11;
             try {
               
                 
@@ -266,7 +266,7 @@ public class MetodosReporteVentaDiario {
 
            
            
-            filadato = 9;
+            filadato = 11;
             columnadato = 13;
             nombremes = 4;
 
