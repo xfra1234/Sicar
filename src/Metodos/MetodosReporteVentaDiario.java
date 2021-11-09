@@ -150,7 +150,7 @@ public class MetodosReporteVentaDiario {
                     meses[totalmeses] = dia +" "+mes + " " + anio;
                     
                     fila = hoja.getRow(filadato);
-                    celda = fila.createCell(columnadato);
+                    celda = fila.getCell(columnadato);
                     celda.setCellValue(cantidad);
                     celda.setCellStyle(Numerico);
 
@@ -202,7 +202,7 @@ public class MetodosReporteVentaDiario {
 
                     
                     fila = hoja.getRow(filadato);
-                    celda = fila.createCell(columnadato);
+                    celda = fila.getCell(columnadato);
                     celda.setCellValue(cantidad);
                     celda.setCellStyle(Numerico);
 
@@ -248,7 +248,7 @@ public class MetodosReporteVentaDiario {
                     totalmeses = totalmeses + 1;
                     
                     fila = hoja.getRow(filadato);
-                    celda = fila.createCell(columnadato);
+                    celda = fila.getCell(columnadato);
                     celda.setCellValue(cantidad);
                     celda.setCellStyle(Numerico);
 
@@ -274,8 +274,7 @@ public class MetodosReporteVentaDiario {
             try {
                 con = conectar.conectarMySQL();
                 stmt = con.createStatement();
-                columnadato = 1;
-                filadato = 27;
+                
                 rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes, count(ticket.tic_id),year(venta.fecha) as año"
                         + " from venta inner join ticket on ticket.tic_id = venta.tic_id "
                         + "where venta.status !=-1  "
@@ -287,7 +286,7 @@ public class MetodosReporteVentaDiario {
                     cantidad = rs.getFloat(2);
                     anio = rs.getString(3);
                     fila = hoja.getRow(filadato);
-                    celda = fila.createCell(columnadato);
+                    celda = fila.getCell(columnadato);
                     celda.setCellValue(cantidad);
                     celda.setCellStyle(Numerico);
 
@@ -297,7 +296,7 @@ public class MetodosReporteVentaDiario {
                 JOptionPane.showMessageDialog(null, e);
                 e.getStackTrace();
             }
-            for (int x = 0; x < columnadato; x++) {
+            for (int x = 0; x < 30; x++) {
 
                 hoja.autoSizeColumn(x);
             }
