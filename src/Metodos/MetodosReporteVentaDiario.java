@@ -149,17 +149,17 @@ public class MetodosReporteVentaDiario {
                     dia = dia.toUpperCase().charAt(0) + dia.substring(1, dia.length());
                     meses[totalmeses] = dia +" "+mes + " " + anio;
                     
-                    fila = hoja.getRow(filadia);
-                    celda = fila.createCell(0);
+                    fila = hoja.getRow(filadato);
+                    celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
                     celda.setCellStyle(Numerico);
 
-                    fila = hoja.getRow(nombremes);
-                    celda = fila.createCell(columnadato);
+                    fila = hoja.getRow(filadia);
+                    celda = fila.createCell(0);
                     celda.setCellValue(meses[totalmeses] + "");
                     celda.setCellStyle(negrita);
                     
-                    columnadato = columnadato + 2;
+                    filadato=filadato+1;
                     filadia= filadia+1;
                 }
                 con.close();
@@ -208,7 +208,7 @@ public class MetodosReporteVentaDiario {
 
 
                     
-                    columnadato = columnadato + 2;
+                    filadato=filadato+1;
                 }
                 con.close();
                 totalmeses = 0;
@@ -253,7 +253,7 @@ public class MetodosReporteVentaDiario {
                     celda.setCellStyle(Numerico);
 
                     
-                    columnadato = columnadato + 2;
+                    filadato=filadato+1;
                 }
                 con.close();
                 totalmeses = 0;
@@ -291,7 +291,7 @@ public class MetodosReporteVentaDiario {
                     celda.setCellValue(cantidad);
                     celda.setCellStyle(Numerico);
 
-                    columnadato = columnadato + 2;
+                    filadato=filadato+1;
                 }
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
