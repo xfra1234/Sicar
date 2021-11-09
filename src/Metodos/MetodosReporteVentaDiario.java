@@ -50,18 +50,18 @@ public class MetodosReporteVentaDiario {
     public void sucursales(String fecha1, String fecha2, String fechauno, String fechados, int sucursal) {
         switch (sucursal) {
             case 1:
-                abrirarchivo = ("C:\\Users\\Cpu\\Documents\\Cuotas-de-Venta-y-Rentabilidad-Sucursales_-Magisterio.xls");
-                guardararchivo = ("C:\\Users\\Cpu\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Magisterio del " + fechauno + " al " + fechados + ".xls");
+                abrirarchivo = ("C:\\Users\\Cpu\\Documents\\Ventas Diarias.xls");
+                guardararchivo = ("C:\\Users\\Cpu\\Desktop\\Ventas Diarias Sucursal_ Magisterio del " + fechauno + " al " + fechados + ".xls");
                 excelsucursales(fecha1, fecha2, fechauno, fechados);
                 break;
             case 2:
-                abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Cuotas-de-Venta-y-Rentabilidad-Sucursales_-Coapinole.xls");
-                guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Coapinole del " + fechauno + " al " + fechados + ".xls");
+                abrirarchivo = ("C:\\Users\\GHIA\\Documents\\CVentas Diarias.xls");
+                guardararchivo = ("C:\\Users\\GHIA\\Desktop\\CVentas Diarias Sucursal_ Coapinole del " + fechauno + " al " + fechados + ".xls");
                 excelsucursales(fecha1, fecha2, fechauno, fechados);
                 break;
             case 3:
-                abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Cuotas-de-Venta-y-Rentabilidad-Sucursales_-Bodega.xls");
-                guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Bodega del " + fechauno + " al " + fechados + ".xls");
+                abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Ventas Diarias.xls");
+                guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Ventas Diarias Sucursal_ Bodega del " + fechauno + " al " + fechados + ".xls");
                 excelsucursales(fecha1, fecha2, fechauno, fechados);
                 break;
         }
@@ -122,9 +122,6 @@ public class MetodosReporteVentaDiario {
             row = hoja.getRow(6);
             int totalmeses = 0;
             try {
-                
-                
-               
                 con = conectar.conectarMySQL();
                 stmt = con.createStatement();
                 
@@ -169,6 +166,7 @@ public class MetodosReporteVentaDiario {
                
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
+                e.getStackTrace();
             }
             /////////////// final ventas departamento alta              
 
@@ -216,6 +214,7 @@ public class MetodosReporteVentaDiario {
 
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
+                e.getStackTrace();
             }
           
 
@@ -260,6 +259,7 @@ public class MetodosReporteVentaDiario {
                
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
+                e.getStackTrace();
             }
 
            
@@ -293,6 +293,7 @@ public class MetodosReporteVentaDiario {
                 }
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
+                e.getStackTrace();
             }
             for (int x = 1; x < columnadato; x++) {
 
@@ -309,6 +310,7 @@ public class MetodosReporteVentaDiario {
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
+            e.getStackTrace();
         }
 
     }
