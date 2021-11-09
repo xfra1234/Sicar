@@ -155,9 +155,9 @@ public class MetodosReporteVentaDiario {
                     celda.setCellStyle(Numerico);
 
                     fila = hoja.getRow(filadia);
-                    celda = fila.createCell(0);
+                    celda = fila.getCell(0);
                     celda.setCellValue(meses[totalmeses] + "");
-                    celda.setCellStyle(negrita);
+                    celda.setCellStyle(encabezados);
                     
                     filadato=filadato+1;
                     filadia= filadia+1;
@@ -297,7 +297,7 @@ public class MetodosReporteVentaDiario {
                 JOptionPane.showMessageDialog(null, e);
                 e.getStackTrace();
             }
-            for (int x = 1; x < columnadato; x++) {
+            for (int x = 0; x < columnadato; x++) {
 
                 hoja.autoSizeColumn(x);
             }
