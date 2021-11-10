@@ -505,7 +505,7 @@ public class MetodosReporteDepartamento {
                 con = conectar.conectarMySQL();
                 stmt = con.createStatement();
                 columnadato = 1;
-                filadato = 33;
+                filadato = 34;
                 rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes, count(ticket.tic_id),year(venta.fecha) as año"
                         + " from venta inner join ticket on ticket.tic_id = venta.tic_id "
                         + "where venta.status !=-1  "
