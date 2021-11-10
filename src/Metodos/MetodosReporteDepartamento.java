@@ -48,8 +48,8 @@ public class MetodosReporteDepartamento {
     float ventas[] = new float[12];
     Object meses[] = new Object[13];
     String abrirarchivo = "", guardararchivo = "";
-    float baja= 0.15f;
-    float media=0.85f;
+    float baja = 0.15f;
+    float media = 0.85f;
 
     public void sucursales(String fecha1, String fecha2, String fechauno, String fechados, int sucursal) {
         switch (sucursal) {
@@ -118,7 +118,7 @@ public class MetodosReporteDepartamento {
             Numerico.setDataFormat(format.getFormat("###,##0.00"));
             Numerico.setFont(fontnumerico);
 
-            int filadato = 5, columnadato = 1, nombremes = 3;
+            int filadato = 6, columnadato = 1, nombremes = 3;
             fila = hoja.createRow(3);
             String mes, anio;
             float total = 0;
@@ -126,9 +126,8 @@ public class MetodosReporteDepartamento {
             row = hoja.getRow(6);
             int totalmeses = 0;
             try {
-                
-                
-                 /////////////// obtener las notas de credito            
+
+                /////////////// obtener las notas de credito            
                 con = conectar.conectarMySQL();
                 stmt = con.createStatement();
                 rs = stmt.executeQuery("select MONTHNAME(notacredito.fecha) mes ,sum(notacredito.total) as suma "
@@ -141,18 +140,16 @@ public class MetodosReporteDepartamento {
                 while (rs.next()) {
 
                     ventas[totalmeses] = rs.getFloat(2);
-                    
-                    totalmeses = totalmeses + 1;
 
-                    
+                    totalmeses = totalmeses + 1;
 
                 }
                 con.close();
-                
+
                 con = conectar.conectarMySQL();
                 stmt = con.createStatement();
-                
-                totalmeses=0;
+
+                totalmeses = 0;
                 rs2 = stmt.executeQuery("SET lc_time_names = 'es_ES';");
                 rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes ,sum(detallev.importecon) as suma "
                         + ",year(venta.fecha) as año\n"
@@ -160,19 +157,19 @@ public class MetodosReporteDepartamento {
                         + "on articulo.art_id = detallev.art_id\n"
                         + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
                         + "on departamento.dep_id = categoria.dep_id\n"
-                        + "where departamento.dep_id = 24 and venta.status!= -1 "
+                        + "where departamento.dep_id = 24 and venta.status!= -1 and venta.tic_id is not null "
                         + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
                         + "order by  year(fecha), month(fecha) ;");
                 while (rs.next()) {
                     mes = rs.getString(1);
                     anio = rs.getString(3);
-                    cantidad= rs.getFloat(2);
-                    
+                    cantidad = rs.getFloat(2);
+
                     mes = mes.toUpperCase().charAt(0) + mes.substring(1, mes.length());
 
                     meses[totalmeses] = mes + " " + anio;
-                    
+
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
@@ -182,29 +179,26 @@ public class MetodosReporteDepartamento {
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(meses[totalmeses] + "");
                     celda.setCellStyle(negrita);
-                    
+
                     columnadato = columnadato + 2;
                 }
                 con.close();
                 totalmeses = 0;
-               
-               
+
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
             }
             /////////////// final ventas departamento alta              
 
-           
             /////////////////
-            columnadato=1;
-            filadato = 6;
+            columnadato = 1;
+            filadato = 7;
             try {
-               
-                
+
                 con = conectar.conectarMySQL();
                 stmt = con.createStatement();
-                
-                totalmeses=0;
+
+                totalmeses = 0;
                 rs2 = stmt.executeQuery("SET lc_time_names = 'es_ES';");
                 rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes ,sum(detallev.importecon) as suma "
                         + ",year(venta.fecha) as año\n"
@@ -212,51 +206,41 @@ public class MetodosReporteDepartamento {
                         + "on articulo.art_id = detallev.art_id\n"
                         + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
                         + "on departamento.dep_id = categoria.dep_id\n"
-                        + "where departamento.dep_id = 23 and venta.status!= -1 "
+                        + "where departamento.dep_id = 23 and venta.status!= -1 and venta.tic_id is not null "
                         + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
                         + "order by  year(fecha), month(fecha) ;");
                 while (rs.next()) {
                     mes = rs.getString(1);
                     anio = rs.getString(3);
-                    cantidad= rs.getFloat(2)-(ventas[totalmeses]*media);
+                    cantidad = rs.getFloat(2) - (ventas[totalmeses] * media);
                     JOptionPane.showMessageDialog(null, ventas[totalmeses]);
                     totalmeses = totalmeses + 1;
-//                    mes = mes.toUpperCase().charAt(0) + mes.substring(1, mes.length());
-//
-//                    meses[totalmeses] = mes + " " + anio;
-                    
+
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
                     celda.setCellStyle(Numerico);
 
-//                    fila = hoja.getRow(nombremes);
-//                    celda = fila.createCell(columnadato);
-//                    celda.setCellValue(meses[totalmeses] + "");
-//                    celda.setCellStyle(negrita);
-                    
                     columnadato = columnadato + 2;
                 }
                 con.close();
                 totalmeses = 0;
-               
+
                 //////////////// fin de las notas de credito 
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
             }
             //// fin ventas de media
 
-           
-            columnadato=1;
-            filadato = 7;
+            columnadato = 1;
+            filadato = 8;
             try {
-              
-                
+
                 con = conectar.conectarMySQL();
                 stmt = con.createStatement();
-                
-                totalmeses=0;
+
+                totalmeses = 0;
                 rs2 = stmt.executeQuery("SET lc_time_names = 'es_ES';");
                 rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes ,sum(detallev.importecon) as suma "
                         + ",year(venta.fecha) as año\n"
@@ -264,42 +248,155 @@ public class MetodosReporteDepartamento {
                         + "on articulo.art_id = detallev.art_id\n"
                         + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
                         + "on departamento.dep_id = categoria.dep_id\n"
-                        + "where departamento.dep_id = 22 and venta.status!= -1 "
+                        + "where departamento.dep_id = 22 and venta.status!= -1 and venta.tic_id is not null "
                         + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
                         + "order by  year(fecha), month(fecha) ;");
                 while (rs.next()) {
                     mes = rs.getString(1);
                     anio = rs.getString(3);
-                    cantidad= rs.getFloat(2)-(ventas[totalmeses]*baja);
+                    cantidad = rs.getFloat(2) - (ventas[totalmeses] * baja);
                     totalmeses = totalmeses + 1;
-//                    mes = mes.toUpperCase().charAt(0) + mes.substring(1, mes.length());
-//
-//                    meses[totalmeses] = mes + " " + anio;
+
+                    fila = hoja.getRow(filadato);
+                    celda = fila.createCell(columnadato);
+                    celda.setCellValue(cantidad);
+                    celda.setCellStyle(Numerico);
+
+                    columnadato = columnadato + 2;
+                }
+                con.close();
+                totalmeses = 0;
+
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
+/////////////// fin de las ventas por ticket 
+
+//////////////////// inicio ventas por notas de venta
+            try {
+                columnadato = 1;
+                filadato = 12;
+                con = conectar.conectarMySQL();
+                stmt = con.createStatement();
+
+                totalmeses = 0;
+                rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes ,sum(detallev.importecon) as suma "
+                        + ",year(venta.fecha) as año\n"
+                        + "from detallev inner join  venta on venta.ven_id = detallev.ven_id inner join articulo "
+                        + "on articulo.art_id = detallev.art_id\n"
+                        + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
+                        + "on departamento.dep_id = categoria.dep_id\n"
+                        + "where departamento.dep_id = 24 and venta.status!= -1 and venta.not_id is not null "
+                        + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
+                        + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
+                        + "order by  year(fecha), month(fecha) ;");
+                while (rs.next()) {
+                    mes = rs.getString(1);
+                    anio = rs.getString(3);
+                    cantidad = rs.getFloat(2);
+
+                    fila = hoja.getRow(filadato);
+                    celda = fila.createCell(columnadato);
+                    celda.setCellValue(cantidad);
+                    celda.setCellStyle(Numerico);
+
+                  
+
+                    columnadato = columnadato + 2;
+                }
+                con.close();
+                totalmeses = 0;
+
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
+            /////////////// final ventas departamento alta              
+
+            /////////////////
+            columnadato = 1;
+            filadato = 13;
+            try {
+
+                con = conectar.conectarMySQL();
+                stmt = con.createStatement();
+
+                totalmeses = 0;
+                rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes ,sum(detallev.importecon) as suma "
+                        + ",year(venta.fecha) as año\n"
+                        + "from detallev inner join  venta on venta.ven_id = detallev.ven_id inner join articulo "
+                        + "on articulo.art_id = detallev.art_id\n"
+                        + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
+                        + "on departamento.dep_id = categoria.dep_id\n"
+                        + "where departamento.dep_id = 23 and venta.status!= -1 and venta.not_id is not null "
+                        + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
+                        + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
+                        + "order by  year(fecha), month(fecha) ;");
+                while (rs.next()) {
+                    mes = rs.getString(1);
+                    anio = rs.getString(3);
+                    cantidad = rs.getFloat(2) - (ventas[totalmeses] * media);
+                    JOptionPane.showMessageDialog(null, ventas[totalmeses]);
+                    totalmeses = totalmeses + 1;
+
+                    fila = hoja.getRow(filadato);
+                    celda = fila.createCell(columnadato);
+                    celda.setCellValue(cantidad);
+                    celda.setCellStyle(Numerico);
+                    
+                    columnadato = columnadato + 2;
+                }
+                con.close();
+                totalmeses = 0;
+
+                //////////////// fin de las notas de credito 
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
+            //// fin ventas de media
+
+            columnadato = 1;
+            filadato = 14;
+            try {
+
+                con = conectar.conectarMySQL();
+                stmt = con.createStatement();
+
+                totalmeses = 0;
+                rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes ,sum(detallev.importecon) as suma "
+                        + ",year(venta.fecha) as año\n"
+                        + "from detallev inner join  venta on venta.ven_id = detallev.ven_id inner join articulo "
+                        + "on articulo.art_id = detallev.art_id\n"
+                        + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
+                        + "on departamento.dep_id = categoria.dep_id\n"
+                        + "where departamento.dep_id = 22 and venta.status!= -1 and venta.not_id is not null "
+                        + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
+                        + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
+                        + "order by  year(fecha), month(fecha) ;");
+                while (rs.next()) {
+                    mes = rs.getString(1);
+                    anio = rs.getString(3);
+                    cantidad = rs.getFloat(2) - (ventas[totalmeses] * baja);
+                    totalmeses = totalmeses + 1;
                     
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
                     celda.setCellStyle(Numerico);
 
-//                    fila = hoja.getRow(nombremes);
-//                    celda = fila.createCell(columnadato);
-//                    celda.setCellValue(meses[totalmeses] + "");
-//                    celda.setCellStyle(negrita);
-                    
+         
                     columnadato = columnadato + 2;
                 }
                 con.close();
                 totalmeses = 0;
-               
-               
+
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
             }
 
-           
+//////////////////// fin de ventas por notas de venta
             //finaliza ventas por departamento 
-            filadato = 10;
+            filadato = 17;
             columnadato = 1;
             nombremes = 4;
 
@@ -326,11 +423,6 @@ public class MetodosReporteDepartamento {
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
                     celda.setCellStyle(Numerico);
-//                    mes = mes.toUpperCase().charAt(0) + mes.substring(1, mes.length());
-//                    fila = hoja.getRow(nombremes);
-//                    celda = fila.createCell(columnadato);
-//                    celda.setCellValue(new HSSFRichTextString(mes + " " + anio));
-//                    celda.setCellStyle(negrita);
 
                     columnadato = columnadato + 2;
                 }
@@ -342,7 +434,7 @@ public class MetodosReporteDepartamento {
                 con = conectar.conectarMySQL();
                 stmt = con.createStatement();
                 columnadato = 1;
-                filadato = 11;
+                filadato = 18;
                 rs2 = stmt.executeQuery("SET lc_time_names = 'es_ES';");
                 rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes ,sum(detallev.importeCompra) as suma "
                         + ",year(venta.fecha) as año\n"
@@ -373,7 +465,7 @@ public class MetodosReporteDepartamento {
                 con = conectar.conectarMySQL();
                 stmt = con.createStatement();
                 columnadato = 1;
-                filadato = 12;
+                filadato = 19;
                 rs2 = stmt.executeQuery("SET lc_time_names = 'es_ES';");
                 rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes ,sum(detallev.importeCompra) as suma "
                         + ",year(venta.fecha) as año\n"
@@ -404,7 +496,7 @@ public class MetodosReporteDepartamento {
                 con = conectar.conectarMySQL();
                 stmt = con.createStatement();
                 columnadato = 1;
-                filadato = 27;
+                filadato = 33;
                 rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes, count(ticket.tic_id),year(venta.fecha) as año"
                         + " from venta inner join ticket on ticket.tic_id = venta.tic_id "
                         + "where venta.status !=-1  "
@@ -425,6 +517,32 @@ public class MetodosReporteDepartamento {
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
             }
+            try {
+                con = conectar.conectarMySQL();
+                stmt = con.createStatement();
+                columnadato = 1;
+                filadato = 38;
+                rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes, count(nota.not_id),year(venta.fecha) as año"
+                        + " from venta inner join nota on nota.not_id = venta.not_id "
+                        + "where venta.status !=-1  "
+                        + "and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
+                        + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(venta.fecha ) "
+                        + " order by  year(venta.fecha), month(venta.fecha) ;");
+                while (rs.next()) {
+                    mes = rs.getString(1);
+                    cantidad = rs.getFloat(2);
+                    anio = rs.getString(3);
+                    fila = hoja.getRow(filadato);
+                    celda = fila.createCell(columnadato);
+                    celda.setCellValue(cantidad);
+                    celda.setCellStyle(Numerico);
+
+                    columnadato = columnadato + 2;
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, e);
+            } 
+            
             for (int x = 1; x < columnadato; x++) {
 
                 hoja.autoSizeColumn(x);
