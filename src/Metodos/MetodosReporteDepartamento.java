@@ -187,6 +187,7 @@ public class MetodosReporteDepartamento {
 
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
+                e.printStackTrace();
             }
             /////////////// final ventas departamento alta              
 
@@ -230,6 +231,7 @@ public class MetodosReporteDepartamento {
                 //////////////// fin de las notas de credito 
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
+                e.printStackTrace();
             }
             //// fin ventas de media
 
@@ -270,6 +272,7 @@ public class MetodosReporteDepartamento {
 
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
+                e.printStackTrace();
             }
 /////////////// fin de las ventas por ticket 
 
@@ -310,6 +313,7 @@ public class MetodosReporteDepartamento {
 
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
+                e.printStackTrace();
             }
             /////////////// final ventas departamento alta              
 
@@ -352,6 +356,7 @@ public class MetodosReporteDepartamento {
                 //////////////// fin de las notas de credito 
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
+                e.printStackTrace();
             }
             //// fin ventas de media
 
@@ -392,6 +397,7 @@ public class MetodosReporteDepartamento {
 
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
+                e.printStackTrace();
             }
 
 //////////////////// fin de ventas por notas de venta
@@ -428,6 +434,7 @@ public class MetodosReporteDepartamento {
                 }
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
+                e.printStackTrace();
             }
 
             try {
@@ -459,6 +466,7 @@ public class MetodosReporteDepartamento {
                 }
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
+                e.printStackTrace();
             }
 
             try {
@@ -490,6 +498,7 @@ public class MetodosReporteDepartamento {
                 }
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
+                e.printStackTrace();
             }
 
             try {
@@ -516,6 +525,7 @@ public class MetodosReporteDepartamento {
                 }
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
+                e.printStackTrace();
             }
             try {
                 con = conectar.conectarMySQL();
@@ -541,6 +551,7 @@ public class MetodosReporteDepartamento {
                 }
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
+                e.printStackTrace();
             } 
             
             for (int x = 1; x < columnadato; x++) {
@@ -558,6 +569,7 @@ public class MetodosReporteDepartamento {
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
+            e.printStackTrace();
         }
 
     }
