@@ -157,7 +157,7 @@ public class MetodosReporteDepartamento {
                         + "on articulo.art_id = detallev.art_id\n"
                         + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
                         + "on departamento.dep_id = categoria.dep_id\n"
-                        + "where departamento.dep_id = 24 and venta.status!= -1 and venta.tic_id is not null "
+                        + "where departamento.dep_id = 24 and venta.status!= -1 and venta.not_id is  null "
                         + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
                         + "order by  year(fecha), month(fecha) ;");
@@ -207,7 +207,7 @@ public class MetodosReporteDepartamento {
                         + "on articulo.art_id = detallev.art_id\n"
                         + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
                         + "on departamento.dep_id = categoria.dep_id\n"
-                        + "where departamento.dep_id = 23 and venta.status!= -1 and venta.tic_id is not null "
+                        + "where departamento.dep_id = 23 and venta.status!= -1 and venta.not_id is  null"
                         + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
                         + "order by  year(fecha), month(fecha) ;");
@@ -250,7 +250,7 @@ public class MetodosReporteDepartamento {
                         + "on articulo.art_id = detallev.art_id\n"
                         + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
                         + "on departamento.dep_id = categoria.dep_id\n"
-                        + "where departamento.dep_id = 22 and venta.status!= -1 and venta.tic_id is not null "
+                        + "where departamento.dep_id = 22 and venta.status!= -1 and venta.not_id is  null "
                         + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
                         + "order by  year(fecha), month(fecha) ;");
@@ -304,8 +304,6 @@ public class MetodosReporteDepartamento {
                     celda.setCellValue(cantidad);
                     celda.setCellStyle(Numerico);
 
-                  
-
                     columnadato = columnadato + 2;
                 }
                 con.close();
@@ -347,7 +345,7 @@ public class MetodosReporteDepartamento {
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
                     celda.setCellStyle(Numerico);
-                    
+
                     columnadato = columnadato + 2;
                 }
                 con.close();
@@ -383,13 +381,12 @@ public class MetodosReporteDepartamento {
                     anio = rs.getString(3);
                     cantidad = rs.getFloat(2) - (ventas[totalmeses] * baja);
                     totalmeses = totalmeses + 1;
-                    
+
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
                     celda.setCellStyle(Numerico);
 
-         
                     columnadato = columnadato + 2;
                 }
                 con.close();
@@ -506,16 +503,21 @@ public class MetodosReporteDepartamento {
                 stmt = con.createStatement();
                 columnadato = 1;
                 filadato = 34;
-                rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes, count(ticket.tic_id),year(venta.fecha) as año"
-                        + " from venta inner join ticket on ticket.tic_id = venta.tic_id "
+
+                ////////////////////////// contar tickets lo cambio ya que no hay la misma cantidad  de ventas que de tickets
+//                rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes, count(ticket.tic_id),year(venta.fecha) as año"
+//                        + " from venta inner join ticket on ticket.tic_id = venta.tic_id "
+//                        + "where venta.status !=-1  "
+//                        + "and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
+//                        + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(venta.fecha ) "
+//                        + " order by  year(venta.fecha), month(venta.fecha) ;");
+//              ////////////////////////////////////////////////////////////////////////////////////////////////////  
+                rs = stmt.executeQuery("select Count(ven_id)from venta "
                         + "where venta.status !=-1  "
-                        + "and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
-                        + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(venta.fecha ) "
-                        + " order by  year(venta.fecha), month(venta.fecha) ;");
-                while (rs.next()) {
-                    mes = rs.getString(1);
-                    cantidad = rs.getFloat(2);
-                    anio = rs.getString(3);
+                        + "and venta.fecha'" + fecha1 + "' and '" + fecha2 + "' ;");
+                if (rs.next()) {
+
+                    cantidad = rs.getFloat(1);
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
@@ -539,9 +541,8 @@ public class MetodosReporteDepartamento {
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(venta.fecha ) "
                         + " order by  year(venta.fecha), month(venta.fecha) ;");
                 while (rs.next()) {
-                    mes = rs.getString(1);
+
                     cantidad = rs.getFloat(2);
-                    anio = rs.getString(3);
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
@@ -552,8 +553,8 @@ public class MetodosReporteDepartamento {
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
                 e.printStackTrace();
-            } 
-            
+            }
+
             for (int x = 1; x < columnadato; x++) {
 
                 hoja.autoSizeColumn(x);
