@@ -215,7 +215,6 @@ public class MetodosReporteDepartamento {
                     mes = rs.getString(1);
                     anio = rs.getString(3);
                     cantidad = rs.getFloat(2) - (ventas[totalmeses] * media);
-                    JOptionPane.showMessageDialog(null, ventas[totalmeses]);
                     totalmeses = totalmeses + 1;
 
                     fila = hoja.getRow(filadato);
@@ -513,7 +512,7 @@ public class MetodosReporteDepartamento {
 //                        + " order by  year(venta.fecha), month(venta.fecha) ;");
 //              ////////////////////////////////////////////////////////////////////////////////////////////////////  
                 rs = stmt.executeQuery("select Count(ven_id)from venta "
-                        + "where venta.status !=-1  "
+                        + "where venta.status !=-1 and not_id is null "
                         + "and venta.fecha between'" + fecha1 + "' and '" + fecha2 + "' ;");
                 if (rs.next()) {
 
