@@ -510,12 +510,15 @@ public class MetodosReporteDepartamento {
 //                        + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(venta.fecha ) "
 //                        + " order by  year(venta.fecha), month(venta.fecha) ;");
 //              ////////////////////////////////////////////////////////////////////////////////////////////////////  
-                rs = stmt.executeQuery("select Count(ven_id)from venta "
-                        + "where venta.status !=-1 and not_id is null "
-                        + "and venta.fecha between'" + fecha1 + "' and '" + fecha2 + "' ;");
+                rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes, count(venta.ven_id),year(venta.fecha) as año"
+                        + " from venta "
+                        + " where venta.status !=-1"
+                        + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
+                        + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(venta.fecha ) "
+                        + " order by  year(venta.fecha), month(venta.fecha) ;");
                 while (rs.next()) {
 
-                    cantidad = rs.getFloat(1);
+                    cantidad = rs.getFloat(2);
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
