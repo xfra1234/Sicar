@@ -513,7 +513,7 @@ public class MetodosReporteDepartamento {
                 rs = stmt.executeQuery("select Count(ven_id)from venta "
                         + "where venta.status !=-1 and not_id is null "
                         + "and venta.fecha between'" + fecha1 + "' and '" + fecha2 + "' ;");
-                if (rs.next()) {
+                while (rs.next()) {
 
                     cantidad = rs.getFloat(1);
                     fila = hoja.getRow(filadato);
