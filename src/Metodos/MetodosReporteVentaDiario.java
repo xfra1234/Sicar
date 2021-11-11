@@ -277,7 +277,7 @@ public class MetodosReporteVentaDiario {
                 
                 rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes, count(venta.ven_id),year(venta.fecha) as año"
                         + " from venta "
-                        + "where venta.status !=-1  "
+                        + "where venta.status !=-1 and not_id is null "
                         + "and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by day(venta.fecha ) "
                         + " order by  year(venta.fecha), month(venta.fecha),day(venta.fecha) ;");
