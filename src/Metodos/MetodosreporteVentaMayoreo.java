@@ -374,7 +374,7 @@ public class MetodosreporteVentaMayoreo {
             }
 
 //////////////////// fin de ventas por notas de venta
-            filadato = 10;
+            filadato = 17;
             columnadato = 1;
             nombremes = 4;
 
@@ -400,7 +400,7 @@ public class MetodosreporteVentaMayoreo {
             }
             con.close();
 
-            filadato = 14;
+            filadato = 21;
             columnadato = 1;
             nombremes = 4;
 
