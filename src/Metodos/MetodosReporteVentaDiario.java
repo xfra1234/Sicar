@@ -5,6 +5,7 @@
  */
 package Metodos;
 
+
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileInputStream;
@@ -29,8 +30,7 @@ import org.apache.poi.ss.usermodel.Row;
  * @author usuario
  */
 public class MetodosReporteVentaDiario {
-
-    Connection con = null;
+      Connection con = null;
     static ResultSet rs = null;
     private Statement stmt = null;
 
@@ -42,11 +42,11 @@ public class MetodosReporteVentaDiario {
     static ResultSet rs3 = null;
     private Statement stmt3 = null;
 
-    Object meses[] = new Object[13];
+      Object meses[] = new Object[13];
     String abrirarchivo = "", guardararchivo = "";
-
+    
     conexion conectar = new conexion();
-
+    
     public void sucursales(String fecha1, String fecha2, String fechauno, String fechados, int sucursal) {
         switch (sucursal) {
             case 1:
@@ -66,7 +66,7 @@ public class MetodosReporteVentaDiario {
                 break;
         }
     }
-
+    
     public void excelsucursales(String fecha1, String fecha2, String fechauno, String fechados) {
         try ( FileInputStream file = new FileInputStream(new File(abrirarchivo))) {
             // leer archivo excel
@@ -114,10 +114,10 @@ public class MetodosReporteVentaDiario {
             Numerico.setDataFormat(format.getFormat("###,##0.00"));
             Numerico.setFont(fontnumerico);
 
-            int filadato = 11, columnadato = 9, nombremes = 3, filadia = 11;
-
+            int filadato = 11, columnadato = 9, nombremes = 3,filadia=11;
+            
             fila = hoja.createRow(3);
-            String mes, anio, dia;
+            String mes, anio,dia;
             float total = 0;
             float cantidad;
             row = hoja.getRow(6);
@@ -125,10 +125,10 @@ public class MetodosReporteVentaDiario {
             try {
                 con = conectar.conectarMySQL();
                 stmt = con.createStatement();
-
-                totalmeses = 0;
+                
+                totalmeses=0;
                 rs2 = stmt.executeQuery("SET lc_time_names = 'es_ES';");
-
+                
                 rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes ,sum(detallev.importecon) as suma "
                         + ",year(venta.fecha) as año,day(venta.fecha)\n"
                         + "from detallev inner join  venta on venta.ven_id = detallev.ven_id inner join articulo "
@@ -141,14 +141,14 @@ public class MetodosReporteVentaDiario {
                         + "order by  year(fecha), month(fecha),day(venta.fecha) ;");
                 while (rs.next()) {
                     mes = rs.getString(1);
-                    dia = rs.getString(4);
+                    dia=  rs.getString(4);
                     anio = rs.getString(3);
-                    cantidad = rs.getFloat(2);
-
+                    cantidad= rs.getFloat(2);
+                    
                     mes = mes.toUpperCase().charAt(0) + mes.substring(1, mes.length());
                     dia = dia.toUpperCase().charAt(0) + dia.substring(1, dia.length());
-                    meses[totalmeses] = dia + " " + mes + " " + anio;
-
+                    meses[totalmeses] = dia +" "+mes + " " + anio;
+                    
                     fila = hoja.getRow(filadato);
                     celda = fila.getCell(columnadato);
                     celda.setCellValue(cantidad);
@@ -158,28 +158,31 @@ public class MetodosReporteVentaDiario {
                     celda = fila.getCell(0);
                     celda.setCellValue(meses[totalmeses] + "");
                     celda.setCellStyle(encabezados);
-
-                    filadato = filadato + 1;
-                    filadia = filadia + 1;
+                    
+                    filadato=filadato+1;
+                    filadia= filadia+1;
                 }
                 con.close();
                 totalmeses = 0;
-
+               
+               
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
-                e.printStackTrace();
+                 e.printStackTrace();
             }
             /////////////// final ventas departamento alta              
 
+           
             /////////////////
-            columnadato = 10;
+            columnadato=10;
             filadato = 11;
             try {
-
+               
+                
                 con = conectar.conectarMySQL();
                 stmt = con.createStatement();
-
-                totalmeses = 0;
+                
+                totalmeses=0;
                 rs2 = stmt.executeQuery("SET lc_time_names = 'es_ES';");
                 rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes ,sum(detallev.importecon) as suma "
                         + ",year(venta.fecha) as año\n"
@@ -194,32 +197,39 @@ public class MetodosReporteVentaDiario {
                 while (rs.next()) {
                     mes = rs.getString(1);
                     anio = rs.getString(3);
-                    cantidad = rs.getFloat(2);
+                    cantidad= rs.getFloat(2);
                     totalmeses = totalmeses + 1;
 
+                    
                     fila = hoja.getRow(filadato);
                     celda = fila.getCell(columnadato);
                     celda.setCellValue(cantidad);
                     celda.setCellStyle(Numerico);
 
-                    filadato = filadato + 1;
+
+                    
+                    filadato=filadato+1;
                 }
                 con.close();
                 totalmeses = 0;
+               
 
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
-                e.printStackTrace();
+                 e.printStackTrace();
             }
+          
 
-            columnadato = 11;
+           
+            columnadato=11;
             filadato = 11;
             try {
-
+              
+                
                 con = conectar.conectarMySQL();
                 stmt = con.createStatement();
-
-                totalmeses = 0;
+                
+                totalmeses=0;
                 rs2 = stmt.executeQuery("SET lc_time_names = 'es_ES';");
                 rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes ,sum(detallev.importecon) as suma "
                         + ",year(venta.fecha) as año\n"
@@ -234,43 +244,53 @@ public class MetodosReporteVentaDiario {
                 while (rs.next()) {
                     mes = rs.getString(1);
                     anio = rs.getString(3);
-                    cantidad = rs.getFloat(2);
+                    cantidad= rs.getFloat(2);
                     totalmeses = totalmeses + 1;
-
+                    
                     fila = hoja.getRow(filadato);
                     celda = fila.getCell(columnadato);
                     celda.setCellValue(cantidad);
                     celda.setCellStyle(Numerico);
 
-                    filadato = filadato + 1;
+                    
+                    filadato=filadato+1;
                 }
                 con.close();
                 totalmeses = 0;
-
+               
+               
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
-                e.printStackTrace();
+                 e.printStackTrace();
             }
 
+           
+           
             filadato = 11;
             columnadato = 13;
             nombremes = 4;
 
+                   
             try {
                 con = conectar.conectarMySQL();
                 stmt = con.createStatement();
-
-                rs = stmt.executeQuery("select Count(ven_id)from venta "
-                        + "where venta.status !=-1  and not_id is null"
-                        + "and venta.fecha between'" + fecha1 + "' and '" + fecha2 + "' ;");
-                if (rs.next()) {
+                
+                rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes, count(venta.ven_id),year(venta.fecha) as año"
+                        + " from venta "
+                        + "where venta.status !=-1  "
+                        + "and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
+                        + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by day(venta.fecha ) "
+                        + " order by  year(venta.fecha), month(venta.fecha),day(venta.fecha) ;");
+                while (rs.next()) {
+                    mes = rs.getString(1);
                     cantidad = rs.getFloat(2);
+                    anio = rs.getString(3);
                     fila = hoja.getRow(filadato);
                     celda = fila.getCell(columnadato);
                     celda.setCellValue(cantidad);
                     celda.setCellStyle(Numerico);
 
-                    filadato = filadato + 1;
+                    filadato=filadato+1;
                 }
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
@@ -291,9 +311,10 @@ public class MetodosReporteVentaDiario {
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
-            e.printStackTrace();
+             e.printStackTrace();
         }
 
     }
 
+    
 }

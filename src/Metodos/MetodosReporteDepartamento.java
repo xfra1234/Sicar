@@ -337,7 +337,6 @@ public class MetodosReporteDepartamento {
                     mes = rs.getString(1);
                     anio = rs.getString(3);
                     cantidad = rs.getFloat(2) - (ventas[totalmeses] * media);
-                    JOptionPane.showMessageDialog(null, ventas[totalmeses]);
                     totalmeses = totalmeses + 1;
 
                     fila = hoja.getRow(filadato);
