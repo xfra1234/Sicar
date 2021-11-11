@@ -514,7 +514,7 @@ public class MetodosReporteDepartamento {
 //              ////////////////////////////////////////////////////////////////////////////////////////////////////  
                 rs = stmt.executeQuery("select Count(ven_id)from venta "
                         + "where venta.status !=-1  "
-                        + "and venta.fecha'" + fecha1 + "' and '" + fecha2 + "' ;");
+                        + "and venta.fecha between'" + fecha1 + "' and '" + fecha2 + "' ;");
                 if (rs.next()) {
 
                     cantidad = rs.getFloat(1);
