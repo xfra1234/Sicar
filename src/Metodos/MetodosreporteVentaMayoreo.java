@@ -386,9 +386,7 @@ public class MetodosreporteVentaMayoreo {
                         + " and venta.total>=" + 1000 + " "
                         + "and venta.fecha between'" + fecha1 + "' and '" + fecha2 + "' ;");
                 while (rs.next()) {
-                    mes = rs.getString(1);
-                    cantidad = rs.getFloat(2);
-                    anio = rs.getString(3);
+                    cantidad = rs.getFloat(1);
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
