@@ -55,8 +55,8 @@ public class MetodosReporteVentaDiario {
                 excelsucursales(fecha1, fecha2, fechauno, fechados);
                 break;
             case 2:
-                abrirarchivo = ("C:\\Users\\GHIA\\Documents\\CVentas Diarias.xls");
-                guardararchivo = ("C:\\Users\\GHIA\\Desktop\\CVentas Diarias Sucursal_ Coapinole del " + fechauno + " al " + fechados + ".xls");
+                abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Ventas Diarias.xls");
+                guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Ventas Diarias Sucursal_ Coapinole del " + fechauno + " al " + fechados + ".xls");
                 excelsucursales(fecha1, fecha2, fechauno, fechados);
                 break;
             case 3:
