@@ -11,6 +11,7 @@ import java.awt.image.ImageObserver;
 import java.net.URL;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -27,7 +28,7 @@ public class frmPrinicipal extends javax.swing.JFrame {
      * Creates new form frmPrinicipal
      */
     public frmPrinicipal() {
-
+        
         initComponents();
         ImageIcon img = new ImageIcon("C:\\Users\\\\Cpu\\Documents\\NetBeansProjects\\Sicar\\logo.png");
 //define el icon a tu JFrame
@@ -47,7 +48,7 @@ public class frmPrinicipal extends javax.swing.JFrame {
         reporte.setResizable(false);
         this.dispose();
     }
-
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -97,11 +98,11 @@ public class frmPrinicipal extends javax.swing.JFrame {
             }
         };
         jLabel4 = new javax.swing.JLabel();
-        ImageIcon icon9 = new ImageIcon(getClass().getResource("/Imagenes/ventas-mayoreo.jpg"));
-        Image image9 = icon9.getImage();
-        panventamayoreo = new javax.swing.JDesktopPane(){
+        ImageIcon icon11 = new ImageIcon(getClass().getResource("/Imagenes/servicio-domicilio.png"));
+        Image image11 = icon11.getImage();
+        panventadomicilio = new javax.swing.JDesktopPane(){
             public void paintComponent(Graphics g){
-                g.drawImage(image9,0,0,getWidth(),getHeight(),this);
+                g.drawImage(image11,0,0,getWidth(),getHeight(),this);
             }
         };
         jLabel5 = new javax.swing.JLabel();
@@ -113,6 +114,14 @@ public class frmPrinicipal extends javax.swing.JFrame {
             }
         };
         jLabel6 = new javax.swing.JLabel();
+        ImageIcon icon9 = new ImageIcon(getClass().getResource("/Imagenes/ventas-mayoreo.jpg"));
+        Image image9 = icon9.getImage();
+        panventamayoreo = new javax.swing.JDesktopPane(){
+            public void paintComponent(Graphics g){
+                g.drawImage(image9,0,0,getWidth(),getHeight(),this);
+            }
+        };
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Reportes ");
@@ -155,7 +164,7 @@ public class frmPrinicipal extends javax.swing.JFrame {
         );
         pandepartamentosLayout.setVerticalGroup(
             pandepartamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 118, Short.MAX_VALUE)
         );
 
         panreporte80porciernto.setBackground(new java.awt.Color(255, 255, 191));
@@ -177,7 +186,7 @@ public class frmPrinicipal extends javax.swing.JFrame {
         );
         panreporte80porcierntoLayout.setVerticalGroup(
             panreporte80porcierntoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 118, Short.MAX_VALUE)
         );
 
         jLabel2.setText("Productos que conforman el 80%");
@@ -221,7 +230,7 @@ public class frmPrinicipal extends javax.swing.JFrame {
         panventadiaria.setLayout(panventadiariaLayout);
         panventadiariaLayout.setHorizontalGroup(
             panventadiariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 153, Short.MAX_VALUE)
         );
         panventadiariaLayout.setVerticalGroup(
             panventadiariaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,24 +239,24 @@ public class frmPrinicipal extends javax.swing.JFrame {
 
         jLabel4.setText("Reporte de Resurtido de Bodega");
 
-        panventamayoreo.setBackground(new java.awt.Color(255, 255, 191));
-        panventamayoreo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        panventamayoreo.setToolTipText("Reporte Venta Mayoreo");
-        panventamayoreo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        panventamayoreo.addMouseListener(new java.awt.event.MouseAdapter() {
+        panventadomicilio.setBackground(new java.awt.Color(255, 255, 191));
+        panventadomicilio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panventadomicilio.setToolTipText("Reporte Venta Mayoreo");
+        panventadomicilio.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panventadomicilio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                panventamayoreoMouseClicked(evt);
+                panventadomicilioMouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout panventamayoreoLayout = new javax.swing.GroupLayout(panventamayoreo);
-        panventamayoreo.setLayout(panventamayoreoLayout);
-        panventamayoreoLayout.setHorizontalGroup(
-            panventamayoreoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panventadomicilioLayout = new javax.swing.GroupLayout(panventadomicilio);
+        panventadomicilio.setLayout(panventadomicilioLayout);
+        panventadomicilioLayout.setHorizontalGroup(
+            panventadomicilioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 153, Short.MAX_VALUE)
         );
-        panventamayoreoLayout.setVerticalGroup(
-            panventamayoreoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panventadomicilioLayout.setVerticalGroup(
+            panventadomicilioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 118, Short.MAX_VALUE)
         );
 
@@ -277,18 +286,41 @@ public class frmPrinicipal extends javax.swing.JFrame {
 
         jLabel6.setText("Reporte Ventas Diaria");
 
+        panventamayoreo.setBackground(new java.awt.Color(255, 255, 191));
+        panventamayoreo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        panventamayoreo.setToolTipText("Reporte Venta Mayoreo");
+        panventamayoreo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        panventamayoreo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panventamayoreoMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panventamayoreoLayout = new javax.swing.GroupLayout(panventamayoreo);
+        panventamayoreo.setLayout(panventamayoreoLayout);
+        panventamayoreoLayout.setHorizontalGroup(
+            panventamayoreoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        panventamayoreoLayout.setVerticalGroup(
+            panventamayoreoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLabel7.setText("Reporte Venta a Domicilio");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panresurtido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pandepartamentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel3))
-                .addGap(56, 56, 56)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panreporte80porciernto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2)
@@ -297,45 +329,63 @@ public class frmPrinicipal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(panventadiaria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(panventamayoreo)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(10, 10, 10)
                                 .addComponent(jLabel5)
-                                .addGap(15, 15, 15))
-                            .addComponent(panventadiaria))
-                        .addContainerGap(20, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(37, 37, 37)
                         .addComponent(jLabel6)
-                        .addGap(44, 44, 44))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panventadomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(19, 19, 19))
             .addComponent(jDesktopPane1)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panventamayoreo)
-                    .addComponent(pandepartamentos)
-                    .addComponent(panreporte80porciernto))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel5))
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panresurtido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panresurtido2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panventadiaria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(jLabel4))
-                    .addComponent(jLabel6))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(pandepartamentos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(panresurtido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(panventamayoreo)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(panreporte80porciernto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(panresurtido2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(panventadiaria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel6)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(panventadomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel7)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -344,8 +394,8 @@ public class frmPrinicipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(1, 1, 1))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -382,16 +432,20 @@ public class frmPrinicipal extends javax.swing.JFrame {
         mostrar(diaria);
     }//GEN-LAST:event_panventadiariaMouseClicked
 
-    private void panventamayoreoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panventamayoreoMouseClicked
+    private void panventadomicilioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panventadomicilioMouseClicked
         // TODO add your handling code here:
-        frmReporteVentaMayoreo mayoreo = new frmReporteVentaMayoreo();
-        mostrar(mayoreo);
+        frmReporteVentasDomicilio domicilio = new frmReporteVentasDomicilio();
+        mostrar(domicilio);
 
-    }//GEN-LAST:event_panventamayoreoMouseClicked
+    }//GEN-LAST:event_panventadomicilioMouseClicked
 
     private void panresurtido2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panresurtido2MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_panresurtido2MouseClicked
+
+    private void panventamayoreoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panventamayoreoMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_panventamayoreoMouseClicked
 
     /**
      * @param args the command line arguments
@@ -436,12 +490,14 @@ public class frmPrinicipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JDesktopPane pandepartamentos;
     private javax.swing.JDesktopPane panreporte80porciernto;
     private javax.swing.JDesktopPane panresurtido;
     private javax.swing.JDesktopPane panresurtido2;
     private javax.swing.JDesktopPane panventadiaria;
+    private javax.swing.JDesktopPane panventadomicilio;
     private javax.swing.JDesktopPane panventamayoreo;
     // End of variables declaration//GEN-END:variables
 }
