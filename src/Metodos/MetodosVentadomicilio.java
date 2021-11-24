@@ -126,7 +126,8 @@ public class MetodosVentadomicilio {
             row = hoja.getRow(6);
             int totalmeses = 0;
             try {
-
+                con = conectar.conectarMySQL();
+                stmt = con.createStatement();
                 rs = stmt.executeQuery("select vnd_id from vendedor where nombre ='ventas domicilio';");
                 if (rs.next()) {
                     idvendedor = rs.getInt(1);
