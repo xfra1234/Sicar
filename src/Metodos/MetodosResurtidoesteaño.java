@@ -44,7 +44,7 @@ public class MetodosResurtidoesteaño {
     conexion conectar = new conexion();
     String abrirarchivo = "", guardararchivo = "";
     int contador = 0, contador1 = 0;
-    float cantidad3ma = 0, existencia = 0;
+    float cantidad3ma = 0, existencia = 0, preciocompra = 0;
     String descripcion = "", descripcion2 = "", categoria = "", clave = "";
     int idpaquete;
     Double cero = 0.0;
@@ -132,7 +132,7 @@ public class MetodosResurtidoesteaño {
             font2.setFontHeight((short) (10 * 20));
             encabezados.setFont(font2);
 
-            CellStyle letraprincipal  = libro.createCellStyle();
+            CellStyle letraprincipal = libro.createCellStyle();
             HSSFFont font3 = libro.createFont();
             font3.setBold(true);
             font3.setFontName("Arial");
@@ -154,7 +154,7 @@ public class MetodosResurtidoesteaño {
                 con = conectar.conectarMySQL();
                 stmt = con.createStatement();
                 rs = stmt.executeQuery("select articulo.art_id,articulo.clave,articulo.existencia,"
-                        + "articulo.descripcion,categoria.nombre"
+                        + "articulo.descripcion,categoria.nombre,articulo.precioCompra "
                         + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id "
                         + " where articulo.status !=-1  order by categoria.nombre,articulo.descripcion");
                 while (rs.next()) {
@@ -163,6 +163,7 @@ public class MetodosResurtidoesteaño {
                     existencia = rs.getFloat(3);
                     descripcion = rs.getString(4);
                     categoria = rs.getString(5);
+                    preciocompra = rs.getFloat(6);
 
                     con2 = conectar.conectarMySQL();
                     stmt2 = con2.createStatement();
@@ -191,6 +192,10 @@ public class MetodosResurtidoesteaño {
                         celda.setCellStyle(Numerico);
 
                         celda = fila.createCell(2);
+                        celda.setCellValue(preciocompra);
+                        celda.setCellStyle(Numerico);
+
+                        celda = fila.createCell(3);
                         celda.setCellValue((cantidad3ma / 3));
                         celda.setCellStyle(Numerico);
 
@@ -200,20 +205,20 @@ public class MetodosResurtidoesteaño {
                             String Formula;
 
                             //// Formula 7 dias mes anterior
-                            Formula = "C" + filaformula + "/4";
-                            celda = fila.createCell(3);
-                            celda.setCellFormula(Formula);
-                            celda.setCellStyle(Numerico);
-
-                            //// Formula Resurtido mes   anterior
-                            Formula = "D" + filaformula + "-B" + filaformula;
+                            Formula = "D" + filaformula + "/4";
                             celda = fila.createCell(4);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
 
+                            //// Formula Resurtido mes   anterior
+                            Formula = "E" + filaformula + "-B" + filaformula;
+                            celda = fila.createCell(5);
+                            celda.setCellFormula(Formula);
+                            celda.setCellStyle(Numerico);
+
                             //// Formula Dias Inventario Mes  Anterior  
-                            Formula = "B" + filaformula + "*30/C" + filaformula;
-                            celda = fila.createCell(6);
+                            Formula = "B" + filaformula + "*30/D" + filaformula;
+                            celda = fila.createCell(7);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
 
@@ -244,6 +249,10 @@ public class MetodosResurtidoesteaño {
                         celda.setCellStyle(Numerico);
 
                         celda = fila.createCell(2);
+                        celda.setCellValue((preciocompra));
+                        celda.setCellStyle(Numerico);
+
+                        celda = fila.createCell(3);
                         celda.setCellValue((cantidad3ma / 3));
                         celda.setCellStyle(Numerico);
 
@@ -253,20 +262,20 @@ public class MetodosResurtidoesteaño {
                             String Formula;
 
                             //// Formula 7 dias mes anterior
-                            Formula = "C" + filaformula + "/4";
-                            celda = fila.createCell(3);
-                            celda.setCellFormula(Formula);
-                            celda.setCellStyle(Numerico);
-
-                            //// Formula Resurtido mes   anterior
-                            Formula = "D" + filaformula + "-B" + filaformula;
+                            Formula = "D" + filaformula + "/4";
                             celda = fila.createCell(4);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
 
+                            //// Formula Resurtido mes   anterior
+                            Formula = "E" + filaformula + "-B" + filaformula;
+                            celda = fila.createCell(5);
+                            celda.setCellFormula(Formula);
+                            celda.setCellStyle(Numerico);
+
                             //// Formula Dias Inventario Mes  Anterior  
-                            Formula = "B" + filaformula + "*30/C" + filaformula;
-                            celda = fila.createCell(6);
+                            Formula = "B" + filaformula + "*30/D" + filaformula;
+                            celda = fila.createCell(7);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
                         }
@@ -284,6 +293,7 @@ public class MetodosResurtidoesteaño {
                 //////////////////////////////////////////////////////////////////
                 existencia = 0;
                 cantidad3ma = 0;
+                preciocompra=0;
 
                 for (int x = 0; x < 19; x++) {
                     hoja.autoSizeColumn(x);
