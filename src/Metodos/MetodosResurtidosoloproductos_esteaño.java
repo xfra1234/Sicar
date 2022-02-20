@@ -300,6 +300,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                                 + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id where art_id=" + valor + "");
                         if (rs2.next()) {
                             existencia = existencia + rs2.getFloat(2);
+                            preciocompra= rs2.getFloat(5);
                         }
 
                         if (descripcion.equals(rs2.getString(4))) {
@@ -470,6 +471,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                                 + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id where art_id=" + valor + "");
                         if (rs2.next()) {
                             existencia = existencia + rs2.getFloat(2);
+                             preciocompra= rs2.getFloat(5);
                         }
 
                         if (descripcion.equals(rs2.getString(4))) {
