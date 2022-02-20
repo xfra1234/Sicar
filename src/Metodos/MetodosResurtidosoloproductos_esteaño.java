@@ -45,7 +45,7 @@ public class MetodosResurtidosoloproductos_esteaño {
     conexion conectar = new conexion();
     String abrirarchivo = "", guardararchivo = "";
     int contador = 0, contador1 = 0;
-    float cantidad3ma = 0, cantidad3md = 0, existencia = 0;
+    float cantidad3ma = 0, cantidad3md = 0, existencia = 0, preciocompra = 0;
     String descripcion = "", descripcion2 = "", categoria = "", clave = "";
     int idpaquete;
     protected ArrayList<Integer> idNumeros = new ArrayList();
@@ -88,13 +88,12 @@ public class MetodosResurtidosoloproductos_esteaño {
             HSSFWorkbook libro = new HSSFWorkbook(fs);
             //obtener la hoja que se va leer
             HSSFSheet hoja = libro.getSheetAt(0);
-            
-             // aplicar filtro al archivo
+
+            // aplicar filtro al archivo
             hoja.setAutoFilter(new CellRangeAddress(0, 0, 0, 6));
             // dejar fija la primera fila
             hoja.createFreezePane(0, 1);
 
-            
             //obtener todas las filas de la hoja excel
             HSSFCell celda;
             HSSFRow fila;
@@ -297,7 +296,7 @@ public class MetodosResurtidosoloproductos_esteaño {
 
                         con2 = conectar.conectarMySQL();
                         stmt2 = con2.createStatement();
-                        rs2 = stmt2.executeQuery("select articulo.clave,articulo.existencia,articulo.descripcion,categoria.nombre"
+                        rs2 = stmt2.executeQuery("select articulo.clave,articulo.existencia,articulo.descripcion,categoria.nombre,articulo.precioCompra "
                                 + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id where art_id=" + valor + "");
                         if (rs2.next()) {
                             existencia = existencia + rs2.getFloat(2);
@@ -319,6 +318,10 @@ public class MetodosResurtidosoloproductos_esteaño {
                             celda.setCellStyle(Numerico);
 
                             celda = fila.createCell(2);
+                            celda.setCellValue((preciocompra));
+                            celda.setCellStyle(Numerico);
+
+                            celda = fila.createCell(3);
                             celda.setCellValue((cantidad3ma / 3));
                             celda.setCellStyle(Numerico);
 
@@ -326,28 +329,27 @@ public class MetodosResurtidosoloproductos_esteaño {
 //                            celda.setCellValue((cantidad3md / 3));
 //                            celda.setCellStyle(Numerico);
 //                          
-
                             if (filaa > 0) {
                                 int filaformula = filaa + 1;
                                 String Formula;
 
                                 //// Formula 7 dias mes anterior
-                            Formula = "C" + filaformula + "/4";
-                            celda = fila.createCell(3);
-                            celda.setCellFormula(Formula);
-                            celda.setCellStyle(Numerico);
+                                Formula = "D" + filaformula + "/4";
+                                celda = fila.createCell(4);
+                                celda.setCellFormula(Formula);
+                                celda.setCellStyle(Numerico);
 
-                            //// Formula Resurtido mes   anterior
-                            Formula = "D" + filaformula + "-B" + filaformula;
-                            celda = fila.createCell(4);
-                            celda.setCellFormula(Formula);
-                            celda.setCellStyle(Numerico);
+                                //// Formula Resurtido mes   anterior
+                                Formula = "E" + filaformula + "-B" + filaformula;
+                                celda = fila.createCell(5);
+                                celda.setCellFormula(Formula);
+                                celda.setCellStyle(Numerico);
 
-                            //// Formula Dias Inventario Mes  Anterior  
-                            Formula = "B" + filaformula + "*30/C" + filaformula;
-                            celda = fila.createCell(6);
-                            celda.setCellFormula(Formula);
-                            celda.setCellStyle(Numerico);
+                                //// Formula Dias Inventario Mes  Anterior  
+                                Formula = "B" + filaformula + "*30/D" + filaformula;
+                                celda = fila.createCell(7);
+                                celda.setCellFormula(Formula);
+                                celda.setCellStyle(Numerico);
 
                             }
                             filaa = filaa + 1;
@@ -373,34 +375,37 @@ public class MetodosResurtidosoloproductos_esteaño {
                             celda.setCellStyle(Numerico);
 
                             celda = fila.createCell(2);
+                            celda.setCellValue(preciocompra);
+                            celda.setCellStyle(Numerico);
+
+                            celda = fila.createCell(3);
                             celda.setCellValue((cantidad3ma / 3));
                             celda.setCellStyle(Numerico);
 
 //                            celda = fila.createCell(4);
 //                            celda.setCellValue((cantidad3md / 3));
 //                            celda.setCellStyle(Numerico);
-
                             if (filaa > 0) {
                                 int filaformula = filaa + 1;
                                 String Formula;
 
-                               //// Formula 7 dias mes anterior
-                            Formula = "C" + filaformula + "/4";
-                            celda = fila.createCell(3);
-                            celda.setCellFormula(Formula);
-                            celda.setCellStyle(Numerico);
+                                //// Formula 7 dias mes anterior
+                                Formula = "D" + filaformula + "/4";
+                                celda = fila.createCell(4);
+                                celda.setCellFormula(Formula);
+                                celda.setCellStyle(Numerico);
 
-                            //// Formula Resurtido mes   anterior
-                            Formula = "D" + filaformula + "-B" + filaformula;
-                            celda = fila.createCell(4);
-                            celda.setCellFormula(Formula);
-                            celda.setCellStyle(Numerico);
+                                //// Formula Resurtido mes   anterior
+                                Formula = "E" + filaformula + "-B" + filaformula;
+                                celda = fila.createCell(5);
+                                celda.setCellFormula(Formula);
+                                celda.setCellStyle(Numerico);
 
-                            //// Formula Dias Inventario Mes  Anterior  
-                            Formula = "B" + filaformula + "*30/C" + filaformula;
-                            celda = fila.createCell(6);
-                            celda.setCellFormula(Formula);
-                            celda.setCellStyle(Numerico);
+                                //// Formula Dias Inventario Mes  Anterior  
+                                Formula = "B" + filaformula + "*30/D" + filaformula;
+                                celda = fila.createCell(7);
+                                celda.setCellFormula(Formula);
+                                celda.setCellStyle(Numerico);
 
                             }
                             filaa = filaa + 1;
@@ -461,7 +466,7 @@ public class MetodosResurtidosoloproductos_esteaño {
 
                         con2 = conectar.conectarMySQL();
                         stmt2 = con2.createStatement();
-                        rs2 = stmt2.executeQuery("select articulo.clave,articulo.existencia,articulo.descripcion,categoria.nombre"
+                        rs2 = stmt2.executeQuery("select articulo.clave,articulo.existencia,articulo.descripcion,categoria.nombre,articulo.precioCompra "
                                 + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id where art_id=" + valor + "");
                         if (rs2.next()) {
                             existencia = existencia + rs2.getFloat(2);
@@ -483,6 +488,10 @@ public class MetodosResurtidosoloproductos_esteaño {
                             celda.setCellStyle(Numerico);
 
                             celda = fila.createCell(2);
+                            celda.setCellValue(preciocompra);
+                            celda.setCellStyle(Numerico);
+
+                            celda = fila.createCell(3);
                             celda.setCellValue((cantidad3ma / 3));
                             celda.setCellStyle(Numerico);
 //
@@ -495,22 +504,22 @@ public class MetodosResurtidosoloproductos_esteaño {
                                 String Formula;
 
                                 //// Formula 7 dias mes anterior
-                            Formula = "C" + filaformula + "/4";
-                            celda = fila.createCell(3);
-                            celda.setCellFormula(Formula);
-                            celda.setCellStyle(Numerico);
+                                Formula = "D" + filaformula + "/4";
+                                celda = fila.createCell(4);
+                                celda.setCellFormula(Formula);
+                                celda.setCellStyle(Numerico);
 
-                            //// Formula Resurtido mes   anterior
-                            Formula = "D" + filaformula + "-B" + filaformula;
-                            celda = fila.createCell(4);
-                            celda.setCellFormula(Formula);
-                            celda.setCellStyle(Numerico);
+                                //// Formula Resurtido mes   anterior
+                                Formula = "E" + filaformula + "-B" + filaformula;
+                                celda = fila.createCell(5);
+                                celda.setCellFormula(Formula);
+                                celda.setCellStyle(Numerico);
 
-                            //// Formula Dias Inventario Mes  Anterior  
-                            Formula = "B" + filaformula + "*30/C" + filaformula;
-                            celda = fila.createCell(6);
-                            celda.setCellFormula(Formula);
-                            celda.setCellStyle(Numerico);
+                                //// Formula Dias Inventario Mes  Anterior  
+                                Formula = "B" + filaformula + "*30/D" + filaformula;
+                                celda = fila.createCell(7);
+                                celda.setCellFormula(Formula);
+                                celda.setCellStyle(Numerico);
 
                             }
                             filaa = filaa + 1;
@@ -526,7 +535,6 @@ public class MetodosResurtidosoloproductos_esteaño {
 //                            celda = fila.createCell(0);
 //                            celda.setCellValue(rs2.getString(1));
 //                            celda.setCellStyle(encabezados);
-
                             celda = fila.createCell(0);
                             celda.setCellValue(new HSSFRichTextString(rs2.getString(3)));
                             celda.setCellStyle(encabezados);
@@ -536,6 +544,10 @@ public class MetodosResurtidosoloproductos_esteaño {
                             celda.setCellStyle(Numerico);
 
                             celda = fila.createCell(2);
+                            celda.setCellValue(preciocompra);
+                            celda.setCellStyle(Numerico);
+
+                            celda = fila.createCell(3);
                             celda.setCellValue((cantidad3ma / 3));
                             celda.setCellStyle(Numerico);
 //
@@ -548,23 +560,23 @@ public class MetodosResurtidosoloproductos_esteaño {
                                 int filaformula = filaa + 1;
                                 String Formula;
 
-                              //// Formula 7 dias mes anterior
-                            Formula = "C" + filaformula + "/4";
-                            celda = fila.createCell(3);
-                            celda.setCellFormula(Formula);
-                            celda.setCellStyle(Numerico);
+                                //// Formula 7 dias mes anterior
+                                Formula = "D" + filaformula + "/4";
+                                celda = fila.createCell(4);
+                                celda.setCellFormula(Formula);
+                                celda.setCellStyle(Numerico);
 
-                            //// Formula Resurtido mes   anterior
-                            Formula = "D" + filaformula + "-B" + filaformula;
-                            celda = fila.createCell(4);
-                            celda.setCellFormula(Formula);
-                            celda.setCellStyle(Numerico);
+                                //// Formula Resurtido mes   anterior
+                                Formula = "E" + filaformula + "-B" + filaformula;
+                                celda = fila.createCell(5);
+                                celda.setCellFormula(Formula);
+                                celda.setCellStyle(Numerico);
 
-                            //// Formula Dias Inventario Mes  Anterior  
-                            Formula = "B" + filaformula + "*30/C" + filaformula;
-                            celda = fila.createCell(6);
-                            celda.setCellFormula(Formula);
-                            celda.setCellStyle(Numerico);
+                                //// Formula Dias Inventario Mes  Anterior  
+                                Formula = "B" + filaformula + "*30/D" + filaformula;
+                                celda = fila.createCell(7);
+                                celda.setCellFormula(Formula);
+                                celda.setCellStyle(Numerico);
 
                             }
                             filaa = filaa + 1;
@@ -574,9 +586,10 @@ public class MetodosResurtidosoloproductos_esteaño {
                         con2.close();
                     }
 
-                    existencia = 0;
+                    existencia =  0;
                     cantidad3ma = 0;
                     cantidad3md = 0;
+                    preciocompra= 0;
                 }
                 for (int x = 0; x < 20; x++) {
                     hoja.autoSizeColumn(x);
