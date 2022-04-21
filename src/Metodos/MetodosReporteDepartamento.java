@@ -49,8 +49,8 @@ public class MetodosReporteDepartamento {
     String abrirarchivo = "", guardararchivo = "";
     float baja = 0.15f;
     float media = 0.85f;
-    String valormes,letra;
-    int contarmes =1;
+    String valormes, letra;
+    int contarmes = 1;
 
     public void sucursales(String fecha1, String fecha2, String fechauno, String fechados, int sucursal) {
         switch (sucursal) {
@@ -264,13 +264,13 @@ public class MetodosReporteDepartamento {
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
                     celda.setCellStyle(Numerico);
-                    
+
                     letra = formuladesumas(contarmes);
-                    fila = hoja.getRow((filadato+1));
-                    celda = fila.createCell(columnadato);       
-                    celda.setCellFormula("SUM("+letra+"7:"+letra+"9)");
-                    contarmes=contarmes+1;
-                    
+                    fila = hoja.getRow((filadato + 1));
+                    celda = fila.createCell(columnadato);
+                    celda.setCellFormula("SUM(" + letra + "7:" + letra + "9)");
+                    contarmes = contarmes + 1;
+
                     columnadato = columnadato + 2;
                 }
                 con.close();
@@ -280,7 +280,7 @@ public class MetodosReporteDepartamento {
                 JOptionPane.showMessageDialog(null, e);
                 e.printStackTrace();
             }
-            contarmes=1;
+            contarmes = 1;
 /////////////// fin de las ventas por ticket 
 
 //////////////////// inicio ventas por notas de venta
@@ -392,12 +392,12 @@ public class MetodosReporteDepartamento {
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
                     celda.setCellStyle(Numerico);
-                    
+
                     letra = formuladesumas(contarmes);
-                    fila = hoja.getRow((filadato+1));
-                    celda = fila.createCell(columnadato);       
-                    celda.setCellFormula("SUM("+letra+"13:"+letra+"15)");
-                    contarmes=contarmes+1;
+                    fila = hoja.getRow((filadato + 1));
+                    celda = fila.createCell(columnadato);
+                    celda.setCellFormula("SUM(" + letra + "13:" + letra + "15)");
+                    contarmes = contarmes + 1;
                     columnadato = columnadato + 2;
                 }
                 con.close();
@@ -407,6 +407,7 @@ public class MetodosReporteDepartamento {
                 JOptionPane.showMessageDialog(null, e);
                 e.printStackTrace();
             }
+            contarmes = 1;
 
 //////////////////// fin de ventas por notas de venta
             //finaliza ventas por departamento 
@@ -501,18 +502,20 @@ public class MetodosReporteDepartamento {
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
                     celda.setCellStyle(Numerico);
-                    
+
                     letra = formuladesumas(contarmes);
-                    fila = hoja.getRow((filadato+1));
-                    celda = fila.createCell(columnadato);       
-                    celda.setCellFormula("SUM("+letra+"18:"+letra+"20)");
-                    contarmes=contarmes+1;
+                    System.out.println(letra);
+                    fila = hoja.getRow((filadato + 1));
+                    celda = fila.createCell(columnadato);
+                    celda.setCellFormula("SUM(" + letra + "18:" + letra + "20)");
+                    contarmes = contarmes + 1;
                     columnadato = columnadato + 2;
                 }
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
                 e.printStackTrace();
             }
+            contarmes = 1;
 
             try {
                 con = conectar.conectarMySQL();
