@@ -270,8 +270,9 @@ public class MetodosReporteDepartamento {
                     System.out.println(letra);
                     fila = hoja.getRow((filadato+1));
                     celda = fila.createCell(columnadato);
-                    celda.setCellFormula("SUMA('"+letra+"'7:'"+letra+"'9)");
+                    celda.setCellFormula("SUMA("+letra+"7:"+letra+"9)");
                     columnadato = columnadato + 2;
+                    contarmes=contarmes+1;
                 }
                 con.close();
                 totalmeses = 0;
