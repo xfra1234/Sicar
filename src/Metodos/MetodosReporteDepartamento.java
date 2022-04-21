@@ -266,14 +266,12 @@ public class MetodosReporteDepartamento {
                     celda.setCellStyle(Numerico);
                     
                     letra = formuladesumas(contarmes);
-                    
-                    System.out.println(letra);
                     fila = hoja.getRow((filadato+1));
-                    celda = fila.createCell(columnadato);
-                    
+                    celda = fila.createCell(columnadato);       
                     celda.setCellFormula("SUM("+letra+"7:"+letra+"9)");
-                    columnadato = columnadato + 2;
                     contarmes=contarmes+1;
+                    
+                    columnadato = columnadato + 2;
                 }
                 con.close();
                 totalmeses = 0;
@@ -282,6 +280,7 @@ public class MetodosReporteDepartamento {
                 JOptionPane.showMessageDialog(null, e);
                 e.printStackTrace();
             }
+            contarmes=1;
 /////////////// fin de las ventas por ticket 
 
 //////////////////// inicio ventas por notas de venta
@@ -393,7 +392,12 @@ public class MetodosReporteDepartamento {
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
                     celda.setCellStyle(Numerico);
-
+                    
+                    letra = formuladesumas(contarmes);
+                    fila = hoja.getRow((filadato+1));
+                    celda = fila.createCell(columnadato);       
+                    celda.setCellFormula("SUM("+letra+"13:"+letra+"15)");
+                    contarmes=contarmes+1;
                     columnadato = columnadato + 2;
                 }
                 con.close();
@@ -497,7 +501,12 @@ public class MetodosReporteDepartamento {
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
                     celda.setCellStyle(Numerico);
-
+                    
+                    letra = formuladesumas(contarmes);
+                    fila = hoja.getRow((filadato+1));
+                    celda = fila.createCell(columnadato);       
+                    celda.setCellFormula("SUM("+letra+"18:"+letra+"20)");
+                    contarmes=contarmes+1;
                     columnadato = columnadato + 2;
                 }
             } catch (SQLException e) {
