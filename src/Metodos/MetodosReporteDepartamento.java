@@ -271,7 +271,7 @@ public class MetodosReporteDepartamento {
                     fila = hoja.getRow((filadato+1));
                     celda = fila.createCell(columnadato);
                     
-                    celda.setCellFormula("SUM(B7:B9)");
+                    celda.setCellFormula("SUM("+letra+"7:"+letra+"9)");
                     columnadato = columnadato + 2;
                     contarmes=contarmes+1;
                 }
