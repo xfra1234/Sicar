@@ -293,7 +293,7 @@ public class MetodosResurtidoesteaño {
                 //////////////////////////////////////////////////////////////////
                 existencia = 0;
                 cantidad3ma = 0;
-                preciocompra=0;
+                preciocompra = 0;
 
                 for (int x = 0; x < 19; x++) {
                     hoja.autoSizeColumn(x);
@@ -303,6 +303,7 @@ public class MetodosResurtidoesteaño {
                 JOptionPane.showMessageDialog(null, e);
                 e.printStackTrace();
             }
+            limpiarVariables();
             File Archivo = new File(guardararchivo);
             Archivo.createNewFile();
             FileOutputStream elFichero = new FileOutputStream(guardararchivo);

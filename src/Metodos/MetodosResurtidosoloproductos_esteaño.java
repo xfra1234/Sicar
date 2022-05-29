@@ -600,6 +600,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                 JOptionPane.showMessageDialog(null, e);
                 e.printStackTrace();
             }
+            limpiarVariables(); 
             File Archivo = new File(guardararchivo);
             Archivo.createNewFile();
             FileOutputStream elFichero = new FileOutputStream(guardararchivo);
