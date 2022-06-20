@@ -362,8 +362,8 @@ public class Metodosporcentajeproducto {
                     con2 = conectar.conectarMySQL();
                     stmt2 = con2.createStatement();
                     rs2 = stmt2.executeQuery("select sum(detallev.cantidad),articulo.descripcion,unidad.nombre"
-                            + ",sum(detallev.importecon) from detallev inner join venta\n"
-                            + ",sum(detallev.precionorsin)/count(detallev.art_id)"
+                            + ",sum(detallev.importecon) ,sum(detallev.precionorsin)/count(detallev.art_id)"
+                            + "from detallev inner join venta\n"
                             + "on detallev.ven_id = venta.ven_id inner join articulo on\n"
                             + " detallev.art_id=articulo.art_id inner join unidad on uni_id= articulo.unidadventa\n"
                             + "where articulo.art_id='" + valor + "' and\n"
@@ -388,7 +388,7 @@ public class Metodosporcentajeproducto {
                     stmt2 = con2.createStatement();
                     rs2 = stmt2.executeQuery("select sum(detallev.cantidad),articulo.descripcion,unidad.nombre"
                             + ",sum(detallev.importecon),sum(detallev.precionorsin)/count(detallev.art_id)  "
-                            + "from detallev inner join venta\n"
+                            + " from detallev inner join venta\n"
                             + "on detallev.ven_id = venta.ven_id inner join articulo on\n"
                             + " detallev.art_id=articulo.art_id inner join unidad on uni_id= articulo.unidadventa\n"
                             + "where articulo.art_id='" + valor + "' and\n"
