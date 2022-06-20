@@ -607,12 +607,16 @@ public class Metodosporcentajeproducto {
         celda = fila.createCell(2);
         celda.setCellValue(new HSSFRichTextString("Precio Promedio Venta"));
         celda.setCellStyle(headerStyle);
+        
+        celda = fila.createCell(2);
+        celda.setCellValue(new HSSFRichTextString("Precio Compra"));
+        celda.setCellStyle(headerStyle);
                
-        celda = fila.createCell(3);
+        celda = fila.createCell(4);
         celda.setCellValue(new HSSFRichTextString("Venta"));
         celda.setCellStyle(headerStyle);
 
-        celda = fila.createCell(4);
+        celda = fila.createCell(5);
         celda.setCellValue(new HSSFRichTextString("Porcentaje"));
         celda.setCellStyle(headerStyle);
 
@@ -692,7 +696,7 @@ public class Metodosporcentajeproducto {
         celda.setCellValue(new HSSFRichTextString("Venta"));
         celda.setCellStyle(headerStyle);
         
-        celda = fila.createCell(4);
+        celda = fila.createCell(5);
         celda.setCellValue(new HSSFRichTextString("Porcentaje"));
         celda.setCellStyle(headerStyle);
         i = i + 1;
