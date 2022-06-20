@@ -608,7 +608,7 @@ public class Metodosporcentajeproducto {
         celda.setCellValue(new HSSFRichTextString("Precio Promedio Venta"));
         celda.setCellStyle(headerStyle);
         
-        celda = fila.createCell(2);
+        celda = fila.createCell(3);
         celda.setCellValue(new HSSFRichTextString("Precio Compra"));
         celda.setCellStyle(headerStyle);
                
