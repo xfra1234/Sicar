@@ -58,11 +58,15 @@ public class Metodosporcentajeproducto {
     static protected ArrayList<String> Nombreproducto = new ArrayList();
     static protected ArrayList<Float> Porcentajeproducto = new ArrayList();
     static protected ArrayList<Float> Ventaproducto = new ArrayList();
+    static protected ArrayList<Float> Precioventa = new ArrayList();
+    static protected ArrayList<Float> Preciocompra = new ArrayList();
 
     static protected ArrayList<Float> Cantidadproducto20 = new ArrayList();
     static protected ArrayList<String> Nombreproducto20 = new ArrayList();
     static protected ArrayList<Float> Porcentajeproducto20 = new ArrayList();
     static protected ArrayList<Float> Ventaproducto20 = new ArrayList();
+    static protected ArrayList<Float> Precioventa20 = new ArrayList();
+    static protected ArrayList<Float> Preciocompra20 = new ArrayList();
 
     static int productosnum = 0, productosnum20 = 0;
     static float sumaproductos = 0, porcentajeporducto = 0;
@@ -74,10 +78,14 @@ public class Metodosporcentajeproducto {
         Nombreproducto.clear();
         Porcentajeproducto.clear();
         Ventaproducto.clear();
+        Preciocompra.clear();
+        Precioventa.clear();
         Cantidadproducto20.clear();
         Nombreproducto20.clear();
         Porcentajeproducto20.clear();
         Ventaproducto20.clear();
+        Preciocompra20.clear();
+        Precioventa20.clear();
         idNumeros.clear();
         contador = 0;
         productosnum = 0;
@@ -85,6 +93,8 @@ public class Metodosporcentajeproducto {
         sumaproductos = 0;
         porcentajeporducto = 0;
         totalcantidad = 0;
+        preciocompra=0;
+        precioventa=0;
     }
 
     public void consultasucrusales(String fecha1, String fecha2, String fechauno, String fechados, int sucursal) {
@@ -235,6 +245,7 @@ public class Metodosporcentajeproducto {
                 totalcantidad = totalcantidad + ventaproducto;
                 cantidadproducto = 0;
                 ventaproducto = 0;
+                preciocompra=0;
                 precioventa=0;
                 con3.close();
                 alv = alv + 1;
@@ -410,6 +421,7 @@ public class Metodosporcentajeproducto {
                 totalcantidad = totalcantidad + ventaproducto;
                 cantidadproducto = 0;
                 ventaproducto = 0;
+                preciocompra=0;
                 precioventa=0;
                 con3.close();
                 alv = alv + 1;
@@ -742,6 +754,7 @@ public class Metodosporcentajeproducto {
                         Cantidadproducto20.add(array[i].cantidadp);
                         Ventaproducto20.add(array[i].ventap);
                         Porcentajeproducto20.add(porcentajeporducto);
+                        Precioventa20.add(array[i].preciov);
                         sumaproductos = sumaproductos + porcentajeporducto;
                         porcentajeporducto = 0;
                         productosnum20 = productosnum20 + 1;
@@ -755,6 +768,7 @@ public class Metodosporcentajeproducto {
                     Nombreproducto.add(array[i].nombrep);
                     Cantidadproducto.add(array[i].cantidadp);
                     Ventaproducto.add(array[i].ventap);
+                    Precioventa.add(array[i].preciov);
                     Porcentajeproducto.add(porcentajeporducto);
                     porcentajeporducto = 0;
                     productosnum = productosnum + 1;
