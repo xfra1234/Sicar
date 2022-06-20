@@ -199,7 +199,7 @@ public class Metodosporcentajeproducto {
                     stmt2 = con2.createStatement();
                     rs2 = stmt2.executeQuery("select sum(detallev.cantidad),articulo.descripcion,unidad.nombre"
                             + ",sum(detallev.importecon),sum(detallev.precionorsin)/count(detallev.art_id) "
-                            + "from detallev inner join venta\n"
+                            + ",detallev.preciocompra from detallev inner join venta\n"
                             + "on detallev.ven_id = venta.ven_id inner join articulo on\n"
                             + " detallev.art_id=articulo.art_id inner join unidad on uni_id= articulo.unidadventa\n"
                             + "where articulo.art_id='" + valor + "' and\n"
@@ -223,7 +223,7 @@ public class Metodosporcentajeproducto {
                     stmt2 = con2.createStatement();
                     rs2 = stmt2.executeQuery("select sum(detallev.cantidad),articulo.descripcion,unidad.nombre"
                             + ",sum(detallev.importecon)  "
-                            + ",sum(detallev.precionorsin)/count(detallev.art_id) "
+                            + ",sum(detallev.precionorsin)/count(detallev.art_id), detallev.preciocompra"
                             + "from detallev inner join venta\n"
                             + "on detallev.ven_id = venta.ven_id inner join articulo on\n"
                             + " detallev.art_id=articulo.art_id inner join unidad on uni_id= articulo.unidadventa\n"
@@ -236,12 +236,13 @@ public class Metodosporcentajeproducto {
                         unidad = rs2.getString(3);
                         ventaproducto = ventaproducto + (rs2.getFloat(4));
                         precioventa=rs2.getFloat(5);
+                        preciocompra=rs2.getFloat(6);
 
                     }
                     con2.close();
                 }
 
-                arrayPersonas[i] = new Persona(nombreproducto, cantidadproducto, ventaproducto,precioventa);
+                arrayPersonas[i] = new Persona(nombreproducto, cantidadproducto, ventaproducto,precioventa,preciocompra);
                 totalcantidad = totalcantidad + ventaproducto;
                 cantidadproducto = 0;
                 ventaproducto = 0;
@@ -374,7 +375,7 @@ public class Metodosporcentajeproducto {
                     stmt2 = con2.createStatement();
                     rs2 = stmt2.executeQuery("select sum(detallev.cantidad),articulo.descripcion,unidad.nombre"
                             + ",sum(detallev.importecon) ,sum(detallev.precionorsin)/count(detallev.art_id)"
-                            + "from detallev inner join venta\n"
+                            + ",detallev.preciocompra from detallev inner join venta\n"
                             + "on detallev.ven_id = venta.ven_id inner join articulo on\n"
                             + " detallev.art_id=articulo.art_id inner join unidad on uni_id= articulo.unidadventa\n"
                             + "where articulo.art_id='" + valor + "' and\n"
@@ -388,6 +389,7 @@ public class Metodosporcentajeproducto {
                         unidad = rs2.getString(3);
                         ventaproducto = ventaproducto + (rs2.getFloat(4));
                         precioventa=precioventa+rs2.getFloat(5);
+                        preciocompra= rs2.getFloat(6);
 
                     }
                     con2.close();
@@ -399,7 +401,7 @@ public class Metodosporcentajeproducto {
                     stmt2 = con2.createStatement();
                     rs2 = stmt2.executeQuery("select sum(detallev.cantidad),articulo.descripcion,unidad.nombre"
                             + ",sum(detallev.importecon),sum(detallev.precionorsin)/count(detallev.art_id)  "
-                            + " from detallev inner join venta\n"
+                            + ",detallev.preciocompra from detallev inner join venta\n"
                             + "on detallev.ven_id = venta.ven_id inner join articulo on\n"
                             + " detallev.art_id=articulo.art_id inner join unidad on uni_id= articulo.unidadventa\n"
                             + "where articulo.art_id='" + valor + "' and\n"
@@ -412,12 +414,13 @@ public class Metodosporcentajeproducto {
                         unidad = rs2.getString(3);
                         ventaproducto = ventaproducto + (rs2.getFloat(4));
                         precioventa=rs2.getFloat(5);
+                        preciocompra=rs2.getFloat(6);
 
                     }
                     con2.close();
                 }
 
-                arrayPersonas[i] = new Persona(nombreproducto, cantidadproducto, ventaproducto,precioventa);
+                arrayPersonas[i] = new Persona(nombreproducto, cantidadproducto, ventaproducto,precioventa,preciocompra);
                 totalcantidad = totalcantidad + ventaproducto;
                 cantidadproducto = 0;
                 ventaproducto = 0;
@@ -601,8 +604,8 @@ public class Metodosporcentajeproducto {
         celda.setCellValue(new HSSFRichTextString("Cantidad"));
         celda.setCellStyle(headerStyle);
         
-        celda = fila.createCell(3);
-        celda.setCellValue(new HSSFRichTextString("Precio Venta"));
+        celda = fila.createCell(2);
+        celda.setCellValue(new HSSFRichTextString("Precio Promedio Venta"));
         celda.setCellStyle(headerStyle);
                
         celda = fila.createCell(3);
@@ -634,12 +637,17 @@ public class Metodosporcentajeproducto {
             celda = fila.createCell(2);
             celda.setCellValue((Precioventa.get(j)));
             celda.setCellStyle(conta);
-
+            
             celda = fila.createCell(3);
+            celda.setCellValue((Preciocompra.get(j)));
+            celda.setCellStyle(conta);
+            
+
+            celda = fila.createCell(4);
             celda.setCellValue((Ventaproducto.get(j)));
             celda.setCellStyle(conta);
 
-            celda = fila.createCell(4);
+            celda = fila.createCell(5);
             celda.setCellValue((Porcentajeproducto.get(j)));
             celda.setCellStyle(porcentaje);
 
@@ -673,10 +681,18 @@ public class Metodosporcentajeproducto {
         celda.setCellStyle(headerStyle);
 
         celda = fila.createCell(2);
-        celda.setCellValue(new HSSFRichTextString("Venta"));
+        celda.setCellValue(new HSSFRichTextString("Precio Promedio venta"));
+        celda.setCellStyle(headerStyle);
+        
+        celda = fila.createCell(3);
+        celda.setCellValue(new HSSFRichTextString("Precio Compra "));
         celda.setCellStyle(headerStyle);
 
-        celda = fila.createCell(3);
+        celda = fila.createCell(4);
+        celda.setCellValue(new HSSFRichTextString("Venta"));
+        celda.setCellStyle(headerStyle);
+        
+        celda = fila.createCell(4);
         celda.setCellValue(new HSSFRichTextString("Porcentaje"));
         celda.setCellStyle(headerStyle);
         i = i + 1;
@@ -694,10 +710,18 @@ public class Metodosporcentajeproducto {
             celda.setCellStyle(Numerico);
 
             celda = fila.createCell(2);
+            celda.setCellValue((Precioventa20.get(j)));
+            celda.setCellStyle(conta);
+            
+            celda = fila.createCell(3);
+            celda.setCellValue((Preciocompra20.get(j)));
+            celda.setCellStyle(conta); 
+            
+            celda = fila.createCell(4);
             celda.setCellValue((Ventaproducto20.get(j)));
             celda.setCellStyle(conta);
-
-            celda = fila.createCell(3);
+           
+            celda = fila.createCell(5);
             celda.setCellValue((Porcentajeproducto20.get(j)));
             celda.setCellStyle(porcentaje);
 
@@ -727,13 +751,14 @@ public class Metodosporcentajeproducto {
     static class Persona implements Comparable<Persona> {
 
         public String nombrep;
-        public float cantidadp, ventap,preciov;
+        public float cantidadp, ventap,preciov,precioc;
 
-        public Persona(String nombrep, Float cantidadp, Float ventap,Float preciov) {
+        public Persona(String nombrep, Float cantidadp, Float ventap,Float preciov,Float precioc) {
             this.nombrep = nombrep;
             this.cantidadp = cantidadp;
             this.ventap = ventap;
             this.preciov=preciov;
+            this.precioc=precioc;
         }
 
         @Override
@@ -763,6 +788,7 @@ public class Metodosporcentajeproducto {
                         Ventaproducto20.add(array[i].ventap);
                         Porcentajeproducto20.add(porcentajeporducto);
                         Precioventa20.add(array[i].preciov);
+                        Preciocompra20.add(array[i].precioc);
                         sumaproductos = sumaproductos + porcentajeporducto;
                         porcentajeporducto = 0;
                         productosnum20 = productosnum20 + 1;
@@ -777,6 +803,7 @@ public class Metodosporcentajeproducto {
                     Cantidadproducto.add(array[i].cantidadp);
                     Ventaproducto.add(array[i].ventap);
                     Precioventa.add(array[i].preciov);
+                    Preciocompra.add(array[i].precioc);
                     Porcentajeproducto.add(porcentajeporducto);
                     porcentajeporducto = 0;
                     productosnum = productosnum + 1;
