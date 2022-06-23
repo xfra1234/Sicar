@@ -737,7 +737,7 @@ public class Metodosporcentajeproducto {
 
         }
 
-        for (int x = 0; x < 5; x++) {
+        for (int x = 0; x < 7; x++) {
             hoja.autoSizeColumn(x);
         }
 
