@@ -234,7 +234,7 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
                 if (valorsucursal() == 3) {
                      met.Consultabodega(fechainicio, fechafinal, fechauno, fechados, valorsucursal());
                 }else{
-                     met.consultasucrusales(fechainicio, fechafinal, fechauno, fechados, valorsucursal());
+                     met.Consultabodega(fechainicio, fechafinal, fechauno, fechados, valorsucursal());
                 }
                
             }
