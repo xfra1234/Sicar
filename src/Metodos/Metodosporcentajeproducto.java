@@ -20,6 +20,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.Iterator;
+import javax.sound.midi.Track;
 import javax.swing.JOptionPane;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFDataFormat;
@@ -132,6 +133,7 @@ public class Metodosporcentajeproducto {
             con2.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
+             e.printStackTrace();
         }
         Iterator<Integer> it = idNumeros.iterator();
         System.out.println(it);
@@ -265,6 +267,7 @@ public class Metodosporcentajeproducto {
 //            arrayPersonas[total]=arrayPersonas[-1];
 
         } catch (SQLException e) {
+            
             JOptionPane.showMessageDialog(null, e);
         }
 
