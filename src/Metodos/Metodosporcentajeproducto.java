@@ -269,6 +269,7 @@ public class Metodosporcentajeproducto {
         } catch (SQLException e) {
             
             JOptionPane.showMessageDialog(null, e);
+             e.printStackTrace();
         }
 
     }
