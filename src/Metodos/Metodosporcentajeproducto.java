@@ -226,12 +226,12 @@ public class Metodosporcentajeproducto {
                     rs2 = stmt2.executeQuery("select sum(detallev.cantidad),articulo.descripcion,unidad.nombre"
                             + ",sum(detallev.importecon)  "
                             + ",sum(detallev.precionorsin)/count(detallev.art_id), detallev.preciocompra"
-                            + "from detallev inner join venta\n"
-                            + "on detallev.ven_id = venta.ven_id inner join articulo on\n"
+                            + " from detallev inner join venta\n"
+                            + " on detallev.ven_id = venta.ven_id inner join articulo on\n"
                             + " detallev.art_id=articulo.art_id inner join unidad on uni_id= articulo.unidadventa\n"
-                            + "where articulo.art_id='" + valor + "' and\n"
-                            + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "'"
-                            + "and venta.status!= -1  ; ");
+                            + " where articulo.art_id='" + valor + "' and\n"
+                            + " venta.fecha between '" + fecha1 + "' and '" + fecha2 + "'"
+                            + " and venta.status!= -1  ; ");
                     while (rs2.next()) {
                         cantidadproducto = cantidadproducto + rs2.getFloat(1);
                         nombreproducto = rs2.getString(2);
