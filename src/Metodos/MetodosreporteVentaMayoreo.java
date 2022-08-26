@@ -65,6 +65,12 @@ public class MetodosreporteVentaMayoreo {
                 guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Total de Ventas de Mayoreo  Sucursal_ Bodega del " + fechauno + " al " + fechados + ".xls");
                 excelsucursales(fecha1, fecha2, fechauno, fechados);
                 break;
+
+            case 4:
+                abrirarchivo = ("C:\\Users\\billy\\Documents\\total de ventas de mayoreo mes.xls");
+                guardararchivo = ("C:\\Users\\billy\\Desktop\\Total de Ventas de Mayoreo  Sucursal_ Bodega pdv del " + fechauno + " al " + fechados + ".xls");
+                excelsucursales(fecha1, fecha2, fechauno, fechados);
+                break;
         }
     }
 
@@ -381,7 +387,7 @@ public class MetodosreporteVentaMayoreo {
             try {
                 con = conectar.conectarMySQL();
                 stmt = con.createStatement();
-                 rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes, count(venta.ven_id),year(venta.fecha) as año"
+                rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes, count(venta.ven_id),year(venta.fecha) as año"
                         + " from venta "
                         + " where venta.status !=-1 and venta.total>= " + 1000 + " "
                         + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"

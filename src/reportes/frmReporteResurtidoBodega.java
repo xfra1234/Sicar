@@ -37,19 +37,21 @@ public class frmReporteResurtidoBodega extends javax.swing.JFrame {
         rdbCompleto.setSelected(true);
     }
 
-    public int valorsucursal() {
-        if (rbtnbodega.isSelected()) {
-            sucursal = 3;
-        } else if (rbtnmagisterio.isSelected()) {
-            sucursal = 1;
-        } else if (rbtncoapinole.isSelected()) {
-            sucursal = 2;
-        } else {
-            sucursal = 0;
-        }
-
-        return sucursal;
-    }
+   public int valorsucursal(){
+         if(rbtnbodega.isSelected()){
+             sucursal=3;
+         }else if(rbtnmagisterio.isSelected()){
+             sucursal=1;
+         }else if(rbtncoapinole.isSelected()){
+             sucursal=2;
+         }else if(rbtnbodegapdv.isSelected()){
+             sucursal=4;
+         }else{
+             sucursal=0;
+         }
+         
+         return sucursal;
+     }
 
     public void Mesesañoanterior() {
         int difM = 0;
@@ -137,6 +139,7 @@ public class frmReporteResurtidoBodega extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         rdbMensual = new javax.swing.JRadioButton();
         rdbCompleto = new javax.swing.JRadioButton();
+        rbtnbodegapdv = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Reporte Resurtido de Bodega");
@@ -192,6 +195,10 @@ public class frmReporteResurtidoBodega extends javax.swing.JFrame {
         rdbCompleto.setText("Completo");
         rdbCompleto.setOpaque(false);
 
+        rdbComercios.add(rbtnbodegapdv);
+        rbtnbodegapdv.setText("Bodega pdv");
+        rbtnbodegapdv.setOpaque(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -203,29 +210,31 @@ public class frmReporteResurtidoBodega extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(99, 99, 99)
+                        .addComponent(rdbCompleto)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(rdbMensual))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(32, 32, 32)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(rbtnbodega)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(rbtnmagisterio))
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel2)
-                                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(rbtncoapinole))
+                                .addGap(114, 114, 114)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel1))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addComponent(rdbCompleto)
+                        .addContainerGap()
+                        .addComponent(rbtnbodega)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(rdbMensual)))
-                .addContainerGap(45, Short.MAX_VALUE))
+                        .addComponent(rbtnmagisterio)
+                        .addGap(18, 18, 18)
+                        .addComponent(rbtncoapinole)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(rbtnbodegapdv)))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -241,7 +250,8 @@ public class frmReporteResurtidoBodega extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbtnbodega)
                     .addComponent(rbtnmagisterio)
-                    .addComponent(rbtncoapinole))
+                    .addComponent(rbtncoapinole)
+                    .addComponent(rbtnbodegapdv))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rdbCompleto)
@@ -329,6 +339,7 @@ public class frmReporteResurtidoBodega extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton rbtnbodega;
+    private javax.swing.JRadioButton rbtnbodegapdv;
     private javax.swing.JRadioButton rbtncoapinole;
     private javax.swing.JRadioButton rbtnmagisterio;
     private javax.swing.ButtonGroup rdbComercios;

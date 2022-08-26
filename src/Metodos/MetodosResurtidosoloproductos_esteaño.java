@@ -78,6 +78,12 @@ public class MetodosResurtidosoloproductos_esteaño {
                 guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Resurtido de sucursal_ Bodega de este año mes" + mes + ".xls");
                 resurtidocopiabodega(fecha1, fecha2, fechauno, fechados);
                 break;
+
+            case 4:
+                abrirarchivo = ("C:\\Users\\billy\\Documents\\Resurtido de sucursal mes.xls");
+                guardararchivo = ("C:\\Users\\billy\\Desktop\\Resurtido de sucursal_ Bodega de este año mes" + mes + ".xls");
+                resurtidocopiabodega(fecha1, fecha2, fechauno, fechados);
+                break;
         }
     }
 
@@ -300,7 +306,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                                 + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id where art_id=" + valor + "");
                         if (rs2.next()) {
                             existencia = existencia + rs2.getFloat(2);
-                            preciocompra= rs2.getFloat(5);
+                            preciocompra = rs2.getFloat(5);
                         }
 
                         if (descripcion.equals(rs2.getString(4))) {
@@ -471,7 +477,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                                 + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id where art_id=" + valor + "");
                         if (rs2.next()) {
                             existencia = existencia + rs2.getFloat(2);
-                             preciocompra= rs2.getFloat(5);
+                            preciocompra = rs2.getFloat(5);
                         }
 
                         if (descripcion.equals(rs2.getString(4))) {
@@ -588,10 +594,10 @@ public class MetodosResurtidosoloproductos_esteaño {
                         con2.close();
                     }
 
-                    existencia =  0;
+                    existencia = 0;
                     cantidad3ma = 0;
                     cantidad3md = 0;
-                    preciocompra= 0;
+                    preciocompra = 0;
                 }
                 for (int x = 0; x < 20; x++) {
                     hoja.autoSizeColumn(x);
@@ -600,7 +606,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                 JOptionPane.showMessageDialog(null, e);
                 e.printStackTrace();
             }
-            limpiarVariables(); 
+            limpiarVariables();
             File Archivo = new File(guardararchivo);
             Archivo.createNewFile();
             FileOutputStream elFichero = new FileOutputStream(guardararchivo);

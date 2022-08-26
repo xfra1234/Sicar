@@ -69,6 +69,12 @@ public class MetodosReporteDepartamento {
                 guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Bodega del " + fechauno + " al " + fechados + ".xls");
                 excelsucursales(fecha1, fecha2, fechauno, fechados);
                 break;
+
+            case 4:
+                abrirarchivo = ("C:\\Users\\billy\\Documents\\Cuotas-de-Venta-y-Rentabilidad-Sucursales_-Bodega.xls");
+                guardararchivo = ("C:\\Users\\billy\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Bodega pdv del " + fechauno + " al " + fechados + ".xls");
+                excelsucursales(fecha1, fecha2, fechauno, fechados);
+                break;
         }
     }
 

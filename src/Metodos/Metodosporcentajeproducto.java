@@ -72,7 +72,7 @@ public class Metodosporcentajeproducto {
     static int productosnum = 0, productosnum20 = 0;
     static float sumaproductos = 0, porcentajeporducto = 0;
     String abrirarchivo = "", guardararchivo = "", nombresucursal = "";
-    float preciocompra,precioventa;
+    float preciocompra, precioventa;
 
     public void limpiar() {
         Cantidadproducto.clear();
@@ -94,8 +94,8 @@ public class Metodosporcentajeproducto {
         sumaproductos = 0;
         porcentajeporducto = 0;
         totalcantidad = 0;
-        preciocompra=0;
-        precioventa=0;
+        preciocompra = 0;
+        precioventa = 0;
     }
 
     public void consultasucrusales(String fecha1, String fecha2, String fechauno, String fechados, int sucursal) {
@@ -133,7 +133,7 @@ public class Metodosporcentajeproducto {
             con2.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
-             e.printStackTrace();
+            e.printStackTrace();
         }
         Iterator<Integer> it = idNumeros.iterator();
         System.out.println(it);
@@ -178,7 +178,7 @@ public class Metodosporcentajeproducto {
                                 + "and venta.status!= -1 ; ");
                         while (rs2.next()) {
                             ventaproducto = ventaproducto + (rs2.getFloat(2));
-                            precioventa=rs2.getFloat(3);
+                            precioventa = rs2.getFloat(3);
                         }
                         con2.close();
 
@@ -213,8 +213,8 @@ public class Metodosporcentajeproducto {
                         nombreproducto = rs2.getString(2);
                         unidad = rs2.getString(3);
                         ventaproducto = ventaproducto + (rs2.getFloat(4));
-                        precioventa=(precioventa+rs2.getFloat(5))/2;
-                        
+                        precioventa = (precioventa + rs2.getFloat(5)) / 2;
+
                     }
                     con2.close();
 
@@ -237,19 +237,19 @@ public class Metodosporcentajeproducto {
                         nombreproducto = rs2.getString(2);
                         unidad = rs2.getString(3);
                         ventaproducto = ventaproducto + (rs2.getFloat(4));
-                        precioventa=rs2.getFloat(5);
-                        preciocompra=rs2.getFloat(6);
+                        precioventa = rs2.getFloat(5);
+                        preciocompra = rs2.getFloat(6);
 
                     }
                     con2.close();
                 }
 
-                arrayPersonas[i] = new Persona(nombreproducto, cantidadproducto, ventaproducto,precioventa,preciocompra);
+                arrayPersonas[i] = new Persona(nombreproducto, cantidadproducto, ventaproducto, precioventa, preciocompra);
                 totalcantidad = totalcantidad + ventaproducto;
                 cantidadproducto = 0;
                 ventaproducto = 0;
-                preciocompra=0;
-                precioventa=0;
+                preciocompra = 0;
+                precioventa = 0;
                 con3.close();
                 alv = alv + 1;
 
@@ -267,9 +267,9 @@ public class Metodosporcentajeproducto {
 //            arrayPersonas[total]=arrayPersonas[-1];
 
         } catch (SQLException e) {
-            
+
             JOptionPane.showMessageDialog(null, e);
-             e.printStackTrace();
+            e.printStackTrace();
         }
 
     }
@@ -354,7 +354,7 @@ public class Metodosporcentajeproducto {
                                 + " venta.tic_id is not null; ");
                         while (rs2.next()) {
                             ventaproducto = ventaproducto + (rs2.getFloat(2));
-                            precioventa=rs2.getFloat(3);
+                            precioventa = rs2.getFloat(3);
 
                         }
                         con2.close();
@@ -392,8 +392,8 @@ public class Metodosporcentajeproducto {
                         nombreproducto = rs2.getString(2);
                         unidad = rs2.getString(3);
                         ventaproducto = ventaproducto + (rs2.getFloat(4));
-                        precioventa=precioventa+rs2.getFloat(5);
-                        preciocompra= rs2.getFloat(6);
+                        precioventa = precioventa + rs2.getFloat(5);
+                        preciocompra = rs2.getFloat(6);
 
                     }
                     con2.close();
@@ -417,19 +417,19 @@ public class Metodosporcentajeproducto {
                         nombreproducto = rs2.getString(2);
                         unidad = rs2.getString(3);
                         ventaproducto = ventaproducto + (rs2.getFloat(4));
-                        precioventa=rs2.getFloat(5);
-                        preciocompra=rs2.getFloat(6);
+                        precioventa = rs2.getFloat(5);
+                        preciocompra = rs2.getFloat(6);
 
                     }
                     con2.close();
                 }
 
-                arrayPersonas[i] = new Persona(nombreproducto, cantidadproducto, ventaproducto,precioventa,preciocompra);
+                arrayPersonas[i] = new Persona(nombreproducto, cantidadproducto, ventaproducto, precioventa, preciocompra);
                 totalcantidad = totalcantidad + ventaproducto;
                 cantidadproducto = 0;
                 ventaproducto = 0;
-                preciocompra=0;
-                precioventa=0;
+                preciocompra = 0;
+                precioventa = 0;
                 con3.close();
                 alv = alv + 1;
 
@@ -458,7 +458,7 @@ public class Metodosporcentajeproducto {
             case 1:
                 guardararchivo = ("C:\\Users\\Cpu\\Desktop\\Productos Conforman el 80% de venta Magisterio del " + fechauno + " al " + fechados + ".xls");
                 nombresucursal = "Magisterio";
-                GeneraExcelsucursales(fechauno, fechados, nombresucursal);
+                    GeneraExcelsucursales(fechauno, fechados, nombresucursal);
                 break;
             case 2:
 //                guardararchivo = ("C:\\Users\\usuario\\Desktop\\Productos Conforman el 80% de venta Bodega tickets  del " + fechauno + " al " + fechados + ".xls");
@@ -471,6 +471,12 @@ public class Metodosporcentajeproducto {
                 nombresucursal = "Bodega";
                 GeneraExcelsucursales(fechauno, fechados, nombresucursal);
                 break;
+
+            case 4:
+                guardararchivo = ("C:\\Users\\billy\\Desktop\\Productos Conforman el 80% de venta Bodega tickets  del " + fechauno + " al " + fechados + ".xls");
+                nombresucursal = "Bodega pdv";
+                GeneraExcelsucursales(fechauno, fechados, nombresucursal);
+                break;
         }
     }
 
@@ -478,8 +484,8 @@ public class Metodosporcentajeproducto {
 
         HSSFWorkbook libro = new HSSFWorkbook();
         HSSFSheet hoja = libro.createSheet();
-        
-         HSSFDataFormat format = libro.createDataFormat();
+
+        HSSFDataFormat format = libro.createDataFormat();
         //formato para el nombre de las columnas
         CellStyle headerStyle = libro.createCellStyle();
         HSSFFont font = libro.createFont();
@@ -509,9 +515,6 @@ public class Metodosporcentajeproducto {
         porcentaje.setDataFormat(format.getFormat("0.00%"));
         porcentaje.setFont(fontporcentaje);
 
-        
-        
-        
         CellStyle Numerico = libro.createCellStyle();
         HSSFFont fontnumerico = libro.createFont();
         fontnumerico.setBold(true);
@@ -520,15 +523,14 @@ public class Metodosporcentajeproducto {
         Numerico.setDataFormat(format.getFormat("###,##0.00"));
         Numerico.setFont(fontnumerico);
 
-        
-         CellStyle conta = libro.createCellStyle();
+        CellStyle conta = libro.createCellStyle();
         HSSFFont fontconta = libro.createFont();
         fontconta.setBold(true);
         fontconta.setFontName("Arial");
         fontconta.setFontHeight((short) (10 * 20));
         conta.setDataFormat(format.getFormat("$ ###,##0.00"));
         conta.setFont(fontporcentaje);
-        
+
         HSSFCell celda;
         HSSFRow fila;
         Date fecha = new Date();
@@ -607,15 +609,15 @@ public class Metodosporcentajeproducto {
         celda = fila.createCell(1);
         celda.setCellValue(new HSSFRichTextString("Cantidad"));
         celda.setCellStyle(headerStyle);
-        
+
         celda = fila.createCell(2);
         celda.setCellValue(new HSSFRichTextString("Precio Promedio Venta"));
         celda.setCellStyle(headerStyle);
-        
+
         celda = fila.createCell(3);
         celda.setCellValue(new HSSFRichTextString("Precio Compra"));
         celda.setCellStyle(headerStyle);
-               
+
         celda = fila.createCell(4);
         celda.setCellValue(new HSSFRichTextString("Venta"));
         celda.setCellStyle(headerStyle);
@@ -641,15 +643,14 @@ public class Metodosporcentajeproducto {
             celda = fila.createCell(1);
             celda.setCellValue((Cantidadproducto.get(j)));
             celda.setCellStyle(Numerico);
-            
+
             celda = fila.createCell(2);
             celda.setCellValue((Precioventa.get(j)));
             celda.setCellStyle(conta);
-            
+
             celda = fila.createCell(3);
             celda.setCellValue((Preciocompra.get(j)));
             celda.setCellStyle(conta);
-            
 
             celda = fila.createCell(4);
             celda.setCellValue((Ventaproducto.get(j)));
@@ -691,7 +692,7 @@ public class Metodosporcentajeproducto {
         celda = fila.createCell(2);
         celda.setCellValue(new HSSFRichTextString("Precio Promedio venta"));
         celda.setCellStyle(headerStyle);
-        
+
         celda = fila.createCell(3);
         celda.setCellValue(new HSSFRichTextString("Precio Compra "));
         celda.setCellStyle(headerStyle);
@@ -699,7 +700,7 @@ public class Metodosporcentajeproducto {
         celda = fila.createCell(4);
         celda.setCellValue(new HSSFRichTextString("Venta"));
         celda.setCellStyle(headerStyle);
-        
+
         celda = fila.createCell(5);
         celda.setCellValue(new HSSFRichTextString("Porcentaje"));
         celda.setCellStyle(headerStyle);
@@ -720,15 +721,15 @@ public class Metodosporcentajeproducto {
             celda = fila.createCell(2);
             celda.setCellValue((Precioventa20.get(j)));
             celda.setCellStyle(conta);
-            
+
             celda = fila.createCell(3);
             celda.setCellValue((Preciocompra20.get(j)));
-            celda.setCellStyle(conta); 
-            
+            celda.setCellStyle(conta);
+
             celda = fila.createCell(4);
             celda.setCellValue((Ventaproducto20.get(j)));
             celda.setCellStyle(conta);
-           
+
             celda = fila.createCell(5);
             celda.setCellValue((Porcentajeproducto20.get(j)));
             celda.setCellStyle(porcentaje);
@@ -759,14 +760,14 @@ public class Metodosporcentajeproducto {
     static class Persona implements Comparable<Persona> {
 
         public String nombrep;
-        public float cantidadp, ventap,preciov,precioc;
+        public float cantidadp, ventap, preciov, precioc;
 
-        public Persona(String nombrep, Float cantidadp, Float ventap,Float preciov,Float precioc) {
+        public Persona(String nombrep, Float cantidadp, Float ventap, Float preciov, Float precioc) {
             this.nombrep = nombrep;
             this.cantidadp = cantidadp;
             this.ventap = ventap;
-            this.preciov=preciov;
-            this.precioc=precioc;
+            this.preciov = preciov;
+            this.precioc = precioc;
         }
 
         @Override

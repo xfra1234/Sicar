@@ -76,6 +76,12 @@ public class MetodosResurtido {
                 guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Resurtido de sucursal_ Bodega de" + mes + ".xls");
                 resurtidosucursal(fecha1, fecha2, fechauno, fechados);
                 break;
+
+            case 4:
+                abrirarchivo = ("C:\\Users\\billy\\Documents\\Resurtido de sucursal.xls");
+                guardararchivo = ("C:\\Users\\billy\\Desktop\\Resurtido de sucursal_ Bodega pdv de" + mes + ".xls");
+                resurtidosucursal(fecha1, fecha2, fechauno, fechados);
+                break;
         }
     }
 
@@ -164,7 +170,7 @@ public class MetodosResurtido {
                     }
                     con2.close();
 
-                      if (categoria.equals(descripcion2)) {
+                    if (categoria.equals(descripcion2)) {
                         fila = hoja.getRow(filaa);
 //                    
                         celda = fila.createCell(0);
@@ -346,7 +352,7 @@ public class MetodosResurtido {
                 JOptionPane.showMessageDialog(null, e);
                 e.printStackTrace();
             }
-            limpiarVariables(); 
+            limpiarVariables();
             File Archivo = new File(guardararchivo);
             Archivo.createNewFile();
             FileOutputStream elFichero = new FileOutputStream(guardararchivo);
