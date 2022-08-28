@@ -140,7 +140,7 @@ public class MetodosResurtido {
                     con = conectar.conectarMySQL();
                     stmt = con.createStatement();
                     rs = stmt.executeQuery("select paquete.paquete from paquete where "
-                            + "paque.paquete = " + rs3.getInt(1) + "");
+                            + "paquete.paquete = " + rs3.getInt(1) + "");
                     if (rs.next()) {
                         con.close();
                     } else {
