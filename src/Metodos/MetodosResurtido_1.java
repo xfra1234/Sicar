@@ -167,23 +167,23 @@ public class MetodosResurtido_1 {
                     rs = stmt.executeQuery("select paquete.paquete from paquete where paquete.articulo=" + valor + "");
                     if (rs.next()) {
 
-                        con2 = conectar.conectarMySQL();
-                        stmt2 = con2.createStatement();
-                        rs2 = stmt2.executeQuery("select paquete.paquete,paquete.cantidad from paquete where paquete.articulo=" + valor + "");
-                        while (rs2.next()) {
-                            id = rs2.getInt(1);
-                            con3 = conectar.conectarMySQL();
-                            stmt3 = con3.createStatement();
-                            rs3 = stmt3.executeQuery("select existencia,status from articulo where art_id='" + id + "'"
-                                    + " and status !=-1");
-
-                            while (rs3.next()) {
-                                existencia = existencia + (rs3.getFloat(1) * rs2.getFloat(2));
-                            }
-
-                            con3.close();
-                        }
-                        con2.close();
+//                        con2 = conectar.conectarMySQL();
+//                        stmt2 = con2.createStatement();
+//                        rs2 = stmt2.executeQuery("select paquete.paquete,paquete.cantidad from paquete where paquete.articulo=" + valor + "");
+//                        while (rs2.next()) {
+//                            id = rs2.getInt(1);
+//                            con3 = conectar.conectarMySQL();
+//                            stmt3 = con3.createStatement();
+//                            rs3 = stmt3.executeQuery("select existencia,status from articulo where art_id='" + id + "'"
+//                                    + " and status !=-1");
+//
+//                            while (rs3.next()) {
+//                                existencia = existencia + (rs3.getFloat(1) * rs2.getFloat(2));
+//                            }
+//
+//                            con3.close();
+//                        }
+//                        con2.close();
 
                         //////////////////// inicio de 3 meses anteriores                   
                         /////////////////////// suma de cantidad venta de paquetes 
