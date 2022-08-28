@@ -147,7 +147,7 @@ public class MetodosResurtido {
                     con4 = conectar.conectarMySQL();
                     stmt4 = con4.createStatement();
                     rs4 = stmt4.executeQuery("select paquete.paquete from paquete where "
-                            + "paque.paquete = " + rs.getInt(1) + "");
+                            + "paquete.paquete = " + rs.getInt(1) + "");
                     if (rs4.next()) {
                         existencia = 0;
                     } else {
