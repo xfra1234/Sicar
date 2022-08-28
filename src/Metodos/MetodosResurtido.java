@@ -137,14 +137,14 @@ public class MetodosResurtido {
                 rs3 = stmt3.executeQuery("select articulo.art_id from articulo ");
                 while (rs3.next()) {
 
-                    con = conectar.conectarMySQL();
-                    stmt = con.createStatement();
-                    rs = stmt.executeQuery("select paquete.paquete from paquete where "
+                    con2 = conectar.conectarMySQL();
+                    stmt2 = con2.createStatement();
+                    rs2 = stmt2.executeQuery("select paquete.paquete from paquete where "
                             + "paquete.paquete = " + rs3.getInt(1) + "");
-                    if (rs.next()) {
-                        con.close();
+                    if (rs2.next()) {
+                        con2.close();
                     } else {
-                        con.close();
+                        con2.close();
 
                         con = conectar.conectarMySQL();
                         stmt = con.createStatement();
