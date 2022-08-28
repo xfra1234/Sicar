@@ -40,6 +40,9 @@ public class MetodosResurtido {
     Connection con3 = null;
     static ResultSet rs3 = null;
     private Statement stmt3 = null;
+    Connection con4 = null;
+    static ResultSet rs4 = null;
+    private Statement stmt4 = null;
     conexion conectar = new conexion();
     String abrirarchivo = "", guardararchivo = "";
     int contador = 0, contador1 = 0;
@@ -132,228 +135,223 @@ public class MetodosResurtido {
 
             int filaa = 9;
             try {
-                con3 = conectar.conectarMySQL();
-                stmt3 = con3.createStatement();
-                rs3 = stmt3.executeQuery("select articulo.art_id from articulo ");
-                while (rs3.next()) {
+                
+                con = conectar.conectarMySQL();
+                stmt = con.createStatement();
+                rs = stmt.executeQuery("select articulo.art_id,articulo.clave,articulo.existencia,"
+                        + "articulo.descripcion,categoria.nombre"
+                        + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id "
+                        + " where articulo.status !=-1  order by categoria.nombre,articulo.descripcion");
+                while (rs.next()) {
+
+                    con4 = conectar.conectarMySQL();
+                    stmt4 = con4.createStatement();
+                    rs4 = stmt4.executeQuery("select paquete.paquete from paquete where "
+                            + "paque.paquete = " + rs.getInt(1) + "");
+                    if (rs4.next()) {
+                        existencia = 0;
+                    } else {
+                        existencia = rs.getFloat(3);
+                    }
+                    con4.close();
+                    
+                    int idart = rs.getInt(1);
+                    clave = rs.getString(2);
+                    descripcion = rs.getString(4);
+                    categoria = rs.getString(5);
 
                     con2 = conectar.conectarMySQL();
                     stmt2 = con2.createStatement();
-                    rs2 = stmt2.executeQuery("select paquete.paquete from paquete where "
-                            + "paquete.paquete = " + rs3.getInt(1) + "");
+                    rs2 = stmt2.executeQuery("select sum(cantidad) from detallev "
+                            + "inner join venta on venta.ven_id = detallev.ven_id "
+                            + " where detallev.art_id=" + idart + " and "
+                            + " venta.fecha between '" + fecha1ma + "' and '" + fecha3ma + "'"
+                            + " and venta.status!=-1");
                     if (rs2.next()) {
-                        con2.close();
-                    } else {
-                        con2.close();
-
-                        con = conectar.conectarMySQL();
-                        stmt = con.createStatement();
-                        rs = stmt.executeQuery("select articulo.art_id,articulo.clave,articulo.existencia,"
-                                + "articulo.descripcion,categoria.nombre"
-                                + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id "
-                                + " where articulo.status !=-1  order by categoria.nombre,articulo.descripcion");
-                        while (rs.next()) {
-                            int idart = rs.getInt(1);
-                            clave = rs.getString(2);
-                            existencia = rs.getFloat(3);
-                            descripcion = rs.getString(4);
-                            categoria = rs.getString(5);
-
-                            con2 = conectar.conectarMySQL();
-                            stmt2 = con2.createStatement();
-                            rs2 = stmt2.executeQuery("select sum(cantidad) from detallev "
-                                    + "inner join venta on venta.ven_id = detallev.ven_id "
-                                    + " where detallev.art_id=" + idart + " and "
-                                    + " venta.fecha between '" + fecha1ma + "' and '" + fecha3ma + "'"
-                                    + " and venta.status!=-1");
-                            if (rs2.next()) {
-                                cantidad3ma = cantidad3ma + rs2.getFloat(1);
-                            }
-                            con2.close();
-
-                            con2 = conectar.conectarMySQL();
-                            stmt2 = con2.createStatement();
-                            rs2 = stmt2.executeQuery("select sum(cantidad) from detallev "
-                                    + "inner join venta on venta.ven_id = detallev.ven_id "
-                                    + " where detallev.art_id=" + idart + " and "
-                                    + " venta.fecha between '" + fecha1md + "' and '" + fecha3md + "'"
-                                    + " and venta.status!=-1");
-                            if (rs2.next()) {
-                                cantidad3md = cantidad3md + rs2.getFloat(1);
-                            }
-                            con2.close();
-
-                            if (categoria.equals(descripcion2)) {
-                                fila = hoja.getRow(filaa);
-//                    
-                                celda = fila.createCell(0);
-                                celda.setCellValue(clave);
-                                celda.setCellStyle(encabezados);
-
-                                celda = fila.createCell(1);
-                                celda.setCellValue(descripcion);
-                                celda.setCellStyle(encabezados);
-
-                                celda = fila.createCell(2);
-                                celda.setCellValue(existencia);
-                                celda.setCellStyle(Numerico);
-
-                                celda = fila.createCell(3);
-                                celda.setCellValue((cantidad3ma / 3));
-                                celda.setCellStyle(Numerico);
-
-                                celda = fila.createCell(4);
-                                celda.setCellValue((cantidad3md / 3));
-                                celda.setCellStyle(Numerico);
-
-                                if (filaa > 10) {
-                                    int filaformula = filaa + 1;
-                                    String Formula;
-
-                                    //// Formula 7 dias mes anterior
-                                    Formula = "D" + filaformula + "/4";
-                                    celda = fila.getCell(5);
-                                    celda.setCellFormula(Formula);
-                                    celda.setCellStyle(Numerico);
-
-                                    //// Formula 7 dias año  anterior
-                                    Formula = "E" + filaformula + "/4";
-                                    celda = fila.getCell(6);
-                                    celda.setCellFormula(Formula);
-                                    celda.setCellStyle(Numerico);
-
-                                    //// Formula Resurtido mes   anterior
-                                    Formula = "F" + filaformula + "-C" + filaformula;
-                                    celda = fila.getCell(7);
-                                    celda.setCellFormula(Formula);
-                                    celda.setCellStyle(Numerico);
-
-                                    //// Formula Resurtido año Anterior  
-                                    Formula = "G" + filaformula + "-C" + filaformula;
-                                    celda = fila.getCell(8);
-                                    celda.setCellFormula(Formula);
-                                    celda.setCellStyle(Numerico);
-
-                                    //// Formula Dias Inventario Mes  Anterior  
-                                    Formula = "C" + filaformula + "*30/D" + filaformula;
-                                    celda = fila.getCell(9);
-                                    celda.setCellFormula(Formula);
-                                    celda.setCellStyle(Numerico);
-
-                                    //// Formula Dias Inventario Año  Anterior  
-                                    Formula = "C" + filaformula + "*30/E" + filaformula;
-                                    celda = fila.getCell(10);
-                                    celda.setCellFormula(Formula);
-                                    celda.setCellStyle(Numerico);
-
-                                    //// Formula semanas  Inventario Mes  Anterior  
-                                    Formula = "J" + filaformula + "/7";
-                                    celda = fila.getCell(11);
-                                    celda.setCellFormula(Formula);
-                                    celda.setCellStyle(Numerico);
-
-                                    //// Formula semanas  Inventario AÑo  Anterior  
-                                    Formula = "K" + filaformula + "/7";
-                                    celda = fila.getCell(12);
-                                    celda.setCellFormula(Formula);
-                                    celda.setCellStyle(Numerico);
-
-                                }
-                                filaa = filaa + 1;
-                            } else {
-                                filaa = filaa + 1;
-                                fila = hoja.getRow(filaa);
-                                celda = fila.createCell(0);
-                                celda.setCellValue(categoria);
-                                celda.setCellStyle(letraprincipal);
-
-                                filaa = filaa + 1;
-
-                                fila = hoja.getRow(filaa);
-
-                                celda = fila.createCell(0);
-                                celda.setCellValue(clave);
-                                celda.setCellStyle(encabezados);
-
-                                celda = fila.createCell(1);
-                                celda.setCellValue(descripcion);
-                                celda.setCellStyle(encabezados);
-
-                                celda = fila.createCell(2);
-                                celda.setCellValue(existencia);
-                                celda.setCellStyle(Numerico);
-
-                                celda = fila.createCell(3);
-                                celda.setCellValue((cantidad3ma / 3));
-                                celda.setCellStyle(Numerico);
-
-                                celda = fila.createCell(4);
-                                celda.setCellValue((cantidad3md / 3));
-                                celda.setCellStyle(Numerico);
-                                if (filaa > 10) {
-                                    int filaformula = filaa + 1;
-                                    String Formula;
-
-                                    //// Formula 7 dias mes anterior
-                                    Formula = "D" + filaformula + "/4";
-                                    celda = fila.getCell(5);
-                                    celda.setCellFormula(Formula);
-                                    celda.setCellStyle(Numerico);
-
-                                    //// Formula 7 dias año  anterior
-                                    Formula = "E" + filaformula + "/4";
-                                    celda = fila.getCell(6);
-                                    celda.setCellFormula(Formula);
-                                    celda.setCellStyle(Numerico);
-
-                                    //// Formula Resurtido mes   anterior
-                                    Formula = "F" + filaformula + "-C" + filaformula;
-                                    celda = fila.getCell(7);
-                                    celda.setCellFormula(Formula);
-                                    celda.setCellStyle(Numerico);
-
-                                    //// Formula Resurtido año Anterior  
-                                    Formula = "G" + filaformula + "-C" + filaformula;
-                                    celda = fila.getCell(8);
-                                    celda.setCellFormula(Formula);
-                                    celda.setCellStyle(Numerico);
-
-                                    //// Formula Dias Inventario Mes  Anterior  
-                                    Formula = "C" + filaformula + "*30/D" + filaformula;
-                                    celda = fila.getCell(9);
-                                    celda.setCellFormula(Formula);
-                                    celda.setCellStyle(Numerico);
-
-                                    //// Formula Dias Inventario Año  Anterior  
-                                    Formula = "C" + filaformula + "*30/E" + filaformula;
-                                    celda = fila.getCell(10);
-                                    celda.setCellFormula(Formula);
-                                    celda.setCellStyle(Numerico);
-
-                                    //// Formula semanas  Inventario Mes  Anterior  
-                                    Formula = "J" + filaformula + "/7";
-                                    celda = fila.getCell(11);
-                                    celda.setCellFormula(Formula);
-                                    celda.setCellStyle(Numerico);
-
-                                    //// Formula semanas  Inventario AÑo  Anterior  
-                                    Formula = "K" + filaformula + "/7";
-                                    celda = fila.getCell(12);
-                                    celda.setCellFormula(Formula);
-                                    celda.setCellStyle(Numerico);
-
-                                }
-                                filaa = filaa + 1;
-                                descripcion2 = categoria;
-                            }
-
-                            existencia = 0;
-                            cantidad3ma = 0;
-                            cantidad3md = 0;
-                        }
+                        cantidad3ma = cantidad3ma + rs2.getFloat(1);
                     }
-                }
+                    con2.close();
 
+                    con2 = conectar.conectarMySQL();
+                    stmt2 = con2.createStatement();
+                    rs2 = stmt2.executeQuery("select sum(cantidad) from detallev "
+                            + "inner join venta on venta.ven_id = detallev.ven_id "
+                            + " where detallev.art_id=" + idart + " and "
+                            + " venta.fecha between '" + fecha1md + "' and '" + fecha3md + "'"
+                            + " and venta.status!=-1");
+                    if (rs2.next()) {
+                        cantidad3md = cantidad3md + rs2.getFloat(1);
+                    }
+                    con2.close();
+
+                    if (categoria.equals(descripcion2)) {
+                        fila = hoja.getRow(filaa);
+//                    
+                        celda = fila.createCell(0);
+                        celda.setCellValue(clave);
+                        celda.setCellStyle(encabezados);
+
+                        celda = fila.createCell(1);
+                        celda.setCellValue(descripcion);
+                        celda.setCellStyle(encabezados);
+
+                        celda = fila.createCell(2);
+                        celda.setCellValue(existencia);
+                        celda.setCellStyle(Numerico);
+
+                        celda = fila.createCell(3);
+                        celda.setCellValue((cantidad3ma / 3));
+                        celda.setCellStyle(Numerico);
+
+                        celda = fila.createCell(4);
+                        celda.setCellValue((cantidad3md / 3));
+                        celda.setCellStyle(Numerico);
+
+                        if (filaa > 10) {
+                            int filaformula = filaa + 1;
+                            String Formula;
+
+                            //// Formula 7 dias mes anterior
+                            Formula = "D" + filaformula + "/4";
+                            celda = fila.getCell(5);
+                            celda.setCellFormula(Formula);
+                            celda.setCellStyle(Numerico);
+
+                            //// Formula 7 dias año  anterior
+                            Formula = "E" + filaformula + "/4";
+                            celda = fila.getCell(6);
+                            celda.setCellFormula(Formula);
+                            celda.setCellStyle(Numerico);
+
+                            //// Formula Resurtido mes   anterior
+                            Formula = "F" + filaformula + "-C" + filaformula;
+                            celda = fila.getCell(7);
+                            celda.setCellFormula(Formula);
+                            celda.setCellStyle(Numerico);
+
+                            //// Formula Resurtido año Anterior  
+                            Formula = "G" + filaformula + "-C" + filaformula;
+                            celda = fila.getCell(8);
+                            celda.setCellFormula(Formula);
+                            celda.setCellStyle(Numerico);
+
+                            //// Formula Dias Inventario Mes  Anterior  
+                            Formula = "C" + filaformula + "*30/D" + filaformula;
+                            celda = fila.getCell(9);
+                            celda.setCellFormula(Formula);
+                            celda.setCellStyle(Numerico);
+
+                            //// Formula Dias Inventario Año  Anterior  
+                            Formula = "C" + filaformula + "*30/E" + filaformula;
+                            celda = fila.getCell(10);
+                            celda.setCellFormula(Formula);
+                            celda.setCellStyle(Numerico);
+
+                            //// Formula semanas  Inventario Mes  Anterior  
+                            Formula = "J" + filaformula + "/7";
+                            celda = fila.getCell(11);
+                            celda.setCellFormula(Formula);
+                            celda.setCellStyle(Numerico);
+
+                            //// Formula semanas  Inventario AÑo  Anterior  
+                            Formula = "K" + filaformula + "/7";
+                            celda = fila.getCell(12);
+                            celda.setCellFormula(Formula);
+                            celda.setCellStyle(Numerico);
+
+                        }
+                        filaa = filaa + 1;
+                    } else {
+                        filaa = filaa + 1;
+                        fila = hoja.getRow(filaa);
+                        celda = fila.createCell(0);
+                        celda.setCellValue(categoria);
+                        celda.setCellStyle(letraprincipal);
+
+                        filaa = filaa + 1;
+
+                        fila = hoja.getRow(filaa);
+
+                        celda = fila.createCell(0);
+                        celda.setCellValue(clave);
+                        celda.setCellStyle(encabezados);
+
+                        celda = fila.createCell(1);
+                        celda.setCellValue(descripcion);
+                        celda.setCellStyle(encabezados);
+
+                        celda = fila.createCell(2);
+                        celda.setCellValue(existencia);
+                        celda.setCellStyle(Numerico);
+
+                        celda = fila.createCell(3);
+                        celda.setCellValue((cantidad3ma / 3));
+                        celda.setCellStyle(Numerico);
+
+                        celda = fila.createCell(4);
+                        celda.setCellValue((cantidad3md / 3));
+                        celda.setCellStyle(Numerico);
+                        if (filaa > 10) {
+                            int filaformula = filaa + 1;
+                            String Formula;
+
+                            //// Formula 7 dias mes anterior
+                            Formula = "D" + filaformula + "/4";
+                            celda = fila.getCell(5);
+                            celda.setCellFormula(Formula);
+                            celda.setCellStyle(Numerico);
+
+                            //// Formula 7 dias año  anterior
+                            Formula = "E" + filaformula + "/4";
+                            celda = fila.getCell(6);
+                            celda.setCellFormula(Formula);
+                            celda.setCellStyle(Numerico);
+
+                            //// Formula Resurtido mes   anterior
+                            Formula = "F" + filaformula + "-C" + filaformula;
+                            celda = fila.getCell(7);
+                            celda.setCellFormula(Formula);
+                            celda.setCellStyle(Numerico);
+
+                            //// Formula Resurtido año Anterior  
+                            Formula = "G" + filaformula + "-C" + filaformula;
+                            celda = fila.getCell(8);
+                            celda.setCellFormula(Formula);
+                            celda.setCellStyle(Numerico);
+
+                            //// Formula Dias Inventario Mes  Anterior  
+                            Formula = "C" + filaformula + "*30/D" + filaformula;
+                            celda = fila.getCell(9);
+                            celda.setCellFormula(Formula);
+                            celda.setCellStyle(Numerico);
+
+                            //// Formula Dias Inventario Año  Anterior  
+                            Formula = "C" + filaformula + "*30/E" + filaformula;
+                            celda = fila.getCell(10);
+                            celda.setCellFormula(Formula);
+                            celda.setCellStyle(Numerico);
+
+                            //// Formula semanas  Inventario Mes  Anterior  
+                            Formula = "J" + filaformula + "/7";
+                            celda = fila.getCell(11);
+                            celda.setCellFormula(Formula);
+                            celda.setCellStyle(Numerico);
+
+                            //// Formula semanas  Inventario AÑo  Anterior  
+                            Formula = "K" + filaformula + "/7";
+                            celda = fila.getCell(12);
+                            celda.setCellFormula(Formula);
+                            celda.setCellStyle(Numerico);
+
+                        }
+                        filaa = filaa + 1;
+                        descripcion2 = categoria;
+                    }
+
+                    existencia = 0;
+                    cantidad3ma = 0;
+                    cantidad3md = 0;
+                }
                 con.close();
 
                 //////////////////////////////////////////////////////////////////
