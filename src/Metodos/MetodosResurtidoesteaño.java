@@ -41,6 +41,9 @@ public class MetodosResurtidoesteaño {
     Connection con3 = null;
     static ResultSet rs3 = null;
     private Statement stmt3 = null;
+    Connection con4 = null;
+    static ResultSet rs4 = null;
+    private Statement stmt4 = null;
     conexion conectar = new conexion();
     String abrirarchivo = "", guardararchivo = "";
     int contador = 0, contador1 = 0;
@@ -88,7 +91,7 @@ public class MetodosResurtidoesteaño {
                 guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Resurtido solo este año de Bodega " + mes + ".xls");
                 resurtidosucursal(fecha1, fecha2);
                 break;
-                
+
             case 4:
                 abrirarchivo = ("C:\\Users\\billy\\Documents\\Resurtido de sucursal mes.xls");
                 guardararchivo = ("C:\\Users\\billy\\Desktop\\Resurtido solo este año de Bodega pdv " + mes + ".xls");
@@ -164,9 +167,18 @@ public class MetodosResurtidoesteaño {
                         + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id "
                         + " where articulo.status !=-1  order by categoria.nombre,articulo.descripcion");
                 while (rs.next()) {
+                    con4 = conectar.conectarMySQL();
+                    stmt4 = con4.createStatement();
+                    rs4 = stmt4.executeQuery("select paquete.paquete from paquete where "
+                            + "paquete.paquete = " + rs.getInt(1) + "");
+                    if (rs4.next()) {
+                        existencia = 0;
+                    } else {
+                        existencia = rs.getFloat(3);
+                    }
+                    con4.close();
                     int idart = rs.getInt(1);
                     clave = rs.getString(2);
-                    existencia = rs.getFloat(3);
                     descripcion = rs.getString(4);
                     categoria = rs.getString(5);
                     preciocompra = rs.getFloat(6);
