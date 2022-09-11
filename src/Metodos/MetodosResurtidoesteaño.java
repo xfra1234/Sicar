@@ -181,7 +181,7 @@ public class MetodosResurtidoesteaño {
                     clave = rs.getString(2);
                     descripcion = rs.getString(4);
                     categoria = rs.getString(5);
-                    preciocompra = rs.getFloat(6);
+                    preciocompra = (float) (rs.getFloat(6)*1.16);
 
                     con2 = conectar.conectarMySQL();
                     stmt2 = con2.createStatement();
