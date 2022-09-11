@@ -305,7 +305,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                         rs2 = stmt2.executeQuery("select articulo.clave,articulo.existencia,articulo.descripcion,categoria.nombre,articulo.precioCompra, "
                                 + "impuesto.impuesto "
                                 + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id "
-                                + " inner join articuloimpuestoon articuloimpuesto.art_id = articulo.art_id "
+                                + " inner join articuloimpuesto on  articuloimpuesto.art_id = articulo.art_id "
                                 + "inner join impuesto on impuesto.imp_id = articuloimpuesto.imp_id where articulo.art_id=" + valor + "");
                         if (rs2.next()) {
                             existencia = existencia + rs2.getFloat(2);
