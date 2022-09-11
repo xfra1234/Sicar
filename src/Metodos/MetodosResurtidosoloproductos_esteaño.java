@@ -482,7 +482,8 @@ public class MetodosResurtidosoloproductos_esteaño {
                                 + "categoria.nombre,articulo.precioCompra,impuesto.impuesto "
                                 + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id "
                                 + " inner join articuloimpuesto on articuloimpuesto.art_id = articulo.art_id"
-                                + " inner join impuesto on impuesto.imp_id = articuloimpuesto.imp_id where art_id=" + valor + "");
+                                + " inner join impuesto on impuesto.imp_id = articuloimpuesto.imp_id "
+                                + "where articulo.art_id=" + valor + "");
                         if (rs2.next()) {
                             existencia = existencia + rs2.getFloat(2);
                             preciocompra = (float) (rs2.getFloat(5)*1.16);
@@ -606,6 +607,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                     cantidad3ma = 0;
                     cantidad3md = 0;
                     preciocompra = 0;
+                    iva=0;
                 }
                 for (int x = 0; x < 20; x++) {
                     hoja.autoSizeColumn(x);
