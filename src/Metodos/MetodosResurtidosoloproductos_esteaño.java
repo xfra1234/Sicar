@@ -45,7 +45,7 @@ public class MetodosResurtidosoloproductos_esteaño {
     conexion conectar = new conexion();
     String abrirarchivo = "", guardararchivo = "";
     int contador = 0, contador1 = 0;
-    float cantidad3ma = 0, cantidad3md = 0, existencia = 0, preciocompra = 0;
+    float cantidad3ma = 0, cantidad3md = 0, existencia = 0, preciocompra = 0,iva=0;
     String descripcion = "", descripcion2 = "", categoria = "", clave = "";
     int idpaquete;
     protected ArrayList<Integer> idNumeros = new ArrayList();
@@ -302,11 +302,16 @@ public class MetodosResurtidosoloproductos_esteaño {
 
                         con2 = conectar.conectarMySQL();
                         stmt2 = con2.createStatement();
-                        rs2 = stmt2.executeQuery("select articulo.clave,articulo.existencia,articulo.descripcion,categoria.nombre,articulo.precioCompra "
-                                + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id where art_id=" + valor + "");
+                        rs2 = stmt2.executeQuery("select articulo.clave,articulo.existencia,articulo.descripcion,categoria.nombre,articulo.precioCompra, "
+                                + "impuesto.impuesto "
+                                + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id "
+                                + " inner join articuloimpuestoon articuloimpuesto.art_id = articulo.art_id "
+                                + "inner join impuesto on impuesto.imp_id = articuloimpuesto.imp_id where articulo.art_id=" + valor + "");
                         if (rs2.next()) {
                             existencia = existencia + rs2.getFloat(2);
-                            preciocompra = (float) (rs2.getFloat(5)*1.16);
+                            preciocompra = rs2.getFloat(5);
+                            iva= 1+(rs2.getFloat(6)/100);
+                            preciocompra= preciocompra*iva;
                         }
 
                         if (descripcion.equals(rs2.getString(4))) {
@@ -473,8 +478,11 @@ public class MetodosResurtidosoloproductos_esteaño {
 
                         con2 = conectar.conectarMySQL();
                         stmt2 = con2.createStatement();
-                        rs2 = stmt2.executeQuery("select articulo.clave,articulo.existencia,articulo.descripcion,categoria.nombre,articulo.precioCompra "
-                                + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id where art_id=" + valor + "");
+                        rs2 = stmt2.executeQuery("select articulo.clave,articulo.existencia,articulo.descripcion,"
+                                + "categoria.nombre,articulo.precioCompra,impuesto.impuesto "
+                                + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id "
+                                + " inner join articuloimpuesto on articuloimpuesto.art_id = articulo.art_id"
+                                + " inner join impuesto on impuesto.imp_id = articuloimpuesto.imp_id where art_id=" + valor + "");
                         if (rs2.next()) {
                             existencia = existencia + rs2.getFloat(2);
                             preciocompra = (float) (rs2.getFloat(5)*1.16);
