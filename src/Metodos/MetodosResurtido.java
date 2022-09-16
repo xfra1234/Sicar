@@ -44,6 +44,7 @@ public class MetodosResurtido {
     static ResultSet rs4 = null;
     private Statement stmt4 = null;
     conexion conectar = new conexion();
+    conexion2 conectar2 = new conexion2();
     String abrirarchivo = "", guardararchivo = "";
     int contador = 0, contador1 = 0;
     float cantidad3ma = 0, cantidad3md = 0, existencia = 0;
@@ -66,29 +67,29 @@ public class MetodosResurtido {
 //                guardararchivo = ("C:\\Users\\usuario\\Desktop\\Resurtido de sucursal2.xls");
                 abrirarchivo = ("C:\\Users\\Cpu\\Documents\\Resurtido de sucursal.xls");
                 guardararchivo = ("C:\\Users\\Cpu\\Desktop\\Resurtido de sucursal_Magisterio de " + mes + ".xls");
-                resurtidosucursal(fecha1, fecha2, fechauno, fechados);
+                resurtidosucursal(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
             case 2:
 
                 abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Resurtido de sucursal.xls");
                 guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Resurtido de sucursal_Coapinole de" + mes + ".xls");
-                resurtidosucursal(fecha1, fecha2, fechauno, fechados);
+                resurtidosucursal(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
             case 3:
                 abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Resurtido de sucursal.xls");
                 guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Resurtido de sucursal_ Bodega de" + mes + ".xls");
-                resurtidosucursal(fecha1, fecha2, fechauno, fechados);
+                resurtidosucursal(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
 
             case 4:
                 abrirarchivo = ("C:\\Users\\billy\\Documents\\Resurtido de sucursal.xls");
                 guardararchivo = ("C:\\Users\\billy\\Desktop\\Resurtido de sucursal_ Bodega pdv de" + mes + ".xls");
-                resurtidosucursal(fecha1, fecha2, fechauno, fechados);
+                resurtidosucursal(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
         }
     }
 
-    public void resurtidosucursal(String fecha1ma, String fecha3ma, String fecha1md, String fecha3md) {
+    public void resurtidosucursal(String fecha1ma, String fecha3ma, String fecha1md, String fecha3md, int sucursal) {
 
         try ( FileInputStream file = new FileInputStream(new File(abrirarchivo))) {
             POIFSFileSystem fs = new POIFSFileSystem(file);
@@ -135,8 +136,12 @@ public class MetodosResurtido {
 
             int filaa = 9;
             try {
-                
-                con = conectar.conectarMySQL();
+
+                if (sucursal == 4) {
+                    con = conectar2.conectarMySQL();
+                } else {
+                    con = conectar.conectarMySQL();
+                }
                 stmt = con.createStatement();
                 rs = stmt.executeQuery("select articulo.art_id,articulo.clave,articulo.existencia,"
                         + "articulo.descripcion,categoria.nombre"
@@ -144,7 +149,11 @@ public class MetodosResurtido {
                         + " where articulo.status !=-1  order by categoria.nombre,articulo.descripcion");
                 while (rs.next()) {
 
-                    con4 = conectar.conectarMySQL();
+                    if (sucursal == 4) {
+                        con4 = conectar2.conectarMySQL();
+                    } else {
+                        con4 = conectar.conectarMySQL();
+                    }
                     stmt4 = con4.createStatement();
                     rs4 = stmt4.executeQuery("select paquete.paquete from paquete where "
                             + "paquete.paquete = " + rs.getInt(1) + "");
@@ -154,13 +163,17 @@ public class MetodosResurtido {
                         existencia = rs.getFloat(3);
                     }
                     con4.close();
-                    
+
                     int idart = rs.getInt(1);
                     clave = rs.getString(2);
                     descripcion = rs.getString(4);
                     categoria = rs.getString(5);
 
-                    con2 = conectar.conectarMySQL();
+                    if (sucursal == 4) {
+                        con2 = conectar2.conectarMySQL();
+                    } else {
+                        con2 = conectar.conectarMySQL();
+                    }
                     stmt2 = con2.createStatement();
                     rs2 = stmt2.executeQuery("select sum(cantidad) from detallev "
                             + "inner join venta on venta.ven_id = detallev.ven_id "
@@ -172,7 +185,11 @@ public class MetodosResurtido {
                     }
                     con2.close();
 
-                    con2 = conectar.conectarMySQL();
+                    if (sucursal == 4) {
+                        con2 = conectar2.conectarMySQL();
+                    } else {
+                        con2 = conectar.conectarMySQL();
+                    }
                     stmt2 = con2.createStatement();
                     rs2 = stmt2.executeQuery("select sum(cantidad) from detallev "
                             + "inner join venta on venta.ven_id = detallev.ven_id "

@@ -33,7 +33,7 @@ public class MetodosReporteVentaDiario {
     Connection con = null;
     static ResultSet rs = null;
     private Statement stmt = null;
-
+    
     Connection con2 = null;
     static ResultSet rs2 = null;
     private Statement stmt2 = null;
@@ -46,34 +46,35 @@ public class MetodosReporteVentaDiario {
     String abrirarchivo = "", guardararchivo = "";
 
     conexion conectar = new conexion();
+    conexion2 conectar2 = new conexion2();
 
     public void sucursales(String fecha1, String fecha2, String fechauno, String fechados, int sucursal) {
         switch (sucursal) {
             case 1:
                 abrirarchivo = ("C:\\Users\\Cpu\\Documents\\Ventas Diarias.xls");
                 guardararchivo = ("C:\\Users\\Cpu\\Desktop\\Ventas Diarias Sucursal_ Magisterio del " + fechauno + " al " + fechados + ".xls");
-                excelsucursales(fecha1, fecha2, fechauno, fechados);
+                excelsucursales(fecha1, fecha2, fechauno, fechados,sucursal);
                 break;
             case 2:
                 abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Ventas Diarias.xls");
                 guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Ventas Diarias Sucursal_ Coapinole del " + fechauno + " al " + fechados + ".xls");
-                excelsucursales(fecha1, fecha2, fechauno, fechados);
+                excelsucursales(fecha1, fecha2, fechauno, fechados,sucursal);
                 break;
             case 3:
                 abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Ventas Diarias.xls");
                 guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Ventas Diarias Sucursal_ Bodega del " + fechauno + " al " + fechados + ".xls");
-                excelsucursales(fecha1, fecha2, fechauno, fechados);
+                excelsucursales(fecha1, fecha2, fechauno, fechados,sucursal);
                 break;
 
             case 4:
                 abrirarchivo = ("C:\\Users\\billy\\Documents\\Ventas Diarias.xls");
                 guardararchivo = ("C:\\Users\\billy\\Desktop\\Ventas Diarias Sucursal_ Bodega pdv del " + fechauno + " al " + fechados + ".xls");
-                excelsucursales(fecha1, fecha2, fechauno, fechados);
+                excelsucursales(fecha1, fecha2, fechauno, fechados,sucursal);
                 break;
         }
     }
 
-    public void excelsucursales(String fecha1, String fecha2, String fechauno, String fechados) {
+    public void excelsucursales(String fecha1, String fecha2, String fechauno, String fechados,int sucursal) {
         try ( FileInputStream file = new FileInputStream(new File(abrirarchivo))) {
             // leer archivo excel
             POIFSFileSystem fs = new POIFSFileSystem(file);
@@ -129,7 +130,11 @@ public class MetodosReporteVentaDiario {
             row = hoja.getRow(6);
             int totalmeses = 0;
             try {
-                con = conectar.conectarMySQL();
+                if(sucursal ==4){
+                    con = conectar2.conectarMySQL();
+                }else{
+                 con = conectar.conectarMySQL();   
+                }
                 stmt = con.createStatement();
 
                 totalmeses = 0;
@@ -182,7 +187,11 @@ public class MetodosReporteVentaDiario {
             filadato = 11;
             try {
 
-                con = conectar.conectarMySQL();
+                if(sucursal ==4){
+                    con = conectar2.conectarMySQL();
+                }else{
+                 con = conectar.conectarMySQL();   
+                }
                 stmt = con.createStatement();
 
                 totalmeses = 0;
@@ -222,7 +231,11 @@ public class MetodosReporteVentaDiario {
             filadato = 11;
             try {
 
-                con = conectar.conectarMySQL();
+                if(sucursal ==4){
+                    con = conectar2.conectarMySQL();
+                }else{
+                 con = conectar.conectarMySQL();   
+                }
                 stmt = con.createStatement();
 
                 totalmeses = 0;
@@ -263,7 +276,11 @@ public class MetodosReporteVentaDiario {
             nombremes = 4;
 
             try {
-                con = conectar.conectarMySQL();
+                if(sucursal ==4){
+                    con = conectar2.conectarMySQL();
+                }else{
+                 con = conectar.conectarMySQL();   
+                }
                 stmt = con.createStatement();
 
                 rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes, count(venta.ven_id),year(venta.fecha) as año"
