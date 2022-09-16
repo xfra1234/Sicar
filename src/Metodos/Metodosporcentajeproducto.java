@@ -52,6 +52,7 @@ public class Metodosporcentajeproducto {
     private Statement stmt3 = null;
 
     conexion conectar = new conexion();
+    conexion2 conectar2 = new conexion2();
     protected ArrayList<Integer> idNumeros = new ArrayList();
     static float totalcantidad = 0;
 
@@ -104,12 +105,20 @@ public class Metodosporcentajeproducto {
         try {
             int id;
             double cantidad = 0;
-            con = conectar.conectarMySQL();
+            if (sucursal == 4) {
+                con = conectar2.conectarMySQL();
+            } else {
+                con = conectar.conectarMySQL();
+            }
             stmt = con.createStatement();
             rs = stmt.executeQuery("select articulo.art_id form,articulo.descripcion,unidad.nombre from  articulo inner join"
                     + " unidad on unidad.uni_id =articulo.unidadventa  "
             );
-            con2 = conectar.conectarMySQL();
+            if (sucursal == 4) {
+                con2 = conectar2.conectarMySQL();
+            } else {
+                con2 = conectar.conectarMySQL();
+            }
             stmt2 = con.createStatement();
 
             while (rs.next()) {
@@ -151,12 +160,20 @@ public class Metodosporcentajeproducto {
             for (int i = 0; i < contador; i++) {
                 valor = idNumeros.get(i);
 
-                con3 = conectar.conectarMySQL();
+                if (sucursal == 4) {
+                    con3 = conectar2.conectarMySQL();
+                } else {
+                    con3 = conectar.conectarMySQL();
+                }
                 stmt3 = con3.createStatement();
                 rs3 = stmt3.executeQuery("select paquete.articulo from paquete where paquete.articulo= '" + valor + "';");
                 if (rs3.next()) {
 
-                    con = conectar.conectarMySQL();
+                    if (sucursal == 4) {
+                        con = conectar2.conectarMySQL();
+                    } else {
+                        con = conectar.conectarMySQL();
+                    }
                     stmt = con.createStatement();
                     rs = stmt.executeQuery("select paquete.paquete,paquete.cantidad from paquete where paquete.articulo= '" + valor + "';");
                     while (rs.next()) {
@@ -165,7 +182,11 @@ public class Metodosporcentajeproducto {
 //                         if(idarticulo==2078||idarticulo==190){
 //                        JOptionPane.showMessageDialog(null, "olo2");
 //                    }
-                        con2 = conectar.conectarMySQL();
+                        if (sucursal == 4) {
+                            con2 = conectar2.conectarMySQL();
+                        } else {
+                            con2 = conectar.conectarMySQL();
+                        }
                         stmt2 = con2.createStatement();
 
                         rs2 = stmt2.executeQuery("select  sum(detallev.cantidad),sum(detallev.importecon)"
@@ -182,7 +203,11 @@ public class Metodosporcentajeproducto {
                         }
                         con2.close();
 
-                        con2 = conectar.conectarMySQL();
+                        if (sucursal == 4) {
+                            con2 = conectar2.conectarMySQL();
+                        } else {
+                            con2 = conectar.conectarMySQL();
+                        }
                         stmt2 = con2.createStatement();
                         rs2 = stmt2.executeQuery("select sum(detallep.cantidad) from detallep inner join venta\n"
                                 + "on detallep.ven_id = venta.ven_id \n"
@@ -197,7 +222,11 @@ public class Metodosporcentajeproducto {
                         con2.close();
 
                     }
-                    con2 = conectar.conectarMySQL();
+                    if (sucursal == 4) {
+                        con2 = conectar2.conectarMySQL();
+                    } else {
+                        con2 = conectar.conectarMySQL();
+                    }
                     stmt2 = con2.createStatement();
                     rs2 = stmt2.executeQuery("select sum(detallev.cantidad),articulo.descripcion,unidad.nombre"
                             + ",sum(detallev.importecon),sum(detallev.precionorsin)/count(detallev.art_id) "
@@ -221,7 +250,11 @@ public class Metodosporcentajeproducto {
                     con.close();
                 } else {
 
-                    con2 = conectar.conectarMySQL();
+                    if (sucursal == 4) {
+                        con2 = conectar2.conectarMySQL();
+                    } else {
+                        con2 = conectar.conectarMySQL();
+                    }
                     stmt2 = con2.createStatement();
                     rs2 = stmt2.executeQuery("select sum(detallev.cantidad),articulo.descripcion,unidad.nombre"
                             + ",sum(detallev.importecon)  "
@@ -285,7 +318,11 @@ public class Metodosporcentajeproducto {
             rs = stmt.executeQuery("select articulo.art_id form,articulo.descripcion,unidad.nombre from  articulo inner join"
                     + " unidad on unidad.uni_id =articulo.unidadventa  "
             );
-            con2 = conectar.conectarMySQL();
+            if (sucursal == 4) {
+                con2 = conectar2.conectarMySQL();
+            } else {
+                con2 = conectar.conectarMySQL();
+            }
             stmt2 = con.createStatement();
 
             while (rs.next()) {
@@ -326,12 +363,20 @@ public class Metodosporcentajeproducto {
             for (int i = 0; i < contador; i++) {
                 valor = idNumeros.get(i);
 
-                con3 = conectar.conectarMySQL();
+                if (sucursal == 4) {
+                    con3 = conectar2.conectarMySQL();
+                } else {
+                    con3 = conectar.conectarMySQL();
+                }
                 stmt3 = con3.createStatement();
                 rs3 = stmt3.executeQuery("select paquete.articulo from paquete where paquete.articulo= '" + valor + "';");
                 if (rs3.next()) {
 
-                    con = conectar.conectarMySQL();
+                    if (sucursal == 4) {
+                        con = conectar2.conectarMySQL();
+                    } else {
+                        con = conectar.conectarMySQL();
+                    }
                     stmt = con.createStatement();
                     rs = stmt.executeQuery("select paquete.paquete,paquete.cantidad from paquete where paquete.articulo= '" + valor + "';");
                     while (rs.next()) {
@@ -340,7 +385,11 @@ public class Metodosporcentajeproducto {
 //                         if(idarticulo==2078||idarticulo==190){
 //                        JOptionPane.showMessageDialog(null, "olo2");
 //                    }
-                        con2 = conectar.conectarMySQL();
+                        if (sucursal == 4) {
+                            con2 = conectar2.conectarMySQL();
+                        } else {
+                            con2 = conectar.conectarMySQL();
+                        }
                         stmt2 = con2.createStatement();
 
                         rs2 = stmt2.executeQuery("select sum(detallev.cantidad),sum(detallev.importecon) "
@@ -359,7 +408,11 @@ public class Metodosporcentajeproducto {
                         }
                         con2.close();
 
-                        con2 = conectar.conectarMySQL();
+                        if (sucursal == 4) {
+                            con2 = conectar2.conectarMySQL();
+                        } else {
+                            con2 = conectar.conectarMySQL();
+                        }
                         stmt2 = con2.createStatement();
                         rs2 = stmt2.executeQuery("select sum(detallep.cantidad) from detallep inner join venta\n"
                                 + "on detallep.ven_id = venta.ven_id \n"
@@ -375,7 +428,11 @@ public class Metodosporcentajeproducto {
                         con2.close();
 
                     }
-                    con2 = conectar.conectarMySQL();
+                    if (sucursal == 4) {
+                        con2 = conectar2.conectarMySQL();
+                    } else {
+                        con2 = conectar.conectarMySQL();
+                    }
                     stmt2 = con2.createStatement();
                     rs2 = stmt2.executeQuery("select sum(detallev.cantidad),articulo.descripcion,unidad.nombre"
                             + ",sum(detallev.importecon) ,sum(detallev.precionorsin)/count(detallev.art_id)"
@@ -401,7 +458,11 @@ public class Metodosporcentajeproducto {
                     con.close();
                 } else {
 
-                    con2 = conectar.conectarMySQL();
+                    if (sucursal == 4) {
+                        con2 = conectar2.conectarMySQL();
+                    } else {
+                        con2 = conectar.conectarMySQL();
+                    }
                     stmt2 = con2.createStatement();
                     rs2 = stmt2.executeQuery("select sum(detallev.cantidad),articulo.descripcion,unidad.nombre"
                             + ",sum(detallev.importecon),sum(detallev.precionorsin)/count(detallev.art_id)  "
@@ -458,7 +519,7 @@ public class Metodosporcentajeproducto {
             case 1:
                 guardararchivo = ("C:\\Users\\Cpu\\Desktop\\Productos Conforman el 80% de venta Magisterio del " + fechauno + " al " + fechados + ".xls");
                 nombresucursal = "Magisterio";
-                    GeneraExcelsucursales(fechauno, fechados, nombresucursal);
+                GeneraExcelsucursales(fechauno, fechados, nombresucursal);
                 break;
             case 2:
 //                guardararchivo = ("C:\\Users\\usuario\\Desktop\\Productos Conforman el 80% de venta Bodega tickets  del " + fechauno + " al " + fechados + ".xls");
