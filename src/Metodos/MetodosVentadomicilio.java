@@ -43,6 +43,7 @@ public class MetodosVentadomicilio {
     private Statement stmt3 = null;
 
     conexion conectar = new conexion();
+    conexion2 conectar2 = new conexion2();
     Object datos[] = new Object[3];
     float ventas[] = new float[12];
     Object meses[] = new Object[13];
@@ -56,28 +57,28 @@ public class MetodosVentadomicilio {
             case 1:
                 abrirarchivo = ("C:\\Users\\Cpu\\Documents\\Ventas a domicilio.xls");
                 guardararchivo = ("C:\\Users\\Cpu\\Desktop\\Ventas_Domicilio_ Magisterio del " + fechauno + " al " + fechados + ".xls");
-                excelsucursales(fecha1, fecha2, fechauno, fechados);
+                excelsucursales(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
             case 2:
                 abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Ventas a domicilio.xls");
                 guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Ventas_Domicilio_ Coapinole del " + fechauno + " al " + fechados + ".xls");
-                excelsucursales(fecha1, fecha2, fechauno, fechados);
+                excelsucursales(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
             case 3:
                 abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Ventas a domicilio.xls");
                 guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Ventas_Domicilio_ Bodega del " + fechauno + " al " + fechados + ".xls");
-                excelsucursales(fecha1, fecha2, fechauno, fechados);
+                excelsucursales(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
 
             case 4:
                 abrirarchivo = ("C:\\Users\\billy\\Documents\\Ventas a domicilio.xls");
                 guardararchivo = ("C:\\Users\\billy\\Desktop\\Ventas_Domicilio_ Bodega del " + fechauno + " al " + fechados + ".xls");
-                excelsucursales(fecha1, fecha2, fechauno, fechados);
+                excelsucursales(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
         }
     }
 
-    public void excelsucursales(String fecha1, String fecha2, String fechauno, String fechados) {
+    public void excelsucursales(String fecha1, String fecha2, String fechauno, String fechados, int sucursal) {
         try ( FileInputStream file = new FileInputStream(new File(abrirarchivo))) {
             // leer archivo excel
             POIFSFileSystem fs = new POIFSFileSystem(file);
@@ -132,7 +133,11 @@ public class MetodosVentadomicilio {
             row = hoja.getRow(6);
             int totalmeses = 0;
             try {
-                con = conectar.conectarMySQL();
+                if (sucursal == 4) {
+                    con = conectar2.conectarMySQL();
+                } else {
+                    con = conectar.conectarMySQL();
+                }
                 stmt = con.createStatement();
                 rs = stmt.executeQuery("select vnd_id from vendedor where nombre ='ventas domicilio';");
                 if (rs.next()) {
@@ -141,7 +146,11 @@ public class MetodosVentadomicilio {
                 con.close();
                 totalmeses = 0;
 
-                con = conectar.conectarMySQL();
+                if (sucursal == 4) {
+                    con = conectar2.conectarMySQL();
+                } else {
+                    con = conectar.conectarMySQL();
+                }
                 stmt = con.createStatement();
 
                 totalmeses = 0;
@@ -192,7 +201,11 @@ public class MetodosVentadomicilio {
             filadato = 7;
             try {
 
-                con = conectar.conectarMySQL();
+                if (sucursal == 4) {
+                    con = conectar2.conectarMySQL();
+                } else {
+                    con = conectar.conectarMySQL();
+                }
                 stmt = con.createStatement();
 
                 totalmeses = 0;
@@ -233,7 +246,11 @@ public class MetodosVentadomicilio {
             filadato = 8;
             try {
 
-                con = conectar.conectarMySQL();
+                if (sucursal == 4) {
+                    con = conectar2.conectarMySQL();
+                } else {
+                    con = conectar.conectarMySQL();
+                }
                 stmt = con.createStatement();
 
                 totalmeses = 0;
@@ -273,7 +290,11 @@ public class MetodosVentadomicilio {
             try {
                 columnadato = 1;
                 filadato = 12;
-                con = conectar.conectarMySQL();
+                if (sucursal == 4) {
+                    con = conectar2.conectarMySQL();
+                } else {
+                    con = conectar.conectarMySQL();
+                }
                 stmt = con.createStatement();
 
                 totalmeses = 0;
@@ -312,7 +333,11 @@ public class MetodosVentadomicilio {
             filadato = 13;
             try {
 
-                con = conectar.conectarMySQL();
+                if (sucursal == 4) {
+                    con = conectar2.conectarMySQL();
+                } else {
+                    con = conectar.conectarMySQL();
+                }
                 stmt = con.createStatement();
 
                 totalmeses = 0;
@@ -352,7 +377,11 @@ public class MetodosVentadomicilio {
             filadato = 14;
             try {
 
-                con = conectar.conectarMySQL();
+                if (sucursal == 4) {
+                    con = conectar2.conectarMySQL();
+                } else {
+                    con = conectar.conectarMySQL();
+                }
                 stmt = con.createStatement();
 
                 totalmeses = 0;
@@ -394,7 +423,11 @@ public class MetodosVentadomicilio {
 
             ///inicia consultas de compras por departamento
             try {
-                con = conectar.conectarMySQL();
+                if (sucursal == 4) {
+                    con = conectar2.conectarMySQL();
+                } else {
+                    con = conectar.conectarMySQL();
+                }
                 stmt = con.createStatement();
                 rs2 = stmt.executeQuery("SET lc_time_names = 'es_ES';");
                 rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes ,sum(detallev.importeCompra) as suma "
@@ -423,7 +456,11 @@ public class MetodosVentadomicilio {
             }
 
             try {
-                con = conectar.conectarMySQL();
+                if (sucursal == 4) {
+                    con = conectar2.conectarMySQL();
+                } else {
+                    con = conectar.conectarMySQL();
+                }
                 stmt = con.createStatement();
                 columnadato = 1;
                 filadato = 18;
@@ -454,7 +491,11 @@ public class MetodosVentadomicilio {
             }
 
             try {
-                con = conectar.conectarMySQL();
+                if (sucursal == 4) {
+                    con = conectar2.conectarMySQL();
+                } else {
+                    con = conectar.conectarMySQL();
+                }
                 stmt = con.createStatement();
                 columnadato = 1;
                 filadato = 19;
@@ -485,7 +526,11 @@ public class MetodosVentadomicilio {
             }
 
             try {
-                con = conectar.conectarMySQL();
+                if (sucursal == 4) {
+                    con = conectar2.conectarMySQL();
+                } else {
+                    con = conectar.conectarMySQL();
+                }
                 stmt = con.createStatement();
                 columnadato = 1;
                 filadato = 34;
@@ -519,7 +564,11 @@ public class MetodosVentadomicilio {
                 e.printStackTrace();
             }
             try {
-                con = conectar.conectarMySQL();
+                if (sucursal == 4) {
+                    con = conectar2.conectarMySQL();
+                } else {
+                    con = conectar.conectarMySQL();
+                }
                 stmt = con.createStatement();
                 columnadato = 1;
                 filadato = 38;
