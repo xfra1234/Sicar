@@ -43,9 +43,10 @@ public class MetodosResurtidosoloproductos_esteaño {
     static ResultSet rs3 = null;
     private Statement stmt3 = null;
     conexion conectar = new conexion();
+    conexion2 conectar2 = new conexion2();
     String abrirarchivo = "", guardararchivo = "";
     int contador = 0, contador1 = 0;
-    float cantidad3ma = 0, cantidad3md = 0, existencia = 0, preciocompra = 0,iva=0;
+    float cantidad3ma = 0, cantidad3md = 0, existencia = 0, preciocompra = 0, iva = 0;
     String descripcion = "", descripcion2 = "", categoria = "", clave = "";
     int idpaquete;
     protected ArrayList<Integer> idNumeros = new ArrayList();
@@ -65,29 +66,29 @@ public class MetodosResurtidosoloproductos_esteaño {
 //                guardararchivo = ("C:\\Users\\usuario\\Desktop\\Resurtido de sucursal2.xls");
                 abrirarchivo = ("C:\\Users\\Cpu\\Documents\\Resurtido de sucursal mes.xls");
                 guardararchivo = ("C:\\Users\\Cpu\\Desktop\\Resurtido de sucursal_Magisterio de este año mes " + mes + ".xls");
-                resurtidocopiabodega(fecha1, fecha2, fechauno, fechados);
+                resurtidocopiabodega(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
             case 2:
 
                 abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Resurtido de sucursal mes.xls");
                 guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Resurtido de sucursal_Coapinole de este año mes " + mes + ".xls");
-                resurtidocopiabodega(fecha1, fecha2, fechauno, fechados);
+                resurtidocopiabodega(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
             case 3:
                 abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Resurtido de sucursal mes.xls");
                 guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Resurtido de sucursal_ Bodega de este año mes" + mes + ".xls");
-                resurtidocopiabodega(fecha1, fecha2, fechauno, fechados);
+                resurtidocopiabodega(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
 
             case 4:
                 abrirarchivo = ("C:\\Users\\billy\\Documents\\Resurtido de sucursal mes.xls");
                 guardararchivo = ("C:\\Users\\billy\\Desktop\\Resurtido de sucursal_ Bodega de este año mes" + mes + ".xls");
-                resurtidocopiabodega(fecha1, fecha2, fechauno, fechados);
+                resurtidocopiabodega(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
         }
     }
 
-    public void resurtidocopiabodega(String fecha1ma, String fecha3ma, String fecha1md, String fecha3md) {
+    public void resurtidocopiabodega(String fecha1ma, String fecha3ma, String fecha1md, String fecha3md, int sucursal) {
 
         try ( FileInputStream file = new FileInputStream(new File(abrirarchivo))) {
             POIFSFileSystem fs = new POIFSFileSystem(file);
@@ -140,7 +141,11 @@ public class MetodosResurtidosoloproductos_esteaño {
             int filaa = 1;
             try {
                 int id;
-                con = conectar.conectarMySQL();
+                if (sucursal == 4) {
+                    con = conectar2.conectarMySQL();
+                } else {
+                    con = conectar.conectarMySQL();
+                }
                 stmt = con.createStatement();
                 rs = stmt.executeQuery("select articulo.art_id from articulo inner join"
                         + " categoria on categoria.cat_id = articulo.cat_id  where articulo.status !=-1  order"
@@ -151,7 +156,11 @@ public class MetodosResurtidosoloproductos_esteaño {
 
                     id = rs.getInt(1);
 
-                    con2 = conectar.conectarMySQL();
+                    if (sucursal == 4) {
+                        con2 = conectar2.conectarMySQL();
+                    } else {
+                        con2 = conectar.conectarMySQL();
+                    }
                     stmt2 = con.createStatement();
                     rs2 = stmt2.executeQuery("select paquete.paquete from paquete where paquete.paquete= '" + id + "';");
                     if (rs2.next()) {
@@ -169,7 +178,11 @@ public class MetodosResurtidosoloproductos_esteaño {
                 float existencia = 0;
                 for (int x = 0; x < contador; x++) {
                     valor = idNumeros.get(x);
-                    con = conectar.conectarMySQL();
+                    if (sucursal == 4) {
+                        con = conectar2.conectarMySQL();
+                    } else {
+                        con = conectar.conectarMySQL();
+                    }
                     stmt = con.createStatement();
                     rs = stmt.executeQuery("select paquete.paquete from paquete where paquete.articulo=" + valor + "");
                     if (rs.next()) {
@@ -191,10 +204,13 @@ public class MetodosResurtidosoloproductos_esteaño {
 //                            con3.close();
 //                        }
 //                        con2.close();
-
                         //////////////////// inicio de 3 meses anteriores                   
                         /////////////////////// suma de cantidad venta de paquetes 
-                        con2 = conectar.conectarMySQL();
+                        if (sucursal == 4) {
+                            con2 = conectar2.conectarMySQL();
+                        } else {
+                            con2 = conectar.conectarMySQL();
+                        }
                         stmt2 = con2.createStatement();
                         rs2 = stmt2.executeQuery("select sum(cantidad) from detallep "
                                 + "inner join venta on venta.ven_id = detallep.ven_id "
@@ -233,7 +249,11 @@ public class MetodosResurtidosoloproductos_esteaño {
 //
 //                        con2.close();
                         /////////////////////// suma de cantidad venta  de producto basee 
-                        con2 = conectar.conectarMySQL();
+                        if (sucursal == 4) {
+                            con2 = conectar2.conectarMySQL();
+                        } else {
+                            con2 = conectar.conectarMySQL();
+                        }
                         stmt2 = con2.createStatement();
                         rs2 = stmt2.executeQuery("select sum(cantidad) from detallev "
                                 + "inner join venta on venta.ven_id = detallev.ven_id "
@@ -248,7 +268,11 @@ public class MetodosResurtidosoloproductos_esteaño {
 
                         //////////////////// inicio de 3 meses despues                   
                         /////////////////////// suma de cantidad venta de paquetes 
-                        con2 = conectar.conectarMySQL();
+                        if (sucursal == 4) {
+                            con2 = conectar2.conectarMySQL();
+                        } else {
+                            con2 = conectar.conectarMySQL();
+                        }
                         stmt2 = con2.createStatement();
                         rs2 = stmt2.executeQuery("select sum(cantidad) from detallep "
                                 + "inner join venta on venta.ven_id = detallep.ven_id "
@@ -287,7 +311,11 @@ public class MetodosResurtidosoloproductos_esteaño {
 //
 //                        con2.close();
                         /////////////////////// suma de cantidad venta  de producto basee 
-                        con2 = conectar.conectarMySQL();
+                        if (sucursal == 4) {
+                            con2 = conectar2.conectarMySQL();
+                        } else {
+                            con2 = conectar.conectarMySQL();
+                        }
                         stmt2 = con2.createStatement();
                         rs2 = stmt2.executeQuery("select sum(cantidad) from detallev "
                                 + "inner join venta on venta.ven_id = detallev.ven_id "
@@ -300,7 +328,11 @@ public class MetodosResurtidosoloproductos_esteaño {
                         con2.close();
                         /////////////////////// fin de 3 meses despues  
 
-                        con2 = conectar.conectarMySQL();
+                        if (sucursal == 4) {
+                            con2 = conectar2.conectarMySQL();
+                        } else {
+                            con2 = conectar.conectarMySQL();
+                        }
                         stmt2 = con2.createStatement();
                         rs2 = stmt2.executeQuery("select articulo.clave,articulo.existencia,articulo.descripcion,categoria.nombre,articulo.precioCompra, "
                                 + "impuesto.impuesto "
@@ -310,8 +342,8 @@ public class MetodosResurtidosoloproductos_esteaño {
                         if (rs2.next()) {
                             existencia = existencia + rs2.getFloat(2);
                             preciocompra = rs2.getFloat(5);
-                            iva= 1+(rs2.getFloat(6)/100);
-                            preciocompra= preciocompra*iva;
+                            iva = 1 + (rs2.getFloat(6) / 100);
+                            preciocompra = preciocompra * iva;
                         }
 
                         if (descripcion.equals(rs2.getString(4))) {
@@ -428,7 +460,11 @@ public class MetodosResurtidosoloproductos_esteaño {
 
                     } else {
 
-                        con2 = conectar.conectarMySQL();
+                        if (sucursal == 4) {
+                            con2 = conectar2.conectarMySQL();
+                        } else {
+                            con2 = conectar.conectarMySQL();
+                        }
                         stmt2 = con2.createStatement();
                         rs2 = stmt2.executeQuery("select sum(cantidad) from detallev "
                                 + "inner join venta on venta.ven_id = detallev.ven_id "
@@ -464,7 +500,11 @@ public class MetodosResurtidosoloproductos_esteaño {
 //                        }
 //
 //                        con2.close();
-                        con2 = conectar.conectarMySQL();
+                        if (sucursal == 4) {
+                            con2 = conectar2.conectarMySQL();
+                        } else {
+                            con2 = conectar.conectarMySQL();
+                        }
                         stmt2 = con2.createStatement();
                         rs2 = stmt2.executeQuery("select sum(cantidad) from detallev "
                                 + "inner join venta on venta.ven_id = detallev.ven_id "
@@ -476,7 +516,11 @@ public class MetodosResurtidosoloproductos_esteaño {
                         }
                         con2.close();
 
-                        con2 = conectar.conectarMySQL();
+                        if (sucursal == 4) {
+                            con2 = conectar2.conectarMySQL();
+                        } else {
+                            con2 = conectar.conectarMySQL();
+                        }
                         stmt2 = con2.createStatement();
                         rs2 = stmt2.executeQuery("select articulo.clave,articulo.existencia,articulo.descripcion,"
                                 + "categoria.nombre,articulo.precioCompra,impuesto.impuesto "
@@ -486,7 +530,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                                 + "where articulo.art_id=" + valor + "");
                         if (rs2.next()) {
                             existencia = existencia + rs2.getFloat(2);
-                            preciocompra = (float) (rs2.getFloat(5)*1.16);
+                            preciocompra = (float) (rs2.getFloat(5) * 1.16);
                         }
 
                         if (descripcion.equals(rs2.getString(4))) {
@@ -607,7 +651,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                     cantidad3ma = 0;
                     cantidad3md = 0;
                     preciocompra = 0;
-                    iva=0;
+                    iva = 0;
                 }
                 for (int x = 0; x < 20; x++) {
                     hoja.autoSizeColumn(x);
