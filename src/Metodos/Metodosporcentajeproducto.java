@@ -313,7 +313,11 @@ public class Metodosporcentajeproducto {
         try {
             int id;
             double cantidad = 0;
-            con = conectar.conectarMySQL();
+            if (sucursal == 4) {
+                    con = conectar2.conectarMySQL();
+                } else {
+                    con = conectar.conectarMySQL();
+                }
             stmt = con.createStatement();
             rs = stmt.executeQuery("select articulo.art_id form,articulo.descripcion,unidad.nombre from  articulo inner join"
                     + " unidad on unidad.uni_id =articulo.unidadventa  "
