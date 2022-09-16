@@ -42,6 +42,7 @@ public class MetodosResurtido_1 {
     static ResultSet rs3 = null;
     private Statement stmt3 = null;
     conexion conectar = new conexion();
+    conexion2 conectar2 = new conexion2();
     String abrirarchivo = "", guardararchivo = "";
     int contador = 0, contador1 = 0;
     float cantidad3ma = 0, cantidad3md = 0, existencia = 0;
@@ -64,29 +65,29 @@ public class MetodosResurtido_1 {
 //                guardararchivo = ("C:\\Users\\usuario\\Desktop\\Resurtido de sucursal2.xls");
                 abrirarchivo = ("C:\\Users\\Cpu\\Documents\\Resurtido de sucursal.xls");
                 guardararchivo = ("C:\\Users\\Cpu\\Desktop\\Resurtido de sucursal_Magisterio solo productos de " + mes + ".xls");
-                resurtidocopiabodega(fecha1, fecha2, fechauno, fechados);
+                resurtidocopiabodega(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
             case 2:
 
                 abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Resurtido de sucursal.xls");
                 guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Resurtido de sucursal_Coapinole solo productos de " + mes + ".xls");
-                resurtidocopiabodega(fecha1, fecha2, fechauno, fechados);
+                resurtidocopiabodega(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
             case 3:
                 abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Resurtido de sucursal.xls");
                 guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Resurtido de sucursal_ Bodega solo productos de" + mes + ".xls");
-                resurtidocopiabodega(fecha1, fecha2, fechauno, fechados);
+                resurtidocopiabodega(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
 
             case 4:
                 abrirarchivo = ("C:\\Users\\billy\\Documents\\Resurtido de sucursal.xls");
                 guardararchivo = ("C:\\Users\\billy\\Desktop\\Resurtido de sucursal_ Bodega pdv solo productos de" + mes + ".xls");
-                resurtidocopiabodega(fecha1, fecha2, fechauno, fechados);
+                resurtidocopiabodega(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
         }
     }
 
-    public void resurtidocopiabodega(String fecha1ma, String fecha3ma, String fecha1md, String fecha3md) {
+    public void resurtidocopiabodega(String fecha1ma, String fecha3ma, String fecha1md, String fecha3md, int sucursal) {
 
         try ( FileInputStream file = new FileInputStream(new File(abrirarchivo))) {
             POIFSFileSystem fs = new POIFSFileSystem(file);
@@ -133,7 +134,11 @@ public class MetodosResurtido_1 {
             int filaa = 9;
             try {
                 int id;
-                con = conectar.conectarMySQL();
+                if (sucursal == 4) {
+                    con = conectar2.conectarMySQL();
+                } else {
+                    con = conectar.conectarMySQL();
+                }
                 stmt = con.createStatement();
                 rs = stmt.executeQuery("select articulo.art_id from articulo inner join"
                         + " categoria on categoria.cat_id = articulo.cat_id  where articulo.status !=-1  order"
@@ -144,7 +149,11 @@ public class MetodosResurtido_1 {
 
                     id = rs.getInt(1);
 
-                    con2 = conectar.conectarMySQL();
+                    if (sucursal == 4) {
+                        con2 = conectar2.conectarMySQL();
+                    } else {
+                        con2 = conectar.conectarMySQL();
+                    }
                     stmt2 = con.createStatement();
                     rs2 = stmt2.executeQuery("select paquete.paquete from paquete where paquete.paquete= '" + id + "';");
                     if (rs2.next()) {
@@ -162,7 +171,11 @@ public class MetodosResurtido_1 {
                 float existencia = 0;
                 for (int x = 0; x < contador; x++) {
                     valor = idNumeros.get(x);
-                    con = conectar.conectarMySQL();
+                    if (sucursal == 4) {
+                        con = conectar2.conectarMySQL();
+                    } else {
+                        con = conectar.conectarMySQL();
+                    }
                     stmt = con.createStatement();
                     rs = stmt.executeQuery("select paquete.paquete from paquete where paquete.articulo=" + valor + "");
                     if (rs.next()) {
@@ -184,10 +197,13 @@ public class MetodosResurtido_1 {
 //                            con3.close();
 //                        }
 //                        con2.close();
-
                         //////////////////// inicio de 3 meses anteriores                   
                         /////////////////////// suma de cantidad venta de paquetes 
-                        con2 = conectar.conectarMySQL();
+                        if (sucursal == 4) {
+                            con2 = conectar2.conectarMySQL();
+                        } else {
+                            con2 = conectar.conectarMySQL();
+                        }
                         stmt2 = con2.createStatement();
                         rs2 = stmt2.executeQuery("select sum(cantidad) from detallep "
                                 + "inner join venta on venta.ven_id = detallep.ven_id "
@@ -226,7 +242,11 @@ public class MetodosResurtido_1 {
 //
 //                        con2.close();
                         /////////////////////// suma de cantidad venta  de producto basee 
-                        con2 = conectar.conectarMySQL();
+                        if (sucursal == 4) {
+                            con2 = conectar2.conectarMySQL();
+                        } else {
+                            con2 = conectar.conectarMySQL();
+                        }
                         stmt2 = con2.createStatement();
                         rs2 = stmt2.executeQuery("select sum(cantidad) from detallev "
                                 + "inner join venta on venta.ven_id = detallev.ven_id "
@@ -241,7 +261,11 @@ public class MetodosResurtido_1 {
 
                         //////////////////// inicio de 3 meses despues                   
                         /////////////////////// suma de cantidad venta de paquetes 
-                        con2 = conectar.conectarMySQL();
+                        if (sucursal == 4) {
+                            con2 = conectar2.conectarMySQL();
+                        } else {
+                            con2 = conectar.conectarMySQL();
+                        }
                         stmt2 = con2.createStatement();
                         rs2 = stmt2.executeQuery("select sum(cantidad) from detallep "
                                 + "inner join venta on venta.ven_id = detallep.ven_id "
@@ -280,7 +304,11 @@ public class MetodosResurtido_1 {
 //
 //                        con2.close();
                         /////////////////////// suma de cantidad venta  de producto basee 
-                        con2 = conectar.conectarMySQL();
+                        if (sucursal == 4) {
+                            con2 = conectar2.conectarMySQL();
+                        } else {
+                            con2 = conectar.conectarMySQL();
+                        }
                         stmt2 = con2.createStatement();
                         rs2 = stmt2.executeQuery("select sum(cantidad) from detallev "
                                 + "inner join venta on venta.ven_id = detallev.ven_id "
@@ -293,7 +321,11 @@ public class MetodosResurtido_1 {
                         con2.close();
                         /////////////////////// fin de 3 meses despues  
 
-                        con2 = conectar.conectarMySQL();
+                        if (sucursal == 4) {
+                            con2 = conectar2.conectarMySQL();
+                        } else {
+                            con2 = conectar.conectarMySQL();
+                        }
                         stmt2 = con2.createStatement();
                         rs2 = stmt2.executeQuery("select articulo.clave,articulo.existencia,articulo.descripcion,categoria.nombre"
                                 + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id where art_id=" + valor + "");
@@ -469,7 +501,11 @@ public class MetodosResurtido_1 {
 
                     } else {
 
-                        con2 = conectar.conectarMySQL();
+                        if (sucursal == 4) {
+                            con2 = conectar2.conectarMySQL();
+                        } else {
+                            con2 = conectar.conectarMySQL();
+                        }
                         stmt2 = con2.createStatement();
                         rs2 = stmt2.executeQuery("select sum(cantidad) from detallev "
                                 + "inner join venta on venta.ven_id = detallev.ven_id "
@@ -505,7 +541,11 @@ public class MetodosResurtido_1 {
 //                        }
 //
 //                        con2.close();
-                        con2 = conectar.conectarMySQL();
+                        if (sucursal == 4) {
+                            con2 = conectar2.conectarMySQL();
+                        } else {
+                            con2 = conectar.conectarMySQL();
+                        }
                         stmt2 = con2.createStatement();
                         rs2 = stmt2.executeQuery("select sum(cantidad) from detallev "
                                 + "inner join venta on venta.ven_id = detallev.ven_id "
@@ -517,7 +557,11 @@ public class MetodosResurtido_1 {
                         }
                         con2.close();
 
-                        con2 = conectar.conectarMySQL();
+                        if (sucursal == 4) {
+                            con2 = conectar2.conectarMySQL();
+                        } else {
+                            con2 = conectar.conectarMySQL();
+                        }
                         stmt2 = con2.createStatement();
                         rs2 = stmt2.executeQuery("select articulo.clave,articulo.existencia,articulo.descripcion,categoria.nombre"
                                 + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id where art_id=" + valor + "");
