@@ -45,6 +45,7 @@ public class MetodosResurtidoesteaño {
     static ResultSet rs4 = null;
     private Statement stmt4 = null;
     conexion conectar = new conexion();
+    conexion2 conectar2 = new conexion2();
     String abrirarchivo = "", guardararchivo = "";
     int contador = 0, contador1 = 0;
     float cantidad3ma = 0, existencia = 0, preciocompra = 0;
@@ -78,24 +79,24 @@ public class MetodosResurtidoesteaño {
 //                guardararchivo = ("C:\\Users\\usuario\\Desktop\\Resurtido de sucursal2.xls");
                 abrirarchivo = ("C:\\Users\\Cpu\\Documents\\Resurtido de sucursal mes.xls");
                 guardararchivo = ("C:\\Users\\Cpu\\Desktop\\Resurtido solo este año de la sucursal_Magisterio de " + mes + " .xls");
-                resurtidosucursal(fecha1, fecha2);
+                resurtidosucursal(fecha1, fecha2, sucursal);
                 break;
             case 2:
 
                 abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Resurtido de sucursal mes.xls");
                 guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Resurtido solo este año de la sucursal_Coapinole de" + mes + ".xls");
-                resurtidosucursal(fecha1, fecha2);
+                resurtidosucursal(fecha1, fecha2, sucursal);
                 break;
             case 3:
                 abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Resurtido de sucursal mes.xls");
                 guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Resurtido solo este año de Bodega " + mes + ".xls");
-                resurtidosucursal(fecha1, fecha2);
+                resurtidosucursal(fecha1, fecha2, sucursal);
                 break;
 
             case 4:
                 abrirarchivo = ("C:\\Users\\billy\\Documents\\Resurtido de sucursal mes.xls");
                 guardararchivo = ("C:\\Users\\billy\\Desktop\\Resurtido solo este año de Bodega pdv " + mes + ".xls");
-                resurtidosucursal(fecha1, fecha2);
+                resurtidosucursal(fecha1, fecha2, sucursal);
                 break;
         }
     }
@@ -109,7 +110,7 @@ public class MetodosResurtidoesteaño {
         }
     }
 
-    public void resurtidosucursal(String fecha1ma, String fecha3ma) {
+    public void resurtidosucursal(String fecha1ma, String fecha3ma, int sucursal) {
 
         try ( FileInputStream file = new FileInputStream(new File(abrirarchivo))) {
             fs = new POIFSFileSystem(file);
@@ -160,14 +161,22 @@ public class MetodosResurtidoesteaño {
             filaa = 1;
             try {
 
-                con = conectar.conectarMySQL();
+                if (sucursal == 4) {
+                    con = conectar2.conectarMySQL();
+                } else {
+                    con = conectar.conectarMySQL();
+                }
                 stmt = con.createStatement();
                 rs = stmt.executeQuery("select articulo.art_id,articulo.clave,articulo.existencia,"
                         + "articulo.descripcion,categoria.nombre,articulo.precioCompra "
                         + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id "
                         + " where articulo.status !=-1  order by categoria.nombre,articulo.descripcion");
                 while (rs.next()) {
-                    con4 = conectar.conectarMySQL();
+                    if (sucursal == 4) {
+                        con4 = conectar2.conectarMySQL();
+                    } else {
+                        con4 = conectar.conectarMySQL();
+                    }
                     stmt4 = con4.createStatement();
                     rs4 = stmt4.executeQuery("select paquete.paquete from paquete where "
                             + "paquete.paquete = " + rs.getInt(1) + "");
@@ -181,9 +190,13 @@ public class MetodosResurtidoesteaño {
                     clave = rs.getString(2);
                     descripcion = rs.getString(4);
                     categoria = rs.getString(5);
-                    preciocompra = (float) (rs.getFloat(6)*1.16);
+                    preciocompra = (float) (rs.getFloat(6) * 1.16);
 
-                    con2 = conectar.conectarMySQL();
+                    if (sucursal == 4) {
+                        con2 = conectar2.conectarMySQL();
+                    } else {
+                        con2 = conectar.conectarMySQL();
+                    }
                     stmt2 = con2.createStatement();
                     rs2 = stmt2.executeQuery("select sum(cantidad) from detallev "
                             + "inner join venta on venta.ven_id = detallev.ven_id "
