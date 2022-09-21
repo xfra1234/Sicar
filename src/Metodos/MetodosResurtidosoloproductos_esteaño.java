@@ -532,7 +532,10 @@ public class MetodosResurtidosoloproductos_esteaño {
                             existencia = existencia + rs2.getFloat(2);
                             preciocompra = (float) (rs2.getFloat(5) * 1.16);
                         }
-
+                        System.out.println(rs2.getString(1));
+                        System.out.println(rs2.getString(3));
+                        System.out.println(rs2.getString(4));
+                        System.out.println(descripcion);
                         if (descripcion.equals(rs2.getString(4))) {
                             fila = hoja.getRow(filaa);
 //                    
