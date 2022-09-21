@@ -534,7 +534,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                             preciocompra = (float) (rs2.getFloat(5) *iva);
                         }
                         
-                         if (contador ==1363){
+                         if (contador ==1362){
                             System.out.println(valor);
                         }
                         
