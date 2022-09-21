@@ -534,6 +534,10 @@ public class MetodosResurtidosoloproductos_esteaño {
                             preciocompra = (float) (rs2.getFloat(5) *iva);
                         }
                         
+                         if (valor ==1363){
+                            System.out.println(valor);
+                        }
+                        
                         if("111".equals(rs2.getString(2))){
                         System.out.println(rs2.getString(1));
                         System.out.println(rs2.getString(3));
