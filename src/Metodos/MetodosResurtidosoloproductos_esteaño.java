@@ -534,16 +534,11 @@ public class MetodosResurtidosoloproductos_esteaño {
                             preciocompra = (float) (rs2.getFloat(5) *iva);
                         }
                         
-                         if (x ==1362){
-                            System.out.println(valor);
-                        }
+//                         if (x ==1362){
+//                            System.out.println(valor);
+//                        }
                         
-                        if("111".equals(rs2.getString(2))){
-                        System.out.println(rs2.getString(1));
-                        System.out.println(rs2.getString(3));
-                        System.out.println(rs2.getString(4));
-                        System.out.println(descripcion);}
-                        
+                       
                         if (descripcion.equals(rs2.getString(4))) {
                             fila = hoja.getRow(filaa);
 //                    
