@@ -82,7 +82,7 @@ public class MetodosResurtidosoloproductos_esteaño {
 
             case 4:
                 abrirarchivo = ("C:\\Users\\billy\\Documents\\Resurtido de sucursal mes.xls");
-                guardararchivo = ("C:\\Users\\billy\\Desktop\\Resurtido de sucursal_ Bodega de este año mes" + mes + ".xls");
+                guardararchivo = ("C:\\Users\\billy\\Desktop\\Resurtido de sucursal_ Bodega pdv de este año mes" + mes + ".xls");
                 resurtidocopiabodega(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
         }
