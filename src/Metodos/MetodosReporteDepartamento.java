@@ -137,7 +137,7 @@ public class MetodosReporteDepartamento {
 
                 /////////////// obtener las notas de credito
                 if(sucursal ==4){
-                    con = conectar.conectarMySQL();
+                    con = conectar2.conectarMySQL();
                 }else{
                  con = conectar.conectarMySQL();   
                 }
