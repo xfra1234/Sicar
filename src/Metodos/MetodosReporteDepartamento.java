@@ -153,7 +153,7 @@ public class MetodosReporteDepartamento {
                 while (rs.next()) {
 
                     ventas[totalmeses] = rs.getFloat(2);
-
+                    System.out.println("total nota credito " + rs.getFloat(2));
                     totalmeses = totalmeses + 1;
 
                 }
