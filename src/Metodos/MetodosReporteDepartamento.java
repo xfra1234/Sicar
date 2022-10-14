@@ -136,28 +136,28 @@ public class MetodosReporteDepartamento {
             try {
 
                 /////////////// obtener las notas de credito
-//                if(sucursal ==4){
-//                    con = conectar2.conectarMySQL();
-//                }else{
-//                 con = conectar.conectarMySQL();   
-//                }
-//                
-//                stmt = con.createStatement();
-//                rs = stmt.executeQuery("select MONTHNAME(notacredito.fecha) mes ,sum(notacredito.total) as suma "
-//                        + ",year(notacredito.fecha) as año\n"
-//                        + "from notacredito "
-//                        + "where notacredito.status!= -1 "
-//                        + " and notacredito.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
-//                        + " and notacredito.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
-//                        + "order by  year(fecha), month(fecha) ;");
-//                while (rs.next()) {
-//
-//                    ventas[totalmeses] = rs.getFloat(2);
-//
-//                    totalmeses = totalmeses + 1;
-//
-//                }
-//                con.close();
+                if(sucursal ==4){
+                    con = conectar2.conectarMySQL();
+                }else{
+                 con = conectar.conectarMySQL();   
+                }
+                
+                stmt = con.createStatement();
+                rs = stmt.executeQuery("select MONTHNAME(notacredito.fecha) mes ,sum(notacredito.total) as suma "
+                        + ",year(notacredito.fecha) as año\n"
+                        + "from notacredito "
+                        + "where notacredito.status!= -1 "
+                        + " and notacredito.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
+                        + " and notacredito.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
+                        + "order by  year(fecha), month(fecha) ;");
+                while (rs.next()) {
+
+                    ventas[totalmeses] = rs.getFloat(2);
+
+                    totalmeses = totalmeses + 1;
+
+                }
+                con.close();
 
                 if(sucursal ==4){
                     con = conectar2.conectarMySQL();
