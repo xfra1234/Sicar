@@ -345,7 +345,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                             iva = 1 + (rs2.getFloat(6) / 100);
                             preciocompra = preciocompra * iva;
                         }
-
+                            System.out.println(rs2.getString(1));
                         if (descripcion.equals(rs2.getString(4))) {
                             fila = hoja.getRow(filaa);
 //                    
@@ -537,8 +537,7 @@ public class MetodosResurtidosoloproductos_esteaño {
 //                         if (x ==1362){
 //                            System.out.println(valor);
 //                        }
-                        
-                        System.out.println(rs2.getString(1));
+                         
                         if (descripcion.equals(rs2.getString(4))) {
                             fila = hoja.getRow(filaa);
 //                    
