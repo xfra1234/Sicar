@@ -346,6 +346,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                             iva = 1 + (rs2.getFloat(6) / 100);
                             preciocompra = preciocompra * iva;
                             nombrearticulo =rs2.getString(3);
+                            descripcion = rs2.getString(4);
                         }
                             
 //                        if (descripcion.equals(rs2.getString(4))) {
@@ -456,7 +457,7 @@ public class MetodosResurtidosoloproductos_esteaño {
 //                            }
 //                            filaa = filaa + 1;
 //                        }
-                        descripcion = rs2.getString(4);
+                        
                         con.close();
                         con2.close();
 
@@ -534,8 +535,8 @@ public class MetodosResurtidosoloproductos_esteaño {
                             existencia = existencia + rs2.getFloat(2);
                             iva = 1 + (rs2.getFloat(6) / 100);
                             preciocompra = (float) (rs2.getFloat(5) *iva);
-                           nombrearticulo=rs2.getString(3);
-                           System.out.println(rs2.getString(1));
+                            nombrearticulo=rs2.getString(3);
+                           descripcion = rs2.getString(4);
                         }
                         
 //                         if (x ==1362){
@@ -651,7 +652,7 @@ public class MetodosResurtidosoloproductos_esteaño {
 //                            }
 //                            filaa = filaa + 1;
 //                        }
-                        descripcion = rs2.getString(4);
+                        
                         con.close();
                         con2.close();
                     }
