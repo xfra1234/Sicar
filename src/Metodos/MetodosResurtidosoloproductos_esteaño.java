@@ -549,7 +549,7 @@ public class MetodosResurtidosoloproductos_esteaño {
 //                            celda.setCellStyle(encabezados);
 
                             celda = fila.createCell(0);
-                            celda.setCellValue(new HSSFRichTextString(nombrearticulo+" ");
+                            celda.setCellValue(new HSSFRichTextString(nombrearticulo+" "));
                             celda.setCellStyle(encabezados);
 
                             celda = fila.createCell(1);
