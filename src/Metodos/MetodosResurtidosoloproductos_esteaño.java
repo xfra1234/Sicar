@@ -49,6 +49,7 @@ public class MetodosResurtidosoloproductos_esteaño {
     float cantidad3ma = 0, cantidad3md = 0, existencia = 0, preciocompra = 0, iva = 0;
     String descripcion = "", descripcion2 = "", categoria = "", clave = "";
     int idpaquete;
+   String nombrearticulo;
     protected ArrayList<Integer> idNumeros = new ArrayList();
 
     public void limpiarVariables() {
@@ -344,10 +345,10 @@ public class MetodosResurtidosoloproductos_esteaño {
                             preciocompra = rs2.getFloat(5);
                             iva = 1 + (rs2.getFloat(6) / 100);
                             preciocompra = preciocompra * iva;
+                            nombrearticulo =rs2.getString(3);
                         }
-                            System.out.println(rs2.getString(4));
-                            System.out.println(descripcion);
-                        if (descripcion.equals(rs2.getString(4))) {
+                            
+//                        if (descripcion.equals(rs2.getString(4))) {
                             fila = hoja.getRow(filaa);
 //                    
 //                            celda = fila.createCell(0);
@@ -355,7 +356,7 @@ public class MetodosResurtidosoloproductos_esteaño {
 //                            celda.setCellStyle(encabezados);
 
                             celda = fila.createCell(0);
-                            celda.setCellValue(new HSSFRichTextString(rs2.getString(3)));
+                            celda.setCellValue(new HSSFRichTextString(nombrearticulo+" "));
                             celda.setCellStyle(encabezados);
 
                             celda = fila.createCell(1);
@@ -398,63 +399,63 @@ public class MetodosResurtidosoloproductos_esteaño {
 
                             }
                             filaa = filaa + 1;
-                        } else {
-//                            filaa = filaa + 1;
-                            fila = hoja.getRow(filaa);
-//                            celda = fila.createCell(0);
-//                            celda.setCellValue(rs2.getString(4));
-//                            celda.setCellStyle(letraprincipal);
-//
-//                            filaa = filaa + 1;
+//                        } else {
+////                            filaa = filaa + 1;
 //                            fila = hoja.getRow(filaa);
+////                            celda = fila.createCell(0);
+////                            celda.setCellValue(rs2.getString(4));
+////                            celda.setCellStyle(letraprincipal);
+////
+////                            filaa = filaa + 1;
+////                            fila = hoja.getRow(filaa);
+////                            celda = fila.createCell(0);
+////                            celda.setCellValue(rs2.getString(1));
+////                            celda.setCellStyle(encabezados);
+//
 //                            celda = fila.createCell(0);
-//                            celda.setCellValue(rs2.getString(1));
+//                            celda.setCellValue(new HSSFRichTextString(rs2.getString(3)));
 //                            celda.setCellStyle(encabezados);
-
-                            celda = fila.createCell(0);
-                            celda.setCellValue(new HSSFRichTextString(rs2.getString(3)));
-                            celda.setCellStyle(encabezados);
-
-                            celda = fila.createCell(1);
-                            celda.setCellValue(existencia);
-                            celda.setCellStyle(Numerico);
-
-                            celda = fila.createCell(2);
-                            celda.setCellValue(preciocompra);
-                            celda.setCellStyle(Numerico);
-
-                            celda = fila.createCell(3);
-                            celda.setCellValue((cantidad3ma / 3));
-                            celda.setCellStyle(Numerico);
-
-//                            celda = fila.createCell(4);
-//                            celda.setCellValue((cantidad3md / 3));
+//
+//                            celda = fila.createCell(1);
+//                            celda.setCellValue(existencia);
 //                            celda.setCellStyle(Numerico);
-                            if (filaa > 0) {
-                                int filaformula = filaa + 1;
-                                String Formula;
-
-                                //// Formula 7 dias mes anterior
-                                Formula = "D" + filaformula + "/4";
-                                celda = fila.createCell(4);
-                                celda.setCellFormula(Formula);
-                                celda.setCellStyle(Numerico);
-
-                                //// Formula Resurtido mes   anterior
-                                Formula = "E" + filaformula + "-B" + filaformula;
-                                celda = fila.createCell(5);
-                                celda.setCellFormula(Formula);
-                                celda.setCellStyle(Numerico);
-
-                                //// Formula Dias Inventario Mes  Anterior  
-                                Formula = "B" + filaformula + "*30/D" + filaformula;
-                                celda = fila.createCell(7);
-                                celda.setCellFormula(Formula);
-                                celda.setCellStyle(Numerico);
-
-                            }
-                            filaa = filaa + 1;
-                        }
+//
+//                            celda = fila.createCell(2);
+//                            celda.setCellValue(preciocompra);
+//                            celda.setCellStyle(Numerico);
+//
+//                            celda = fila.createCell(3);
+//                            celda.setCellValue((cantidad3ma / 3));
+//                            celda.setCellStyle(Numerico);
+//
+////                            celda = fila.createCell(4);
+////                            celda.setCellValue((cantidad3md / 3));
+////                            celda.setCellStyle(Numerico);
+//                            if (filaa > 0) {
+//                                int filaformula = filaa + 1;
+//                                String Formula;
+//
+//                                //// Formula 7 dias mes anterior
+//                                Formula = "D" + filaformula + "/4";
+//                                celda = fila.createCell(4);
+//                                celda.setCellFormula(Formula);
+//                                celda.setCellStyle(Numerico);
+//
+//                                //// Formula Resurtido mes   anterior
+//                                Formula = "E" + filaformula + "-B" + filaformula;
+//                                celda = fila.createCell(5);
+//                                celda.setCellFormula(Formula);
+//                                celda.setCellStyle(Numerico);
+//
+//                                //// Formula Dias Inventario Mes  Anterior  
+//                                Formula = "B" + filaformula + "*30/D" + filaformula;
+//                                celda = fila.createCell(7);
+//                                celda.setCellFormula(Formula);
+//                                celda.setCellStyle(Numerico);
+//
+//                            }
+//                            filaa = filaa + 1;
+//                        }
                         descripcion = rs2.getString(4);
                         con.close();
                         con2.close();
