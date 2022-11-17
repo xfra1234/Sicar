@@ -535,6 +535,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                             iva = 1 + (rs2.getFloat(6) / 100);
                             preciocompra = (float) (rs2.getFloat(5) *iva);
                            nombrearticulo=rs2.getString(3);
+                           System.out.println(rs2.getString(1));
                         }
                         
 //                         if (x ==1362){
