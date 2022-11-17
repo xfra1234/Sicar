@@ -354,7 +354,7 @@ public class MetodosResurtidosoloproductos_esteaño {
 //                            celda.setCellStyle(encabezados);
 
                             celda = fila.createCell(0);
-                            celda.setCellValue(new HSSFRichTextString(rs2.getString(3)));
+                            celda.setCellValue(new HSSFRichTextString(rs2.getString(3))+"");
                             celda.setCellStyle(encabezados);
 
                             celda = fila.createCell(1);
@@ -411,7 +411,7 @@ public class MetodosResurtidosoloproductos_esteaño {
 //                            celda.setCellStyle(encabezados);
 
                             celda = fila.createCell(0);
-                            celda.setCellValue(new HSSFRichTextString(rs2.getString(3)));
+                            celda.setCellValue(new HSSFRichTextString(rs2.getString(3))+"");
                             celda.setCellStyle(encabezados);
 
                             celda = fila.createCell(1);
@@ -547,7 +547,7 @@ public class MetodosResurtidosoloproductos_esteaño {
 //                            celda.setCellStyle(encabezados);
 
                             celda = fila.createCell(0);
-                            celda.setCellValue(new HSSFRichTextString(rs2.getString(3)));
+                            celda.setCellValue(new HSSFRichTextString(rs2.getString(3))+"");
                             celda.setCellStyle(encabezados);
 
                             celda = fila.createCell(1);
