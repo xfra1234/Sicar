@@ -188,7 +188,7 @@ public class Metodosporcentajeproducto {
                             con2 = conectar.conectarMySQL();
                         }
                         stmt2 = con2.createStatement();
-                        
+
                         rs2 = stmt2.executeQuery("select  sum(detallev.cantidad),sum(detallev.importecon)"
                                 + ",sum(detallev.precionorsin)/count(detallev.art_id)"
                                 + "from detallev inner join venta\n"
@@ -198,9 +198,8 @@ public class Metodosporcentajeproducto {
                                 + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "'"
                                 + "and venta.status!= -1 ; ");
                         while (rs2.next()) {
-                            
                             ventaproducto = ventaproducto + (rs2.getFloat(2));
-                            precioventa = rs2.getFloat(3);
+//                            precioventa = rs2.getFloat(3);
                         }
                         con2.close();
 
@@ -238,16 +237,12 @@ public class Metodosporcentajeproducto {
                             + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "'"
                             + "and venta.status!= -1  ;");
                     if (rs2.next()) {
-                        if(valor==2){
-                            JOptionPane.showMessageDialog(null, precioventa+" "+rs2.getFloat(5));
-                            
-                        }
-                        
+
                         cantidadproducto = cantidadproducto + rs2.getFloat(1);
                         nombreproducto = rs2.getString(2);
                         unidad = rs2.getString(3);
                         ventaproducto = ventaproducto + (rs2.getFloat(4));
-                        precioventa = (precioventa + rs2.getFloat(5)) / 2;
+                        precioventa =  rs2.getFloat(5);
 
                     }
                     con2.close();
@@ -271,10 +266,6 @@ public class Metodosporcentajeproducto {
                             + " venta.fecha between '" + fecha1 + "' and '" + fecha2 + "'"
                             + " and venta.status!= -1  ; ");
                     while (rs2.next()) {
-                        if(valor==2){
-                            JOptionPane.showMessageDialog(null, precioventa+" "+rs2.getFloat(5));
-                            
-                        }
                         cantidadproducto = cantidadproducto + rs2.getFloat(1);
                         nombreproducto = rs2.getString(2);
                         unidad = rs2.getString(3);
@@ -416,7 +407,7 @@ public class Metodosporcentajeproducto {
                                 + " venta.tic_id is not null; ");
                         while (rs2.next()) {
                             ventaproducto = ventaproducto + (rs2.getFloat(2));
-                            precioventa = rs2.getFloat(3);
+//                            precioventa = rs2.getFloat(3);
 
                         }
                         con2.close();
@@ -462,7 +453,7 @@ public class Metodosporcentajeproducto {
                         nombreproducto = rs2.getString(2);
                         unidad = rs2.getString(3);
                         ventaproducto = ventaproducto + (rs2.getFloat(4));
-                        precioventa = precioventa + rs2.getFloat(5);
+                        precioventa =  rs2.getFloat(5);
                         preciocompra = rs2.getFloat(6);
 
                     }
