@@ -239,8 +239,8 @@ public class Metodosporcentajeproducto {
                             + "and venta.status!= -1  ;");
                     if (rs2.next()) {
                         if(valor==2){
-                            System.out.println("precio 1 "+ precioventa);
-                            System.out.println("precio 2"+rs2.getFloat(5));
+                            JOptionPane.showMessageDialog(null, precioventa+" "+rs2.getFloat(5));
+                            
                         }
                         
                         cantidadproducto = cantidadproducto + rs2.getFloat(1);
@@ -271,6 +271,10 @@ public class Metodosporcentajeproducto {
                             + " venta.fecha between '" + fecha1 + "' and '" + fecha2 + "'"
                             + " and venta.status!= -1  ; ");
                     while (rs2.next()) {
+                        if(valor==2){
+                            JOptionPane.showMessageDialog(null, precioventa+" "+rs2.getFloat(5));
+                            
+                        }
                         cantidadproducto = cantidadproducto + rs2.getFloat(1);
                         nombreproducto = rs2.getString(2);
                         unidad = rs2.getString(3);
