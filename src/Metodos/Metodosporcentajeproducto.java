@@ -418,13 +418,12 @@ public class Metodosporcentajeproducto {
                             con2 = conectar.conectarMySQL();
                         }
                         stmt2 = con2.createStatement();
-                        rs2 = stmt2.executeQuery("select sum(detallep.cantidad) from detallep inner join venta\n"
-                                + "on detallep.ven_id = venta.ven_id \n"
+                        rs2 = stmt2.executeQuery("select sum(detallep.cantidad) from articulo inner join detallep\n"
+                                + "on detallep.articulo = articulo.art_id \n"
+                                + "inner join venta on venta.ven_id = detallep.ven_id"
                                 + "where detallep.articulo='" + valor + "'"
-                                + "and detallep.paquete='" + idarticulo + "' and\n"
-                                + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "'"
-                                + "and venta.status!= -1 "
-                                + " and venta.tic_id is not null ;");
+                                + " and venta.fecha between '" + fecha1 + "' and '" + fecha2 + "'"
+                                + "and venta.status!= -1  ;");
                         if (rs2.next()) {
                             cantidadproducto = cantidadproducto + (rs2.getFloat(1));
 
