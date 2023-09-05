@@ -122,6 +122,11 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
         grbtnsucursal.add(rbtnbodega);
         rbtnbodega.setText("Bodega");
         rbtnbodega.setOpaque(false);
+        rbtnbodega.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnbodegaActionPerformed(evt);
+            }
+        });
 
         grbtnsucursal.add(rbtnmagisterio);
         rbtnmagisterio.setText("Magisterio");
@@ -169,17 +174,17 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
                         .addComponent(rbtnbodega)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(70, 70, 70)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(rbtnmagisterio)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(rbtncoapinole)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(rbtnbodegapdv)))
+                                .addComponent(rbtnbodegapdv))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(62, 62, 62)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2))))
                         .addContainerGap(26, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jdcinicio, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -200,11 +205,12 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
                     .addComponent(jdcfin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jdcinicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(rbtnbodega)
-                    .addComponent(rbtncoapinole)
-                    .addComponent(rbtnmagisterio)
-                    .addComponent(rbtnbodegapdv))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(rbtncoapinole)
+                        .addComponent(rbtnmagisterio)
+                        .addComponent(rbtnbodegapdv)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -264,6 +270,10 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
         principal.setResizable(false);
         this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void rbtnbodegaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnbodegaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbtnbodegaActionPerformed
 
     /**
      * @param args the command line arguments

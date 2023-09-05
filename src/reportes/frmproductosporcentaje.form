@@ -61,19 +61,19 @@
                           <Component id="rbtnbodega" min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="btnbuscar" min="-2" pref="54" max="-2" attributes="0"/>
-                                      <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="rbtnmagisterio" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="rbtncoapinole" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="rbtnbodegapdv" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="btnbuscar" min="-2" pref="54" max="-2" attributes="0"/>
+                                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                           <EmptySpace pref="26" max="32767" attributes="0"/>
@@ -104,11 +104,13 @@
                       <Component id="jdcinicio" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="rbtnbodega" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="rbtncoapinole" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="rbtnmagisterio" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="rbtnbodegapdv" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="rbtncoapinole" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rbtnmagisterio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="rbtnbodegapdv" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="btnbuscar" min="-2" pref="41" max="-2" attributes="0"/>
@@ -155,6 +157,9 @@
             <Property name="text" type="java.lang.String" value="Bodega"/>
             <Property name="opaque" type="boolean" value="false"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtnbodegaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rbtnmagisterio">
           <Properties>
