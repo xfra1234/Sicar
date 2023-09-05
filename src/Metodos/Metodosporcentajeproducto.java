@@ -426,6 +426,10 @@ public class Metodosporcentajeproducto {
                                 + "and venta.status!= -1 "
                                 + " and venta.tic_id is not null ;");
                         if (rs2.next()) {
+                            if(valor==4)
+                            {
+                                JOptionPane.showMessageDialog(null, rs.getfloat(1));
+                            }
                             cantidadproducto=0;
                             cantidadproducto = cantidadproducto + (rs2.getFloat(1));
 
