@@ -194,7 +194,7 @@ public class Metodosporcentajeproducto {
                                 + "from detallev inner join venta\n"
                                 + "on detallev.ven_id = venta.ven_id inner join articulo on\n"
                                 + " detallev.art_id=articulo.art_id\n"
-                                + "where detallev.art_id='" + idarticulo + "' and\n"
+                                + "where articulo.art_id='" + idarticulo + "' and\n"
                                 + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "'"
                                 + "and venta.status!= -1 ; ");
                         while (rs2.next()) {
@@ -209,11 +209,11 @@ public class Metodosporcentajeproducto {
                             con2 = conectar.conectarMySQL();
                         }
                         stmt2 = con2.createStatement();
-                        rs2 = stmt2.executeQuery("select sum(detallep.cantidad) from articulo inner join detallep\n"
-                                + "on detallep.articulo = articulo.art_id \n"
-                                + "inner join venta on venta.ven_id = detallep.ven_id"
+                        rs2 = stmt2.executeQuery("select sum(detallep.cantidad) from detallep inner join venta\n"
+                                + "on detallep.ven_id = venta.ven_id \n"
                                 + "where detallep.articulo='" + valor + "'"
-                                + " and venta.fecha between '" + fecha1 + "' and '" + fecha2 + "'"
+                                + "and detallep.paquete='" + idarticulo + "' and\n"
+                                + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "'"
                                 + "and venta.status!= -1  ;");
                         if (rs2.next()) {
                             cantidadproducto = cantidadproducto + (rs2.getFloat(1));
@@ -418,12 +418,13 @@ public class Metodosporcentajeproducto {
                             con2 = conectar.conectarMySQL();
                         }
                         stmt2 = con2.createStatement();
-                        rs2 = stmt2.executeQuery("select sum(detallep.cantidad) from articulo inner join detallep\n"
-                                + "on detallep.articulo = articulo.art_id \n"
-                                + "inner join venta on venta.ven_id = detallep.ven_id"
+                        rs2 = stmt2.executeQuery("select sum(detallep.cantidad) from detallep inner join venta\n"
+                                + "on detallep.ven_id = venta.ven_id \n"
                                 + "where detallep.articulo='" + valor + "'"
-                                + " and venta.fecha between '" + fecha1 + "' and '" + fecha2 + "'"
-                                + "and venta.status!= -1  ;");
+                                + " and\n"
+                                + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "'"
+                                + "and venta.status!= -1 "
+                                + " and venta.tic_id is not null ;");
                         if (rs2.next()) {
                             cantidadproducto = cantidadproducto + (rs2.getFloat(1));
 
