@@ -476,22 +476,17 @@ public class Metodosporcentajeproducto {
                         con2 = conectar.conectarMySQL();
                     }
                     stmt2 = con2.createStatement();
-                    rs2 = stmt2.executeQuery("select sum(detallev.cantidad),articulo.descripcion,unidad.nombre"
-                            + ",sum(detallev.importecon),sum(detallev.precionorsin)/count(detallev.art_id)  "
-                            + ",detallev.preciocompra from detallev inner join venta\n"
-                            + "on detallev.ven_id = venta.ven_id inner join articulo on\n"
-                            + " detallev.art_id=articulo.art_id inner join unidad on uni_id= articulo.unidadventa\n"
-                            + "where articulo.art_id='" + valor + "' and\n"
-                            + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "'"
-                            + "and venta.status!= -1  "
-                            + " and venta.tic_id is not null; ");
+                    rs2 = stmt2.executeQuery("select sum(detallev.cantidad) from articulo inner join detallev"
+                            + " on detallev.art_id = articulo.art_id inner join venta on"
+                            + " venta.ven_id = detallev.ven_id where detallev.art_id = '"+valor+"' "
+                            + " and venta.fecha between '"+fecha1+"' and '"+fecha2+"'and venta.status !=-1");
                     while (rs2.next()) {
                         cantidadproducto = cantidadproducto + rs2.getFloat(1);
-                        nombreproducto = rs2.getString(2);
-                        unidad = rs2.getString(3);
-                        ventaproducto = ventaproducto + (rs2.getFloat(4));
-                        precioventa = rs2.getFloat(5);
-                        preciocompra = rs2.getFloat(6);
+//                        nombreproducto = rs2.getString(2);
+//                        unidad = rs2.getString(3);
+//                        ventaproducto = ventaproducto + (rs2.getFloat(4));
+//                        precioventa = rs2.getFloat(5);
+//                        preciocompra = rs2.getFloat(6);
 
                     }
                     con2.close();
