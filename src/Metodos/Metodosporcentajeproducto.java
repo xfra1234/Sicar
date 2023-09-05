@@ -428,7 +428,7 @@ public class Metodosporcentajeproducto {
                         if (rs2.next()) {
                             if(valor==4)
                             {
-                                JOptionPane.showMessageDialog(null, rs.getfloat(1));
+                                JOptionPane.showMessageDialog(null, rs2.getFloat(1));
                             }
                             cantidadproducto=0;
                             cantidadproducto = cantidadproducto + (rs2.getFloat(1));
