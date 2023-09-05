@@ -424,10 +424,10 @@ public class Metodosporcentajeproducto {
                                 + " detallep.articulo = '"+valor+"'  and venta.fecha between"
                                 + " '"+fecha1+"' and '"+fecha2+"'");
                         if (rs2.next()) {
-                            if(valor==4)
-                            {
-                                JOptionPane.showMessageDialog(null, rs2.getFloat(1));
-                            }
+//                            if(valor==4)
+//                            {
+//                                JOptionPane.showMessageDialog(null, rs2.getFloat(1));
+//                            }
                             cantidadproducto=0;
                             cantidadproducto = cantidadproducto + (rs2.getFloat(1));
 
@@ -451,7 +451,12 @@ public class Metodosporcentajeproducto {
                             + "and venta.status!= -1  "
                             + " and venta.tic_id is not null;");
                     if (rs2.next()) {
-
+                        
+                       
+                            if(valor==4)
+                            {
+                                JOptionPane.showMessageDialog(null, rs2.getFloat(1));
+                            }
                         cantidadproducto = cantidadproducto + rs2.getFloat(1);
                         nombreproducto = rs2.getString(2);
                         unidad = rs2.getString(3);
