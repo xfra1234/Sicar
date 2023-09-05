@@ -418,16 +418,18 @@ public class Metodosporcentajeproducto {
                             con2 = conectar.conectarMySQL();
                         }
                         stmt2 = con2.createStatement();
-                        rs2 = stmt2.executeQuery("select sum(detallep.cantidad) from articulo inner join "
-                                + "detallep on detallep.articulo = articulo.art_id inner join venta"
-                                + " on venta.ven_id = detallep.ven_id where"
-                                + " detallep.articulo = '"+valor+"'  and venta.fecha between"
-                                + " '"+fecha1+"' and '"+fecha2+"'");
+                        rs2 = stmt2.executeQuery("select sum(detallep.cantidad) from detallep inner join venta\n"
+                                + "on detallep.ven_id = venta.ven_id \n"
+                                + "where detallep.articulo='" + valor + "'"
+                                + " and "
+                                + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "'"
+                                + "and venta.status!= -1 "
+                                + " and venta.tic_id is not null ;");
                         if (rs2.next()) {
-//                            if(valor==4)
-//                            {
-//                                JOptionPane.showMessageDialog(null, rs2.getFloat(1));
-//                            }
+                            if(valor==4)
+                            {
+                                JOptionPane.showMessageDialog(null, rs2.getFloat(1));
+                            }
                             cantidadproducto=0;
                             cantidadproducto = cantidadproducto + (rs2.getFloat(1));
 
@@ -451,12 +453,7 @@ public class Metodosporcentajeproducto {
                             + "and venta.status!= -1  "
                             + " and venta.tic_id is not null;");
                     if (rs2.next()) {
-                        
-                       
-                            if(valor==4)
-                            {
-                                JOptionPane.showMessageDialog(null, rs2.getFloat(1));
-                            }
+
                         cantidadproducto = cantidadproducto + rs2.getFloat(1);
                         nombreproducto = rs2.getString(2);
                         unidad = rs2.getString(3);
@@ -476,17 +473,22 @@ public class Metodosporcentajeproducto {
                         con2 = conectar.conectarMySQL();
                     }
                     stmt2 = con2.createStatement();
-                    rs2 = stmt2.executeQuery("select sum(detallev.cantidad) from articulo inner join detallev"
-                            + " on detallev.art_id = articulo.art_id inner join venta on"
-                            + " venta.ven_id = detallev.ven_id where detallev.art_id = '"+valor+"' "
-                            + " and venta.fecha between '"+fecha1+"' and '"+fecha2+"'and venta.status !=-1");
+                    rs2 = stmt2.executeQuery("select sum(detallev.cantidad),articulo.descripcion,unidad.nombre"
+                            + ",sum(detallev.importecon),sum(detallev.precionorsin)/count(detallev.art_id)  "
+                            + ",detallev.preciocompra from detallev inner join venta\n"
+                            + "on detallev.ven_id = venta.ven_id inner join articulo on\n"
+                            + " detallev.art_id=articulo.art_id inner join unidad on uni_id= articulo.unidadventa\n"
+                            + "where articulo.art_id='" + valor + "' and\n"
+                            + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "'"
+                            + "and venta.status!= -1  "
+                            + " and venta.tic_id is not null; ");
                     while (rs2.next()) {
                         cantidadproducto = cantidadproducto + rs2.getFloat(1);
-//                        nombreproducto = rs2.getString(2);
-//                        unidad = rs2.getString(3);
-//                        ventaproducto = ventaproducto + (rs2.getFloat(4));
-//                        precioventa = rs2.getFloat(5);
-//                        preciocompra = rs2.getFloat(6);
+                        nombreproducto = rs2.getString(2);
+                        unidad = rs2.getString(3);
+                        ventaproducto = ventaproducto + (rs2.getFloat(4));
+                        precioventa = rs2.getFloat(5);
+                        preciocompra = rs2.getFloat(6);
 
                     }
                     con2.close();
