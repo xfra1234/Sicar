@@ -75,6 +75,12 @@ public class MetodosVentadomicilio {
                 guardararchivo = ("C:\\Users\\billy\\Desktop\\Ventas_Domicilio_ Bodega del " + fechauno + " al " + fechados + ".xls");
                 excelsucursales(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
+
+            case 5:
+                abrirarchivo = ("C:\\Users\\billy\\Documents\\Ventas a domicilio.xls");
+                guardararchivo = ("C:\\Users\\billy\\Desktop\\Ventas_Domicilio_ Mojoneras del " + fechauno + " al " + fechados + ".xls");
+                excelsucursales(fecha1, fecha2, fechauno, fechados, sucursal);
+                break;
         }
     }
 

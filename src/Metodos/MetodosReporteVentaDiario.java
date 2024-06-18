@@ -71,6 +71,12 @@ public class MetodosReporteVentaDiario {
                 guardararchivo = ("C:\\Users\\billy\\Desktop\\Ventas Diarias Sucursal_ Bodega pdv del " + fechauno + " al " + fechados + ".xls");
                 excelsucursales(fecha1, fecha2, fechauno, fechados,sucursal);
                 break;
+                
+            case 5:
+                abrirarchivo = ("C:\\Users\\USER\\Documents\\Ventas Diarias.xls");
+                guardararchivo = ("C:\\Users\\USER\\Desktop\\Ventas Diarias Sucursal_ Mojoneras del " + fechauno + " al " + fechados + ".xls");
+                excelsucursales(fecha1, fecha2, fechauno, fechados,sucursal);
+                break;
         }
     }
 

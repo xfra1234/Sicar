@@ -94,7 +94,10 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
              sucursal=2;
          }else if(rbtnbodegapdv.isSelected()){
              sucursal=4;
-         }else{
+         }else if(rbtnmojoneras.isSelected()){
+             sucursal=5;
+         }
+         else{
              sucursal=0;
          }
          
@@ -116,11 +119,12 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
         btncrear = new javax.swing.JButton();
         rbtnbodega = new javax.swing.JRadioButton();
         rbtnmagisterio = new javax.swing.JRadioButton();
-        rbtncoapinole = new javax.swing.JRadioButton();
+        rbtnmojoneras = new javax.swing.JRadioButton();
         btnRegresar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         rbtnbodegapdv = new javax.swing.JRadioButton();
+        rbtncoapinole = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Reporte Por Departamentos");
@@ -150,12 +154,12 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
         rbtnmagisterio.setText("Magisterio");
         rbtnmagisterio.setOpaque(false);
 
-        grbtnsucursal.add(rbtncoapinole);
-        rbtncoapinole.setText("Coapinole");
-        rbtncoapinole.setOpaque(false);
-        rbtncoapinole.addActionListener(new java.awt.event.ActionListener() {
+        grbtnsucursal.add(rbtnmojoneras);
+        rbtnmojoneras.setText("Mojoneras");
+        rbtnmojoneras.setOpaque(false);
+        rbtnmojoneras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbtncoapinoleActionPerformed(evt);
+                rbtnmojonerasActionPerformed(evt);
             }
         });
 
@@ -179,11 +183,19 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
 
         grbtnsucursal.add(rbtnbodegapdv);
         rbtnbodegapdv.setText("Bodega pdv");
-        rbtnbodegapdv.setActionCommand("Bodega pdv");
         rbtnbodegapdv.setOpaque(false);
         rbtnbodegapdv.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbtnbodegapdvActionPerformed(evt);
+            }
+        });
+
+        grbtnsucursal.add(rbtncoapinole);
+        rbtncoapinole.setText("Coapinole");
+        rbtncoapinole.setOpaque(false);
+        rbtncoapinole.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtncoapinoleActionPerformed(evt);
             }
         });
 
@@ -200,15 +212,17 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
+                        .addContainerGap()
                         .addComponent(rbtnbodega)
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(rbtnmagisterio)
                                 .addGap(18, 18, 18)
                                 .addComponent(rbtncoapinole)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                                .addComponent(rbtnmojoneras)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(rbtnbodegapdv))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
@@ -238,9 +252,10 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbtnmagisterio)
                     .addComponent(rbtnbodega)
-                    .addComponent(rbtncoapinole)
-                    .addComponent(rbtnbodegapdv))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(rbtnmojoneras)
+                    .addComponent(rbtnbodegapdv)
+                    .addComponent(rbtncoapinole))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addComponent(btncrear)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2))
@@ -252,11 +267,13 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -306,13 +323,17 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnRegresarActionPerformed
 
-    private void rbtncoapinoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtncoapinoleActionPerformed
+    private void rbtnmojonerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnmojonerasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_rbtncoapinoleActionPerformed
+    }//GEN-LAST:event_rbtnmojonerasActionPerformed
 
     private void rbtnbodegapdvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnbodegapdvActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rbtnbodegapdvActionPerformed
+
+    private void rbtncoapinoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtncoapinoleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbtncoapinoleActionPerformed
 
     /**
      * @param args the command line arguments
@@ -362,5 +383,6 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtnbodegapdv;
     private javax.swing.JRadioButton rbtncoapinole;
     private javax.swing.JRadioButton rbtnmagisterio;
+    private javax.swing.JRadioButton rbtnmojoneras;
     // End of variables declaration//GEN-END:variables
 }

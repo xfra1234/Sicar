@@ -75,6 +75,12 @@ public class MetodosVentasMayoreotodo {
                 guardararchivo = ("C:\\Users\\billy\\Desktop\\Ventas_Mayoreo_ Bodega pdv del " + fechauno + " al " + fechados + ".xls");
                 excelsucursales(fecha1, fecha2, fechauno, fechados,sucursal);
                 break;
+                
+            case 5:
+                abrirarchivo = ("C:\\Users\\billy\\Documents\\Ventas a domicilio.xls");
+                guardararchivo = ("C:\\Users\\billy\\Desktop\\Ventas_Mayoreo_ Mojoneras del " + fechauno + " al " + fechados + ".xls");
+                excelsucursales(fecha1, fecha2, fechauno, fechados,sucursal);
+                break;    
         }
     }
 

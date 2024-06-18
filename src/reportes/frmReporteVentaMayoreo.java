@@ -47,7 +47,10 @@ public class frmReporteVentaMayoreo extends javax.swing.JFrame {
              sucursal=2;
          }else if(rbtnbodegapdv.isSelected()){
              sucursal=4;
-         }else{
+         }else if(rbtnmojoneras.isSelected()){
+             sucursal=5;
+         }
+         else{
              sucursal=0;
          }
          
@@ -91,6 +94,7 @@ public class frmReporteVentaMayoreo extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         rbtnbodegapdv = new javax.swing.JRadioButton();
+        rbtnmojoneras = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Reporte Ventas Mayores a $100");
@@ -155,6 +159,15 @@ public class frmReporteVentaMayoreo extends javax.swing.JFrame {
             }
         });
 
+        btnsucursales.add(rbtnmojoneras);
+        rbtnmojoneras.setText("Coapinole");
+        rbtnmojoneras.setOpaque(false);
+        rbtnmojoneras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnmojonerasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -166,26 +179,29 @@ public class frmReporteVentaMayoreo extends javax.swing.JFrame {
                 .addComponent(jdcfinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(31, 31, 31))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(rbtnbodega)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rbtnmagisterio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rbtncoapinole)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(rbtnbodegapdv)
-                .addGap(0, 21, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(9, 9, 9)
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btncrear, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))))
+                        .addContainerGap()
+                        .addComponent(rbtnbodega)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(rbtnmagisterio)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(btncrear, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(rbtncoapinole)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rbtnmojoneras)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(rbtnbodegapdv)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -205,8 +221,9 @@ public class frmReporteVentaMayoreo extends javax.swing.JFrame {
                     .addComponent(rbtnmagisterio)
                     .addComponent(rbtnbodega)
                     .addComponent(rbtncoapinole)
-                    .addComponent(rbtnbodegapdv))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(rbtnbodegapdv)
+                    .addComponent(rbtnmojoneras))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btncrear)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
@@ -217,11 +234,11 @@ public class frmReporteVentaMayoreo extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -267,6 +284,10 @@ public class frmReporteVentaMayoreo extends javax.swing.JFrame {
     private void rbtnbodegapdvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnbodegapdvActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rbtnbodegapdvActionPerformed
+
+    private void rbtnmojonerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnmojonerasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbtnmojonerasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -316,5 +337,6 @@ public class frmReporteVentaMayoreo extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtnbodegapdv;
     private javax.swing.JRadioButton rbtncoapinole;
     private javax.swing.JRadioButton rbtnmagisterio;
+    private javax.swing.JRadioButton rbtnmojoneras;
     // End of variables declaration//GEN-END:variables
 }
