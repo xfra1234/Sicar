@@ -74,7 +74,7 @@ public class MetodosreporteVentaMayoreo {
                 
             case 5:
                 abrirarchivo = ("C:\\Users\\USER\\Documents\\total de ventas de mayoreo mes.xls");
-                guardararchivo = ("C:\\Users\\Users\\Desktop\\Total de Ventas de Mayoreo  Sucursal_ Mojoneras del " + fechauno + " al " + fechados + ".xls");
+                guardararchivo = ("C:\\Users\\USER\\Desktop\\Total de Ventas de Mayoreo  Sucursal_ Mojoneras del " + fechauno + " al " + fechados + ".xls");
                 excelsucursales(fecha1, fecha2, fechauno, fechados);
                 break;     
         }
