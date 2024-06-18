@@ -159,7 +159,7 @@ public class frmReporteVentasDomicilio extends javax.swing.JFrame {
         jLabel1.setText("Reporte  de Ventas  a Domicilio");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel2.setText("Guradar");
+        jLabel2.setText("Guardar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
