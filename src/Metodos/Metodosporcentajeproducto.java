@@ -549,7 +549,7 @@ public class Metodosporcentajeproducto {
                 break;
                 
             case 5:
-                guardararchivo = ("C:\\Users\\Users\\Desktop\\Productos Conforman el 80% de venta Bodega tickets  del " + fechauno + " al " + fechados + ".xls");
+                guardararchivo = ("C:\\Users\\USER\\Desktop\\Productos Conforman el 80% de venta Bodega tickets  del " + fechauno + " al " + fechados + ".xls");
                 nombresucursal = "Mojoneras";
                 GeneraExcelsucursales(fechauno, fechados, nombresucursal);
                 break;    

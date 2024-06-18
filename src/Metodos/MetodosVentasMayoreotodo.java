@@ -77,7 +77,7 @@ public class MetodosVentasMayoreotodo {
                 break;
                 
             case 5:
-                abrirarchivo = ("C:\\Users\\billy\\Documents\\Ventas a domicilio.xls");
+                abrirarchivo = ("C:\\Users\\Users\\Documents\\Ventas a domicilio.xls");
                 guardararchivo = ("C:\\Users\\billy\\Desktop\\Ventas_Mayoreo_ Mojoneras del " + fechauno + " al " + fechados + ".xls");
                 excelsucursales(fecha1, fecha2, fechauno, fechados,sucursal);
                 break;    
