@@ -383,7 +383,7 @@ public class MetodosReporteDepartamento {
                 while (rs.next()) {
                     mes = rs.getString(1);
                     anio = rs.getString(3);
-                    cantidad =rs.getString(2);
+                    cantidad =rs.getFloat(2);
                    // cantidad = rs.getFloat(2) - (ventas[totalmeses] * media);
                     totalmeses = totalmeses + 1;
 
@@ -431,7 +431,7 @@ public class MetodosReporteDepartamento {
                     anio = rs.getString(3);
                  //   cantidad = rs.getFloat(2) - (ventas[totalmeses] * baja);
                     totalmeses = totalmeses + 1;
-                     cantidad =rs.getString(2);
+                     cantidad =rs.getFloat(2);
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
