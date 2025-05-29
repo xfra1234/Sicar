@@ -403,8 +403,7 @@ public class Metodosporcentajeproducto {
                                 + " detallev.art_id=articulo.art_id\n"
                                 + "where articulo.art_id='" + idarticulo + "' and\n"
                                 + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "'"
-                                + "and venta.status!= -1 and"
-                                + " venta.tic_id is not null; ");
+                                + "and venta.status!= -1  ");
                         while (rs2.next()) {
                             ventaproducto = ventaproducto + (rs2.getFloat(2));
 //                            precioventa = rs2.getFloat(3);
@@ -423,8 +422,7 @@ public class Metodosporcentajeproducto {
                                 + "where detallep.articulo='" + valor + "'"
                                 + " and "
                                 + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "'"
-                                + "and venta.status!= -1 "
-                                + " and venta.tic_id is not null ;");
+                                + "and venta.status!= -1");
                         if (rs2.next()) {
                             if(valor==4)
                             {
@@ -450,8 +448,7 @@ public class Metodosporcentajeproducto {
                             + " detallev.art_id=articulo.art_id inner join unidad on uni_id= articulo.unidadventa\n"
                             + "where articulo.art_id='" + valor + "' and\n"
                             + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "'"
-                            + "and venta.status!= -1  "
-                            + " and venta.tic_id is not null;");
+                            + "and venta.status!= -1 ");
                     if (rs2.next()) {
 
                         cantidadproducto = cantidadproducto + rs2.getFloat(1);
@@ -480,8 +477,7 @@ public class Metodosporcentajeproducto {
                             + " detallev.art_id=articulo.art_id inner join unidad on uni_id= articulo.unidadventa\n"
                             + "where articulo.art_id='" + valor + "' and\n"
                             + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "'"
-                            + "and venta.status!= -1  "
-                            + " and venta.tic_id is not null; ");
+                            + "and venta.status!= -1 ");
                     while (rs2.next()) {
                         cantidadproducto = cantidadproducto + rs2.getFloat(1);
                         nombreproducto = rs2.getString(2);
