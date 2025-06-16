@@ -152,7 +152,7 @@ public class MetodosReporteVentaDiario {
                         + "on articulo.art_id = detallev.art_id\n"
                         + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
                         + "on departamento.dep_id = categoria.dep_id\n"
-                        + "where departamento.dep_id = 24 and venta.status!= -1 and not_id is null"
+                        + "where departamento.dep_id = 24 and venta.status!= -1 "
                         + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by day(venta.fecha ) "
                         + "order by  year(fecha), month(fecha),day(venta.fecha) ;");
@@ -208,7 +208,7 @@ public class MetodosReporteVentaDiario {
                         + "on articulo.art_id = detallev.art_id\n"
                         + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
                         + "on departamento.dep_id = categoria.dep_id\n"
-                        + "where departamento.dep_id = 23 and venta.status!= -1  and not_id is null"
+                        + "where departamento.dep_id = 23 and venta.status!= -1 "
                         + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by day(fecha ) "
                         + "order by  year(fecha), month(fecha),day(fecha);");
@@ -252,7 +252,7 @@ public class MetodosReporteVentaDiario {
                         + "on articulo.art_id = detallev.art_id\n"
                         + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
                         + "on departamento.dep_id = categoria.dep_id\n"
-                        + "where departamento.dep_id = 22 and venta.status!= -1 and not_id is null "
+                        + "where departamento.dep_id = 22 and venta.status!= -1"
                         + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by day(fecha ) "
                         + "order by  year(fecha), month(fecha),day(fecha) ;");
