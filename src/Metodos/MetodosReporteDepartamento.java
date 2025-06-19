@@ -242,7 +242,7 @@ public class MetodosReporteDepartamento {
                 while (rs.next()) {
                     mes = rs.getString(1);
                     anio = rs.getString(3);
-                    cantidad = rs.getFloat(2) - (ventas[totalmeses] * media);
+                    cantidad = rs.getFloat(2) ;
                     totalmeses = totalmeses + 1;
 
                     fila = hoja.getRow(filadato);
@@ -288,7 +288,7 @@ public class MetodosReporteDepartamento {
                 while (rs.next()) {
                     mes = rs.getString(1);
                     anio = rs.getString(3);
-                    cantidad = rs.getFloat(2) - (ventas[totalmeses] * baja);
+                    cantidad = rs.getFloat(2) ;
                     totalmeses = totalmeses + 1;
 
                     fila = hoja.getRow(filadato);
@@ -384,7 +384,6 @@ public class MetodosReporteDepartamento {
                     mes = rs.getString(1);
                     anio = rs.getString(3);
                     cantidad =rs.getFloat(2);
-                   // cantidad = rs.getFloat(2) - (ventas[totalmeses] * media);
                     totalmeses = totalmeses + 1;
 
                     fila = hoja.getRow(filadato);
@@ -429,7 +428,6 @@ public class MetodosReporteDepartamento {
                 while (rs.next()) {
                     mes = rs.getString(1);
                     anio = rs.getString(3);
-                 //   cantidad = rs.getFloat(2) - (ventas[totalmeses] * baja);
                     totalmeses = totalmeses + 1;
                      cantidad =rs.getFloat(2);
                     fila = hoja.getRow(filadato);
