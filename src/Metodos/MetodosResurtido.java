@@ -51,7 +51,7 @@ public class MetodosResurtido {
     String descripcion = "", descripcion2 = "", categoria = "", clave = "", departamento = "";
     int idpaquete;
 
-    float mes1 = 0, mes2 = 0, mes3 = 0, aniom1 = 0, aniom3 = 0,anioan1=0;
+    float mes1 = 0, mes2 = 0, mes3 = 0, aniom1 = 0, aniom3 = 0, anioan1 = 0;
     protected ArrayList<Integer> idNumeros = new ArrayList();
 
     public void limpiarVariables() {
@@ -60,6 +60,10 @@ public class MetodosResurtido {
         contador = 0;
         contador1 = 0;
         idpaquete = 0;
+        mes1 = 0;
+        mes2 = 0;
+        mes3 = 0;
+        anioan1 = 0;
     }
 
     public void sucursalesnuevo(String fecha1d1, String fecha1du, String fecha2d1, String fecha2du,
@@ -205,7 +209,6 @@ public class MetodosResurtido {
                     con2.close();
 
                     //termino la suma del mes 1
-                    
                     //inicio la suma del mes2
                     if (sucursal == 4) {
                         con2 = conectar2.conectarMySQL();
@@ -225,7 +228,6 @@ public class MetodosResurtido {
                     con2.close();
 
                     ///termino la suma del mes 2
-                    
                     //inicio la suma del mes3
                     if (sucursal == 4) {
                         con2 = conectar2.conectarMySQL();
@@ -245,7 +247,6 @@ public class MetodosResurtido {
                     con2.close();
 
                     ///termino la suma del mes 3
-                    
                     //inicio la suma del año anterior 3meses adelante
                     if (sucursal == 4) {
                         con2 = conectar2.conectarMySQL();
@@ -263,8 +264,8 @@ public class MetodosResurtido {
                     }
                     con2.close();
                     //termina  la suma del año anterior 3meses adelante
-                    
-                     //inicio la suma del año anterior mismo mes
+
+                    //inicio la suma del año anterior mismo mes
                     if (sucursal == 4) {
                         con2 = conectar2.conectarMySQL();
                     } else {
@@ -281,7 +282,7 @@ public class MetodosResurtido {
                     }
                     con2.close();
                     //termina  la suma del año anterior mismo mes
-                    
+
 //                    if (categoria.equals(descripcion2)) {
                     fila = hoja.getRow(filaa);
 
@@ -304,11 +305,11 @@ public class MetodosResurtido {
                     celda = fila.createCell(4);
                     celda.setCellValue(existencia);
                     celda.setCellStyle(Numerico);
-                    
+
                     celda = fila.createCell(4);
                     celda.setCellValue(anioan1);
                     celda.setCellStyle(Numerico);
-                    
+
                     celda = fila.createCell(7);
                     celda.setCellValue(mes1);
                     celda.setCellStyle(Numerico);
@@ -469,6 +470,10 @@ public class MetodosResurtido {
                     existencia = 0;
                     cantidad3ma = 0;
                     cantidad3md = 0;
+                    mes1 = 0;
+                    mes2 = 0;
+                    mes3 = 0;
+                    anioan1 = 0;
                 }
                 con.close();
 
@@ -476,6 +481,10 @@ public class MetodosResurtido {
                 existencia = 0;
                 cantidad3ma = 0;
                 cantidad3md = 0;
+                mes1 = 0;
+                mes2 = 0;
+                mes3 = 0;
+                anioan1 = 0;
                 for (int x = 0; x < 19; x++) {
                     hoja.autoSizeColumn(x);
                 }
