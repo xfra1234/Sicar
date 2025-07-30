@@ -152,7 +152,7 @@ public class Metodos_GenerarFecha_resurtidoBodega {
 
         System.out.println(mesactual);
         
-        met.resurtidosucursalv2(fecha1mesdia1, fecha1mesdia1, fecha2mesdia1, fecha2mesdia1, fecha3mesdia1, fecha3mesdia1, fechaaniodia1, fechaaniodiault, fechaaniodia1, fechaaniodia1, 1, mesactual);
+        met.sucursalesnuevo(fecha1mesdia1, fecha1mesdia1, fecha2mesdia1, fecha2mesdia1, fecha3mesdia1, fecha3mesdia1, fechaaniodia1, fechaaniodiault, fechaaniodia1, fechaaniodia1, 1, mesactual);
         
     }
 }
