@@ -8,10 +8,19 @@ package reportes;
 import Metodos.MetodosResurtido;
 import Metodos.MetodosResurtidoesteaño;
 import Metodos.Metodos_GenerarFecha_resurtidoBodega;
+import java.io.File;
+import java.io.FileInputStream;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFDataFormat;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+import org.apache.poi.ss.usermodel.Row;
 
 public class frmReporteResurtido extends javax.swing.JFrame {
 
@@ -287,9 +296,9 @@ public class frmReporteResurtido extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-      //  Mesesañoanterior();
-        metfecha.generarfecha1mes(cmbmes.getDate());
-      
+        //  Mesesañoanterior();
+        //metfecha.generarfecha1mes(cmbmes.getDate());
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
