@@ -7,6 +7,7 @@ package reportes;
 
 import Metodos.MetodosResurtido;
 import Metodos.MetodosResurtidoesteaño;
+import Metodos.Metodos_GenerarFecha_resurtidoBodega;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -25,11 +26,12 @@ public class frmReporteResurtido extends javax.swing.JFrame {
     String fehca1mud;//variable para obtener el ultimo dia del mes 1 mes atras
     String fechad3md;//Variable para obtener el primer dial del mes 1 meses adelante año ´pasadp
     String fechad1mud;// Variable para obtener el uliimo dia 3  meseses  despues año pasado
-    SimpleDateFormat Mes = new SimpleDateFormat("EEEE dd MMMMM yyyy");
+    SimpleDateFormat Mes = new SimpleDateFormat("EEEE dd MMMMM yyyy ");
     
     int sucursal;
     Metodos.MetodosResurtido met= new MetodosResurtido();
      Metodos.MetodosResurtidoesteaño met2= new MetodosResurtidoesteaño();
+     Metodos.Metodos_GenerarFecha_resurtidoBodega metfecha= new Metodos_GenerarFecha_resurtidoBodega();
     public frmReporteResurtido() {
         initComponents();
         cmbmes.setDate(new Date());
@@ -55,6 +57,8 @@ public class frmReporteResurtido extends javax.swing.JFrame {
          
          return sucursal;
      }
+   
+      
     public void Mesesañoanterior() {
         int difM = 0;
         int difA = 0;
@@ -249,9 +253,9 @@ public class frmReporteResurtido extends javax.swing.JFrame {
                     .addComponent(rbtnmagisterio)
                     .addComponent(rbtncoapinole))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbtnbodegapdv)
-                    .addComponent(rbtnmojoneras))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(rbtnmojoneras)
+                    .addComponent(rbtnbodegapdv))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -284,6 +288,8 @@ public class frmReporteResurtido extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         Mesesañoanterior();
+        metfecha.generarfecha1mes(cmbmes.getDate());
+      
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
