@@ -75,7 +75,7 @@ public class MetodosResurtido {
 //                abrirarchivo = ("C:\\Users\\usuario\\Desktop\\Resurtido.xls");
 //                guardararchivo = ("C:\\Users\\usuario\\Desktop\\Resurtido de sucursal2.xls");
                 abrirarchivo = ("C:\\Users\\USER\\Documents\\Solicitud mercancias.xls");
-                guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Resurtido de sucursal_Magisterio de " + mes + ".xls");
+                guardararchivo = ("C:\\Users\\USER\\Desktop\\Resurtido de sucursal_Magisterio de " + mes + ".xls");
                 resurtidosucursalv2(fecha1d1, fecha1du, fecha2d1, fecha2du, fecha3d1, fecha3du, fechaanio1, fechaanioult,
                         fechaaniod1, fechaaniod1u, sucursal, mes);
                 break;
@@ -336,19 +336,19 @@ public class MetodosResurtido {
 
                         //// Formula dias inventario
                         Formula = "(E"+  filaformula + "/L"+filaformula+")*30";
-                        celda = fila.getCell(5);
+                        celda = fila.createCell(5);
                         celda.setCellFormula(Formula);
                         celda.setCellStyle(Numerico);
 
                         //// Formula venta promedio
                         Formula = "(H" + filaformula +"+i"+filaformula+ "+J"+filaformula+")/3";
-                        celda = fila.getCell(11);
+                        celda = fila.createCell(11);
                         celda.setCellFormula(Formula);
                         celda.setCellStyle(Numerico);
 
                         //// Formula Proyecion venta
                         Formula = "M" + filaformula + "*N" + filaformula;
-                        celda = fila.getCell(14);
+                        celda = fila.createCell(14);
                         celda.setCellFormula(Formula);
                         celda.setCellStyle(Numerico);
 
