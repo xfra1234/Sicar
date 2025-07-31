@@ -47,10 +47,10 @@ public class MetodosResurtido {
     conexion2 conectar2 = new conexion2();
     String abrirarchivo = "", guardararchivo = "";
     int contador = 0, contador1 = 0;
-    float preciov=0,cantidad3ma = 0, cantidad3md = 0, existencia = 0;
+    float vacio=0, preciov=0,cantidad3ma = 0, cantidad3md = 0, existencia = 0;
     String descripcion = "", descripcion2 = "", categoria = "", clave = "", departamento = "";
     int idpaquete;
-
+    
     float mes1 = 0, mes2 = 0, mes3 = 0, aniom1 = 0, aniom3 = 0, anioan1 = 0;
     protected ArrayList<Integer> idNumeros = new ArrayList();
 
@@ -155,7 +155,7 @@ public class MetodosResurtido {
             Numerico.setDataFormat(format.getFormat("###,##0.00"));
             Numerico.setFont(fontnumerico);
 
-            int filaa = 8;
+            int filaa = 5;
             try {
 
                 if (sucursal == 4) {
@@ -165,7 +165,7 @@ public class MetodosResurtido {
                 }
                 stmt = con.createStatement();
                 rs = stmt.executeQuery("select articulo.art_id,articulo.clave,articulo.existencia,"
-                        + "articulo.descripcion,categoria.nombre,departamento.nombre"
+                        + "articulo.descripcion,categoria.nombre,departamento.nombre,articulo.precio1"
                         + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id"
                         + " inner join departamento on departamento.dep_id = categoria.dep_id "
                         + " where articulo.status !=-1  order by categoria.nombre,articulo.descripcion");
@@ -191,6 +191,7 @@ public class MetodosResurtido {
                     descripcion = rs.getString(4);
                     categoria = rs.getString(5);
                     departamento = rs.getString(6);
+                    preciov=rs.getFloat(7);
 
                     if (sucursal == 4) {
                         con2 = conectar2.conectarMySQL();
@@ -324,12 +325,20 @@ public class MetodosResurtido {
                     celda.setCellStyle(Numerico);
 
                     celda = fila.createCell(10);
-                    celda.setCellValue(aniom3);
+                    celda.setCellValue(aniom3); 
                     celda.setCellStyle(Numerico);
-
-//                    celda = fila.createCell(13);
-//                    celda.setCellValue(preciov);
-//                    celda.setCellStyle(Numerico);
+                    
+                    celda = fila.createCell(12);
+                    celda.setCellValue(vacio);
+                    celda.setCellStyle(Numerico);
+                    
+                    celda = fila.createCell(13);
+                    celda.setCellValue(preciov);
+                    celda.setCellStyle(Numerico);
+                    
+                    celda = fila.createCell(15);
+                    celda.setCellValue(vacio);
+                    celda.setCellStyle(Numerico);
                     
                         int filaformula = filaa +1 ;
                         String Formula;
