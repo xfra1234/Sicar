@@ -147,8 +147,8 @@ public class Metodos_GenerarFecha_resurtidoBodega {
         } else {
             fechaaniodiault = (fechaactual.get(fechaactual.YEAR) - 1) + "-" + (fechaactual.get(fechaactual.MONTH) + 1) + "-" + fechaactual.getMaximum(fechaactual.DAY_OF_MONTH) + " 23:59:59";
         }
-        System.out.println(fechaanio3dia1);
-        System.out.println(fechaanio3diault);
+        System.out.println(fechaaniodia1);
+        System.out.println(fechaaniodiault);
 
         System.out.println(mesactual);
         
