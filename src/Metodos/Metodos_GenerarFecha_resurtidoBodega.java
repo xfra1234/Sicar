@@ -105,7 +105,7 @@ public class Metodos_GenerarFecha_resurtidoBodega {
         System.out.println(fecha3mesdiault);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
-        //obtengo dia 1 del año anterior
+        //obtengo dia 1 del año anterior 3 meses
         fechaactual.setTime(fecha);
         fechaactual.add(fechaactual.MONTH, 1);
         if (fechaactual.get(fechaactual.MONTH) < 9) {
@@ -124,35 +124,35 @@ public class Metodos_GenerarFecha_resurtidoBodega {
             fechaanio3diault = (fechaactual.get(fechaactual.YEAR) - 1) + "-" + (fechaactual.get(fechaactual.MONTH) + 1) + "-" + fechaactual.getMaximum(fechaactual.DAY_OF_MONTH) + " 23:59:59";
         }
 
-        System.out.println(fechaaniodia1);
-        System.out.println(fechaaniodiault);
+        System.out.println(fechaanio3dia1);
+        System.out.println(fechaanio3dia1);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
 
         //obtengo dia 1 del año anterior mismo mes
         fechaactual.setTime(fecha);
         fechaactual.add(fechaactual.MONTH, 0);
         if (fechaactual.get(fechaactual.MONTH) < 9) {
-            fechaanio3dia1 = (fechaactual.get(fechaactual.YEAR) - 1) + "-" + "0"
+            fechaaniodia1 = (fechaactual.get(fechaactual.YEAR) - 1) + "-" + "0"
                     + (fechaactual.get(fechaactual.MONTH) + 1) + "-" + "01" + " 00:00:00";
         } else {
-            fechaanio3dia1 = (fechaactual.get(fechaactual.YEAR) - 1) + "-" + (fechaactual.get(fechaactual.MONTH) + 1) + "-" + "01" + " 00:00:00";
+            fechaaniodia1 = (fechaactual.get(fechaactual.YEAR) - 1) + "-" + (fechaactual.get(fechaactual.MONTH) + 1) + "-" + "01" + " 00:00:00";
         }
 
 //obtengo ultimo del año anterior mismo mes
         fechaactual.setTime(fecha);
         fechaactual.add(fechaactual.MONTH, 0);
         if (fechaactual.get(fechaactual.MONTH) < 9) {
-            fechaanio3diault = (fechaactual.get(fechaactual.YEAR) - 1) + "-" + "0"
+            fechaaniodiault = (fechaactual.get(fechaactual.YEAR) - 1) + "-" + "0"
                     + (fechaactual.get(fechaactual.MONTH) + 1) + "-" + fechaactual.getMaximum(fechaactual.DAY_OF_MONTH) + " 23:59:59";
         } else {
-            fechaanio3diault = (fechaactual.get(fechaactual.YEAR) - 1) + "-" + (fechaactual.get(fechaactual.MONTH) + 1) + "-" + fechaactual.getMaximum(fechaactual.DAY_OF_MONTH) + " 23:59:59";
+            fechaaniodiault = (fechaactual.get(fechaactual.YEAR) - 1) + "-" + (fechaactual.get(fechaactual.MONTH) + 1) + "-" + fechaactual.getMaximum(fechaactual.DAY_OF_MONTH) + " 23:59:59";
         }
         System.out.println(fechaanio3dia1);
         System.out.println(fechaanio3diault);
 
         System.out.println(mesactual);
         
-        met.sucursalesnuevo(fecha1mesdia1, fecha1mesdia1, fecha2mesdia1, fecha2mesdia1, fecha3mesdia1, fecha3mesdia1, fechaaniodia1, fechaaniodiault, fechaaniodia1, fechaaniodia1, 1, mesactual);
+        met.sucursalesnuevo(fecha1mesdia1, fecha1mesdiault, fecha2mesdia1, fecha2mesdiault, fecha3mesdia1, fecha3mesdiault, fechaanio3dia1, fechaanio3diault, fechaaniodia1, fechaaniodiault, 1, mesactual);
         
     }
 }
