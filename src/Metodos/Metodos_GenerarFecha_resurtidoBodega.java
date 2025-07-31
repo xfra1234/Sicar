@@ -125,7 +125,7 @@ public class Metodos_GenerarFecha_resurtidoBodega {
         }
 
         System.out.println(fechaanio3dia1);
-        System.out.println(fechaanio3dia1);
+        System.out.println(fechaanio3diault);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////        
 
         //obtengo dia 1 del año anterior mismo mes

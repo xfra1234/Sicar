@@ -155,7 +155,7 @@ public class MetodosResurtido {
             Numerico.setDataFormat(format.getFormat("###,##0.00"));
             Numerico.setFont(fontnumerico);
 
-            int filaa = 5;
+            int filaa = 6;
             try {
 
                 if (sucursal == 4) {
@@ -277,7 +277,7 @@ public class MetodosResurtido {
                     rs2 = stmt2.executeQuery("select sum(cantidad) from detallev "
                             + "inner join venta on venta.ven_id = detallev.ven_id "
                             + " where detallev.art_id=" + idart + " and "
-                            + " venta.fecha between '" + fechaanio1 + "' and '" + fechaanioult + "'"
+                            + " venta.fecha between '" + fechaaniod1 + "' and '" + fechaaniod1u + "'"
                             + " and venta.status!=-1");
                     if (rs2.next()) {
                         anioan1 = anioan1 + rs2.getFloat(1);
