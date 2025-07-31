@@ -155,7 +155,7 @@ public class MetodosResurtido {
             Numerico.setDataFormat(format.getFormat("###,##0.00"));
             Numerico.setFont(fontnumerico);
 
-            int filaa = 4;
+            int filaa = 5;
             try {
 
                 if (sucursal == 4) {
