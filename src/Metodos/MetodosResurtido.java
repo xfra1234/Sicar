@@ -155,7 +155,7 @@ public class MetodosResurtido {
             Numerico.setDataFormat(format.getFormat("###,##0.00"));
             Numerico.setFont(fontnumerico);
 
-            int filaa = 9;
+            int filaa = 2;
             try {
 
                 if (sucursal == 4) {
@@ -331,7 +331,7 @@ public class MetodosResurtido {
 //                    celda.setCellValue(preciov);
 //                    celda.setCellStyle(Numerico);
                     
-                        int filaformula = filaa ;
+                        int filaformula = filaa +1 ;
                         String Formula;
 
                         //// Formula dias inventario
