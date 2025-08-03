@@ -72,35 +72,36 @@ public class MetodosResurtido {
             String fechaaniod1, String fechaaniod1u, int sucursal, String mes) {
         switch (sucursal) {
             case 1:
-                abrirarchivo = ("C:\\Users\\usuario\\Documents\\Solicitud mercancias.xls");
-                guardararchivo = ("C:\\Users\\usuario\\Desktop\\Resurtido de sucursal_Magisterio de " + mes + ".xls");
-
+//                abrirarchivo = ("C:\\Users\\usuario\\Desktop\\Resurtido.xls");
+//                guardararchivo = ("C:\\Users\\usuario\\Desktop\\Resurtido de sucursal2.xls");
+                abrirarchivo = ("C:\\Users\\USER\\Documents\\Solicitud mercancias.xls");
+                guardararchivo = ("C:\\Users\\USER\\Desktop\\Resurtido de sucursal_Magisterio de " + mes + ".xls");
                 resurtidosucursalv2(fecha1d1, fecha1du, fecha2d1, fecha2du, fecha3d1, fecha3du, fechaanio1, fechaanioult,
                         fechaaniod1, fechaaniod1u, sucursal, mes);
                 break;
             case 2:
 
-                abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Solicitud mercancias.xls");
+                abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Resurtido de sucursal.xls");
                 guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Resurtido de sucursal_Coapinole de" + mes + ".xls");
                 resurtidosucursalv2(fecha1d1, fecha1du, fecha2d1, fecha2du, fecha3d1, fecha3du, fechaanio1, fechaanioult,
                         fechaaniod1, fechaaniod1u, sucursal, mes);
                 break;
             case 3:
-                abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Solicitud mercancias.xls");
+                abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Resurtido de sucursal.xls");
                 guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Resurtido de sucursal_ Bodega de" + mes + ".xls");
                 resurtidosucursalv2(fecha1d1, fecha1du, fecha2d1, fecha2du, fecha3d1, fecha3du, fechaanio1, fechaanioult,
                         fechaaniod1, fechaaniod1u, sucursal, mes);
                 break;
 
             case 4:
-                abrirarchivo = ("C:\\Users\\billy\\Documents\\Solicitud mercancias.xls");
+                abrirarchivo = ("C:\\Users\\billy\\Documents\\Resurtido de sucursal.xls");
                 guardararchivo = ("C:\\Users\\billy\\Desktop\\Resurtido de sucursal_ Bodega pdv de" + mes + ".xls");
                 resurtidosucursalv2(fecha1d1, fecha1du, fecha2d1, fecha2du, fecha3d1, fecha3du, fechaanio1, fechaanioult,
                         fechaaniod1, fechaaniod1u, sucursal, mes);
                 break;
 
             case 5:
-                abrirarchivo = ("C:\\Users\\USER\\Documents\\Solicitud mercancias.xls");
+                abrirarchivo = ("C:\\Users\\USER\\Documents\\Resurtido de sucursal.xls");
                 guardararchivo = ("C:\\Users\\USER\\Desktop\\Resurtido de sucursal_ Mojoneras de" + mes + ".xls");
                 resurtidosucursalv2(fecha1d1, fecha1du, fecha2d1, fecha2du, fecha3d1, fecha3du, fechaanio1, fechaanioult,
                         fechaaniod1, fechaaniod1u, sucursal, mes);
@@ -158,6 +159,7 @@ public class MetodosResurtido {
 //            celda = fila.createCell(1);
 //            celda.setCellValue("holo");
 //            celda.setCellStyle(Numerico);
+
             int filaa = 6;
             try {
 
@@ -289,6 +291,8 @@ public class MetodosResurtido {
                     //termina  la suma del año anterior mismo mes
 
 //                    if (categoria.equals(descripcion2)) {
+                    
+
                     fila = hoja.getRow(filaa);
 
                     celda = fila.createCell(0);
