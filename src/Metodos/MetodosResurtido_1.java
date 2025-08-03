@@ -84,8 +84,8 @@ public class MetodosResurtido_1 {
                 guardararchivo = ("C:\\Users\\billy\\Desktop\\Resurtido de sucursal_ Bodega pdv solo productos de" + mes + ".xls");
                 resurtidocopiabodega(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
-                
-                case 5:
+
+            case 5:
                 abrirarchivo = ("C:\\Users\\USER\\Documents\\Resurtido de sucursal.xls");
                 guardararchivo = ("C:\\Users\\USER\\Desktop\\Resurtido de sucursal_ Bodega pdv solo productos de" + mes + ".xls");
                 resurtidocopiabodega(fecha1, fecha2, fechauno, fechados, sucursal);
@@ -95,7 +95,7 @@ public class MetodosResurtido_1 {
 
     public void resurtidocopiabodega(String fecha1ma, String fecha3ma, String fecha1md, String fecha3md, int sucursal) {
 
-        try ( FileInputStream file = new FileInputStream(new File(abrirarchivo))) {
+        try (FileInputStream file = new FileInputStream(new File(abrirarchivo))) {
             POIFSFileSystem fs = new POIFSFileSystem(file);
             HSSFWorkbook libro = new HSSFWorkbook(fs);
             //obtener la hoja que se va leer
@@ -140,8 +140,8 @@ public class MetodosResurtido_1 {
             int filaa = 9;
             try {
                 int id;
-                if (sucursal == 4) {
-                    con = conectar2.conectarMySQL();
+                if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
                 }
@@ -155,8 +155,8 @@ public class MetodosResurtido_1 {
 
                     id = rs.getInt(1);
 
-                    if (sucursal == 4) {
-                        con2 = conectar2.conectarMySQL();
+                    if (sucursal == 4 || sucursal == 6) {
+                        con = conectar2.conectarMySQL(sucursal);
                     } else {
                         con2 = conectar.conectarMySQL();
                     }
@@ -177,8 +177,8 @@ public class MetodosResurtido_1 {
                 float existencia = 0;
                 for (int x = 0; x < contador; x++) {
                     valor = idNumeros.get(x);
-                    if (sucursal == 4) {
-                        con = conectar2.conectarMySQL();
+                    if (sucursal == 4 || sucursal == 6) {
+                        con = conectar2.conectarMySQL(sucursal);
                     } else {
                         con = conectar.conectarMySQL();
                     }
@@ -205,8 +205,8 @@ public class MetodosResurtido_1 {
 //                        con2.close();
                         //////////////////// inicio de 3 meses anteriores                   
                         /////////////////////// suma de cantidad venta de paquetes 
-                        if (sucursal == 4) {
-                            con2 = conectar2.conectarMySQL();
+                        if (sucursal == 4 || sucursal == 6) {
+                            con = conectar2.conectarMySQL(sucursal);
                         } else {
                             con2 = conectar.conectarMySQL();
                         }
@@ -248,8 +248,8 @@ public class MetodosResurtido_1 {
 //
 //                        con2.close();
                         /////////////////////// suma de cantidad venta  de producto basee 
-                        if (sucursal == 4) {
-                            con2 = conectar2.conectarMySQL();
+                        if (sucursal == 4 || sucursal == 6) {
+                            con = conectar2.conectarMySQL(sucursal);
                         } else {
                             con2 = conectar.conectarMySQL();
                         }
@@ -267,8 +267,8 @@ public class MetodosResurtido_1 {
 
                         //////////////////// inicio de 3 meses despues                   
                         /////////////////////// suma de cantidad venta de paquetes 
-                        if (sucursal == 4) {
-                            con2 = conectar2.conectarMySQL();
+                        if (sucursal == 4 || sucursal == 6) {
+                            con = conectar2.conectarMySQL(sucursal);
                         } else {
                             con2 = conectar.conectarMySQL();
                         }
@@ -310,8 +310,8 @@ public class MetodosResurtido_1 {
 //
 //                        con2.close();
                         /////////////////////// suma de cantidad venta  de producto basee 
-                        if (sucursal == 4) {
-                            con2 = conectar2.conectarMySQL();
+                        if (sucursal == 4 || sucursal == 6) {
+                            con = conectar2.conectarMySQL(sucursal);
                         } else {
                             con2 = conectar.conectarMySQL();
                         }
@@ -327,8 +327,8 @@ public class MetodosResurtido_1 {
                         con2.close();
                         /////////////////////// fin de 3 meses despues  
 
-                        if (sucursal == 4) {
-                            con2 = conectar2.conectarMySQL();
+                        if (sucursal == 4 || sucursal == 6) {
+                            con = conectar2.conectarMySQL(sucursal);
                         } else {
                             con2 = conectar.conectarMySQL();
                         }
@@ -507,8 +507,8 @@ public class MetodosResurtido_1 {
 
                     } else {
 
-                        if (sucursal == 4) {
-                            con2 = conectar2.conectarMySQL();
+                        if (sucursal == 4 || sucursal == 6) {
+                            con = conectar2.conectarMySQL(sucursal);
                         } else {
                             con2 = conectar.conectarMySQL();
                         }
@@ -547,8 +547,8 @@ public class MetodosResurtido_1 {
 //                        }
 //
 //                        con2.close();
-                        if (sucursal == 4) {
-                            con2 = conectar2.conectarMySQL();
+                        if (sucursal == 4 || sucursal == 6) {
+                            con = conectar2.conectarMySQL(sucursal);
                         } else {
                             con2 = conectar.conectarMySQL();
                         }
@@ -563,8 +563,8 @@ public class MetodosResurtido_1 {
                         }
                         con2.close();
 
-                        if (sucursal == 4) {
-                            con2 = conectar2.conectarMySQL();
+                        if (sucursal == 4 || sucursal == 6) {
+                            con = conectar2.conectarMySQL(sucursal);
                         } else {
                             con2 = conectar.conectarMySQL();
                         }

@@ -118,7 +118,7 @@ public class MetodosResurtidoesteaño {
 
     public void resurtidosucursal(String fecha1ma, String fecha3ma, int sucursal) {
 
-        try ( FileInputStream file = new FileInputStream(new File(abrirarchivo))) {
+        try (FileInputStream file = new FileInputStream(new File(abrirarchivo))) {
             fs = new POIFSFileSystem(file);
             libro = new HSSFWorkbook(fs);
             //obtener la hoja que se va leer
@@ -167,8 +167,8 @@ public class MetodosResurtidoesteaño {
             filaa = 1;
             try {
 
-                if (sucursal == 4) {
-                    con = conectar2.conectarMySQL();
+                if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
                 }
@@ -178,8 +178,8 @@ public class MetodosResurtidoesteaño {
                         + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id "
                         + " where articulo.status !=-1  order by categoria.nombre,articulo.descripcion");
                 while (rs.next()) {
-                    if (sucursal == 4) {
-                        con4 = conectar2.conectarMySQL();
+                    if (sucursal == 4 || sucursal == 6) {
+                        con = conectar2.conectarMySQL(sucursal);
                     } else {
                         con4 = conectar.conectarMySQL();
                     }
@@ -198,8 +198,8 @@ public class MetodosResurtidoesteaño {
                     categoria = rs.getString(5);
                     preciocompra = (float) (rs.getFloat(6) * 1.16);
 
-                    if (sucursal == 4) {
-                        con2 = conectar2.conectarMySQL();
+                    if (sucursal == 4 || sucursal == 6) {
+                        con = conectar2.conectarMySQL(sucursal);
                     } else {
                         con2 = conectar.conectarMySQL();
                     }

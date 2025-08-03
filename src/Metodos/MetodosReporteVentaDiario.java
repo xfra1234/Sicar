@@ -136,9 +136,9 @@ public class MetodosReporteVentaDiario {
             row = hoja.getRow(6);
             int totalmeses = 0;
             try {
-                if(sucursal ==4){
-                    con = conectar2.conectarMySQL();
-                }else{
+                if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
+                } else {
                  con = conectar.conectarMySQL();   
                 }
                 stmt = con.createStatement();
@@ -193,9 +193,9 @@ public class MetodosReporteVentaDiario {
             filadato = 11;
             try {
 
-                if(sucursal ==4){
-                    con = conectar2.conectarMySQL();
-                }else{
+                if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
+                } else {
                  con = conectar.conectarMySQL();   
                 }
                 stmt = con.createStatement();
@@ -237,9 +237,9 @@ public class MetodosReporteVentaDiario {
             filadato = 11;
             try {
 
-                if(sucursal ==4){
-                    con = conectar2.conectarMySQL();
-                }else{
+                if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
+                } else {
                  con = conectar.conectarMySQL();   
                 }
                 stmt = con.createStatement();
@@ -282,9 +282,9 @@ public class MetodosReporteVentaDiario {
             nombremes = 4;
 
             try {
-                if(sucursal ==4){
-                    con = conectar2.conectarMySQL();
-                }else{
+                if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
+                } else {
                  con = conectar.conectarMySQL();   
                 }
                 stmt = con.createStatement();

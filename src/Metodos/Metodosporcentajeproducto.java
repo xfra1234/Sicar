@@ -105,18 +105,18 @@ public class Metodosporcentajeproducto {
         try {
             int id;
             double cantidad = 0;
-            if (sucursal == 4) {
-                con = conectar2.conectarMySQL();
-            } else {
+            if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
+                } else {
                 con = conectar.conectarMySQL();
             }
             stmt = con.createStatement();
             rs = stmt.executeQuery("select articulo.art_id form,articulo.descripcion,unidad.nombre from  articulo inner join"
                     + " unidad on unidad.uni_id =articulo.unidadventa  "
             );
-            if (sucursal == 4) {
-                con2 = conectar2.conectarMySQL();
-            } else {
+            if (sucursal == 4 || sucursal == 6) {
+                    con2 = conectar2.conectarMySQL(sucursal);
+                } else {
                 con2 = conectar.conectarMySQL();
             }
             stmt2 = con.createStatement();
@@ -160,8 +160,8 @@ public class Metodosporcentajeproducto {
             for (int i = 0; i < contador; i++) {
                 valor = idNumeros.get(i);
 
-                if (sucursal == 4) {
-                    con3 = conectar2.conectarMySQL();
+                if (sucursal == 4 || sucursal == 6) {
+                    con3 = conectar2.conectarMySQL(sucursal);
                 } else {
                     con3 = conectar.conectarMySQL();
                 }
@@ -169,9 +169,9 @@ public class Metodosporcentajeproducto {
                 rs3 = stmt3.executeQuery("select paquete.articulo from paquete where paquete.articulo= '" + valor + "';");
                 if (rs3.next()) {
 
-                    if (sucursal == 4) {
-                        con = conectar2.conectarMySQL();
-                    } else {
+                   if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
+                } else {
                         con = conectar.conectarMySQL();
                     }
                     stmt = con.createStatement();
@@ -182,9 +182,9 @@ public class Metodosporcentajeproducto {
 //                         if(idarticulo==2078||idarticulo==190){
 //                        JOptionPane.showMessageDialog(null, "olo2");
 //                    }
-                        if (sucursal == 4) {
-                            con2 = conectar2.conectarMySQL();
-                        } else {
+                        if (sucursal == 4 || sucursal == 6) {
+                    con2 = conectar2.conectarMySQL(sucursal);
+                } else {
                             con2 = conectar.conectarMySQL();
                         }
                         stmt2 = con2.createStatement();
@@ -203,9 +203,9 @@ public class Metodosporcentajeproducto {
                         }
                         con2.close();
 
-                        if (sucursal == 4) {
-                            con2 = conectar2.conectarMySQL();
-                        } else {
+                        if (sucursal == 4 || sucursal == 6) {
+                    con2 = conectar2.conectarMySQL(sucursal);
+                } else {
                             con2 = conectar.conectarMySQL();
                         }
                         stmt2 = con2.createStatement();
@@ -222,9 +222,9 @@ public class Metodosporcentajeproducto {
                         con2.close();
 
                     }
-                    if (sucursal == 4) {
-                        con2 = conectar2.conectarMySQL();
-                    } else {
+                   if (sucursal == 4 || sucursal == 6) {
+                    con2 = conectar2.conectarMySQL(sucursal);
+                } else {
                         con2 = conectar.conectarMySQL();
                     }
                     stmt2 = con2.createStatement();
@@ -250,9 +250,9 @@ public class Metodosporcentajeproducto {
                     con.close();
                 } else {
 
-                    if (sucursal == 4) {
-                        con2 = conectar2.conectarMySQL();
-                    } else {
+                    if (sucursal == 4 || sucursal == 6) {
+                    con2 = conectar2.conectarMySQL(sucursal);
+                } else {
                         con2 = conectar.conectarMySQL();
                     }
                     stmt2 = con2.createStatement();
@@ -313,8 +313,8 @@ public class Metodosporcentajeproducto {
         try {
             int id;
             double cantidad = 0;
-            if (sucursal == 4) {
-                    con = conectar2.conectarMySQL();
+            if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
                 }
@@ -322,9 +322,9 @@ public class Metodosporcentajeproducto {
             rs = stmt.executeQuery("select articulo.art_id form,articulo.descripcion,unidad.nombre from  articulo inner join"
                     + " unidad on unidad.uni_id =articulo.unidadventa  "
             );
-            if (sucursal == 4) {
-                con2 = conectar2.conectarMySQL();
-            } else {
+            if (sucursal == 4 || sucursal == 6) {
+                    con2 = conectar2.conectarMySQL(sucursal);
+                } else {
                 con2 = conectar.conectarMySQL();
             }
             stmt2 = con.createStatement();
@@ -367,8 +367,8 @@ public class Metodosporcentajeproducto {
             for (int i = 0; i < contador; i++) {
                 valor = idNumeros.get(i);
 
-                if (sucursal == 4) {
-                    con3 = conectar2.conectarMySQL();
+               if (sucursal == 4 || sucursal == 6) {
+                    con3 = conectar2.conectarMySQL(sucursal);
                 } else {
                     con3 = conectar.conectarMySQL();
                 }
@@ -376,9 +376,9 @@ public class Metodosporcentajeproducto {
                 rs3 = stmt3.executeQuery("select paquete.articulo from paquete where paquete.articulo= '" + valor + "';");
                 if (rs3.next()) {
 
-                    if (sucursal == 4) {
-                        con = conectar2.conectarMySQL();
-                    } else {
+                    if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
+                } else {
                         con = conectar.conectarMySQL();
                     }
                     stmt = con.createStatement();
@@ -389,9 +389,9 @@ public class Metodosporcentajeproducto {
 //                         if(idarticulo==2078||idarticulo==190){
 //                        JOptionPane.showMessageDialog(null, "olo2");
 //                    }
-                        if (sucursal == 4) {
-                            con2 = conectar2.conectarMySQL();
-                        } else {
+                       if (sucursal == 4 || sucursal == 6) {
+                    con2 = conectar2.conectarMySQL(sucursal);
+                } else {
                             con2 = conectar.conectarMySQL();
                         }
                         stmt2 = con2.createStatement();
@@ -411,9 +411,9 @@ public class Metodosporcentajeproducto {
                         }
                         con2.close();
 
-                        if (sucursal == 4) {
-                            con2 = conectar2.conectarMySQL();
-                        } else {
+                        if (sucursal == 4 || sucursal == 6) {
+                    con2 = conectar2.conectarMySQL(sucursal);
+                } else {
                             con2 = conectar.conectarMySQL();
                         }
                         stmt2 = con2.createStatement();
@@ -435,9 +435,9 @@ public class Metodosporcentajeproducto {
                         con2.close();
 
                     }
-                    if (sucursal == 4) {
-                        con2 = conectar2.conectarMySQL();
-                    } else {
+                    if (sucursal == 4 || sucursal == 6) {
+                    con2 = conectar2.conectarMySQL(sucursal);
+                } else {
                         con2 = conectar.conectarMySQL();
                     }
                     stmt2 = con2.createStatement();
@@ -464,9 +464,9 @@ public class Metodosporcentajeproducto {
                     con.close();
                 } else {
 
-                    if (sucursal == 4) {
-                        con2 = conectar2.conectarMySQL();
-                    } else {
+                    if (sucursal == 4 || sucursal == 6) {
+                    con2 = conectar2.conectarMySQL(sucursal);
+                } else {
                         con2 = conectar.conectarMySQL();
                     }
                     stmt2 = con2.createStatement();

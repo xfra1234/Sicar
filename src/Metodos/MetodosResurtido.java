@@ -47,10 +47,10 @@ public class MetodosResurtido {
     conexion2 conectar2 = new conexion2();
     String abrirarchivo = "", guardararchivo = "";
     int contador = 0, contador1 = 0;
-    float vacio=0, preciov=0,cantidad3ma = 0, cantidad3md = 0, existencia = 0;
+    float vacio = 0, preciov = 0, cantidad3ma = 0, cantidad3md = 0, existencia = 0;
     String descripcion = "", descripcion2 = "", categoria = "", clave = "", departamento = "";
     int idpaquete;
-    
+
     float mes1 = 0, mes2 = 0, mes3 = 0, aniom1 = 0, aniom3 = 0, anioan1 = 0;
     protected ArrayList<Integer> idNumeros = new ArrayList();
 
@@ -64,7 +64,7 @@ public class MetodosResurtido {
         mes2 = 0;
         mes3 = 0;
         anioan1 = 0;
-        preciov=0;
+        preciov = 0;
     }
 
     public void sucursalesnuevo(String fecha1d1, String fecha1du, String fecha2d1, String fecha2du,
@@ -158,8 +158,8 @@ public class MetodosResurtido {
             int filaa = 6;
             try {
 
-                if (sucursal == 4) {
-                    con = conectar2.conectarMySQL();
+                if (sucursal == 4 || sucursal == 6) {
+                    con4 = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
                 }
@@ -171,8 +171,8 @@ public class MetodosResurtido {
                         + " where articulo.status !=-1  order by categoria.nombre,articulo.descripcion");
                 while (rs.next()) {
 
-                    if (sucursal == 4) {
-                        con4 = conectar2.conectarMySQL();
+                    if (sucursal == 4 || sucursal == 6) {
+                        con4 = conectar2.conectarMySQL(sucursal);
                     } else {
                         con4 = conectar.conectarMySQL();
                     }
@@ -191,10 +191,10 @@ public class MetodosResurtido {
                     descripcion = rs.getString(4);
                     categoria = rs.getString(5);
                     departamento = rs.getString(6);
-                    preciov=rs.getFloat(7);
+                    preciov = rs.getFloat(7);
 
-                    if (sucursal == 4) {
-                        con2 = conectar2.conectarMySQL();
+                    if (sucursal == 4 || sucursal == 6) {
+                        con4 = conectar2.conectarMySQL(sucursal);
                     } else {
                         con2 = conectar.conectarMySQL();
                     }
@@ -212,8 +212,8 @@ public class MetodosResurtido {
 
                     //termino la suma del mes 1
                     //inicio la suma del mes2
-                    if (sucursal == 4) {
-                        con2 = conectar2.conectarMySQL();
+                    if (sucursal == 4 || sucursal == 6) {
+                        con4 = conectar2.conectarMySQL(sucursal);
                     } else {
                         con2 = conectar.conectarMySQL();
                     }
@@ -231,8 +231,8 @@ public class MetodosResurtido {
 
                     ///termino la suma del mes 2
                     //inicio la suma del mes3
-                    if (sucursal == 4) {
-                        con2 = conectar2.conectarMySQL();
+                    if (sucursal == 4 || sucursal == 6) {
+                        con4 = conectar2.conectarMySQL(sucursal);
                     } else {
                         con2 = conectar.conectarMySQL();
                     }
@@ -250,8 +250,8 @@ public class MetodosResurtido {
 
                     ///termino la suma del mes 3
                     //inicio la suma del año anterior 3meses adelante
-                    if (sucursal == 4) {
-                        con2 = conectar2.conectarMySQL();
+                    if (sucursal == 4 || sucursal == 6) {
+                        con4 = conectar2.conectarMySQL(sucursal);
                     } else {
                         con2 = conectar.conectarMySQL();
                     }
@@ -268,8 +268,8 @@ public class MetodosResurtido {
                     //termina  la suma del año anterior 3meses adelante
 
                     //inicio la suma del año anterior mismo mes
-                    if (sucursal == 4) {
-                        con2 = conectar2.conectarMySQL();
+                    if (sucursal == 4 || sucursal == 6) {
+                        con4 = conectar2.conectarMySQL(sucursal);
                     } else {
                         con2 = conectar.conectarMySQL();
                     }
@@ -325,41 +325,41 @@ public class MetodosResurtido {
                     celda.setCellStyle(Numerico);
 
                     celda = fila.createCell(10);
-                    celda.setCellValue(aniom3); 
+                    celda.setCellValue(aniom3);
                     celda.setCellStyle(Numerico);
-                    
+
                     celda = fila.createCell(12);
                     celda.setCellValue(vacio);
                     celda.setCellStyle(Numerico);
-                    
+
                     celda = fila.createCell(13);
                     celda.setCellValue(preciov);
                     celda.setCellStyle(Numerico);
-                    
+
                     celda = fila.createCell(15);
                     celda.setCellValue(vacio);
                     celda.setCellStyle(Numerico);
-                    
-                        int filaformula = filaa +1 ;
-                        String Formula;
 
-                        //// Formula dias inventario
-                        Formula = "(E"+  filaformula + "/L"+filaformula+")*30";
-                        celda = fila.createCell(5);
-                        celda.setCellFormula(Formula);
-                        celda.setCellStyle(Numerico);
+                    int filaformula = filaa + 1;
+                    String Formula;
 
-                        //// Formula venta promedio
-                        Formula = "(H" + filaformula +"+i"+filaformula+ "+J"+filaformula+")/3";
-                        celda = fila.createCell(11);
-                        celda.setCellFormula(Formula);
-                        celda.setCellStyle(Numerico);
+                    //// Formula dias inventario
+                    Formula = "(E" + filaformula + "/L" + filaformula + ")*30";
+                    celda = fila.createCell(5);
+                    celda.setCellFormula(Formula);
+                    celda.setCellStyle(Numerico);
 
-                        //// Formula Proyecion venta
-                        Formula = "M" + filaformula + "*N" + filaformula;
-                        celda = fila.createCell(14);
-                        celda.setCellFormula(Formula);
-                        celda.setCellStyle(Numerico);
+                    //// Formula venta promedio
+                    Formula = "(H" + filaformula + "+i" + filaformula + "+J" + filaformula + ")/3";
+                    celda = fila.createCell(11);
+                    celda.setCellFormula(Formula);
+                    celda.setCellStyle(Numerico);
+
+                    //// Formula Proyecion venta
+                    Formula = "M" + filaformula + "*N" + filaformula;
+                    celda = fila.createCell(14);
+                    celda.setCellFormula(Formula);
+                    celda.setCellStyle(Numerico);
 
 //                        //// Formula Resurtido año Anterior  
 //                        Formula = "G" + filaformula + "-C" + filaformula;
@@ -390,8 +390,6 @@ public class MetodosResurtido {
 //                        celda = fila.getCell(12);
 //                        celda.setCellFormula(Formula);
 //                        celda.setCellStyle(Numerico);
-
-                    
                     filaa = filaa + 1;
 
                     existencia = 0;
@@ -517,8 +515,8 @@ public class MetodosResurtido {
             int filaa = 9;
             try {
 
-                if (sucursal == 4) {
-                    con = conectar2.conectarMySQL();
+                if (sucursal == 4 || sucursal == 6) {
+                    con4 = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
                 }
@@ -529,8 +527,8 @@ public class MetodosResurtido {
                         + " where articulo.status !=-1  order by categoria.nombre,articulo.descripcion");
                 while (rs.next()) {
 
-                    if (sucursal == 4) {
-                        con4 = conectar2.conectarMySQL();
+                    if (sucursal == 4 || sucursal == 6) {
+                        con4 = conectar2.conectarMySQL(sucursal);
                     } else {
                         con4 = conectar.conectarMySQL();
                     }
@@ -549,8 +547,8 @@ public class MetodosResurtido {
                     descripcion = rs.getString(4);
                     categoria = rs.getString(5);
 
-                    if (sucursal == 4) {
-                        con2 = conectar2.conectarMySQL();
+                    if (sucursal == 4 || sucursal == 6) {
+                        con4 = conectar2.conectarMySQL(sucursal);
                     } else {
                         con2 = conectar.conectarMySQL();
                     }
@@ -565,8 +563,8 @@ public class MetodosResurtido {
                     }
                     con2.close();
 
-                    if (sucursal == 4) {
-                        con2 = conectar2.conectarMySQL();
+                    if (sucursal == 4 || sucursal == 6) {
+                        con4 = conectar2.conectarMySQL(sucursal);
                     } else {
                         con2 = conectar.conectarMySQL();
                     }

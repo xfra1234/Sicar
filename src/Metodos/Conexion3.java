@@ -5,19 +5,17 @@
  */
 package Metodos;
 
-/**
- *
- * @author usuario
- */
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+
 /**
  *
- * @author carlo
+ * @author coron
  */
-public class conexion2 {
+public class Conexion3 {
+
     // Librería de MySQL
     public String driver = "com.mysql.jdbc.Driver";
 
@@ -36,39 +34,25 @@ public class conexion2 {
     public String url = "jdbc:mysql://" + hostname + ":" + port + "/" + database + "?serverTimezone=UTC";
 
     // Nombre de usuario
-    public String username = "";
+    public String username = "root";
 //    public String username = "semill13_root";
 
     // Clave de usuario
-    public String password = "";
+    public String password = "dnrtxxxz";
 //       public String password = "qscesz@.1047";
-    
-    
-     public Connection conectarMySQL(int sucursal) {
-       
-         if(sucursal==4){
-             username = "consultas";
-             password = "consultas";
-         }
-         else{
-             username = "root";
-             password = "dnrtxxxz";
-         }
-         
-         
-         
-         
-         Connection conn = null;
+
+    public Connection conectarMySQL() {
+        Connection conn = null;
 
         try {
             Class.forName(driver);
             conn = DriverManager.getConnection(url, username, password);
 //            JOptionPane.showMessageDialog(null, "Exito");
         } catch (ClassNotFoundException | SQLException e) {
-            JOptionPane.showMessageDialog(null,e);
+            JOptionPane.showMessageDialog(null, e);
         }
 
         return conn;
     }
-    
+
 }

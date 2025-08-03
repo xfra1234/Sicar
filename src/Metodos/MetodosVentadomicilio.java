@@ -139,8 +139,8 @@ public class MetodosVentadomicilio {
             row = hoja.getRow(6);
             int totalmeses = 0;
             try {
-                if (sucursal == 4) {
-                    con = conectar2.conectarMySQL();
+                if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
                 }
@@ -152,8 +152,8 @@ public class MetodosVentadomicilio {
                 con.close();
                 totalmeses = 0;
 
-                if (sucursal == 4) {
-                    con = conectar2.conectarMySQL();
+               if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
                 }
@@ -207,8 +207,8 @@ public class MetodosVentadomicilio {
             filadato = 7;
             try {
 
-                if (sucursal == 4) {
-                    con = conectar2.conectarMySQL();
+                if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
                 }
@@ -252,8 +252,8 @@ public class MetodosVentadomicilio {
             filadato = 8;
             try {
 
-                if (sucursal == 4) {
-                    con = conectar2.conectarMySQL();
+                if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
                 }
@@ -296,8 +296,8 @@ public class MetodosVentadomicilio {
             try {
                 columnadato = 1;
                 filadato = 12;
-                if (sucursal == 4) {
-                    con = conectar2.conectarMySQL();
+               if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
                 }
@@ -339,8 +339,8 @@ public class MetodosVentadomicilio {
             filadato = 13;
             try {
 
-                if (sucursal == 4) {
-                    con = conectar2.conectarMySQL();
+               if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
                 }
@@ -383,8 +383,8 @@ public class MetodosVentadomicilio {
             filadato = 14;
             try {
 
-                if (sucursal == 4) {
-                    con = conectar2.conectarMySQL();
+                if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
                 }
@@ -429,8 +429,8 @@ public class MetodosVentadomicilio {
 
             ///inicia consultas de compras por departamento
             try {
-                if (sucursal == 4) {
-                    con = conectar2.conectarMySQL();
+                if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
                 }
@@ -462,8 +462,8 @@ public class MetodosVentadomicilio {
             }
 
             try {
-                if (sucursal == 4) {
-                    con = conectar2.conectarMySQL();
+                if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
                 }
@@ -497,8 +497,8 @@ public class MetodosVentadomicilio {
             }
 
             try {
-                if (sucursal == 4) {
-                    con = conectar2.conectarMySQL();
+                if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
                 }
@@ -532,8 +532,8 @@ public class MetodosVentadomicilio {
             }
 
             try {
-                if (sucursal == 4) {
-                    con = conectar2.conectarMySQL();
+                if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
                 }
@@ -570,8 +570,8 @@ public class MetodosVentadomicilio {
                 e.printStackTrace();
             }
             try {
-                if (sucursal == 4) {
-                    con = conectar2.conectarMySQL();
+               if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
                 }

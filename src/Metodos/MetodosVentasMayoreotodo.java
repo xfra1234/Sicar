@@ -139,9 +139,9 @@ public class MetodosVentasMayoreotodo {
             row = hoja.getRow(6);
             int totalmeses = 0;
             try {
-                if(sucursal ==4){
-                    con = conectar2.conectarMySQL();
-                }else{
+               if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
+                } else {
                  con = conectar.conectarMySQL();   
                 }
                 stmt = con.createStatement();
@@ -152,9 +152,9 @@ public class MetodosVentasMayoreotodo {
                 con.close();
                 totalmeses = 0;
 
-                if(sucursal ==4){
-                    con = conectar2.conectarMySQL();
-                }else{
+                if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
+                } else {
                  con = conectar.conectarMySQL();   
                 }
                 stmt = con.createStatement();
@@ -207,9 +207,9 @@ public class MetodosVentasMayoreotodo {
             filadato = 7;
             try {
 
-                if(sucursal ==4){
-                    con = conectar2.conectarMySQL();
-                }else{
+                if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
+                } else {
                  con = conectar.conectarMySQL();   
                 }
                 stmt = con.createStatement();
@@ -252,9 +252,9 @@ public class MetodosVentasMayoreotodo {
             filadato = 8;
             try {
 
-                if(sucursal ==4){
-                    con = conectar2.conectarMySQL();
-                }else{
+                if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
+                } else {
                  con = conectar.conectarMySQL();   
                 }
                 stmt = con.createStatement();
@@ -296,9 +296,9 @@ public class MetodosVentasMayoreotodo {
             try {
                 columnadato = 1;
                 filadato = 12;
-                if(sucursal ==4){
-                    con = conectar2.conectarMySQL();
-                }else{
+                if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
+                } else {
                  con = conectar.conectarMySQL();   
                 }
                 stmt = con.createStatement();
@@ -339,9 +339,9 @@ public class MetodosVentasMayoreotodo {
             filadato = 13;
             try {
 
-                if(sucursal ==4){
-                    con = conectar2.conectarMySQL();
-                }else{
+                if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
+                } else {
                  con = conectar.conectarMySQL();   
                 }
                 stmt = con.createStatement();
@@ -383,9 +383,9 @@ public class MetodosVentasMayoreotodo {
             filadato = 14;
             try {
 
-                if(sucursal ==4){
-                    con = conectar2.conectarMySQL();
-                }else{
+                if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
+                } else {
                  con = conectar.conectarMySQL();   
                 }
                 stmt = con.createStatement();
@@ -429,9 +429,9 @@ public class MetodosVentasMayoreotodo {
 
             ///inicia consultas de compras por departamento
             try {
-                if(sucursal ==4){
-                    con = conectar2.conectarMySQL();
-                }else{
+                if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
+                } else {
                  con = conectar.conectarMySQL();   
                 }
                 stmt = con.createStatement();
@@ -462,9 +462,9 @@ public class MetodosVentasMayoreotodo {
             }
 
             try {
-                if(sucursal ==4){
-                    con = conectar2.conectarMySQL();
-                }else{
+                if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
+                } else {
                  con = conectar.conectarMySQL();   
                 }
                 stmt = con.createStatement();
@@ -497,9 +497,9 @@ public class MetodosVentasMayoreotodo {
             }
 
             try {
-                if(sucursal ==4){
-                    con = conectar2.conectarMySQL();
-                }else{
+                if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
+                } else {
                  con = conectar.conectarMySQL();   
                 }
                 stmt = con.createStatement();
@@ -532,9 +532,9 @@ public class MetodosVentasMayoreotodo {
             }
 
             try {
-                if(sucursal ==4){
-                    con = conectar2.conectarMySQL();
-                }else{
+                if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
+                } else {
                  con = conectar.conectarMySQL();   
                 }
                 stmt = con.createStatement();
@@ -570,9 +570,9 @@ public class MetodosVentasMayoreotodo {
                 e.printStackTrace();
             }
             try {
-                if(sucursal ==4){
-                    con = conectar2.conectarMySQL();
-                }else{
+                if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
+                } else {
                  con = conectar.conectarMySQL();   
                 }
                 stmt = con.createStatement();
