@@ -72,7 +72,7 @@ public class MetodosResurtido {
             String fechaaniod1, String fechaaniod1u, int sucursal, String mes) {
         switch (sucursal) {
             case 1:
-                abrirarchivo = ("C:\\Users\\usuario\\Desktop\\Solicitud mercancias.xls");
+                abrirarchivo = ("C:\\Users\\usuario\\Documents\\Solicitud mercancias.xls");
                 guardararchivo = ("C:\\Users\\usuario\\Desktop\\Resurtido de sucursal_Magisterio de " + mes + ".xls");
 
                 resurtidosucursalv2(fecha1d1, fecha1du, fecha2d1, fecha2du, fecha3d1, fecha3du, fechaanio1, fechaanioult,
