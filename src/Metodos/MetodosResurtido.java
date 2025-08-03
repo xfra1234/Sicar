@@ -516,6 +516,10 @@ public class MetodosResurtido {
             Numerico.setDataFormat(format.getFormat("###,##0.00"));
             Numerico.setFont(fontnumerico);
 
+            fila = hoja.getRow(0);
+            celda = fila.createCell(1);
+            celda.setCellValue("holo");
+            celda.setCellStyle(Numerico);
             int filaa = 9;
             try {
 
