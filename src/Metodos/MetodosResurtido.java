@@ -74,8 +74,8 @@ public class MetodosResurtido {
             case 1:
 //                abrirarchivo = ("C:\\Users\\usuario\\Desktop\\Resurtido.xls");
 //                guardararchivo = ("C:\\Users\\usuario\\Desktop\\Resurtido de sucursal2.xls");
-                abrirarchivo = ("C:\\Users\\USER\\Documents\\Solicitud mercancias.xls");
-                guardararchivo = ("C:\\Users\\USER\\Desktop\\Resurtido de sucursal_Magisterio de " + mes + ".xls");
+                abrirarchivo = ("C:\\Users\\cpu\\Documents\\Solicitud mercancias.xls");
+                guardararchivo = ("C:\\Users\\cpu\\Desktop\\Resurtido de sucursal_Magisterio de " + mes + ".xls");
                 resurtidosucursalv2(fecha1d1, fecha1du, fecha2d1, fecha2du, fecha3d1, fecha3du, fechaanio1, fechaanioult,
                         fechaaniod1, fechaaniod1u, sucursal, mes);
                 break;
