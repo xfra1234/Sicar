@@ -71,17 +71,23 @@ public class MetodosreporteVentaMayoreo {
                 guardararchivo = ("C:\\Users\\billy\\Desktop\\Total de Ventas de Mayoreo  Sucursal_ Bodega pdv del " + fechauno + " al " + fechados + ".xls");
                 excelsucursales(fecha1, fecha2, fechauno, fechados);
                 break;
-                
+
             case 5:
                 abrirarchivo = ("C:\\Users\\USER\\Documents\\total de ventas de mayoreo mes.xls");
                 guardararchivo = ("C:\\Users\\USER\\Desktop\\Total de Ventas de Mayoreo  Sucursal_ Mojoneras del " + fechauno + " al " + fechados + ".xls");
                 excelsucursales(fecha1, fecha2, fechauno, fechados);
-                break;     
+                break;
+
+            case 6:
+                abrirarchivo = ("C:\\Users\\W11\\Documents\\total de ventas de mayoreo mes.xls");
+                guardararchivo = ("C:\\Users\\W11\\Desktop\\Total de Ventas de Mayoreo  Sucursal_ Pitillal del " + fechauno + " al " + fechados + ".xls");
+                excelsucursales(fecha1, fecha2, fechauno, fechados);
+                break;
         }
     }
 
     public void excelsucursales(String fecha1, String fecha2, String fechauno, String fechados) {
-        try ( FileInputStream file = new FileInputStream(new File(abrirarchivo))) {
+        try (FileInputStream file = new FileInputStream(new File(abrirarchivo))) {
             // leer archivo excel
             POIFSFileSystem fs = new POIFSFileSystem(file);
             HSSFWorkbook libro = new HSSFWorkbook(fs);

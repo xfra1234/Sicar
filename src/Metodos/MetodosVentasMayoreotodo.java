@@ -57,35 +57,40 @@ public class MetodosVentasMayoreotodo {
             case 1:
                 abrirarchivo = ("C:\\Users\\Cpu\\Documents\\Ventas a domicilio.xls");
                 guardararchivo = ("C:\\Users\\Cpu\\Desktop\\Ventas_Mayoreo_ Magisterio del " + fechauno + " al " + fechados + ".xls");
-                excelsucursales(fecha1, fecha2, fechauno, fechados,sucursal);
+                excelsucursales(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
             case 2:
                 abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Ventas a domicilio.xls");
                 guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Ventas_Mayoreo_ Coapinole del " + fechauno + " al " + fechados + ".xls");
-                excelsucursales(fecha1, fecha2, fechauno, fechados,sucursal);
+                excelsucursales(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
             case 3:
                 abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Ventas a domicilio.xls");
                 guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Ventas_Mayoreo_ Bodega del " + fechauno + " al " + fechados + ".xls");
-                excelsucursales(fecha1, fecha2, fechauno, fechados,sucursal);
+                excelsucursales(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
 
             case 4:
                 abrirarchivo = ("C:\\Users\\billy\\Documents\\Ventas a domicilio.xls");
                 guardararchivo = ("C:\\Users\\billy\\Desktop\\Ventas_Mayoreo_ Bodega pdv del " + fechauno + " al " + fechados + ".xls");
-                excelsucursales(fecha1, fecha2, fechauno, fechados,sucursal);
+                excelsucursales(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
-                
+
             case 5:
                 abrirarchivo = ("C:\\Users\\Users\\Documents\\Ventas a domicilio.xls");
-                guardararchivo = ("C:\\Users\\billy\\Desktop\\Ventas_Mayoreo_ Mojoneras del " + fechauno + " al " + fechados + ".xls");
-                excelsucursales(fecha1, fecha2, fechauno, fechados,sucursal);
-                break;    
+                guardararchivo = ("C:\\Users\\Users\\Desktop\\Ventas_Mayoreo_ Mojoneras del " + fechauno + " al " + fechados + ".xls");
+                excelsucursales(fecha1, fecha2, fechauno, fechados, sucursal);
+                break;
+            case 6:
+                abrirarchivo = ("C:\\Users\\W11\\Documents\\Ventas a domicilio.xls");
+                guardararchivo = ("C:\\Users\\W11\\Desktop\\Ventas_Mayoreo_ Pitillal del " + fechauno + " al " + fechados + ".xls");
+                excelsucursales(fecha1, fecha2, fechauno, fechados, sucursal);
+                break;
         }
     }
 
-    public void excelsucursales(String fecha1, String fecha2, String fechauno, String fechados,int sucursal) {
-        try ( FileInputStream file = new FileInputStream(new File(abrirarchivo))) {
+    public void excelsucursales(String fecha1, String fecha2, String fechauno, String fechados, int sucursal) {
+        try (FileInputStream file = new FileInputStream(new File(abrirarchivo))) {
             // leer archivo excel
             POIFSFileSystem fs = new POIFSFileSystem(file);
             HSSFWorkbook libro = new HSSFWorkbook(fs);
@@ -139,10 +144,10 @@ public class MetodosVentasMayoreotodo {
             row = hoja.getRow(6);
             int totalmeses = 0;
             try {
-               if (sucursal == 4 || sucursal == 6) {
+                if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
-                 con = conectar.conectarMySQL();   
+                    con = conectar.conectarMySQL();
                 }
                 stmt = con.createStatement();
                 rs = stmt.executeQuery("select vnd_id from vendedor where nombre ='VENTAS MAYOREO';");
@@ -155,7 +160,7 @@ public class MetodosVentasMayoreotodo {
                 if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
-                 con = conectar.conectarMySQL();   
+                    con = conectar.conectarMySQL();
                 }
                 stmt = con.createStatement();
 
@@ -210,7 +215,7 @@ public class MetodosVentasMayoreotodo {
                 if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
-                 con = conectar.conectarMySQL();   
+                    con = conectar.conectarMySQL();
                 }
                 stmt = con.createStatement();
 
@@ -255,7 +260,7 @@ public class MetodosVentasMayoreotodo {
                 if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
-                 con = conectar.conectarMySQL();   
+                    con = conectar.conectarMySQL();
                 }
                 stmt = con.createStatement();
 
@@ -299,7 +304,7 @@ public class MetodosVentasMayoreotodo {
                 if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
-                 con = conectar.conectarMySQL();   
+                    con = conectar.conectarMySQL();
                 }
                 stmt = con.createStatement();
 
@@ -342,7 +347,7 @@ public class MetodosVentasMayoreotodo {
                 if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
-                 con = conectar.conectarMySQL();   
+                    con = conectar.conectarMySQL();
                 }
                 stmt = con.createStatement();
 
@@ -386,7 +391,7 @@ public class MetodosVentasMayoreotodo {
                 if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
-                 con = conectar.conectarMySQL();   
+                    con = conectar.conectarMySQL();
                 }
                 stmt = con.createStatement();
 
@@ -432,7 +437,7 @@ public class MetodosVentasMayoreotodo {
                 if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
-                 con = conectar.conectarMySQL();   
+                    con = conectar.conectarMySQL();
                 }
                 stmt = con.createStatement();
                 rs2 = stmt.executeQuery("SET lc_time_names = 'es_ES';");
@@ -465,7 +470,7 @@ public class MetodosVentasMayoreotodo {
                 if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
-                 con = conectar.conectarMySQL();   
+                    con = conectar.conectarMySQL();
                 }
                 stmt = con.createStatement();
                 columnadato = 1;
@@ -500,7 +505,7 @@ public class MetodosVentasMayoreotodo {
                 if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
-                 con = conectar.conectarMySQL();   
+                    con = conectar.conectarMySQL();
                 }
                 stmt = con.createStatement();
                 columnadato = 1;
@@ -535,7 +540,7 @@ public class MetodosVentasMayoreotodo {
                 if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
-                 con = conectar.conectarMySQL();   
+                    con = conectar.conectarMySQL();
                 }
                 stmt = con.createStatement();
                 columnadato = 1;
@@ -573,7 +578,7 @@ public class MetodosVentasMayoreotodo {
                 if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
-                 con = conectar.conectarMySQL();   
+                    con = conectar.conectarMySQL();
                 }
                 stmt = con.createStatement();
                 columnadato = 1;

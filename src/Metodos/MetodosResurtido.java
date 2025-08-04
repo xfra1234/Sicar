@@ -106,6 +106,15 @@ public class MetodosResurtido {
                 resurtidosucursalv2(fecha1d1, fecha1du, fecha2d1, fecha2du, fecha3d1, fecha3du, fechaanio1, fechaanioult,
                         fechaaniod1, fechaaniod1u, sucursal, mes);
                 break;
+                
+                
+                case 6:
+                abrirarchivo = ("C:\\Users\\W11\\Documents\\Resurtido de sucursal.xls");
+                guardararchivo = ("C:\\Users\\W11\\Desktop\\Resurtido de sucursal_ Pitillal de" + mes + ".xls");
+                resurtidosucursalv2(fecha1d1, fecha1du, fecha2d1, fecha2du, fecha3d1, fecha3du, fechaanio1, fechaanioult,
+                        fechaaniod1, fechaaniod1u, sucursal, mes);
+                break;
+                
         }
     }
 

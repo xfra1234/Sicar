@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Metodos;
-  
+
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileInputStream;
@@ -58,36 +58,42 @@ public class MetodosReporteDepartamento {
             case 1:
                 abrirarchivo = ("C:\\Users\\Cpu\\Documents\\Cuotas-de-Venta-y-Rentabilidad-Sucursales_-Magisterio.xls");
                 guardararchivo = ("C:\\Users\\Cpu\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Magisterio del " + fechauno + " al " + fechados + ".xls");
-                excelsucursales(fecha1, fecha2, fechauno, fechados,sucursal);
+                excelsucursales(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
             case 2:
                 abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Cuotas-de-Venta-y-Rentabilidad-Sucursales_-Coapinole.xls");
                 guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Coapinole del " + fechauno + " al " + fechados + ".xls");
-                excelsucursales(fecha1, fecha2, fechauno, fechados,sucursal);
+                excelsucursales(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
             case 3:
                 abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Cuotas-de-Venta-y-Rentabilidad-Sucursales_-Bodega.xls");
                 guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Bodega del " + fechauno + " al " + fechados + ".xls");
-                excelsucursales(fecha1, fecha2, fechauno, fechados,sucursal);
+                excelsucursales(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
 
             case 4:
                 abrirarchivo = ("C:\\Users\\billy\\Documents\\Cuotas-de-Venta-y-Rentabilidad-Sucursales_-Bodega.xls");
                 guardararchivo = ("C:\\Users\\billy\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Bodega pdv del " + fechauno + " al " + fechados + ".xls");
-                excelsucursales(fecha1, fecha2, fechauno, fechados,sucursal);
+                excelsucursales(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
-                
-          case 5:
+
+            case 5:
                 abrirarchivo = ("C:\\Users\\USER\\Documents\\Cuotas-de-Venta-y-Rentabilidad-Sucursales_-Mojoneras.xls");
                 guardararchivo = ("C:\\Users\\USER\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Mojoneras del " + fechauno + " al " + fechados + ".xls");
-                excelsucursales(fecha1, fecha2, fechauno, fechados,sucursal);
-                break;      
-                
+                excelsucursales(fecha1, fecha2, fechauno, fechados, sucursal);
+                break;
+
+            case 6:
+                abrirarchivo = ("C:\\Users\\W11\\Documents\\Cuotas-de-Venta-y-Rentabilidad-Sucursales_-Pitillal.xls");
+                guardararchivo = ("C:\\Users\\W11\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Pitillal del " + fechauno + " al " + fechados + ".xls");
+                excelsucursales(fecha1, fecha2, fechauno, fechados, sucursal);
+                break;
+
         }
     }
 
-    public void excelsucursales(String fecha1, String fecha2, String fechauno, String fechados,int sucursal) {
-        try ( FileInputStream file = new FileInputStream(new File(abrirarchivo))) {
+    public void excelsucursales(String fecha1, String fecha2, String fechauno, String fechados, int sucursal) {
+        try (FileInputStream file = new FileInputStream(new File(abrirarchivo))) {
             // leer archivo excel
             POIFSFileSystem fs = new POIFSFileSystem(file);
             HSSFWorkbook libro = new HSSFWorkbook(fs);
@@ -146,9 +152,9 @@ public class MetodosReporteDepartamento {
                 if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
-                 con = conectar.conectarMySQL();   
+                    con = conectar.conectarMySQL();
                 }
-                
+
                 stmt = con.createStatement();
                 rs = stmt.executeQuery("select MONTHNAME(notacredito.fecha) mes ,sum(notacredito.total) as suma "
                         + ",year(notacredito.fecha) as año\n"
@@ -170,7 +176,7 @@ public class MetodosReporteDepartamento {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
 
-                 con = conectar.conectarMySQL();   
+                    con = conectar.conectarMySQL();
                 }
                 stmt = con.createStatement();
 
@@ -224,7 +230,7 @@ public class MetodosReporteDepartamento {
                 if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
-                 con = conectar.conectarMySQL();   
+                    con = conectar.conectarMySQL();
                 }
                 stmt = con.createStatement();
 
@@ -243,7 +249,7 @@ public class MetodosReporteDepartamento {
                 while (rs.next()) {
                     mes = rs.getString(1);
                     anio = rs.getString(3);
-                    cantidad = rs.getFloat(2) ;
+                    cantidad = rs.getFloat(2);
                     totalmeses = totalmeses + 1;
 
                     fila = hoja.getRow(filadato);
@@ -270,7 +276,7 @@ public class MetodosReporteDepartamento {
                 if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
-                 con = conectar.conectarMySQL();   
+                    con = conectar.conectarMySQL();
                 }
                 stmt = con.createStatement();
 
@@ -289,7 +295,7 @@ public class MetodosReporteDepartamento {
                 while (rs.next()) {
                     mes = rs.getString(1);
                     anio = rs.getString(3);
-                    cantidad = rs.getFloat(2) ;
+                    cantidad = rs.getFloat(2);
                     totalmeses = totalmeses + 1;
 
                     fila = hoja.getRow(filadato);
@@ -322,7 +328,7 @@ public class MetodosReporteDepartamento {
                 if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
-                 con = conectar.conectarMySQL();   
+                    con = conectar.conectarMySQL();
                 }
                 stmt = con.createStatement();
 
@@ -363,10 +369,10 @@ public class MetodosReporteDepartamento {
             filadato = 13;
             try {
 
-               if (sucursal == 4 || sucursal == 6) {
+                if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
-                 con = conectar.conectarMySQL();   
+                    con = conectar.conectarMySQL();
                 }
                 stmt = con.createStatement();
 
@@ -384,7 +390,7 @@ public class MetodosReporteDepartamento {
                 while (rs.next()) {
                     mes = rs.getString(1);
                     anio = rs.getString(3);
-                    cantidad =rs.getFloat(2);
+                    cantidad = rs.getFloat(2);
                     totalmeses = totalmeses + 1;
 
                     fila = hoja.getRow(filadato);
@@ -408,10 +414,10 @@ public class MetodosReporteDepartamento {
             filadato = 14;
             try {
 
-              if (sucursal == 4 || sucursal == 6) {
+                if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
-                 con = conectar.conectarMySQL();   
+                    con = conectar.conectarMySQL();
                 }
                 stmt = con.createStatement();
 
@@ -430,7 +436,7 @@ public class MetodosReporteDepartamento {
                     mes = rs.getString(1);
                     anio = rs.getString(3);
                     totalmeses = totalmeses + 1;
-                     cantidad =rs.getFloat(2);
+                    cantidad = rs.getFloat(2);
                     fila = hoja.getRow(filadato);
                     celda = fila.createCell(columnadato);
                     celda.setCellValue(cantidad);
@@ -460,10 +466,10 @@ public class MetodosReporteDepartamento {
 
             ///inicia consultas de compras por departamento
             try {
-               if (sucursal == 4 || sucursal == 6) {
+                if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
-                 con = conectar.conectarMySQL();   
+                    con = conectar.conectarMySQL();
                 }
                 stmt = con.createStatement();
                 rs2 = stmt.executeQuery("SET lc_time_names = 'es_ES';");
@@ -497,7 +503,7 @@ public class MetodosReporteDepartamento {
                 if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
-                 con = conectar.conectarMySQL();   
+                    con = conectar.conectarMySQL();
                 }
                 stmt = con.createStatement();
                 columnadato = 1;
@@ -530,10 +536,10 @@ public class MetodosReporteDepartamento {
             }
 
             try {
-              if (sucursal == 4 || sucursal == 6) {
+                if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
-                 con = conectar.conectarMySQL();   
+                    con = conectar.conectarMySQL();
                 }
                 stmt = con.createStatement();
                 columnadato = 1;
@@ -576,7 +582,7 @@ public class MetodosReporteDepartamento {
                 if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
-                 con = conectar.conectarMySQL();   
+                    con = conectar.conectarMySQL();
                 }
                 stmt = con.createStatement();
                 columnadato = 1;
@@ -611,10 +617,10 @@ public class MetodosReporteDepartamento {
                 e.printStackTrace();
             }
             try {
-              if (sucursal == 4 || sucursal == 6) {
+                if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
-                 con = conectar.conectarMySQL();   
+                    con = conectar.conectarMySQL();
                 }
                 stmt = con.createStatement();
                 columnadato = 1;
