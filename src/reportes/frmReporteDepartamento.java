@@ -96,6 +96,8 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
              sucursal=4;
          }else if(rbtnmojoneras.isSelected()){
              sucursal=5;
+         }else if(rbtnbpitillal.isSelected()){
+             sucursal=6;
          }
          else{
              sucursal=0;
@@ -125,6 +127,7 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         rbtnbodegapdv = new javax.swing.JRadioButton();
         rbtncoapinole = new javax.swing.JRadioButton();
+        rbtnbpitillal = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Reporte Por Departamentos");
@@ -199,6 +202,15 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
             }
         });
 
+        grbtnsucursal.add(rbtnbpitillal);
+        rbtnbpitillal.setText("Pitillal");
+        rbtnbpitillal.setOpaque(false);
+        rbtnbpitillal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnbpitillalActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -217,22 +229,18 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(jdcfinal, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addComponent(rbtnbodega))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(61, 61, 61)
-                                        .addComponent(rbtnmojoneras)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(rbtnbodega)
+                                    .addComponent(rbtnmojoneras))
+                                .addGap(55, 55, 55)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(rbtnmagisterio)
-                                        .addGap(42, 42, 42)
-                                        .addComponent(rbtncoapinole))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(58, 58, 58)
-                                        .addComponent(rbtnbodegapdv)))))
+                                    .addComponent(rbtnmagisterio)
+                                    .addComponent(rbtnbodegapdv))
+                                .addGap(36, 36, 36)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(rbtnbpitillal)
+                                    .addComponent(rbtncoapinole))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -262,7 +270,8 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbtnmojoneras)
-                    .addComponent(rbtnbodegapdv))
+                    .addComponent(rbtnbodegapdv)
+                    .addComponent(rbtnbpitillal))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btncrear)
                 .addGap(3, 3, 3)
@@ -342,6 +351,10 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_rbtncoapinoleActionPerformed
 
+    private void rbtnbpitillalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnbpitillalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbtnbpitillalActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -388,6 +401,7 @@ public class frmReporteDepartamento extends javax.swing.JFrame {
     public static com.toedter.calendar.JDateChooser jdcinicio;
     private javax.swing.JRadioButton rbtnbodega;
     private javax.swing.JRadioButton rbtnbodegapdv;
+    private javax.swing.JRadioButton rbtnbpitillal;
     private javax.swing.JRadioButton rbtncoapinole;
     private javax.swing.JRadioButton rbtnmagisterio;
     private javax.swing.JRadioButton rbtnmojoneras;

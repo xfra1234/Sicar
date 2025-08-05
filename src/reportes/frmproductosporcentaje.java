@@ -63,25 +63,25 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
         return difM;
     }
 
-   public int valorsucursal(){
-         if(rbtnbodega.isSelected()){
-             sucursal=3;
-         }else if(rbtnmagisterio.isSelected()){
-             sucursal=1;
-         }else if(rbtncoapinole.isSelected()){
-             sucursal=2;
-         }else if(rbtnbodegapdv.isSelected()){
-             sucursal=4;
-         }else if(rbtnmojoneras.isSelected())
-         {
-             sucursal=5;
-         }
-         else{
-             sucursal=0;
-         }
-         
-         return sucursal;
-     }
+    public int valorsucursal() {
+        if (rbtnbodega.isSelected()) {
+            sucursal = 3;
+        } else if (rbtnmagisterio.isSelected()) {
+            sucursal = 1;
+        } else if (rbtncoapinole.isSelected()) {
+            sucursal = 2;
+        } else if (rbtnbodegapdv.isSelected()) {
+            sucursal = 4;
+        } else if (rbtnmojoneras.isSelected()) {
+            sucursal = 5;
+        }else if (rbtnpitillal.isSelected()) {
+            sucursal = 6;
+        } else {
+            sucursal = 0;
+        }
+
+        return sucursal;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -105,6 +105,7 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         rbtnbodegapdv = new javax.swing.JRadioButton();
         rbtnmojoneras = new javax.swing.JRadioButton();
+        rbtnpitillal = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Reporte de Productos 80%");
@@ -167,6 +168,10 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
         rbtnmojoneras.setText("Mojoneras");
         rbtnmojoneras.setOpaque(false);
 
+        grbtnsucursal.add(rbtnpitillal);
+        rbtnpitillal.setText("Pitillal");
+        rbtnpitillal.setOpaque(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -175,31 +180,31 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
                         .addComponent(rbtnmojoneras)
-                        .addGap(64, 64, 64)
-                        .addComponent(rbtnbodegapdv)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jdcinicio, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jdcfin, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jdcfin, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(8, 8, 8))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(rbtnbodega)
                                 .addGap(46, 46, 46)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(rbtnmagisterio)
+                                    .addComponent(rbtnbodegapdv)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(rbtnmagisterio)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(rbtncoapinole))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(9, 9, 9)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel2)
-                                            .addComponent(btnbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(0, 0, Short.MAX_VALUE)))))
-                        .addGap(21, 21, 21))))
+                                            .addComponent(btnbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel2))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(rbtnpitillal)
+                                    .addComponent(rbtncoapinole))))
+                        .addGap(13, 13, 13))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(btnRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -224,24 +229,24 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(rbtnmagisterio)
                         .addComponent(rbtncoapinole)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rbtnmojoneras)
-                    .addComponent(rbtnbodegapdv))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(rbtnmojoneras)
+                        .addComponent(rbtnbodegapdv, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(rbtnpitillal))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addGap(5, 5, 5))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -270,11 +275,11 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Error en las Fechas", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
                 if (valorsucursal() == 3) {
-                     met.Consultabodega(fechainicio, fechafinal, fechauno, fechados, valorsucursal());
-                }else{
-                     met.Consultabodega(fechainicio, fechafinal, fechauno, fechados, valorsucursal());
+                    met.Consultabodega(fechainicio, fechafinal, fechauno, fechados, valorsucursal());
+                } else {
+                    met.Consultabodega(fechainicio, fechafinal, fechauno, fechados, valorsucursal());
                 }
-               
+
             }
 
         }
@@ -284,7 +289,7 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         // TODO add your handling code here:
-        frmPrinicipal principal=new frmPrinicipal();
+        frmPrinicipal principal = new frmPrinicipal();
         principal.setVisible(true);
         principal.setLocationRelativeTo(null);
         principal.setResizable(false);
@@ -344,5 +349,6 @@ public class frmproductosporcentaje extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtncoapinole;
     private javax.swing.JRadioButton rbtnmagisterio;
     private javax.swing.JRadioButton rbtnmojoneras;
+    private javax.swing.JRadioButton rbtnpitillal;
     // End of variables declaration//GEN-END:variables
 }

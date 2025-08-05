@@ -29,7 +29,7 @@ public class frmReporteVentaDiario extends javax.swing.JFrame {
     SimpleDateFormat formatoexportar = new SimpleDateFormat("EEEEE dd MMMMM yyyy");
     String fecha1, fecha2;
     String fechauno, fechados;
-     int sucursal;
+    int sucursal;
 
     public frmReporteVentaDiario() {
         initComponents();
@@ -57,25 +57,26 @@ public class frmReporteVentaDiario extends javax.swing.JFrame {
         return difM;
     }
 
+    public int valorsucursal() {
+        if (rbtnbodega.isSelected()) {
+            sucursal = 3;
+        } else if (rbtnmagisterio.isSelected()) {
+            sucursal = 1;
+        } else if (rbtncoapinole.isSelected()) {
+            sucursal = 2;
+        } else if (rbtnbodegapdv.isSelected()) {
+            sucursal = 4;
+        } else if (rbtnmojoneras.isSelected()) {
+            sucursal = 5;
+        } else if (rbtnpitillal.isSelected()) {
+            sucursal = 6;
+        } else {
+            sucursal = 0;
+        }
 
-     public int valorsucursal(){
-         if(rbtnbodega.isSelected()){
-             sucursal=3;
-         }else if(rbtnmagisterio.isSelected()){
-             sucursal=1;
-         }else if(rbtncoapinole.isSelected()){
-             sucursal=2;
-         }else if(rbtnbodegapdv.isSelected()){
-             sucursal=4;
-         }else if(rbtnmojoneras.isSelected()){
-             sucursal=5;
-         }
-         else{
-             sucursal=0;
-         }
-         
-         return sucursal;
-     }
+        return sucursal;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -98,6 +99,7 @@ public class frmReporteVentaDiario extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         rbtnbodegapdv = new javax.swing.JRadioButton();
         rbtnmojoneras = new javax.swing.JRadioButton();
+        rbtnpitillal = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Reporte Venta Diario");
@@ -172,6 +174,15 @@ public class frmReporteVentaDiario extends javax.swing.JFrame {
             }
         });
 
+        grbtnsucursal.add(rbtnpitillal);
+        rbtnpitillal.setText("Pitillal");
+        rbtnpitillal.setOpaque(false);
+        rbtnpitillal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnpitillalActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -184,32 +195,32 @@ public class frmReporteVentaDiario extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addComponent(rbtnmojoneras)
-                                .addGap(48, 48, 48)
-                                .addComponent(rbtnbodegapdv))
+                                .addGap(9, 9, 9)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(rbtnbodega)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rbtnmagisterio))
+                                    .addComponent(rbtnmojoneras)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(84, 84, 84)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(rbtnbodegapdv)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jLabel2)
+                                                .addComponent(btncrear, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(15, 15, 15)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(rbtnpitillal)
+                                    .addComponent(rbtncoapinole)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(rbtnbodega)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jdcinicio, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(rbtnmagisterio)
-                                .addGap(28, 28, 28)
-                                .addComponent(rbtncoapinole)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jdcinicio, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jdcfinal, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(20, Short.MAX_VALUE))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(130, 130, 130)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2)
-                    .addComponent(btncrear, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(jdcfinal, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,7 +240,8 @@ public class frmReporteVentaDiario extends javax.swing.JFrame {
                 .addGap(8, 8, 8)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbtnmojoneras)
-                    .addComponent(rbtnbodegapdv))
+                    .addComponent(rbtnbodegapdv)
+                    .addComponent(rbtnpitillal))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addComponent(btncrear)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -255,8 +267,8 @@ public class frmReporteVentaDiario extends javax.swing.JFrame {
 
     private void btncrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncrearActionPerformed
         // TODO add your andling code here:
-        if(valorsucursal()==0){
-            JOptionPane.showMessageDialog(null, "Favor de Seleccionar una sucursal","Error",JOptionPane.ERROR_MESSAGE);
+        if (valorsucursal() == 0) {
+            JOptionPane.showMessageDialog(null, "Favor de Seleccionar una sucursal", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         System.out.println(RestarMeses());
@@ -271,7 +283,7 @@ public class frmReporteVentaDiario extends javax.swing.JFrame {
                 fechauno = formatoexportar.format(jdcinicio.getDate());
                 fechados = formatoexportar.format(jdcfinal.getDate());
 
-                met.sucursales(fecha1, fecha2,fechauno,fechados,valorsucursal());
+                met.sucursales(fecha1, fecha2, fechauno, fechados, valorsucursal());
             }
         }
 
@@ -280,7 +292,7 @@ public class frmReporteVentaDiario extends javax.swing.JFrame {
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
         // TODO add your handling code here:
-        frmPrinicipal principal=new frmPrinicipal();
+        frmPrinicipal principal = new frmPrinicipal();
         principal.setVisible(true);
         principal.setLocationRelativeTo(null);
         principal.setResizable(false);
@@ -298,6 +310,10 @@ public class frmReporteVentaDiario extends javax.swing.JFrame {
     private void rbtnmojonerasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnmojonerasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rbtnmojonerasActionPerformed
+
+    private void rbtnpitillalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnpitillalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rbtnpitillalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -349,5 +365,6 @@ public class frmReporteVentaDiario extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtncoapinole;
     private javax.swing.JRadioButton rbtnmagisterio;
     private javax.swing.JRadioButton rbtnmojoneras;
+    private javax.swing.JRadioButton rbtnpitillal;
     // End of variables declaration//GEN-END:variables
 }
