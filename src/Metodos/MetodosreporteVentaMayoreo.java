@@ -44,6 +44,7 @@ public class MetodosreporteVentaMayoreo {
     private Statement stmt3 = null;
 
     conexion conectar = new conexion();
+    conexion2 conectar2 = new conexion2();
     String abrirarchivo = "", guardararchivo = "";
     float ventas[] = new float[13];
     Object meses[] = new Object[13];
@@ -53,40 +54,40 @@ public class MetodosreporteVentaMayoreo {
             case 1:
                 abrirarchivo = ("C:\\Users\\Cpu\\Documents\\total de ventas de mayoreo mes.xls");
                 guardararchivo = ("C:\\Users\\Cpu\\Desktop\\Total de Ventas de Mayoreo  Sucursal_ Magisterio del " + fechauno + " al " + fechados + ".xls");
-                excelsucursales(fecha1, fecha2, fechauno, fechados);
+                excelsucursales(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
             case 2:
                 abrirarchivo = ("C:\\Users\\GHIA\\Documents\\total de ventas de mayoreo mes.xls");
                 guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Total de Ventas de Mayoreo  Sucursal_ Coapinole del " + fechauno + " al " + fechados + ".xls");
-                excelsucursales(fecha1, fecha2, fechauno, fechados);
+                excelsucursales(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
             case 3:
                 abrirarchivo = ("C:\\Users\\GHIA\\Documents\\total de ventas de mayoreo mes.xls");
                 guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Total de Ventas de Mayoreo  Sucursal_ Bodega del " + fechauno + " al " + fechados + ".xls");
-                excelsucursales(fecha1, fecha2, fechauno, fechados);
+                excelsucursales(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
 
             case 4:
                 abrirarchivo = ("C:\\Users\\billy\\Documents\\total de ventas de mayoreo mes.xls");
                 guardararchivo = ("C:\\Users\\billy\\Desktop\\Total de Ventas de Mayoreo  Sucursal_ Bodega pdv del " + fechauno + " al " + fechados + ".xls");
-                excelsucursales(fecha1, fecha2, fechauno, fechados);
+                excelsucursales(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
 
             case 5:
                 abrirarchivo = ("C:\\Users\\USER\\Documents\\total de ventas de mayoreo mes.xls");
                 guardararchivo = ("C:\\Users\\USER\\Desktop\\Total de Ventas de Mayoreo  Sucursal_ Mojoneras del " + fechauno + " al " + fechados + ".xls");
-                excelsucursales(fecha1, fecha2, fechauno, fechados);
+                excelsucursales(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
 
             case 6:
                 abrirarchivo = ("C:\\Users\\W11\\Documents\\total de ventas de mayoreo mes.xls");
                 guardararchivo = ("C:\\Users\\W11\\Desktop\\Total de Ventas de Mayoreo  Sucursal_ Pitillal del " + fechauno + " al " + fechados + ".xls");
-                excelsucursales(fecha1, fecha2, fechauno, fechados);
+                excelsucursales(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
         }
     }
 
-    public void excelsucursales(String fecha1, String fecha2, String fechauno, String fechados) {
+    public void excelsucursales(String fecha1, String fecha2, String fechauno, String fechados, int sucursal) {
         try (FileInputStream file = new FileInputStream(new File(abrirarchivo))) {
             // leer archivo excel
             POIFSFileSystem fs = new POIFSFileSystem(file);
@@ -142,7 +143,13 @@ public class MetodosreporteVentaMayoreo {
             int totalmeses = 0;
             try {
 
-                con = conectar.conectarMySQL();
+                if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
+                } else {
+                    con = conectar.conectarMySQL();
+                }
+
+                
                 stmt = con.createStatement();
 
                 totalmeses = 0;
@@ -192,7 +199,11 @@ public class MetodosreporteVentaMayoreo {
             filadato = 6;
             try {
 
-                con = conectar.conectarMySQL();
+                 if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
+                } else {
+                    con = conectar.conectarMySQL();
+                }
                 stmt = con.createStatement();
 
                 totalmeses = 0;
@@ -234,7 +245,11 @@ public class MetodosreporteVentaMayoreo {
             filadato = 7;
             try {
 
-                con = conectar.conectarMySQL();
+                 if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
+                } else {
+                    con = conectar.conectarMySQL();
+                }
                 stmt = con.createStatement();
 
                 totalmeses = 0;
@@ -276,7 +291,11 @@ public class MetodosreporteVentaMayoreo {
             try {
                 columnadato = 1;
                 filadato = 11;
-                con = conectar.conectarMySQL();
+                 if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
+                } else {
+                    con = conectar.conectarMySQL();
+                }
                 stmt = con.createStatement();
 
                 totalmeses = 0;
@@ -316,7 +335,11 @@ public class MetodosreporteVentaMayoreo {
             filadato = 12;
             try {
 
-                con = conectar.conectarMySQL();
+                 if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
+                } else {
+                    con = conectar.conectarMySQL();
+                }
                 stmt = con.createStatement();
 
                 totalmeses = 0;
@@ -356,7 +379,11 @@ public class MetodosreporteVentaMayoreo {
             filadato = 13;
             try {
 
-                con = conectar.conectarMySQL();
+                 if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
+                } else {
+                    con = conectar.conectarMySQL();
+                }
                 stmt = con.createStatement();
 
                 totalmeses = 0;
@@ -397,7 +424,11 @@ public class MetodosreporteVentaMayoreo {
             nombremes = 4;
 
             try {
-                con = conectar.conectarMySQL();
+                 if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
+                } else {
+                    con = conectar.conectarMySQL();
+                }
                 stmt = con.createStatement();
                 rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes, count(venta.ven_id),year(venta.fecha) as año"
                         + " from venta "
@@ -425,7 +456,11 @@ public class MetodosreporteVentaMayoreo {
             nombremes = 4;
 
             try {
-                con = conectar.conectarMySQL();
+                 if (sucursal == 4 || sucursal == 6) {
+                    con = conectar2.conectarMySQL(sucursal);
+                } else {
+                    con = conectar.conectarMySQL();
+                }
                 stmt = con.createStatement();
                 rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes, count(nota.not_id),year(venta.fecha) as año"
                         + " from venta inner join nota on nota.not_id = venta.not_id "
