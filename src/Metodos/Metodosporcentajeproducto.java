@@ -549,6 +549,12 @@ public class Metodosporcentajeproducto {
                 nombresucursal = "Mojoneras";
                 GeneraExcelsucursales(fechauno, fechados, nombresucursal);
                 break;    
+                
+                case 6:
+                guardararchivo = ("C:\\Users\\W11\\Desktop\\Productos Conforman el 80% de venta Bodega tickets  del " + fechauno + " al " + fechados + ".xls");
+                nombresucursal = "Mojoneras";
+                GeneraExcelsucursales(fechauno, fechados, nombresucursal);
+                break;    
         }
     }
 
