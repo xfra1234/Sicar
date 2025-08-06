@@ -373,7 +373,7 @@ public class MetodosResurtido {
                     celda.setCellStyle(Numerico);
 
                     //// Formula Proyecion venta
-                    Formula = "M" + filaformula + "*N" + filaformula+"(P"+filaformula+"*N"+filaformula+")";
+                    Formula = "M" + filaformula + "*N" + filaformula+"+(P"+filaformula+"*N"+filaformula+")";
                     celda = fila.createCell(14);
                     celda.setCellFormula(Formula);
                     celda.setCellStyle(Numerico);
