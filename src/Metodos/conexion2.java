@@ -52,7 +52,7 @@ public class conexion2 {
          }
          else{
              username = "root";
-             password = "dnrtxxxz";
+             password = "dh638z7c";
          }
          
          
