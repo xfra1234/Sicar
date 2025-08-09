@@ -50,6 +50,8 @@ public class frmReporteResurtido extends javax.swing.JFrame {
             sucursal = 4;
         } else if (rbtnmojoneras.isSelected()) {
             sucursal = 5;
+        } else if (rbtnpitillal.isSelected()) {
+            sucursal = 6;
         } else {
             sucursal = 0;
         }
@@ -139,6 +141,7 @@ public class frmReporteResurtido extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         rbtnbodegapdv = new javax.swing.JRadioButton();
         rbtnmojoneras = new javax.swing.JRadioButton();
+        rbtnpitillal = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Reporte Resurtido de Sucursal");
@@ -193,6 +196,10 @@ public class frmReporteResurtido extends javax.swing.JFrame {
         rbtnmojoneras.setText("Mojoneras");
         rbtnmojoneras.setOpaque(false);
 
+        rdbComercios.add(rbtnpitillal);
+        rbtnpitillal.setText("Pitillal");
+        rbtnpitillal.setOpaque(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -223,7 +230,9 @@ public class frmReporteResurtido extends javax.swing.JFrame {
                             .addComponent(rbtnmagisterio)
                             .addComponent(rbtnbodegapdv))
                         .addGap(26, 26, 26)
-                        .addComponent(rbtncoapinole)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(rbtncoapinole)
+                            .addComponent(rbtnpitillal))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -244,7 +253,8 @@ public class frmReporteResurtido extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rbtnbodegapdv)
-                    .addComponent(rbtnmojoneras))
+                    .addComponent(rbtnmojoneras)
+                    .addComponent(rbtnpitillal))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -329,6 +339,7 @@ public class frmReporteResurtido extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtncoapinole;
     private javax.swing.JRadioButton rbtnmagisterio;
     private javax.swing.JRadioButton rbtnmojoneras;
+    private javax.swing.JRadioButton rbtnpitillal;
     private javax.swing.ButtonGroup rdbComercios;
     // End of variables declaration//GEN-END:variables
 }

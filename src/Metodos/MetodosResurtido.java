@@ -106,15 +106,14 @@ public class MetodosResurtido {
                 resurtidosucursalv2(fecha1d1, fecha1du, fecha2d1, fecha2du, fecha3d1, fecha3du, fechaanio1, fechaanioult,
                         fechaaniod1, fechaaniod1u, sucursal, mes);
                 break;
-                
-                
-                case 6:
+
+            case 6:
                 abrirarchivo = ("C:\\Users\\W11\\Documents\\Resurtido de sucursal.xls");
                 guardararchivo = ("C:\\Users\\W11\\Desktop\\Resurtido de sucursal_ Pitillal de" + mes + ".xls");
                 resurtidosucursalv2(fecha1d1, fecha1du, fecha2d1, fecha2du, fecha3d1, fecha3du, fechaanio1, fechaanioult,
                         fechaaniod1, fechaaniod1u, sucursal, mes);
                 break;
-                
+
         }
     }
 
@@ -168,7 +167,6 @@ public class MetodosResurtido {
 //            celda = fila.createCell(1);
 //            celda.setCellValue("holo");
 //            celda.setCellStyle(Numerico);
-
             int filaa = 6;
             try {
 
@@ -300,8 +298,6 @@ public class MetodosResurtido {
                     //termina  la suma del año anterior mismo mes
 
 //                    if (categoria.equals(descripcion2)) {
-                    
-
                     fila = hoja.getRow(filaa);
 
                     celda = fila.createCell(0);
@@ -351,7 +347,6 @@ public class MetodosResurtido {
                     celda = fila.createCell(13);
                     celda.setCellValue(preciov);
                     celda.setCellStyle(Numerico);
-                    
 
                     celda = fila.createCell(15);
                     celda.setCellValue(vacio);
@@ -373,7 +368,7 @@ public class MetodosResurtido {
                     celda.setCellStyle(Numerico);
 
                     //// Formula Proyecion venta
-                    Formula = "M" + filaformula + "*N" + filaformula+"+(P"+filaformula+"*N"+filaformula+")";
+                    Formula = "M" + filaformula + "*N" + filaformula + "+(P" + filaformula + "*N" + filaformula + ")";
                     celda = fila.createCell(14);
                     celda.setCellFormula(Formula);
                     celda.setCellStyle(Numerico);

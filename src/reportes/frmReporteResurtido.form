@@ -85,7 +85,10 @@
                               <Component id="rbtnbodegapdv" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                          <Component id="rbtncoapinole" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="rbtncoapinole" min="-2" max="-2" attributes="0"/>
+                              <Component id="rbtnpitillal" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -114,6 +117,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="rbtnbodegapdv" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="rbtnmojoneras" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="rbtnpitillal" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="18" max="32767" attributes="0"/>
                   <Component id="jButton1" min="-2" pref="36" max="-2" attributes="0"/>
@@ -218,6 +222,15 @@
               <ComponentRef name="rdbComercios"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Mojoneras"/>
+            <Property name="opaque" type="boolean" value="false"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JRadioButton" name="rbtnpitillal">
+          <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="rdbComercios"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Pitillal"/>
             <Property name="opaque" type="boolean" value="false"/>
           </Properties>
         </Component>
