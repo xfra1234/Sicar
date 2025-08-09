@@ -171,7 +171,7 @@ public class MetodosResurtido {
             try {
 
                 if (sucursal == 4 || sucursal == 6) {
-                    con4 = conectar2.conectarMySQL(sucursal);
+                    con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
                 }
@@ -206,7 +206,7 @@ public class MetodosResurtido {
                     preciov = rs.getFloat(7);
 
                     if (sucursal == 4 || sucursal == 6) {
-                        con4 = conectar2.conectarMySQL(sucursal);
+                        con2 = conectar2.conectarMySQL(sucursal);
                     } else {
                         con2 = conectar.conectarMySQL();
                     }
@@ -225,7 +225,7 @@ public class MetodosResurtido {
                     //termino la suma del mes 1
                     //inicio la suma del mes2
                     if (sucursal == 4 || sucursal == 6) {
-                        con4 = conectar2.conectarMySQL(sucursal);
+                        con2 = conectar2.conectarMySQL(sucursal);
                     } else {
                         con2 = conectar.conectarMySQL();
                     }
@@ -263,7 +263,7 @@ public class MetodosResurtido {
                     ///termino la suma del mes 3
                     //inicio la suma del año anterior 3meses adelante
                     if (sucursal == 4 || sucursal == 6) {
-                        con4 = conectar2.conectarMySQL(sucursal);
+                        con2 = conectar2.conectarMySQL(sucursal);
                     } else {
                         con2 = conectar.conectarMySQL();
                     }
@@ -281,7 +281,7 @@ public class MetodosResurtido {
 
                     //inicio la suma del año anterior mismo mes
                     if (sucursal == 4 || sucursal == 6) {
-                        con4 = conectar2.conectarMySQL(sucursal);
+                        con2 = conectar2.conectarMySQL(sucursal);
                     } else {
                         con2 = conectar.conectarMySQL();
                     }
