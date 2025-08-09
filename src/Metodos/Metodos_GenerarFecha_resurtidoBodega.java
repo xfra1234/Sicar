@@ -32,7 +32,7 @@ public class Metodos_GenerarFecha_resurtidoBodega {
     MetodosResurtido met = new MetodosResurtido(); //inicializo el metodo de resurtido
     SimpleDateFormat Mes = new SimpleDateFormat("EEEE dd MMMMM yyyy ");
 
-    public void generarfecha1mes(Date fecha) {
+    public void generarfecha1mes(Date fecha,int sucursal) {
         String mesactual = Mes.format(fecha);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         fechaactual.setTime(fecha);
@@ -152,7 +152,7 @@ public class Metodos_GenerarFecha_resurtidoBodega {
 
         System.out.println(mesactual);
         
-        met.sucursalesnuevo(fecha1mesdia1, fecha1mesdiault, fecha2mesdia1, fecha2mesdiault, fecha3mesdia1, fecha3mesdiault, fechaanio3dia1, fechaanio3diault, fechaaniodia1, fechaaniodiault, 1, mesactual);
+        met.sucursalesnuevo(fecha1mesdia1, fecha1mesdiault, fecha2mesdia1, fecha2mesdiault, fecha3mesdia1, fecha3mesdiault, fechaanio3dia1, fechaanio3diault, fechaaniodia1, fechaaniodiault, sucursal, mesactual);
         
     }
 }
