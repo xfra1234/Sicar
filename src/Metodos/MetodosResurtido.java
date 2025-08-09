@@ -81,34 +81,34 @@ public class MetodosResurtido {
                 break;
             case 2:
 
-                abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Resurtido de sucursal.xls");
+                abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Solicitud mercancias.xls");
                 guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Resurtido de sucursal_Coapinole de" + mes + ".xls");
                 resurtidosucursalv2(fecha1d1, fecha1du, fecha2d1, fecha2du, fecha3d1, fecha3du, fechaanio1, fechaanioult,
                         fechaaniod1, fechaaniod1u, sucursal, mes);
                 break;
             case 3:
-                abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Resurtido de sucursal.xls");
+                abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Solicitud mercancias.xls");
                 guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Resurtido de sucursal_ Bodega de" + mes + ".xls");
                 resurtidosucursalv2(fecha1d1, fecha1du, fecha2d1, fecha2du, fecha3d1, fecha3du, fechaanio1, fechaanioult,
                         fechaaniod1, fechaaniod1u, sucursal, mes);
                 break;
 
             case 4:
-                abrirarchivo = ("C:\\Users\\billy\\Documents\\Resurtido de sucursal.xls");
+                abrirarchivo = ("C:\\Users\\billy\\Documents\\Solicitud mercancias.xls");
                 guardararchivo = ("C:\\Users\\billy\\Desktop\\Resurtido de sucursal_ Bodega pdv de" + mes + ".xls");
                 resurtidosucursalv2(fecha1d1, fecha1du, fecha2d1, fecha2du, fecha3d1, fecha3du, fechaanio1, fechaanioult,
                         fechaaniod1, fechaaniod1u, sucursal, mes);
                 break;
 
             case 5:
-                abrirarchivo = ("C:\\Users\\USER\\Documents\\Resurtido de sucursal.xls");
+                abrirarchivo = ("C:\\Users\\USER\\Documents\\Solicitud mercancias.xls");
                 guardararchivo = ("C:\\Users\\USER\\Desktop\\Resurtido de sucursal_ Mojoneras de" + mes + ".xls");
                 resurtidosucursalv2(fecha1d1, fecha1du, fecha2d1, fecha2du, fecha3d1, fecha3du, fechaanio1, fechaanioult,
                         fechaaniod1, fechaaniod1u, sucursal, mes);
                 break;
 
             case 6:
-                abrirarchivo = ("C:\\Users\\W11\\Documents\\Resurtido de sucursal.xls");
+                abrirarchivo = ("C:\\Users\\W11\\Documents\\Solicitud mercancias.xls");
                 guardararchivo = ("C:\\Users\\W11\\Desktop\\Resurtido de sucursal_ Pitillal de" + mes + ".xls");
                 resurtidosucursalv2(fecha1d1, fecha1du, fecha2d1, fecha2du, fecha3d1, fecha3du, fechaanio1, fechaanioult,
                         fechaaniod1, fechaaniod1u, sucursal, mes);
