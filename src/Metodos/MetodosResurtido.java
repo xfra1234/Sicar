@@ -396,7 +396,9 @@ public class MetodosResurtido {
 
 //                    if (categoria.equals(descripcion2)) {
                     fila = hoja.getRow(filaa);
-
+                    if (fila ==null){
+                        fila=hoja.createRow(filaa);
+                    }
                     celda = fila.createCell(0);
                     celda.setCellValue(clave);
                     celda.setCellStyle(encabezados);
