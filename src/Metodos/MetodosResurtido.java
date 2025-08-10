@@ -264,7 +264,7 @@ public class MetodosResurtido {
             celda.setCellValue("Meta de Venta");
             celda.setCellStyle(headerStyle);
 
-            int filaa = 2;
+            int filaa = 6;
             try {
 
                 if (sucursal == 4 || sucursal == 6) {
