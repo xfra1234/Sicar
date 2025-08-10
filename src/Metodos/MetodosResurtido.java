@@ -525,9 +525,9 @@ public class MetodosResurtido {
                 anioan1 = 0;
                 aniom3 = 0;
                 aniom1 = 0;
-                for (int x = 0; x < 19; x++) {
-                    hoja.autoSizeColumn(x);
-                }
+//                for (int x = 0; x < 19; x++) {
+//                    hoja.autoSizeColumn(x);
+//                }
 
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
