@@ -184,85 +184,85 @@ public class MetodosResurtido {
 //            celda = fila.createCell(1);
 //            celda.setCellValue("holo");
 //            celda.setCellStyle(Numerico);
-            fila = hoja.getRow(0);
-            celda = fila.createCell(0);
-            celda.setCellValue("Clave Alterna");
-            celda.setCellStyle(headerStyle);
-
-            fila = hoja.getRow(0);
-            celda = fila.createCell(1);
-            celda.setCellValue("Descripción");
-            celda.setCellStyle(headerStyle);
-
-            fila = hoja.getRow(0);
-            celda = fila.createCell(2);
-            celda.setCellValue("Categoria");
-            celda.setCellStyle(headerStyle);
-
-            fila = hoja.getRow(0);
-            celda = fila.createCell(3);
-            celda.setCellValue("Departamento");
-            celda.setCellStyle(headerStyle);
-
-            fila = hoja.getRow(0);
-            celda = fila.createCell(4);
-            celda.setCellValue("Existencia Total");
-            celda.setCellStyle(headerStyle);
-
-            fila = hoja.getRow(0);
-            celda = fila.createCell(5);
-            celda.setCellValue("Días Inventario");
-            celda.setCellStyle(headerStyle);
-
-            fila = hoja.getRow(0);
-            celda = fila.createCell(6);
-            celda.setCellValue("Venta Año Anterior");
-            celda.setCellStyle(headerStyle);
-
-            fila = hoja.getRow(0);
-            celda = fila.createCell(7);
-            celda.setCellValue("Venta Menos 1 Mes");
-            celda.setCellStyle(headerStyle);
-
-            fila = hoja.getRow(0);
-            celda = fila.createCell(8);
-            celda.setCellValue("Venta Menos 2 Meses");
-            celda.setCellStyle(headerStyle);
-
-            fila = hoja.getRow(0);
-            celda = fila.createCell(9);
-            celda.setCellValue("Venta Menos 3 Meses");
-            celda.setCellStyle(headerStyle);
-
-            fila = hoja.getRow(0);
-            celda = fila.createCell(10);
-            celda.setCellValue("Venta Año Anterior 3 Meses Adelante");
-            celda.setCellStyle(headerStyle);
-
-            fila = hoja.getRow(0);
-            celda = fila.createCell(11);
-            celda.setCellValue("Venta Promedio");
-            celda.setCellStyle(headerStyle);
-
-            fila = hoja.getRow(0);
-            celda = fila.createCell(12);
-            celda.setCellValue("Cantidad Solicitada");
-            celda.setCellStyle(headerStyle);
-
-            fila = hoja.getRow(0);
-            celda = fila.createCell(13);
-            celda.setCellValue("Precio Venta");
-            celda.setCellStyle(headerStyle);
-
-            fila = hoja.getRow(0);
-            celda = fila.createCell(14);
-            celda.setCellValue("Proyección Venta");
-            celda.setCellStyle(headerStyle);
-
-            fila = hoja.getRow(0);
-            celda = fila.createCell(15);
-            celda.setCellValue("Meta de Venta");
-            celda.setCellStyle(headerStyle);
+//            fila = hoja.getRow(0);
+//            celda = fila.createCell(0);
+//            celda.setCellValue("Clave Alterna");
+//            celda.setCellStyle(headerStyle);
+//
+//            fila = hoja.getRow(0);
+//            celda = fila.createCell(1);
+//            celda.setCellValue("Descripción");
+//            celda.setCellStyle(headerStyle);
+//
+//            fila = hoja.getRow(0);
+//            celda = fila.createCell(2);
+//            celda.setCellValue("Categoria");
+//            celda.setCellStyle(headerStyle);
+//
+//            fila = hoja.getRow(0);
+//            celda = fila.createCell(3);
+//            celda.setCellValue("Departamento");
+//            celda.setCellStyle(headerStyle);
+//
+//            fila = hoja.getRow(0);
+//            celda = fila.createCell(4);
+//            celda.setCellValue("Existencia Total");
+//            celda.setCellStyle(headerStyle);
+//
+//            fila = hoja.getRow(0);
+//            celda = fila.createCell(5);
+//            celda.setCellValue("Días Inventario");
+//            celda.setCellStyle(headerStyle);
+//
+//            fila = hoja.getRow(0);
+//            celda = fila.createCell(6);
+//            celda.setCellValue("Venta Año Anterior");
+//            celda.setCellStyle(headerStyle);
+//
+//            fila = hoja.getRow(0);
+//            celda = fila.createCell(7);
+//            celda.setCellValue("Venta Menos 1 Mes");
+//            celda.setCellStyle(headerStyle);
+//
+//            fila = hoja.getRow(0);
+//            celda = fila.createCell(8);
+//            celda.setCellValue("Venta Menos 2 Meses");
+//            celda.setCellStyle(headerStyle);
+//
+//            fila = hoja.getRow(0);
+//            celda = fila.createCell(9);
+//            celda.setCellValue("Venta Menos 3 Meses");
+//            celda.setCellStyle(headerStyle);
+//
+//            fila = hoja.getRow(0);
+//            celda = fila.createCell(10);
+//            celda.setCellValue("Venta Año Anterior 3 Meses Adelante");
+//            celda.setCellStyle(headerStyle);
+//
+//            fila = hoja.getRow(0);
+//            celda = fila.createCell(11);
+//            celda.setCellValue("Venta Promedio");
+//            celda.setCellStyle(headerStyle);
+//
+//            fila = hoja.getRow(0);
+//            celda = fila.createCell(12);
+//            celda.setCellValue("Cantidad Solicitada");
+//            celda.setCellStyle(headerStyle);
+//
+//            fila = hoja.getRow(0);
+//            celda = fila.createCell(13);
+//            celda.setCellValue("Precio Venta");
+//            celda.setCellStyle(headerStyle);
+//
+//            fila = hoja.getRow(0);
+//            celda = fila.createCell(14);
+//            celda.setCellValue("Proyección Venta");
+//            celda.setCellStyle(headerStyle);
+//
+//            fila = hoja.getRow(0);
+//            celda = fila.createCell(15);
+//            celda.setCellValue("Meta de Venta");
+//            celda.setCellStyle(headerStyle);
 
             int filaa = 1;
             try {
