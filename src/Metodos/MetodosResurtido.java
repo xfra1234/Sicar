@@ -229,42 +229,42 @@ public class MetodosResurtido {
             celda.setCellValue("Venta Menos 2 Meses");
             celda.setCellStyle(headerStyle);
 
-            fila = hoja.getRow(9);
-            celda = fila.createCell(10);
+            fila = hoja.getRow(0);
+            celda = fila.createCell(9);
             celda.setCellValue("Venta Menos 3 Meses");
             celda.setCellStyle(headerStyle);
 
             fila = hoja.getRow(0);
-            celda = fila.createCell(11);
+            celda = fila.createCell(10);
             celda.setCellValue("Venta Año Anterior 3 Meses Adelante");
             celda.setCellStyle(headerStyle);
 
             fila = hoja.getRow(0);
-            celda = fila.createCell(12);
+            celda = fila.createCell(11);
             celda.setCellValue("Venta Promedio");
             celda.setCellStyle(headerStyle);
 
             fila = hoja.getRow(0);
-            celda = fila.createCell(13);
+            celda = fila.createCell(12);
             celda.setCellValue("Cantidad Solicitada");
             celda.setCellStyle(headerStyle);
 
             fila = hoja.getRow(0);
-            celda = fila.createCell(14);
+            celda = fila.createCell(13);
             celda.setCellValue("Precio Venta");
             celda.setCellStyle(headerStyle);
 
             fila = hoja.getRow(0);
-            celda = fila.createCell(15);
+            celda = fila.createCell(14);
             celda.setCellValue("Proyección Venta");
             celda.setCellStyle(headerStyle);
 
             fila = hoja.getRow(0);
-            celda = fila.createCell(16);
+            celda = fila.createCell(15);
             celda.setCellValue("Meta de Venta");
             celda.setCellStyle(headerStyle);
 
-            int filaa = 6;
+            int filaa = 2;
             try {
 
                 if (sucursal == 4 || sucursal == 6) {
