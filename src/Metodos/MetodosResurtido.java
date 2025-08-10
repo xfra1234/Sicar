@@ -150,7 +150,7 @@ public class MetodosResurtido {
             HSSFFont font2 = libro.createFont();
             font2.setBold(true);
             font2.setFontName("Arial");
-            font2.setFontHeight((short) (10 * 20));
+            font2.setFontHeight((short) (12 * 20));
             encabezados.setFont(font2);
             encabezados.setBorderTop(BorderStyle.THIN);
             encabezados.setBorderBottom(BorderStyle.THIN);
@@ -172,7 +172,7 @@ public class MetodosResurtido {
             HSSFFont fontnumerico = libro.createFont();
             fontnumerico.setBold(true);
             fontnumerico.setFontName("Arial");
-            fontnumerico.setFontHeight((short) (10 * 20));
+            fontnumerico.setFontHeight((short) (12 * 20));
             Numerico.setDataFormat(format.getFormat("###,##0.00"));
             Numerico.setFont(fontnumerico);
             Numerico.setBorderTop(BorderStyle.THIN);
