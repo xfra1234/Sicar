@@ -244,7 +244,7 @@ public class MetodosResurtido {
                     ///termino la suma del mes 2
                     //inicio la suma del mes3
                     if (sucursal == 4 || sucursal == 6) {
-                        con4 = conectar2.conectarMySQL(sucursal);
+                        con2 = conectar2.conectarMySQL(sucursal);
                     } else {
                         con2 = conectar.conectarMySQL();
                     }
