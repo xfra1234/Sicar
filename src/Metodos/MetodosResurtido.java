@@ -22,6 +22,7 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
+import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
 
@@ -147,6 +148,10 @@ public class MetodosResurtido {
             font2.setFontName("Arial");
             font2.setFontHeight((short) (10 * 20));
             encabezados.setFont(font2);
+            encabezados.setBorderTop(BorderStyle.THIN);
+            encabezados.setBorderBottom(BorderStyle.THIN);
+            encabezados.setBorderLeft(BorderStyle.THIN);
+            encabezados.setBorderRight(BorderStyle.THIN);
 
             CellStyle letraprincipal = libro.createCellStyle();
             HSSFFont font3 = libro.createFont();
@@ -154,6 +159,10 @@ public class MetodosResurtido {
             font3.setFontName("Arial");
             font3.setFontHeight((short) (15 * 20));
             letraprincipal.setFont(font3);
+            letraprincipal.setBorderTop(BorderStyle.THIN);
+            letraprincipal.setBorderBottom(BorderStyle.THIN);
+            letraprincipal.setBorderLeft(BorderStyle.THIN);
+            letraprincipal.setBorderRight(BorderStyle.THIN);
 
             CellStyle Numerico = libro.createCellStyle();
             HSSFFont fontnumerico = libro.createFont();
@@ -162,11 +171,22 @@ public class MetodosResurtido {
             fontnumerico.setFontHeight((short) (10 * 20));
             Numerico.setDataFormat(format.getFormat("###,##0.00"));
             Numerico.setFont(fontnumerico);
+            Numerico.setBorderTop(BorderStyle.THIN);
+            Numerico.setBorderBottom(BorderStyle.THIN);
+            Numerico.setBorderLeft(BorderStyle.THIN);
+            Numerico.setBorderRight(BorderStyle.THIN);
 
 //            fila = hoja.getRow(0);
 //            celda = fila.createCell(1);
 //            celda.setCellValue("holo");
 //            celda.setCellStyle(Numerico);
+            
+                fila = hoja.getRow(0);
+                celda = fila.createCell(0);
+                celda.setCellValue("Clave Alterna");
+                celda.setCellStyle(encabezados);
+            
+
             int filaa = 6;
             try {
 
