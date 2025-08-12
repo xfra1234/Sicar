@@ -38,6 +38,7 @@ public class frmReporteResurtido extends javax.swing.JFrame {
         rbtnbodega.setSelected(true);
         rdbanterio_nuevo.add(rbtnanterior);
         rdbanterio_nuevo.add(rbtnnuevo);
+        rbtnanterior.isSelected();
 
     }
 
@@ -58,7 +59,10 @@ public class frmReporteResurtido extends javax.swing.JFrame {
         } else {
             sucursal = 0;
         }
-        metfecha.generarfecha1mes(cmbmes.getDate(), sucursal);
+        if (rbtnnuevo.isSelected()) {
+              metfecha.generarfecha1mes(cmbmes.getDate(), sucursal);
+        }
+      
         return sucursal;
     }
 
@@ -311,8 +315,10 @@ public class frmReporteResurtido extends javax.swing.JFrame {
         //  Mesesañoanterior();
         if (rbtnanterior.isSelected()) {
             Mesesañoanterior();
+            System.out.println("holo");
         } else {
             valorsucursal();
+            System.out.println("Ño");
         }
 
 
