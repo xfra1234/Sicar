@@ -4,7 +4,7 @@
   <NonVisualComponents>
     <Component class="javax.swing.ButtonGroup" name="rdbComercios">
     </Component>
-    <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
+    <Component class="javax.swing.ButtonGroup" name="rdbanterio_nuevo">
     </Component>
     <Component class="javax.swing.ButtonGroup" name="buttonGroup2">
     </Component>
@@ -254,7 +254,6 @@
         <Component class="javax.swing.JRadioButton" name="rbtnnuevo">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nuevo"/>
-            <Property name="actionCommand" type="java.lang.String" value="Nuevo"/>
             <Property name="opaque" type="boolean" value="false"/>
           </Properties>
         </Component>

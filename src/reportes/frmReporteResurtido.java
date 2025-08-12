@@ -36,6 +36,8 @@ public class frmReporteResurtido extends javax.swing.JFrame {
         initComponents();
         cmbmes.setDate(new Date());
         rbtnbodega.setSelected(true);
+        rdbanterio_nuevo.add(rbtnanterior);
+        rdbanterio_nuevo.add(rbtnnuevo);
 
     }
 
@@ -130,7 +132,7 @@ public class frmReporteResurtido extends javax.swing.JFrame {
     private void initComponents() {
 
         rdbComercios = new javax.swing.ButtonGroup();
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        rdbanterio_nuevo = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         buttonGroup3 = new javax.swing.ButtonGroup();
         buttonGroup4 = new javax.swing.ButtonGroup();
@@ -207,7 +209,6 @@ public class frmReporteResurtido extends javax.swing.JFrame {
         rbtnpitillal.setOpaque(false);
 
         rbtnnuevo.setText("Nuevo");
-        rbtnnuevo.setActionCommand("Nuevo");
         rbtnnuevo.setOpaque(false);
 
         rbtnanterior.setText("Anterior");
@@ -354,7 +355,6 @@ public class frmReporteResurtido extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegresar;
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.ButtonGroup buttonGroup4;
@@ -372,5 +372,6 @@ public class frmReporteResurtido extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtnnuevo;
     private javax.swing.JRadioButton rbtnpitillal;
     private javax.swing.ButtonGroup rdbComercios;
+    private javax.swing.ButtonGroup rdbanterio_nuevo;
     // End of variables declaration//GEN-END:variables
 }
