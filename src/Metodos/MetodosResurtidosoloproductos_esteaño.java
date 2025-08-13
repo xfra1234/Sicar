@@ -92,6 +92,12 @@ public class MetodosResurtidosoloproductos_esteaño {
                 guardararchivo = ("C:\\Users\\USER\\Desktop\\Resurtido de sucursal_ Mojoneras de este año mes" + mes + ".xls");
                 resurtidocopiabodega(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
+
+            case 6:
+                abrirarchivo = ("C:\\Users\\W11\\Documents\\Resurtido de sucursal mes.xls");
+                guardararchivo = ("C:\\Users\\W11\\Desktop\\Resurtido de sucursal_ Mojoneras de este año mes" + mes + ".xls");
+                resurtidocopiabodega(fecha1, fecha2, fechauno, fechados, sucursal);
+                break;
         }
     }
 

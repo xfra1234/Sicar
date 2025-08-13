@@ -104,6 +104,12 @@ public class MetodosResurtidoesteaño {
                 guardararchivo = ("C:\\Users\\USER\\Desktop\\Resurtido solo este año de Mojoneras " + mes + ".xls");
                 resurtidosucursal(fecha1, fecha2, sucursal);
                 break;
+
+            case 6:
+                abrirarchivo = ("C:\\Users\\W11\\Documents\\Resurtido de sucursal mes.xls");
+                guardararchivo = ("C:\\Users\\W11\\Desktop\\Resurtido solo este año de Mojoneras " + mes + ".xls");
+                resurtidosucursal(fecha1, fecha2, sucursal);
+                break;
         }
     }
 
