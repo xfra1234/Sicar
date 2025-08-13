@@ -170,11 +170,11 @@ public class MetodosResurtidosoloproductos_esteaño {
                     id = rs.getInt(1);
 
                     if (sucursal == 4 || sucursal == 6) {
-                        con = conectar2.conectarMySQL(sucursal);
+                        con2 = conectar2.conectarMySQL(sucursal);
                     } else {
                         con2 = conectar.conectarMySQL();
                     }
-                    stmt2 = con.createStatement();
+                    stmt2 = con2.createStatement();
                     rs2 = stmt2.executeQuery("select paquete.paquete from paquete where paquete.paquete= '" + id + "';");
                     if (rs2.next()) {
 
@@ -220,7 +220,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                         //////////////////// inicio de 3 meses anteriores                   
                         /////////////////////// suma de cantidad venta de paquetes 
                         if (sucursal == 4 || sucursal == 6) {
-                            con = conectar2.conectarMySQL(sucursal);
+                            con2 = conectar2.conectarMySQL(sucursal);
                         } else {
                             con2 = conectar.conectarMySQL();
                         }
@@ -263,7 +263,7 @@ public class MetodosResurtidosoloproductos_esteaño {
 //                        con2.close();
                         /////////////////////// suma de cantidad venta  de producto basee 
                         if (sucursal == 4 || sucursal == 6) {
-                            con = conectar2.conectarMySQL(sucursal);
+                            con2 = conectar2.conectarMySQL(sucursal);
                         } else {
                             con2 = conectar.conectarMySQL();
                         }
@@ -282,7 +282,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                         //////////////////// inicio de 3 meses despues                   
                         /////////////////////// suma de cantidad venta de paquetes 
                         if (sucursal == 4 || sucursal == 6) {
-                            con = conectar2.conectarMySQL(sucursal);
+                            con2 = conectar2.conectarMySQL(sucursal);
                         } else {
                             con2 = conectar.conectarMySQL();
                         }
@@ -325,7 +325,7 @@ public class MetodosResurtidosoloproductos_esteaño {
 //                        con2.close();
                         /////////////////////// suma de cantidad venta  de producto basee 
                         if (sucursal == 4 || sucursal == 6) {
-                            con = conectar2.conectarMySQL(sucursal);
+                            con2 = conectar2.conectarMySQL(sucursal);
                         } else {
                             con2 = conectar.conectarMySQL();
                         }
@@ -342,7 +342,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                         /////////////////////// fin de 3 meses despues  
 
                         if (sucursal == 4 || sucursal == 6) {
-                            con = conectar2.conectarMySQL(sucursal);
+                            con2 = conectar2.conectarMySQL(sucursal);
                         } else {
                             con2 = conectar.conectarMySQL();
                         }
@@ -476,7 +476,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                     } else {
 
                         if (sucursal == 4 || sucursal == 6) {
-                            con = conectar2.conectarMySQL(sucursal);
+                            con2 = conectar2.conectarMySQL(sucursal);
                         } else {
                             con2 = conectar.conectarMySQL();
                         }
@@ -516,7 +516,7 @@ public class MetodosResurtidosoloproductos_esteaño {
 //
 //                        con2.close();
                         if (sucursal == 4 || sucursal == 6) {
-                            con = conectar2.conectarMySQL(sucursal);
+                            con2 = conectar2.conectarMySQL(sucursal);
                         } else {
                             con2 = conectar.conectarMySQL();
                         }
@@ -531,7 +531,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                         }
                         con2.close();
                         if (sucursal == 4 || sucursal == 6) {
-                            con = conectar2.conectarMySQL(sucursal);
+                            con2 = conectar2.conectarMySQL(sucursal);
                         } else {
                             con2 = conectar.conectarMySQL();
                         }
