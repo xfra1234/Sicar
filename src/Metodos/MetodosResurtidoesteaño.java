@@ -185,7 +185,7 @@ public class MetodosResurtidoesteaño {
                         + " where articulo.status !=-1  order by categoria.nombre,articulo.descripcion");
                 while (rs.next()) {
                     if (sucursal == 4 || sucursal == 6) {
-                        con = conectar2.conectarMySQL(sucursal);
+                        con4 = conectar2.conectarMySQL(sucursal);
                     } else {
                         con4 = conectar.conectarMySQL();
                     }
@@ -205,7 +205,7 @@ public class MetodosResurtidoesteaño {
                     preciocompra = (float) (rs.getFloat(6) * 1.16);
 
                     if (sucursal == 4 || sucursal == 6) {
-                        con = conectar2.conectarMySQL(sucursal);
+                        con2 = conectar2.conectarMySQL(sucursal);
                     } else {
                         con2 = conectar.conectarMySQL();
                     }
