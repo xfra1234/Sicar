@@ -48,7 +48,7 @@ public class MetodosResurtidosoloproductos_esteaño {
     int contador = 0, contador1 = 0;
     float cantidad3ma = 0, cantidad3md = 0, existencia = 0, preciocompra = 0, iva = 0, precioventa = 0;
     String descripcion = "", descripcion2 = "", categoria = "", clave = "", departamento = "";
-    int idpaquete, idarticulo;
+    int idpaquete, idarticulo,contar=0;
     String nombrearticulo;
     protected ArrayList<Integer> idNumeros = new ArrayList();
 
@@ -238,10 +238,10 @@ public class MetodosResurtidosoloproductos_esteaño {
                                 + "where articulo.art_id='" + idarticulo + "' and\n"
                                 + "venta.fecha between '" + fecha1ma + "' and '" + fecha3ma + "'"
                                 + "and venta.status!= -1  ");
-                        if (rs2.next()) {
-                            precioventa = (rs2.getFloat(1));
-                            preciocompra = rs2.getFloat(2);
-
+                        while (rs2.next()) {
+                            precioventa = precioventa+(rs2.getFloat(1));
+                            preciocompra = preciocompra+rs2.getFloat(2);
+                            contar=contar+1;
                         }
                         con2.close();
                         /////fin de suma de precio venta de los paquetes
@@ -262,13 +262,14 @@ public class MetodosResurtidosoloproductos_esteaño {
                                 + " venta.fecha between '" + fecha1ma + "' and '" + fecha3ma + "'"
                                 + " and venta.status!=-1");
                         if (rs2.next()) {
+                            contar =contar+1;
                             cantidad3ma = cantidad3ma + rs2.getFloat(1);
-                            precioventa = (precioventa + rs2.getFloat(2)) / 2;
-                            preciocompra = (preciocompra + rs2.getFloat(2)) / 2;
+                            precioventa = (precioventa + rs2.getFloat(2))/contar;
+                            preciocompra = (preciocompra + rs2.getFloat(2))/contar;
                         }
                         con2.close();
                         /////////////////////// fin de 3 meses anteriores                    
-
+                        
                         //////////obtener el nombre y el departamento del producto
                         if (sucursal == 4 || sucursal == 6) {
                             con2 = conectar2.conectarMySQL(sucursal);
@@ -461,6 +462,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                     cantidad3ma = 0;
                     cantidad3md = 0;
                     preciocompra = 0;
+                    contar=0;
                     iva = 0;
                 }
                 for (int x = 0; x < 20; x++) {
