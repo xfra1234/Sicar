@@ -280,8 +280,8 @@ public class MetodosResurtidosoloproductos_esteaño {
                                 + " where articulo.status !=-1 and articulo.art_id='" + valor + "' ");
 
                         if (rs2.next()) {
-                            nombrearticulo = rs.getString(1);
-                            departamento = rs.getString(2);
+                            nombrearticulo = rs2.getString(1);
+                            departamento = rs2.getString(2);
 
                         }
                         con2.close();
@@ -359,8 +359,8 @@ public class MetodosResurtidosoloproductos_esteaño {
                                 + " where articulo.status !=-1 and articulo.art_id='" + valor + "' ");
 
                         if (rs2.next()) {
-                            nombrearticulo = rs.getString(1);
-                            departamento = rs.getString(2);
+                            nombrearticulo = rs2.getString(1);
+                            departamento = rs2.getString(2);
 
                         }
                         con2.close();
