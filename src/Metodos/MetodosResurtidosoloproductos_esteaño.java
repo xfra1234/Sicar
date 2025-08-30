@@ -48,7 +48,7 @@ public class MetodosResurtidosoloproductos_esteaño {
     int contador = 0, contador1 = 0;
     float cantidad3ma = 0, cantidad3md = 0, existencia = 0, preciocompra = 0, iva = 0, precioventa = 0;
     String descripcion = "", descripcion2 = "", categoria = "", clave = "", departamento = "";
-    int idpaquete, idarticulo,contar=0;
+    int idpaquete, idarticulo, contar = 0;
     String nombrearticulo;
     protected ArrayList<Integer> idNumeros = new ArrayList();
 
@@ -221,9 +221,6 @@ public class MetodosResurtidosoloproductos_esteaño {
 
                         }
                         con2.close();
-                        
-                        
-                       
 
                         /////////////////////// suma de cantidad venta  de producto basee 
                         if (sucursal == 4 || sucursal == 6) {
@@ -241,15 +238,14 @@ public class MetodosResurtidosoloproductos_esteaño {
                                 + " venta.fecha between '" + fecha1ma + "' and '" + fecha3ma + "'"
                                 + " and venta.status!=-1");
                         if (rs2.next()) {
-                           
-                             
+
                             cantidad3ma = rs2.getFloat(1);
-                            precioventa =  rs2.getFloat(2);
-                            preciocompra =  rs2.getFloat(3);
+                            precioventa = rs2.getFloat(2);
+                            preciocompra = rs2.getFloat(3);
                         }
                         con2.close();
                         /////////////////////// fin de 3 meses anteriores                    
-                        
+
                         //////////obtener el nombre y el departamento del producto
                         if (sucursal == 4 || sucursal == 6) {
                             con2 = conectar2.conectarMySQL(sucursal);
@@ -328,13 +324,31 @@ public class MetodosResurtidosoloproductos_esteaño {
 
                     } else {
 
+                        if (sucursal == 4 || sucursal == 6) {
+                            con2 = conectar2.conectarMySQL(sucursal);
+                        } else {
+                            con2 = conectar.conectarMySQL();
+                        }
+                        stmt2 = con2.createStatement();
+                        rs2 = stmt2.executeQuery("select sum(cantidad) from detallev,"
+                                + "sum(detallev.precionorsin)/count(detallev.art_id),"
+                                + "sum(detallev.preciocompra)/count(detallev.art_id)"
+                                + "inner join venta on venta.ven_id = detallev.ven_id "
+                                + " where detallev.art_id=" + valor + " and "
+                                + " venta.fecha between '" + fecha1md + "' and '" + fecha3md + "'"
+                                + " and venta.status!=-1");
+                        if (rs2.next()) {
+                            cantidad3md = cantidad3md + rs2.getFloat(1);
+                            precioventa=(rs2.getFloat(2));
+                            preciocompra=rs2.getFloat(3);
+                        }
+                        con2.close();
                         //////////obtener el nombre y el departamento del producto
                         if (sucursal == 4 || sucursal == 6) {
                             con2 = conectar2.conectarMySQL(sucursal);
                         } else {
                             con2 = conectar.conectarMySQL();
                         }
-//                        System.out.println(valor);
                         stmt2 = con2.createStatement();
                         rs2 = stmt2.executeQuery("select articulo.descripcion,departamento.nombre"
                                 + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id"
@@ -348,42 +362,6 @@ public class MetodosResurtidosoloproductos_esteaño {
                         }
                         con2.close();
                         ///////fin de obtener nombre y departamento
-
-                        if (sucursal == 4 || sucursal == 6) {
-                            con2 = conectar2.conectarMySQL(sucursal);
-                        } else {
-                            con2 = conectar.conectarMySQL();
-                        }
-                        stmt2 = con2.createStatement();
-                        rs2 = stmt2.executeQuery("select sum(cantidad) from detallev "
-                                + "inner join venta on venta.ven_id = detallev.ven_id "
-                                + " where detallev.art_id=" + valor + " and "
-                                + " venta.fecha between '" + fecha1md + "' and '" + fecha3md + "'"
-                                + " and venta.status!=-1");
-                        if (rs2.next()) {
-                            cantidad3md = cantidad3md + rs2.getFloat(1);
-                        }
-                        con2.close();
-                        if (sucursal == 4 || sucursal == 6) {
-                            con2 = conectar2.conectarMySQL(sucursal);
-                        } else {
-                            con2 = conectar.conectarMySQL();
-                        }
-                        stmt2 = con2.createStatement();
-                        rs2 = stmt2.executeQuery("select articulo.clave,articulo.existencia,articulo.descripcion,"
-                                + "categoria.nombre,articulo.precioCompra,impuesto.impuesto "
-                                + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id "
-                                + " inner join articuloimpuesto on articuloimpuesto.art_id = articulo.art_id"
-                                + " inner join impuesto on impuesto.imp_id = articuloimpuesto.imp_id "
-                                + "where articulo.art_id=" + valor + "");
-                        if (rs2.next()) {
-                            existencia = existencia + rs2.getFloat(2);
-//                            iva = 1 + (rs2.getFloat(6) / 100);
-//                            preciocompra = (float) (rs2.getFloat(5) * iva);
-                            nombrearticulo = rs2.getString(3);
-                            descripcion = rs2.getString(4);
-                        }
-
                         fila = hoja.getRow(filaa);
 
                         if (fila == null) {
@@ -404,11 +382,11 @@ public class MetodosResurtidosoloproductos_esteaño {
                         celda = fila.createCell(3);
                         celda.setCellValue((cantidad3ma / 3));
                         celda.setCellStyle(Numerico);
-                        
+
                         celda = fila.createCell(8);
                         celda.setCellValue(new HSSFRichTextString(departamento + " "));
                         celda.setCellStyle(encabezados);
-                        
+
                         if (filaa > 0) {
                             int filaformula = filaa + 1;
                             String Formula;
@@ -442,7 +420,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                     cantidad3ma = 0;
                     cantidad3md = 0;
                     preciocompra = 0;
-                    contar=0;
+                    contar = 0;
                     iva = 0;
                 }
                 for (int x = 0; x < 20; x++) {
