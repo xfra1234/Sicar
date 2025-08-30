@@ -243,6 +243,9 @@ public class MetodosResurtidosoloproductos_esteaño {
                             preciocompra = preciocompra+rs2.getFloat(2);
                             contar=contar+1;
                         }
+                        if (valor==4){
+                            System.out.println(preciocompra+"/n"+contar);
+                        }
                         con2.close();
                         /////fin de suma de precio venta de los paquetes
 
@@ -263,9 +266,12 @@ public class MetodosResurtidosoloproductos_esteaño {
                                 + " and venta.status!=-1");
                         if (rs2.next()) {
                             contar =contar+1;
+                             if (valor==4){
+                            System.out.println(rs2.getFloat(3)+""+"/n"+contar);
+                        }
                             cantidad3ma = cantidad3ma + rs2.getFloat(1);
                             precioventa = (precioventa + rs2.getFloat(2))/contar;
-                            preciocompra = (preciocompra + rs2.getFloat(2))/contar;
+                            preciocompra = (preciocompra + rs2.getFloat(3))/contar;
                         }
                         con2.close();
                         /////////////////////// fin de 3 meses anteriores                    
