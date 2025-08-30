@@ -46,9 +46,9 @@ public class MetodosResurtidosoloproductos_esteaño {
     conexion2 conectar2 = new conexion2();
     String abrirarchivo = "", guardararchivo = "";
     int contador = 0, contador1 = 0;
-    float cantidad3ma = 0, cantidad3md = 0, existencia = 0, preciocompra = 0, iva = 0;
-    String descripcion = "", descripcion2 = "", categoria = "", clave = "";
-    int idpaquete;
+    float cantidad3ma = 0, cantidad3md = 0, existencia = 0, preciocompra = 0, iva = 0, precioventa = 0;
+    String descripcion = "", descripcion2 = "", categoria = "", clave = "",departamento="";
+    int idpaquete, idarticulo;
     String nombrearticulo;
     protected ArrayList<Integer> idNumeros = new ArrayList();
 
@@ -58,6 +58,8 @@ public class MetodosResurtidosoloproductos_esteaño {
         contador = 0;
         contador1 = 0;
         idpaquete = 0;
+        idarticulo = 0;
+        precioventa = 0;
     }
 
     public void sucursales(String fecha1, String fecha2, String fechauno, String fechados, int sucursal, String mes) {
@@ -200,23 +202,6 @@ public class MetodosResurtidosoloproductos_esteaño {
                     rs = stmt.executeQuery("select paquete.paquete from paquete where paquete.articulo=" + valor + "");
                     if (rs.next()) {
 
-//                        con2 = conectar.conectarMySQL();
-//                        stmt2 = con2.createStatement();
-//                        rs2 = stmt2.executeQuery("select paquete.paquete,paquete.cantidad from paquete where paquete.articulo=" + valor + "");
-//                        while (rs2.next()) {
-//                            id = rs2.getInt(1);
-//                            con3 = conectar.conectarMySQL();
-//                            stmt3 = con3.createStatement();
-//                            rs3 = stmt3.executeQuery("select existencia,status from articulo where art_id='" + id + "'"
-//                                    + " and status !=-1");
-//
-//                            while (rs3.next()) {
-//                                existencia = existencia + (rs3.getFloat(1) * rs2.getFloat(2));
-//                            }
-//
-//                            con3.close();
-//                        }
-//                        con2.close();
                         //////////////////// inicio de 3 meses anteriores                   
                         /////////////////////// suma de cantidad venta de paquetes 
                         if (sucursal == 4 || sucursal == 6) {
@@ -226,7 +211,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                         }
                         stmt2 = con2.createStatement();
                         rs2 = stmt2.executeQuery("select sum(cantidad) from detallep "
-                                + "inner join venta on venta.ven_id = detallep.ven_id "
+                                + " inner join venta on venta.ven_id = detallep.ven_id "
                                 + " where detallep.articulo=" + valor + " and "
                                 + " venta.fecha between '" + fecha1ma + "' and '" + fecha3ma + "'"
                                 + " and venta.status!=-1");
@@ -236,31 +221,29 @@ public class MetodosResurtidosoloproductos_esteaño {
 
                         }
                         con2.close();
-                        /////////////////////// suma de cantidad traspaso  de paquetes 
-//                        con2 = conectar.conectarMySQL();
-//                        stmt2 = con2.createStatement();
-//                        rs2 = stmt2.executeQuery("select sum(detallepaqt.cantidad)  FROM detallepaqt   "
-//                                + "inner join traspaso on traspaso.tra_id = detallepaqt.tra_id\n"
-//                                + " where articulo  = " + valor + " and  traspaso.fecha between '" + fecha1ma + "'"
-//                                + " and '" + fecha3ma + "'  and traspaso.status=2 and sucori=8;");
-//                        if (rs2.next()) {
-//                            cantidad3ma = cantidad3ma + rs2.getFloat(1);
-//                        }
-//                        con2.close();
+                        ////sumar el precio de venta de los paquetes
+                        if (sucursal == 4 || sucursal == 6) {
+                            con2 = conectar2.conectarMySQL(sucursal);
+                        } else {
+                            con2 = conectar.conectarMySQL();
+                        }
 
-                        /////////////////////// suma de cantidad traspaso  de producto basee 
-//                        con2 = conectar.conectarMySQL();
-//                        stmt2 = con2.createStatement();
-//                        rs2 = stmt2.executeQuery("select sum(cantidad) as traspaso from detallet "
-//                                + "inner join traspaso on traspaso.tra_id = detallet.tra_id where "
-//                                + "detallet.art_id=" + valor + "\n"
-//                                + "and traspaso.fecha between '" + fecha1ma + "' and "
-//                                + "'" + fecha3ma + "'  and traspaso.status=2  and sucori=8;");
-//                        if (rs2.next()) {
-//                            cantidad3ma = cantidad3ma + rs2.getFloat(1);
-//                        }
-//
-//                        con2.close();
+                        rs2 = stmt2.executeQuery("select sum(detallev.precionorsin)/count(detallev.art_id),"
+                                + "sum(detallev.preciocompra)/count(detallev.art_id)"
+                                + "from detallev inner join venta\n"
+                                + "on detallev.ven_id = venta.ven_id inner join articulo on\n"
+                                + " detallev.art_id=articulo.art_id\n"
+                                + "where articulo.art_id='" + idarticulo + "' and\n"
+                                + "venta.fecha between '" + fecha1ma + "' and '" + fecha3ma + "'"
+                                + "and venta.status!= -1  ");
+                        if (rs2.next()) {
+                            precioventa = (rs2.getFloat(1));
+                            preciocompra = rs2.getFloat(2);
+
+                        }
+                        con2.close();
+                        /////fin de suma de precio venta de los paquetes
+
                         /////////////////////// suma de cantidad venta  de producto basee 
                         if (sucursal == 4 || sucursal == 6) {
                             con2 = conectar2.conectarMySQL(sucursal);
@@ -268,106 +251,46 @@ public class MetodosResurtidosoloproductos_esteaño {
                             con2 = conectar.conectarMySQL();
                         }
                         stmt2 = con2.createStatement();
-                        rs2 = stmt2.executeQuery("select sum(cantidad) from detallev "
+                        rs2 = stmt2.executeQuery("select sum(cantidad), "
+                                + "sum(detallev.precionorsin)/count(detallev.art_id),"
+                                + "sum(detallev.preciocompra)/count(detallev.art_id)"
+                                + "from detallev "
                                 + "inner join venta on venta.ven_id = detallev.ven_id "
                                 + " where detallev.art_id=" + valor + " and "
                                 + " venta.fecha between '" + fecha1ma + "' and '" + fecha3ma + "'"
                                 + " and venta.status!=-1");
                         if (rs2.next()) {
                             cantidad3ma = cantidad3ma + rs2.getFloat(1);
+                            precioventa = (precioventa + rs2.getFloat(2)) / 2;
+                            preciocompra = (preciocompra + rs2.getFloat(2)) / 2;
                         }
-                        con2.close();
+                        con2.close();                       
                         /////////////////////// fin de 3 meses anteriores                    
 
-//                        //////////////////// inicio de 3 meses despues                   
-//                        /////////////////////// suma de cantidad venta de paquetes 
-//                        if (sucursal == 4 || sucursal == 6) {
-//                            con2 = conectar2.conectarMySQL(sucursal);
-//                        } else {
-//                            con2 = conectar.conectarMySQL();
-//                        }
-//                        stmt2 = con2.createStatement();
-//                        rs2 = stmt2.executeQuery("select sum(cantidad) from detallep "
-//                                + "inner join venta on venta.ven_id = detallep.ven_id "
-//                                + " where detallep.articulo=" + valor + " and "
-//                                + " venta.fecha between '" + fecha1md + "' and '" + fecha3md + "'"
-//                                + " and venta.status!=-1");
-//                        if (rs2.next()) {
-//
-//                            cantidad3md = cantidad3md + rs2.getFloat(1);
-//
-//                        }
-//                        con2.close();
-//                        /////////////////////// suma de cantidad traspaso  de paquetes 
-////                        con2 = conectar.conectarMySQL();
-////                        stmt2 = con2.createStatement();
-////                        rs2 = stmt2.executeQuery("select sum(detallepaqt.cantidad)  FROM detallepaqt   "
-////                                + "inner join traspaso on traspaso.tra_id = detallepaqt.tra_id\n"
-////                                + " where articulo  = " + valor + " and  traspaso.fecha between '" + fecha1md + "'"
-////                                + " and '" + fecha3md + "'  and traspaso.status=2 and sucori=8;");
-////                        if (rs2.next()) {
-////                            cantidad3md = cantidad3md + rs2.getFloat(1);
-////                        }
-////                        con2.close();
-//
-//                        /////////////////////// suma de cantidad traspaso  de producto basee 
-////                        con2 = conectar.conectarMySQL();
-////                        stmt2 = con2.createStatement();
-////                        rs2 = stmt2.executeQuery("select sum(cantidad) as traspaso from detallet "
-////                                + "inner join traspaso on traspaso.tra_id = detallet.tra_id where "
-////                                + "detallet.art_id=" + valor + "\n"
-////                                + "and traspaso.fecha between '" + fecha1md + "' and "
-////                                + "'" + fecha3md + "'  and traspaso.status=2 and sucori=8;");
-////                        if (rs2.next()) {
-////                            cantidad3md = cantidad3md + rs2.getFloat(1);
-////                        }
-////
-////                        con2.close();
-//                        /////////////////////// suma de cantidad venta  de producto basee 
-//                        if (sucursal == 4 || sucursal == 6) {
-//                            con2 = conectar2.conectarMySQL(sucursal);
-//                        } else {
-//                            con2 = conectar.conectarMySQL();
-//                        }
-//                        stmt2 = con2.createStatement();
-//                        rs2 = stmt2.executeQuery("select sum(cantidad) from detallev "
-//                                + "inner join venta on venta.ven_id = detallev.ven_id "
-//                                + " where detallev.art_id=" + valor + " and "
-//                                + " venta.fecha between '" + fecha1md + "' and '" + fecha3md + "'"
-//                                + " and venta.status!=-1");
-//                        if (rs2.next()) {
-//                            cantidad3md = cantidad3md + rs2.getFloat(1);
-//                        }
-//                        con2.close();
-//                        /////////////////////// fin de 3 meses despues  
-//
-//                        if (sucursal == 4 || sucursal == 6) {
-//                            con2 = conectar2.conectarMySQL(sucursal);
-//                        } else {
-//                            con2 = conectar.conectarMySQL();
-//                        }
-//                        stmt2 = con2.createStatement();
-//                        rs2 = stmt2.executeQuery("select articulo.clave,articulo.existencia,articulo.descripcion,categoria.nombre,articulo.precioCompra, "
-//                                + "impuesto.impuesto "
-//                                + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id "
-//                                + " inner join articuloimpuesto on  articuloimpuesto.art_id = articulo.art_id "
-//                                + "inner join impuesto on impuesto.imp_id = articuloimpuesto.imp_id where articulo.art_id=" + valor + "");
-//                        if (rs2.next()) {
-//                            existencia = existencia + rs2.getFloat(2);
-//                            preciocompra = rs2.getFloat(5);
-//                            iva = 1 + (rs2.getFloat(6) / 100);
-//                            preciocompra = preciocompra * iva;
-//                            nombrearticulo = rs2.getString(3);
-//                            descripcion = rs2.getString(4);
-//                        }
-
-//                        if (descripcion.equals(rs2.getString(4))) {
+                        //////////obtener el nombre y el departamento del producto
+                        if (sucursal == 4 || sucursal == 6) {
+                            con2 = conectar2.conectarMySQL(sucursal);
+                        } else {
+                            con2 = conectar.conectarMySQL();
+                        }
+                        stmt2 = con2.createStatement();
+                        rs2 = stmt2.executeQuery("select articulo.descripcion,departamento.nombre"
+                        + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id"
+                        + " inner join departamento on departamento.dep_id = categoria.dep_id "
+                        + " where articulo.status !=-1 and articulo.art_id='"+valor+"' ");
+                        
+                        if(rs2.next()){
+                            nombrearticulo=rs.getString(1);
+                            departamento=rs.getString(2);
+                            
+                        }
+                        con2.close(); 
+                        ///////fin de obtener nombre y departamento
                         fila = hoja.getRow(filaa);
-//                    
-//                            celda = fila.createCell(0);
-//                            celda.setCellValue(rs2.getString(1));
-//                            celda.setCellStyle(encabezados);
-
+                        if(fila==null){
+                             fila = hoja.createRow(filaa);
+                        }
+                        
                         celda = fila.createCell(0);
                         celda.setCellValue(new HSSFRichTextString(nombrearticulo + " "));
                         celda.setCellStyle(encabezados);
@@ -383,6 +306,10 @@ public class MetodosResurtidosoloproductos_esteaño {
                         celda = fila.createCell(3);
                         celda.setCellValue((cantidad3ma / 3));
                         celda.setCellStyle(Numerico);
+                        
+                        celda = fila.createCell(5);
+                        celda.setCellValue(new HSSFRichTextString(departamento + " "));
+                        celda.setCellStyle(encabezados);
 
 //                            celda = fila.createCell(4);
 //                            celda.setCellValue((cantidad3md / 3));
@@ -412,109 +339,32 @@ public class MetodosResurtidosoloproductos_esteaño {
 
                         }
                         filaa = filaa + 1;
-//                        } else {
-////                            filaa = filaa + 1;
-//                            fila = hoja.getRow(filaa);
-////                            celda = fila.createCell(0);
-////                            celda.setCellValue(rs2.getString(4));
-////                            celda.setCellStyle(letraprincipal);
-////
-////                            filaa = filaa + 1;
-////                            fila = hoja.getRow(filaa);
-////                            celda = fila.createCell(0);
-////                            celda.setCellValue(rs2.getString(1));
-////                            celda.setCellStyle(encabezados);
-//
-//                            celda = fila.createCell(0);
-//                            celda.setCellValue(new HSSFRichTextString(rs2.getString(3)));
-//                            celda.setCellStyle(encabezados);
-//
-//                            celda = fila.createCell(1);
-//                            celda.setCellValue(existencia);
-//                            celda.setCellStyle(Numerico);
-//
-//                            celda = fila.createCell(2);
-//                            celda.setCellValue(preciocompra);
-//                            celda.setCellStyle(Numerico);
-//
-//                            celda = fila.createCell(3);
-//                            celda.setCellValue((cantidad3ma / 3));
-//                            celda.setCellStyle(Numerico);
-//
-////                            celda = fila.createCell(4);
-////                            celda.setCellValue((cantidad3md / 3));
-////                            celda.setCellStyle(Numerico);
-//                            if (filaa > 0) {
-//                                int filaformula = filaa + 1;
-//                                String Formula;
-//
-//                                //// Formula 7 dias mes anterior
-//                                Formula = "D" + filaformula + "/4";
-//                                celda = fila.createCell(4);
-//                                celda.setCellFormula(Formula);
-//                                celda.setCellStyle(Numerico);
-//
-//                                //// Formula Resurtido mes   anterior
-//                                Formula = "E" + filaformula + "-B" + filaformula;
-//                                celda = fila.createCell(5);
-//                                celda.setCellFormula(Formula);
-//                                celda.setCellStyle(Numerico);
-//
-//                                //// Formula Dias Inventario Mes  Anterior  
-//                                Formula = "B" + filaformula + "*30/D" + filaformula;
-//                                celda = fila.createCell(7);
-//                                celda.setCellFormula(Formula);
-//                                celda.setCellStyle(Numerico);
-//
-//                            }
-//                            filaa = filaa + 1;
-//                        }
 
                         con.close();
                         con2.close();
 
                     } else {
 
+                        //////////obtener el nombre y el departamento del producto
                         if (sucursal == 4 || sucursal == 6) {
                             con2 = conectar2.conectarMySQL(sucursal);
                         } else {
                             con2 = conectar.conectarMySQL();
                         }
                         stmt2 = con2.createStatement();
-                        rs2 = stmt2.executeQuery("select sum(cantidad) from detallev "
-                                + "inner join venta on venta.ven_id = detallev.ven_id "
-                                + " where detallev.art_id=" + valor + " and "
-                                + " venta.fecha between '" + fecha1ma + "' and '" + fecha3ma + "'"
-                                + " and venta.status!=-1");
-                        if (rs2.next()) {
-                            cantidad3ma = cantidad3ma + rs2.getFloat(1);
+                        rs2 = stmt2.executeQuery("select articulo.descripcion,departamento.nombre"
+                        + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id"
+                        + " inner join departamento on departamento.dep_id = categoria.dep_id "
+                        + " where articulo.status !=-1 and articulo.art_id='"+valor+"' ");
+                        
+                        if(rs2.next()){
+                            nombrearticulo=rs.getString(1);
+                            departamento=rs.getString(2);
+                            
                         }
-                        con2.close();
+                        con2.close(); 
+                        ///////fin de obtener nombre y departamento
 
-//                        con2 = conectar.conectarMySQL();
-//                        stmt2 = con2.createStatement();
-//                        rs2 = stmt2.executeQuery("select sum(cantidad) as traspaso from detallet "
-//                                + "inner join traspaso on traspaso.tra_id = detallet.tra_id where "
-//                                + "detallet.art_id=" + valor + "\n"
-//                                + "and traspaso.fecha between '" + fecha1ma + "' and "
-//                                + "'" + fecha3ma + "'  and traspaso.status=2;");
-//                        if (rs2.next()) {
-//                            cantidad3ma = cantidad3ma + rs2.getFloat(1);
-//                        }
-//
-//                        con2.close();
-//                        con2 = conectar.conectarMySQL();
-//                        stmt2 = con2.createStatement();
-//                        rs2 = stmt2.executeQuery("select sum(cantidad) as traspaso from detallet "
-//                                + "inner join traspaso on traspaso.tra_id = detallet.tra_id where "
-//                                + "detallet.art_id=" + valor + "\n"
-//                                + "and traspaso.fecha between '" + fecha1md + "' and "
-//                                + "'" + fecha3md + "'  and traspaso.status=2;");
-//                        if (rs2.next()) {
-//                            cantidad3md = cantidad3md + rs2.getFloat(1);
-//                        }
-//
-//                        con2.close();
                         if (sucursal == 4 || sucursal == 6) {
                             con2 = conectar2.conectarMySQL(sucursal);
                         } else {
@@ -544,8 +394,8 @@ public class MetodosResurtidosoloproductos_esteaño {
                                 + "where articulo.art_id=" + valor + "");
                         if (rs2.next()) {
                             existencia = existencia + rs2.getFloat(2);
-                            iva = 1 + (rs2.getFloat(6) / 100);
-                            preciocompra = (float) (rs2.getFloat(5) * iva);
+//                            iva = 1 + (rs2.getFloat(6) / 100);
+//                            preciocompra = (float) (rs2.getFloat(5) * iva);
                             nombrearticulo = rs2.getString(3);
                             descripcion = rs2.getString(4);
                         }
