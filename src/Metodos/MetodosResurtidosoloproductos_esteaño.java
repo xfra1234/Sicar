@@ -331,10 +331,10 @@ public class MetodosResurtidosoloproductos_esteaño {
                         }
                         stmt2 = con2.createStatement();
                         rs2 = stmt2.executeQuery("select sum(cantidad) ,"
-                                + "sum(detallev.precionorsin)/count(detallev.art_id),"
-                                + "sum(detallev.preciocompra)/count(detallev.art_id)"
-                                + "from detallev"
-                                + "inner join venta on venta.ven_id = detallev.ven_id "
+                                + " sum(detallev.precionorsin)/count(detallev.art_id),"
+                                + " sum(detallev.preciocompra)/count(detallev.art_id) "
+                                + " from detallev "
+                                + " inner join venta on venta.ven_id = detallev.ven_id "
                                 + " where detallev.art_id=" + valor + " and "
                                 + " venta.fecha between '" + fecha1md + "' and '" + fecha3md + "'"
                                 + " and venta.status!=-1");
