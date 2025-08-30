@@ -47,7 +47,7 @@ public class MetodosResurtidosoloproductos_esteaño {
     String abrirarchivo = "", guardararchivo = "";
     int contador = 0, contador1 = 0;
     float cantidad3ma = 0, cantidad3md = 0, existencia = 0, preciocompra = 0, iva = 0, precioventa = 0;
-    String descripcion = "", descripcion2 = "", categoria = "", clave = "",departamento="";
+    String descripcion = "", descripcion2 = "", categoria = "", clave = "", departamento = "";
     int idpaquete, idarticulo;
     String nombrearticulo;
     protected ArrayList<Integer> idNumeros = new ArrayList();
@@ -264,7 +264,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                             precioventa = (precioventa + rs2.getFloat(2)) / 2;
                             preciocompra = (preciocompra + rs2.getFloat(2)) / 2;
                         }
-                        con2.close();                       
+                        con2.close();
                         /////////////////////// fin de 3 meses anteriores                    
 
                         //////////obtener el nombre y el departamento del producto
@@ -275,22 +275,22 @@ public class MetodosResurtidosoloproductos_esteaño {
                         }
                         stmt2 = con2.createStatement();
                         rs2 = stmt2.executeQuery("select articulo.descripcion,departamento.nombre"
-                        + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id"
-                        + " inner join departamento on departamento.dep_id = categoria.dep_id "
-                        + " where articulo.status !=-1 and articulo.art_id='"+valor+"' ");
-                        
-                        if(rs2.next()){
-                            nombrearticulo=rs.getString(1);
-                            departamento=rs.getString(2);
-                            
+                                + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id"
+                                + " inner join departamento on departamento.dep_id = categoria.dep_id "
+                                + " where articulo.status !=-1 and articulo.art_id='" + valor + "' ");
+
+                        if (rs2.next()) {
+                            nombrearticulo = rs.getString(1);
+                            departamento = rs.getString(2);
+
                         }
-                        con2.close(); 
+                        con2.close();
                         ///////fin de obtener nombre y departamento
                         fila = hoja.getRow(filaa);
-                        if(fila==null){
-                             fila = hoja.createRow(filaa);
+                        if (fila == null) {
+                            fila = hoja.createRow(filaa);
                         }
-                        
+
                         celda = fila.createCell(0);
                         celda.setCellValue(new HSSFRichTextString(nombrearticulo + " "));
                         celda.setCellStyle(encabezados);
@@ -306,7 +306,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                         celda = fila.createCell(3);
                         celda.setCellValue((cantidad3ma / 3));
                         celda.setCellStyle(Numerico);
-                        
+
                         celda = fila.createCell(5);
                         celda.setCellValue(new HSSFRichTextString(departamento + " "));
                         celda.setCellStyle(encabezados);
@@ -351,18 +351,19 @@ public class MetodosResurtidosoloproductos_esteaño {
                         } else {
                             con2 = conectar.conectarMySQL();
                         }
+                        System.out.println(valor);
                         stmt2 = con2.createStatement();
                         rs2 = stmt2.executeQuery("select articulo.descripcion,departamento.nombre"
-                        + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id"
-                        + " inner join departamento on departamento.dep_id = categoria.dep_id "
-                        + " where articulo.status !=-1 and articulo.art_id='"+valor+"' ");
-                        
-                        if(rs2.next()){
-                            nombrearticulo=rs.getString(1);
-                            departamento=rs.getString(2);
-                            
+                                + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id"
+                                + " inner join departamento on departamento.dep_id = categoria.dep_id "
+                                + " where articulo.status !=-1 and articulo.art_id='" + valor + "' ");
+
+                        if (rs2.next()) {
+                            nombrearticulo = rs.getString(1);
+                            departamento = rs.getString(2);
+
                         }
-                        con2.close(); 
+                        con2.close();
                         ///////fin de obtener nombre y departamento
 
                         if (sucursal == 4 || sucursal == 6) {
@@ -400,16 +401,11 @@ public class MetodosResurtidosoloproductos_esteaño {
                             descripcion = rs2.getString(4);
                         }
 
-//                         if (x ==1362){
-//                            System.out.println(valor);
-//                        }
-//                        if (descripcion.equals(rs2.getString(4))) {
                         fila = hoja.getRow(filaa);
-//                    
-//                            celda = fila.createCell(0);
-//                            celda.setCellValue(rs2.getString(1));
-//                            celda.setCellStyle(encabezados);
 
+                        if (fila == null) {
+                            fila = hoja.createRow(filaa);
+                        }
                         celda = fila.createCell(0);
                         celda.setCellValue(new HSSFRichTextString(nombrearticulo + " "));
                         celda.setCellStyle(encabezados);
@@ -425,10 +421,6 @@ public class MetodosResurtidosoloproductos_esteaño {
                         celda = fila.createCell(3);
                         celda.setCellValue((cantidad3ma / 3));
                         celda.setCellStyle(Numerico);
-//
-//                            celda = fila.createCell(4);
-//                            celda.setCellValue((cantidad3md / 3));
-//                            celda.setCellStyle(Numerico);
 
                         if (filaa > 0) {
                             int filaformula = filaa + 1;
@@ -454,64 +446,6 @@ public class MetodosResurtidosoloproductos_esteaño {
 
                         }
                         filaa = filaa + 1;
-//                        } else {
-////                            filaa = filaa + 1;
-//                            fila = hoja.getRow(filaa);
-////                            celda = fila.createCell(0);
-////                            celda.setCellValue(rs2.getString(4));
-////                            celda.setCellStyle(letraprincipal);
-//
-////                            filaa = filaa + 1;
-////                            fila = hoja.getRow(filaa);
-////                            celda = fila.createCell(0);
-////                            celda.setCellValue(rs2.getString(1));
-////                            celda.setCellStyle(encabezados);
-//                            celda = fila.createCell(0);
-//                            celda.setCellValue(new HSSFRichTextString(rs2.getString(3)));
-//                            celda.setCellStyle(encabezados);
-//
-//                            celda = fila.createCell(1);
-//                            celda.setCellValue(existencia);
-//                            celda.setCellStyle(Numerico);
-//
-//                            celda = fila.createCell(2);
-//                            celda.setCellValue(preciocompra);
-//                            celda.setCellStyle(Numerico);
-//
-//                            celda = fila.createCell(3);
-//                            celda.setCellValue((cantidad3ma / 3));
-//                            celda.setCellStyle(Numerico);
-////
-////                            celda = fila.createCell(4);
-////                            celda.setCellValue((cantidad3md / 3));
-////                            celda.setCellStyle(Numerico);
-////                    
-////                    
-//                            if (filaa > 0) {
-//                                int filaformula = filaa + 1;
-//                                String Formula;
-//
-//                                //// Formula 7 dias mes anterior
-//                                Formula = "D" + filaformula + "/4";
-//                                celda = fila.createCell(4);
-//                                celda.setCellFormula(Formula);
-//                                celda.setCellStyle(Numerico);
-//
-//                                //// Formula Resurtido mes   anterior
-//                                Formula = "E" + filaformula + "-B" + filaformula;
-//                                celda = fila.createCell(5);
-//                                celda.setCellFormula(Formula);
-//                                celda.setCellStyle(Numerico);
-//
-//                                //// Formula Dias Inventario Mes  Anterior  
-//                                Formula = "B" + filaformula + "*30/D" + filaformula;
-//                                celda = fila.createCell(7);
-//                                celda.setCellFormula(Formula);
-//                                celda.setCellStyle(Numerico);
-//
-//                            }
-//                            filaa = filaa + 1;
-//                        }
 
                         con.close();
                         con2.close();
