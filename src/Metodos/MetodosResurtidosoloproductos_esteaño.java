@@ -253,7 +253,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                             con2 = conectar.conectarMySQL();
                         }
                         stmt2 = con2.createStatement();
-                        rs2 = stmt2.executeQuery("select articulo.descripcion,departamento.nombre"
+                        rs2 = stmt2.executeQuery("select articulo.descripcion,departamento.nombre,articulo.existencia"
                                 + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id"
                                 + " inner join departamento on departamento.dep_id = categoria.dep_id "
                                 + " where articulo.status !=-1 and articulo.art_id='" + valor + "' ");
@@ -261,6 +261,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                         if (rs2.next()) {
                             nombrearticulo = rs2.getString(1);
                             departamento = rs2.getString(2);
+                            existencia=rs2.getFloat(3);
 
                         }
                         con2.close();
@@ -352,7 +353,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                             con2 = conectar.conectarMySQL();
                         }
                         stmt2 = con2.createStatement();
-                        rs2 = stmt2.executeQuery("select articulo.descripcion,departamento.nombre"
+                        rs2 = stmt2.executeQuery("select articulo.descripcion,departamento.nombre,articulo.existencia"
                                 + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id"
                                 + " inner join departamento on departamento.dep_id = categoria.dep_id "
                                 + " where articulo.status !=-1 and articulo.art_id='" + valor + "' ");
@@ -360,7 +361,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                         if (rs2.next()) {
                             nombrearticulo = rs2.getString(1);
                             departamento = rs2.getString(2);
-
+                            existencia=rs2.getFloat(3);
                         }
                         con2.close();
                         ///////fin de obtener nombre y departamento
