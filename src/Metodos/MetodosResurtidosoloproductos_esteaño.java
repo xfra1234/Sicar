@@ -221,13 +221,15 @@ public class MetodosResurtidosoloproductos_esteaño {
 
                         }
                         con2.close();
+                        
                         ////sumar el precio de venta de los paquetes
+                        
                         if (sucursal == 4 || sucursal == 6) {
                             con2 = conectar2.conectarMySQL(sucursal);
                         } else {
                             con2 = conectar.conectarMySQL();
                         }
-
+                        stmt2 = con2.createStatement();
                         rs2 = stmt2.executeQuery("select sum(detallev.precionorsin)/count(detallev.art_id),"
                                 + "sum(detallev.preciocompra)/count(detallev.art_id)"
                                 + "from detallev inner join venta\n"
@@ -307,7 +309,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                         celda.setCellValue((cantidad3ma / 3));
                         celda.setCellStyle(Numerico);
 
-                        celda = fila.createCell(5);
+                        celda = fila.createCell(8);
                         celda.setCellValue(new HSSFRichTextString(departamento + " "));
                         celda.setCellStyle(encabezados);
 
@@ -351,7 +353,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                         } else {
                             con2 = conectar.conectarMySQL();
                         }
-                        System.out.println(valor);
+//                        System.out.println(valor);
                         stmt2 = con2.createStatement();
                         rs2 = stmt2.executeQuery("select articulo.descripcion,departamento.nombre"
                                 + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id"
@@ -421,7 +423,11 @@ public class MetodosResurtidosoloproductos_esteaño {
                         celda = fila.createCell(3);
                         celda.setCellValue((cantidad3ma / 3));
                         celda.setCellStyle(Numerico);
-
+                        
+                        celda = fila.createCell(8);
+                        celda.setCellValue(new HSSFRichTextString(departamento + " "));
+                        celda.setCellStyle(encabezados);
+                        
                         if (filaa > 0) {
                             int filaformula = filaa + 1;
                             String Formula;
