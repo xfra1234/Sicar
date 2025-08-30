@@ -239,7 +239,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                                 + " and venta.status!=-1");
                         if (rs2.next()) {
 
-                            cantidad3ma = rs2.getFloat(1);
+                            cantidad3ma = cantidad3ma +rs2.getFloat(1);
                             precioventa = rs2.getFloat(2);
                             preciocompra = rs2.getFloat(3);
                         }
