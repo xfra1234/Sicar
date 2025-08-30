@@ -343,6 +343,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                             precioventa=(rs2.getFloat(2));
                             preciocompra=rs2.getFloat(3);
                         }
+                        System.out.println(preciocompra);
                         con2.close();
                         //////////obtener el nombre y el departamento del producto
                         if (sucursal == 4 || sucursal == 6) {
