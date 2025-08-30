@@ -222,32 +222,8 @@ public class MetodosResurtidosoloproductos_esteaño {
                         }
                         con2.close();
                         
-                        ////sumar el precio de venta de los paquetes
                         
-                        if (sucursal == 4 || sucursal == 6) {
-                            con2 = conectar2.conectarMySQL(sucursal);
-                        } else {
-                            con2 = conectar.conectarMySQL();
-                        }
-                        stmt2 = con2.createStatement();
-                        rs2 = stmt2.executeQuery("select sum(detallev.precionorsin)/count(detallev.art_id),"
-                                + "sum(detallev.preciocompra)/count(detallev.art_id)"
-                                + "from detallev inner join venta\n"
-                                + "on detallev.ven_id = venta.ven_id inner join articulo on\n"
-                                + " detallev.art_id=articulo.art_id\n"
-                                + "where articulo.art_id='" + idarticulo + "' and\n"
-                                + "venta.fecha between '" + fecha1ma + "' and '" + fecha3ma + "'"
-                                + "and venta.status!= -1  ");
-                        while (rs2.next()) {
-                            precioventa = precioventa+(rs2.getFloat(1));
-                            preciocompra = preciocompra+rs2.getFloat(2);
-                            contar=contar+1;
-                        }
-                        if (valor==4){
-                            System.out.println(preciocompra+"/n"+contar);
-                        }
-                        con2.close();
-                        /////fin de suma de precio venta de los paquetes
+                       
 
                         /////////////////////// suma de cantidad venta  de producto basee 
                         if (sucursal == 4 || sucursal == 6) {
@@ -265,13 +241,11 @@ public class MetodosResurtidosoloproductos_esteaño {
                                 + " venta.fecha between '" + fecha1ma + "' and '" + fecha3ma + "'"
                                 + " and venta.status!=-1");
                         if (rs2.next()) {
-                            contar =contar+1;
-                             if (valor==4){
-                            System.out.println(rs2.getFloat(3)+""+"/n"+contar);
-                        }
-                            cantidad3ma = cantidad3ma + rs2.getFloat(1);
-                            precioventa = (precioventa + rs2.getFloat(2))/contar;
-                            preciocompra = (preciocompra + rs2.getFloat(3))/contar;
+                           
+                             
+                            cantidad3ma = rs2.getFloat(1);
+                            precioventa =  rs2.getFloat(2);
+                            preciocompra =  rs2.getFloat(3);
                         }
                         con2.close();
                         /////////////////////// fin de 3 meses anteriores                    
