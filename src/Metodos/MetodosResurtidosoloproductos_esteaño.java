@@ -330,9 +330,10 @@ public class MetodosResurtidosoloproductos_esteaño {
                             con2 = conectar.conectarMySQL();
                         }
                         stmt2 = con2.createStatement();
-                        rs2 = stmt2.executeQuery("select sum(cantidad) from detallev,"
+                        rs2 = stmt2.executeQuery("select sum(cantidad) ,"
                                 + "sum(detallev.precionorsin)/count(detallev.art_id),"
                                 + "sum(detallev.preciocompra)/count(detallev.art_id)"
+                                + "from detallev"
                                 + "inner join venta on venta.ven_id = detallev.ven_id "
                                 + " where detallev.art_id=" + valor + " and "
                                 + " venta.fecha between '" + fecha1md + "' and '" + fecha3md + "'"
