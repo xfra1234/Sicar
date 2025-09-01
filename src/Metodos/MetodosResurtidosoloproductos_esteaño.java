@@ -297,7 +297,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                         celda.setCellValue((cantidad3ma / 3));
                         celda.setCellStyle(Numerico);
 
-                        celda = fila.createCell(11);
+                        celda = fila.createCell(10);
                         celda.setCellValue(new HSSFRichTextString(departamento + " "));
                         celda.setCellStyle(encabezados);
 
@@ -329,7 +329,7 @@ public class MetodosResurtidosoloproductos_esteaño {
 
                             //// Formula Dias Inventario 
                             Formula = "B" + filaformula + "*30/D" + filaformula;
-                            celda = fila.createCell(10);
+                            celda = fila.createCell(9);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
 
@@ -411,7 +411,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                         celda.setCellValue((cantidad3ma / 3));
                         celda.setCellStyle(Numerico);
 
-                        celda = fila.createCell(11);
+                        celda = fila.createCell(10);
                         celda.setCellValue(new HSSFRichTextString(departamento + " "));
                         celda.setCellStyle(encabezados);
                         if (filaa > 0) {
@@ -439,7 +439,7 @@ public class MetodosResurtidosoloproductos_esteaño {
 
                             //// Formula Dias Inventario 
                             Formula = "B" + filaformula + "*30/D" + filaformula;
-                            celda = fila.createCell(10);
+                            celda = fila.createCell(9);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
 
@@ -457,7 +457,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                     contar = 0;
                     iva = 0;
                 }
-                hoja.setAutoFilter(new CellRangeAddress(0, filaa, 1, 11));
+                hoja.setAutoFilter(new CellRangeAddress(0, filaa-1, 1, 11));
 //                for (int x = 0; x < 20; x++) {
 //                    hoja.autoSizeColumn(x);
 //                }
