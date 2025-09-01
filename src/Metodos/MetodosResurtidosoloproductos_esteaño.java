@@ -239,7 +239,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                                 + " and venta.status!=-1");
                         if (rs2.next()) {
 
-                            cantidad3ma = cantidad3ma +rs2.getFloat(1);
+                            cantidad3ma = cantidad3ma + rs2.getFloat(1);
                             precioventa = rs2.getFloat(2);
                             preciocompra = rs2.getFloat(3);
                         }
@@ -261,7 +261,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                         if (rs2.next()) {
                             nombrearticulo = rs2.getString(1);
                             departamento = rs2.getString(2);
-                            existencia=rs2.getFloat(3);
+                            existencia = rs2.getFloat(3);
 
                         }
                         con2.close();
@@ -282,12 +282,11 @@ public class MetodosResurtidosoloproductos_esteaño {
                         celda = fila.createCell(2);
                         celda.setCellValue((preciocompra));
                         celda.setCellStyle(Numerico);
-           
-                        
+
                         celda = fila.createCell(3);
                         celda.setCellValue((precioventa));
-                        celda.setCellStyle(Numerico); 
-                        
+                        celda.setCellStyle(Numerico);
+
                         celda = fila.createCell(5);
                         celda.setCellValue((cantidad3ma / 3));
                         celda.setCellStyle(Numerico);
@@ -304,27 +303,27 @@ public class MetodosResurtidosoloproductos_esteaño {
                             int filaformula = filaa + 1;
                             String Formula;
                             ///Formula utilidad bruta
-                        
-                                Formula = "D" + filaformula + "-C"+filaformula;
+
+                            Formula = "D" + filaformula + "-C" + filaformula;
                             celda = fila.createCell(4);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
-                            
+
                             ///Formula utilidad Xmes
-                            Formula = "E" + filaformula + "*F"+filaformula;
-                            celda = fila.createCell(7);
+                            Formula = "E" + filaformula + "*F" + filaformula;
+                            celda = fila.createCell(6);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
-                            
-                             ///Formula utilidad X7Dias
-                            Formula = "E" + filaformula + "*H"+filaformula;
+
+                            ///Formula utilidad X7Dias
+                            Formula = "E" + filaformula + "*H" + filaformula;
                             celda = fila.createCell(8);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
-                            
+
                             //// Formula 7 dias mes anterior
                             Formula = "F" + filaformula + "/4";
-                            celda = fila.createCell(6);
+                            celda = fila.createCell(7);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
 
@@ -339,7 +338,6 @@ public class MetodosResurtidosoloproductos_esteaño {
                             celda = fila.createCell(10);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
-
 
                         }
                         filaa = filaa + 1;
@@ -365,8 +363,8 @@ public class MetodosResurtidosoloproductos_esteaño {
                                 + " and venta.status!=-1");
                         if (rs2.next()) {
                             cantidad3md = cantidad3md + rs2.getFloat(1);
-                            precioventa=(rs2.getFloat(2));
-                            preciocompra=rs2.getFloat(3);
+                            precioventa = (rs2.getFloat(2));
+                            preciocompra = rs2.getFloat(3);
                         }
                         System.out.println(preciocompra);
                         con2.close();
@@ -385,7 +383,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                         if (rs2.next()) {
                             nombrearticulo = rs2.getString(1);
                             departamento = rs2.getString(2);
-                            existencia=rs2.getFloat(3);
+                            existencia = rs2.getFloat(3);
                         }
                         con2.close();
                         ///////fin de obtener nombre y departamento
@@ -405,12 +403,11 @@ public class MetodosResurtidosoloproductos_esteaño {
                         celda = fila.createCell(2);
                         celda.setCellValue((preciocompra));
                         celda.setCellStyle(Numerico);
-           
-                        
+
                         celda = fila.createCell(3);
                         celda.setCellValue((precioventa));
-                        celda.setCellStyle(Numerico); 
-                        
+                        celda.setCellStyle(Numerico);
+
                         celda = fila.createCell(5);
                         celda.setCellValue((cantidad3ma / 3));
                         celda.setCellStyle(Numerico);
@@ -423,26 +420,27 @@ public class MetodosResurtidosoloproductos_esteaño {
                             int filaformula = filaa + 1;
                             String Formula;
 
-                                Formula = "D" + filaformula + "-C"+filaformula;
+                            ///Formula utilidad bruta
+                            Formula = "D" + filaformula + "-C" + filaformula;
                             celda = fila.createCell(4);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
-                            
+
                             ///Formula utilidad Xmes
-                            Formula = "E" + filaformula + "*F"+filaformula;
-                            celda = fila.createCell(7);
+                            Formula = "E" + filaformula + "*F" + filaformula;
+                            celda = fila.createCell(6);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
-                            
-                             ///Formula utilidad X7Dias
-                            Formula = "E" + filaformula + "*H"+filaformula;
+
+                            ///Formula utilidad X7Dias
+                            Formula = "E" + filaformula + "*H" + filaformula;
                             celda = fila.createCell(8);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
-                            
+
                             //// Formula 7 dias mes anterior
                             Formula = "F" + filaformula + "/4";
-                            celda = fila.createCell(6);
+                            celda = fila.createCell(7);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
 
@@ -457,7 +455,6 @@ public class MetodosResurtidosoloproductos_esteaño {
                             celda = fila.createCell(10);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
-
 
                         }
                         filaa = filaa + 1;
