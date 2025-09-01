@@ -310,25 +310,25 @@ public class MetodosResurtidosoloproductos_esteaño {
                             String Formula;
                             ///Formula utilidad bruta
 
-                            Formula = "D" + filaformula + "-C" + filaformula;
+                            Formula = "E" + filaformula + "-D" + filaformula;
                             celda = fila.createCell(5);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
 
                             //// Formula 7 dias mes anterior
-                            Formula = "F" + filaformula + "/4";
+                            Formula = "G" + filaformula + "/4";
                             celda = fila.createCell(7);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
 
                             //// Formula Resurtido mes   
-                            Formula = "G" + filaformula + "-C" + filaformula;
+                            Formula = "H" + filaformula + "-C" + filaformula;
                             celda = fila.createCell(8);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
 
                             //// Formula Dias Inventario 
-                            Formula = "B" + filaformula + "*30/D" + filaformula;
+                            Formula = "C" + filaformula + "*30/G" + filaformula;
                             celda = fila.createCell(9);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
@@ -418,30 +418,31 @@ public class MetodosResurtidosoloproductos_esteaño {
                             int filaformula = filaa + 1;
                             String Formula;
 
-                           ///Formula utilidad bruta
+                              ///Formula utilidad bruta
 
-                            Formula = "D" + filaformula + "-C" + filaformula;
+                            Formula = "E" + filaformula + "-D" + filaformula;
                             celda = fila.createCell(5);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
 
                             //// Formula 7 dias mes anterior
-                            Formula = "F" + filaformula + "/4";
+                            Formula = "G" + filaformula + "/4";
                             celda = fila.createCell(7);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
 
                             //// Formula Resurtido mes   
-                            Formula = "G" + filaformula + "-C" + filaformula;
+                            Formula = "H" + filaformula + "-C" + filaformula;
                             celda = fila.createCell(8);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
 
                             //// Formula Dias Inventario 
-                            Formula = "B" + filaformula + "*30/D" + filaformula;
+                            Formula = "C" + filaformula + "*30/G" + filaformula;
                             celda = fila.createCell(9);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
+
 
                         }
                         filaa = filaa + 1;
