@@ -304,14 +304,15 @@ public class MetodosResurtidosoloproductos_esteaño {
                             int filaformula = filaa + 1;
                             String Formula;
                             ///Formula utilidad bruta
-                            Formula = "D" + filaformula + "-C"+filaformula;
+                        
+                                Formula = "D" + filaformula + "-C"+filaformula;
                             celda = fila.createCell(4);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
                             
                             ///Formula utilidad Xmes
                             Formula = "E" + filaformula + "*F"+filaformula;
-                            celda = fila.createCell(6);
+                            celda = fila.createCell(7);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
                             
@@ -323,7 +324,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                             
                             //// Formula 7 dias mes anterior
                             Formula = "F" + filaformula + "/4";
-                            celda = fila.createCell(5);
+                            celda = fila.createCell(6);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
 
@@ -335,9 +336,10 @@ public class MetodosResurtidosoloproductos_esteaño {
 
                             //// Formula Dias Inventario Mes  Anterior  
                             Formula = "B" + filaformula + "*30/F" + filaformula;
-                            celda = fila.createCell(9);
+                            celda = fila.createCell(10);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
+
 
                         }
                         filaa = filaa + 1;
@@ -428,7 +430,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                             
                             ///Formula utilidad Xmes
                             Formula = "E" + filaformula + "*F"+filaformula;
-                            celda = fila.createCell(6);
+                            celda = fila.createCell(7);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
                             
@@ -440,7 +442,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                             
                             //// Formula 7 dias mes anterior
                             Formula = "F" + filaformula + "/4";
-                            celda = fila.createCell(5);
+                            celda = fila.createCell(6);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
 
@@ -452,7 +454,7 @@ public class MetodosResurtidosoloproductos_esteaño {
 
                             //// Formula Dias Inventario Mes  Anterior  
                             Formula = "B" + filaformula + "*30/F" + filaformula;
-                            celda = fila.createCell(9);
+                            celda = fila.createCell(10);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
 
