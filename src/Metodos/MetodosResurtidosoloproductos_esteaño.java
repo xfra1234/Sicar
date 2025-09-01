@@ -328,7 +328,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                             celda.setCellStyle(Numerico);
 
                             //// Formula Resurtido mes   anterior
-                            Formula = "H" + filaformula + "-B" + filaformula;
+                            Formula = "B" + filaformula + "-H" + filaformula;
                             celda = fila.createCell(9);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
@@ -445,7 +445,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                             celda.setCellStyle(Numerico);
 
                             //// Formula Resurtido mes   anterior
-                            Formula = "H" + filaformula + "-B" + filaformula;
+                            Formula = "B"+ filaformula + "-H" + filaformula;
                             celda = fila.createCell(9);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
