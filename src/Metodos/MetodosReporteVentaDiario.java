@@ -33,7 +33,7 @@ public class MetodosReporteVentaDiario {
     Connection con = null;
     static ResultSet rs = null;
     private Statement stmt = null;
-    
+
     Connection con2 = null;
     static ResultSet rs2 = null;
     private Statement stmt2 = null;
@@ -53,40 +53,40 @@ public class MetodosReporteVentaDiario {
             case 1:
                 abrirarchivo = ("C:\\Users\\Cpu\\Documents\\Ventas Diarias.xls");
                 guardararchivo = ("C:\\Users\\Cpu\\Desktop\\Ventas Diarias Sucursal_ Magisterio del " + fechauno + " al " + fechados + ".xls");
-                excelsucursales(fecha1, fecha2, fechauno, fechados,sucursal);
+                excelsucursales(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
             case 2:
                 abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Ventas Diarias.xls");
                 guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Ventas Diarias Sucursal_ Coapinole del " + fechauno + " al " + fechados + ".xls");
-                excelsucursales(fecha1, fecha2, fechauno, fechados,sucursal);
+                excelsucursales(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
             case 3:
                 abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Ventas Diarias.xls");
                 guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Ventas Diarias Sucursal_ Bodega del " + fechauno + " al " + fechados + ".xls");
-                excelsucursales(fecha1, fecha2, fechauno, fechados,sucursal);
+                excelsucursales(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
 
             case 4:
                 abrirarchivo = ("C:\\Users\\billy\\Documents\\Ventas Diarias.xls");
                 guardararchivo = ("C:\\Users\\billy\\Desktop\\Ventas Diarias Sucursal_ Bodega pdv del " + fechauno + " al " + fechados + ".xls");
-                excelsucursales(fecha1, fecha2, fechauno, fechados,sucursal);
+                excelsucursales(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
-                
+
             case 5:
                 abrirarchivo = ("C:\\Users\\USER\\Documents\\Ventas Diarias.xls");
                 guardararchivo = ("C:\\Users\\USER\\Desktop\\Ventas Diarias Sucursal_ Mojoneras del " + fechauno + " al " + fechados + ".xls");
-                excelsucursales(fecha1, fecha2, fechauno, fechados,sucursal);
+                excelsucursales(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
-                case 6:
+            case 6:
                 abrirarchivo = ("C:\\Users\\W11\\Documents\\Ventas Diarias.xls");
                 guardararchivo = ("C:\\Users\\W11\\Desktop\\Ventas Diarias Sucursal_ Pitillal del " + fechauno + " al " + fechados + ".xls");
-                excelsucursales(fecha1, fecha2, fechauno, fechados,sucursal);
+                excelsucursales(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
         }
     }
 
-    public void excelsucursales(String fecha1, String fecha2, String fechauno, String fechados,int sucursal) {
-        try ( FileInputStream file = new FileInputStream(new File(abrirarchivo))) {
+    public void excelsucursales(String fecha1, String fecha2, String fechauno, String fechados, int sucursal) {
+        try (FileInputStream file = new FileInputStream(new File(abrirarchivo))) {
             // leer archivo excel
             POIFSFileSystem fs = new POIFSFileSystem(file);
             HSSFWorkbook libro = new HSSFWorkbook(fs);
@@ -144,7 +144,7 @@ public class MetodosReporteVentaDiario {
                 if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
-                 con = conectar.conectarMySQL();   
+                    con = conectar.conectarMySQL();
                 }
                 stmt = con.createStatement();
 
@@ -201,7 +201,7 @@ public class MetodosReporteVentaDiario {
                 if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
-                 con = conectar.conectarMySQL();   
+                    con = conectar.conectarMySQL();
                 }
                 stmt = con.createStatement();
 
@@ -245,7 +245,7 @@ public class MetodosReporteVentaDiario {
                 if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
-                 con = conectar.conectarMySQL();   
+                    con = conectar.conectarMySQL();
                 }
                 stmt = con.createStatement();
 
@@ -290,7 +290,7 @@ public class MetodosReporteVentaDiario {
                 if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
-                 con = conectar.conectarMySQL();   
+                    con = conectar.conectarMySQL();
                 }
                 stmt = con.createStatement();
 
