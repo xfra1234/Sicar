@@ -363,9 +363,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                             precioventa = (rs2.getFloat(2));
                             preciocompra = rs2.getFloat(3);
                         }
-                        if(valor==24){
-                            System.out.println(preciocompra);
-                        }
+                      
                         
                         con2.close();
                         //////////obtener el nombre y el departamento del producto
@@ -384,6 +382,9 @@ public class MetodosResurtidosoloproductos_esteaño {
                             nombrearticulo = rs2.getString(1);
                             departamento = rs2.getString(2);
                             existencia = rs2.getFloat(3);
+                        }
+                          if(valor==24){
+                            System.out.println(nombrearticulo+"  - "+preciocompra);
                         }
                         con2.close();
                         ///////fin de obtener nombre y departamento
