@@ -461,6 +461,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                     cantidad3ma = 0;
                     cantidad3md = 0;
                     preciocompra = 0;
+                    precioventa=0;
                     contar = 0;
                     iva = 0;
                 }
