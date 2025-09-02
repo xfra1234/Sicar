@@ -355,7 +355,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                                 + " from detallev "
                                 + " inner join venta on venta.ven_id = detallev.ven_id "
                                 + " where detallev.art_id=" + valor + " and "
-                                + " venta.fecha between '" + fecha1md + "' and '" + fecha3md + "'"
+                                + " venta.fecha between '" + fecha1ma + "' and '" + fecha3ma + "'"
                                 + " and venta.status!=-1");
                         if (rs2.next()) {
                             cantidad3md = cantidad3md + rs2.getFloat(1);
