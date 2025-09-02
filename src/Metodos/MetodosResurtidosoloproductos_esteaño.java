@@ -198,7 +198,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                     } else {
                         con = conectar.conectarMySQL();
                     }
-                    contador1=contador1+1;
+                    contador1 = contador1 + 1;
                     stmt = con.createStatement();
                     rs = stmt.executeQuery("select paquete.paquete from paquete where paquete.articulo=" + valor + "");
                     if (rs.next()) {
@@ -244,8 +244,8 @@ public class MetodosResurtidosoloproductos_esteaño {
                             precioventa = rs2.getFloat(2);
                             preciocompra = rs2.getFloat(3);
                         }
-                         if(valor==24){
-                            System.out.println(preciocompra+"hola");
+                        if (valor == 24) {
+                            System.out.println(preciocompra + "hola");
                         }
                         con2.close();
                         /////////////////////// fin de 3 meses anteriores                    
@@ -274,11 +274,10 @@ public class MetodosResurtidosoloproductos_esteaño {
                         if (fila == null) {
                             fila = hoja.createRow(filaa);
                         }
-                        
+
                         celda = fila.createCell(0);
                         celda.setCellValue(new HSSFRichTextString(contador1 + " "));
                         celda.setCellStyle(encabezados);
-
 
                         celda = fila.createCell(1);
                         celda.setCellValue(new HSSFRichTextString(nombrearticulo + " "));
@@ -362,9 +361,11 @@ public class MetodosResurtidosoloproductos_esteaño {
                             cantidad3md = cantidad3md + rs2.getFloat(1);
                             precioventa = (rs2.getFloat(2));
                             preciocompra = rs2.getFloat(3);
+                            if (valor == 24) {
+                                System.out.println(rs2.getFloat(2));
+                            }
                         }
-                      
-                        
+
                         con2.close();
                         //////////obtener el nombre y el departamento del producto
                         if (sucursal == 4 || sucursal == 6) {
@@ -383,9 +384,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                             departamento = rs2.getString(2);
                             existencia = rs2.getFloat(3);
                         }
-                          if(valor==24){
-                            System.out.println(nombrearticulo+"  - "+preciocompra);
-                        }
+
                         con2.close();
                         ///////fin de obtener nombre y departamento
                         fila = hoja.getRow(filaa);
@@ -393,11 +392,11 @@ public class MetodosResurtidosoloproductos_esteaño {
                         if (fila == null) {
                             fila = hoja.createRow(filaa);
                         }
-                        
+
                         celda = fila.createCell(0);
                         celda.setCellValue(new HSSFRichTextString(contador1 + " "));
                         celda.setCellStyle(encabezados);
-                        
+
                         celda = fila.createCell(1);
                         celda.setCellValue(new HSSFRichTextString(nombrearticulo + " "));
                         celda.setCellStyle(encabezados);
@@ -425,8 +424,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                             int filaformula = filaa + 1;
                             String Formula;
 
-                              ///Formula utilidad bruta
-
+                            ///Formula utilidad bruta
                             Formula = "E" + filaformula + "-D" + filaformula;
                             celda = fila.createCell(5);
                             celda.setCellFormula(Formula);
@@ -450,23 +448,22 @@ public class MetodosResurtidosoloproductos_esteaño {
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
 
-
                         }
                         filaa = filaa + 1;
 
                         con.close();
                         con2.close();
                     }
-                    
+
                     existencia = 0;
                     cantidad3ma = 0;
                     cantidad3md = 0;
                     preciocompra = 0;
-                    precioventa=0;
+                    precioventa = 0;
                     contar = 0;
                     iva = 0;
                 }
-                hoja.setAutoFilter(new CellRangeAddress(0, filaa-1, 1, 11));
+                hoja.setAutoFilter(new CellRangeAddress(0, filaa - 1, 1, 11));
 //                for (int x = 0; x < 20; x++) {
 //                    hoja.autoSizeColumn(x);
 //                }
