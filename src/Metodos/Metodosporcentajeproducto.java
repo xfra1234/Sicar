@@ -32,6 +32,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.util.CellRangeAddress;
 
 /**
  * p
@@ -70,7 +71,7 @@ public class Metodosporcentajeproducto {
     static protected ArrayList<Float> Precioventa20 = new ArrayList();
     static protected ArrayList<Float> Preciocompra20 = new ArrayList();
 
-    static int productosnum = 0, productosnum20 = 0;
+    static int productosnum = 0, productosnum20 = 0, contar = 0;
     static float sumaproductos = 0, porcentajeporducto = 0;
     String abrirarchivo = "", guardararchivo = "", nombresucursal = "";
     float preciocompra, precioventa;
@@ -106,8 +107,8 @@ public class Metodosporcentajeproducto {
             int id;
             double cantidad = 0;
             if (sucursal == 4 || sucursal == 6) {
-                    con = conectar2.conectarMySQL(sucursal);
-                } else {
+                con = conectar2.conectarMySQL(sucursal);
+            } else {
                 con = conectar.conectarMySQL();
             }
             stmt = con.createStatement();
@@ -115,8 +116,8 @@ public class Metodosporcentajeproducto {
                     + " unidad on unidad.uni_id =articulo.unidadventa  "
             );
             if (sucursal == 4 || sucursal == 6) {
-                    con2 = conectar2.conectarMySQL(sucursal);
-                } else {
+                con2 = conectar2.conectarMySQL(sucursal);
+            } else {
                 con2 = conectar.conectarMySQL();
             }
             stmt2 = con.createStatement();
@@ -169,9 +170,9 @@ public class Metodosporcentajeproducto {
                 rs3 = stmt3.executeQuery("select paquete.articulo from paquete where paquete.articulo= '" + valor + "';");
                 if (rs3.next()) {
 
-                   if (sucursal == 4 || sucursal == 6) {
-                    con = conectar2.conectarMySQL(sucursal);
-                } else {
+                    if (sucursal == 4 || sucursal == 6) {
+                        con = conectar2.conectarMySQL(sucursal);
+                    } else {
                         con = conectar.conectarMySQL();
                     }
                     stmt = con.createStatement();
@@ -183,8 +184,8 @@ public class Metodosporcentajeproducto {
 //                        JOptionPane.showMessageDialog(null, "olo2");
 //                    }
                         if (sucursal == 4 || sucursal == 6) {
-                    con2 = conectar2.conectarMySQL(sucursal);
-                } else {
+                            con2 = conectar2.conectarMySQL(sucursal);
+                        } else {
                             con2 = conectar.conectarMySQL();
                         }
                         stmt2 = con2.createStatement();
@@ -204,8 +205,8 @@ public class Metodosporcentajeproducto {
                         con2.close();
 
                         if (sucursal == 4 || sucursal == 6) {
-                    con2 = conectar2.conectarMySQL(sucursal);
-                } else {
+                            con2 = conectar2.conectarMySQL(sucursal);
+                        } else {
                             con2 = conectar.conectarMySQL();
                         }
                         stmt2 = con2.createStatement();
@@ -222,9 +223,9 @@ public class Metodosporcentajeproducto {
                         con2.close();
 
                     }
-                   if (sucursal == 4 || sucursal == 6) {
-                    con2 = conectar2.conectarMySQL(sucursal);
-                } else {
+                    if (sucursal == 4 || sucursal == 6) {
+                        con2 = conectar2.conectarMySQL(sucursal);
+                    } else {
                         con2 = conectar.conectarMySQL();
                     }
                     stmt2 = con2.createStatement();
@@ -242,7 +243,7 @@ public class Metodosporcentajeproducto {
                         nombreproducto = rs2.getString(2);
                         unidad = rs2.getString(3);
                         ventaproducto = ventaproducto + (rs2.getFloat(4));
-                        precioventa =  rs2.getFloat(5);
+                        precioventa = rs2.getFloat(5);
 
                     }
                     con2.close();
@@ -251,8 +252,8 @@ public class Metodosporcentajeproducto {
                 } else {
 
                     if (sucursal == 4 || sucursal == 6) {
-                    con2 = conectar2.conectarMySQL(sucursal);
-                } else {
+                        con2 = conectar2.conectarMySQL(sucursal);
+                    } else {
                         con2 = conectar.conectarMySQL();
                     }
                     stmt2 = con2.createStatement();
@@ -314,17 +315,17 @@ public class Metodosporcentajeproducto {
             int id;
             double cantidad = 0;
             if (sucursal == 4 || sucursal == 6) {
-                    con = conectar2.conectarMySQL(sucursal);
-                } else {
-                    con = conectar.conectarMySQL();
-                }
+                con = conectar2.conectarMySQL(sucursal);
+            } else {
+                con = conectar.conectarMySQL();
+            }
             stmt = con.createStatement();
             rs = stmt.executeQuery("select articulo.art_id form,articulo.descripcion,unidad.nombre from  articulo inner join"
                     + " unidad on unidad.uni_id =articulo.unidadventa  "
             );
             if (sucursal == 4 || sucursal == 6) {
-                    con2 = conectar2.conectarMySQL(sucursal);
-                } else {
+                con2 = conectar2.conectarMySQL(sucursal);
+            } else {
                 con2 = conectar.conectarMySQL();
             }
             stmt2 = con.createStatement();
@@ -367,7 +368,7 @@ public class Metodosporcentajeproducto {
             for (int i = 0; i < contador; i++) {
                 valor = idNumeros.get(i);
 
-               if (sucursal == 4 || sucursal == 6) {
+                if (sucursal == 4 || sucursal == 6) {
                     con3 = conectar2.conectarMySQL(sucursal);
                 } else {
                     con3 = conectar.conectarMySQL();
@@ -377,8 +378,8 @@ public class Metodosporcentajeproducto {
                 if (rs3.next()) {
 
                     if (sucursal == 4 || sucursal == 6) {
-                    con = conectar2.conectarMySQL(sucursal);
-                } else {
+                        con = conectar2.conectarMySQL(sucursal);
+                    } else {
                         con = conectar.conectarMySQL();
                     }
                     stmt = con.createStatement();
@@ -389,9 +390,9 @@ public class Metodosporcentajeproducto {
 //                         if(idarticulo==2078||idarticulo==190){
 //                        JOptionPane.showMessageDialog(null, "olo2");
 //                    }
-                       if (sucursal == 4 || sucursal == 6) {
-                    con2 = conectar2.conectarMySQL(sucursal);
-                } else {
+                        if (sucursal == 4 || sucursal == 6) {
+                            con2 = conectar2.conectarMySQL(sucursal);
+                        } else {
                             con2 = conectar.conectarMySQL();
                         }
                         stmt2 = con2.createStatement();
@@ -412,8 +413,8 @@ public class Metodosporcentajeproducto {
                         con2.close();
 
                         if (sucursal == 4 || sucursal == 6) {
-                    con2 = conectar2.conectarMySQL(sucursal);
-                } else {
+                            con2 = conectar2.conectarMySQL(sucursal);
+                        } else {
                             con2 = conectar.conectarMySQL();
                         }
                         stmt2 = con2.createStatement();
@@ -424,11 +425,10 @@ public class Metodosporcentajeproducto {
                                 + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "'"
                                 + "and venta.status!= -1");
                         if (rs2.next()) {
-                            if(valor==4)
-                            {
-                               // JOptionPane.showMessageDialog(null, rs2.getFloat(1));
+                            if (valor == 4) {
+                                // JOptionPane.showMessageDialog(null, rs2.getFloat(1));
                             }
-                            cantidadproducto=0;
+                            cantidadproducto = 0;
                             cantidadproducto = cantidadproducto + (rs2.getFloat(1));
 
                         }
@@ -436,8 +436,8 @@ public class Metodosporcentajeproducto {
 
                     }
                     if (sucursal == 4 || sucursal == 6) {
-                    con2 = conectar2.conectarMySQL(sucursal);
-                } else {
+                        con2 = conectar2.conectarMySQL(sucursal);
+                    } else {
                         con2 = conectar.conectarMySQL();
                     }
                     stmt2 = con2.createStatement();
@@ -455,7 +455,7 @@ public class Metodosporcentajeproducto {
                         nombreproducto = rs2.getString(2);
                         unidad = rs2.getString(3);
                         ventaproducto = ventaproducto + (rs2.getFloat(4));
-                        precioventa =  rs2.getFloat(5);
+                        precioventa = rs2.getFloat(5);
                         preciocompra = rs2.getFloat(6);
 
                     }
@@ -465,8 +465,8 @@ public class Metodosporcentajeproducto {
                 } else {
 
                     if (sucursal == 4 || sucursal == 6) {
-                    con2 = conectar2.conectarMySQL(sucursal);
-                } else {
+                        con2 = conectar2.conectarMySQL(sucursal);
+                    } else {
                         con2 = conectar.conectarMySQL();
                     }
                     stmt2 = con2.createStatement();
@@ -543,18 +543,18 @@ public class Metodosporcentajeproducto {
                 nombresucursal = "Bodega pdv";
                 GeneraExcelsucursales(fechauno, fechados, nombresucursal);
                 break;
-                
+
             case 5:
                 guardararchivo = ("C:\\Users\\USER\\Desktop\\Productos Conforman el 80% de venta Bodega tickets  del " + fechauno + " al " + fechados + ".xls");
                 nombresucursal = "Mojoneras";
                 GeneraExcelsucursales(fechauno, fechados, nombresucursal);
-                break;    
-                
-                case 6:
+                break;
+
+            case 6:
                 guardararchivo = ("C:\\Users\\W11\\Desktop\\Productos Conforman el 80% de venta Bodega tickets  del " + fechauno + " al " + fechados + ".xls");
                 nombresucursal = "Pitillal";
                 GeneraExcelsucursales(fechauno, fechados, nombresucursal);
-                break;    
+                break;
         }
     }
 
@@ -680,27 +680,31 @@ public class Metodosporcentajeproducto {
         celda.setCellStyle(headerStyle);
 
         fila = hoja.createRow(6);
-        celda = fila.createCell(0);
+        celda = fila.createCell(2);
         celda.setCellValue(new HSSFRichTextString("Producto"));
         celda.setCellStyle(headerStyle);
 
-        celda = fila.createCell(1);
+        celda = fila.createCell(3);
         celda.setCellValue(new HSSFRichTextString("Cantidad"));
         celda.setCellStyle(headerStyle);
 
-        celda = fila.createCell(2);
+        celda = fila.createCell(4);
         celda.setCellValue(new HSSFRichTextString("Precio Promedio Venta"));
         celda.setCellStyle(headerStyle);
 
-        celda = fila.createCell(3);
+        celda = fila.createCell(5);
         celda.setCellValue(new HSSFRichTextString("Precio Compra"));
         celda.setCellStyle(headerStyle);
 
-        celda = fila.createCell(4);
+        celda = fila.createCell(6);
         celda.setCellValue(new HSSFRichTextString("Venta"));
         celda.setCellStyle(headerStyle);
 
-        celda = fila.createCell(5);
+        celda = fila.createCell(7);
+        celda.setCellValue(new HSSFRichTextString("Utilidad"));
+        celda.setCellStyle(headerStyle);
+
+        celda = fila.createCell(8);
         celda.setCellValue(new HSSFRichTextString("Porcentaje"));
         celda.setCellStyle(headerStyle);
 
@@ -710,37 +714,57 @@ public class Metodosporcentajeproducto {
         int i = 7;
 
         for (int j = 0; j < productosnum; j++) {
+            contar = contar + 1;
             fila = hoja.createRow(i);
             celda = fila.createCell(0);
+            celda.setCellValue(new HSSFRichTextString(contar + ""));
+            celda.setCellStyle(encabezados);
+
+            fila = hoja.createRow(i);
+            celda = fila.createCell(1);
+            celda.setCellValue(new HSSFRichTextString(contar + ""));
+            celda.setCellStyle(encabezados);
+
+            fila = hoja.createRow(i);
+            celda = fila.createCell(2);
             celda.setCellValue(new HSSFRichTextString(Nombreproducto.get(j)));
             celda.setCellStyle(encabezados);
 
 //            celda = fila.createCell(1);
 //            celda.setCellValue((Cantidadproducto.get(j)));
 //            celda.setCellStyle(style);
-            celda = fila.createCell(1);
+            celda = fila.createCell(3);
             celda.setCellValue((Cantidadproducto.get(j)));
             celda.setCellStyle(Numerico);
 
-            celda = fila.createCell(2);
+            celda = fila.createCell(4);
             celda.setCellValue((Precioventa.get(j)));
             celda.setCellStyle(conta);
 
-            celda = fila.createCell(3);
+            celda = fila.createCell(5);
             celda.setCellValue((Preciocompra.get(j)));
             celda.setCellStyle(conta);
 
-            celda = fila.createCell(4);
+            celda = fila.createCell(6);
             celda.setCellValue((Ventaproducto.get(j)));
             celda.setCellStyle(conta);
 
-            celda = fila.createCell(5);
+            celda = fila.createCell(8);
             celda.setCellValue((Porcentajeproducto.get(j)));
             celda.setCellStyle(porcentaje);
+
+            //// Formula de utilidad
+            String Formula;
+            Formula = "(E" + i + "-F" + i + ")*D" + i;
+            celda = fila.createCell(7);
+            celda.setCellFormula(Formula);
+            celda.setCellStyle(Numerico);
 
             i = i + 1;
 
         }
+        hoja.setAutoFilter(new CellRangeAddress(6, i - 1, 1, 8));
+        contar = 0;
         i = i + 1;
         fila = hoja.createRow(i);
         celda = fila.createCell(0);
@@ -759,59 +783,78 @@ public class Metodosporcentajeproducto {
 
         i = i + 1;
         fila = hoja.createRow(i);
-        celda = fila.createCell(0);
+        celda = fila.createCell(2);
         celda.setCellValue(new HSSFRichTextString("Producto"));
         celda.setCellStyle(headerStyle);
 
-        celda = fila.createCell(1);
+        celda = fila.createCell(3);
         celda.setCellValue(new HSSFRichTextString("Cantidad"));
         celda.setCellStyle(headerStyle);
 
-        celda = fila.createCell(2);
+        celda = fila.createCell(4);
         celda.setCellValue(new HSSFRichTextString("Precio Promedio venta"));
         celda.setCellStyle(headerStyle);
 
-        celda = fila.createCell(3);
+        celda = fila.createCell(5);
         celda.setCellValue(new HSSFRichTextString("Precio Compra "));
         celda.setCellStyle(headerStyle);
 
-        celda = fila.createCell(4);
+        celda = fila.createCell(6);
         celda.setCellValue(new HSSFRichTextString("Venta"));
         celda.setCellStyle(headerStyle);
 
-        celda = fila.createCell(5);
+        celda = fila.createCell(7);
+        celda.setCellValue(new HSSFRichTextString("Utilidad"));
+        celda.setCellStyle(headerStyle);
+
+        celda = fila.createCell(8);
         celda.setCellValue(new HSSFRichTextString("Porcentaje"));
         celda.setCellStyle(headerStyle);
         i = i + 1;
         for (int j = 0; j < productosnum20; j++) {
+            contar = contar + 1;
             fila = hoja.createRow(i);
-            celda = fila.createCell(0);
+            celda = fila.createCell(1);
+            celda.setCellValue(new HSSFRichTextString(contar + ""));
+            celda.setCellStyle(encabezados);
+
+            fila = hoja.createRow(i);
+            celda = fila.createCell(1);
+            celda.setCellValue(new HSSFRichTextString(contar + ""));
+            celda.setCellStyle(encabezados);
+
+            fila = hoja.createRow(i);
+            celda = fila.createCell(2);
             celda.setCellValue(new HSSFRichTextString(Nombreproducto20.get(j)));
             celda.setCellStyle(encabezados);
 
 //            celda = fila.createCell(1);
 //            celda.setCellValue((Cantidadproducto.get(j)));
 //            celda.setCellStyle(style);
-            celda = fila.createCell(1);
+            celda = fila.createCell(3);
             celda.setCellValue((Cantidadproducto20.get(j)));
             celda.setCellStyle(Numerico);
 
-            celda = fila.createCell(2);
+            celda = fila.createCell(4);
             celda.setCellValue((Precioventa20.get(j)));
             celda.setCellStyle(conta);
 
-            celda = fila.createCell(3);
+            celda = fila.createCell(5);
             celda.setCellValue((Preciocompra20.get(j)));
             celda.setCellStyle(conta);
 
-            celda = fila.createCell(4);
+            celda = fila.createCell(6);
             celda.setCellValue((Ventaproducto20.get(j)));
             celda.setCellStyle(conta);
 
-            celda = fila.createCell(5);
+            celda = fila.createCell(8);
             celda.setCellValue((Porcentajeproducto20.get(j)));
             celda.setCellStyle(porcentaje);
-
+            String Formula;
+            Formula = "(E" + i + "-F" + i + ")*D" + i;
+            celda = fila.createCell(7);
+            celda.setCellFormula(Formula);
+            celda.setCellStyle(Numerico);
             i = i + 1;
 
         }
@@ -819,7 +862,7 @@ public class Metodosporcentajeproducto {
         for (int x = 0; x < 7; x++) {
             hoja.autoSizeColumn(x);
         }
-
+        contar = 0;
         try {
             File Archivo = new File(guardararchivo);
             Archivo.createNewFile();
