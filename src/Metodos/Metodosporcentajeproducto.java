@@ -861,7 +861,8 @@ public class Metodosporcentajeproducto {
         }
 
         for (int x = 0; x < 7; x++) {
-            hoja.autoSizeColumn(x);
+            hoja.setColumnWidth(x, 20 * 256);
+//            hoja.autoSizeColumn(x);
         }
         contar = 0;
         try {
