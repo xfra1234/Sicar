@@ -633,9 +633,11 @@ public class Metodosporcentajeproducto {
         celda = fila.createCell(0);
         celda.setCellValue(new HSSFRichTextString("Fecha de Creacion:"));
         celda.setCellStyle(encabezados);
-        celda = fila.createCell(2);
+        
+        celda = fila.createCell(3);
         celda.setCellValue(new HSSFRichTextString(f));
         celda.setCellStyle(encabezados);
+        
         celda = fila.createCell(5);
         celda.setCellValue(new HSSFRichTextString("Sucursal: "));
         celda.setCellStyle(encabezados);
@@ -647,13 +649,13 @@ public class Metodosporcentajeproducto {
         celda = fila.createCell(0);
         celda.setCellValue(new HSSFRichTextString("Reporte de Productos que conforman el 80% de ventas  del "));
         celda.setCellStyle(encabezados);
-        celda = fila.createCell(1);
+        celda = fila.createCell(5);
         celda.setCellValue(new HSSFRichTextString(fechauno));
         celda.setCellStyle(encabezados);
-        celda = fila.createCell(4);
+        celda = fila.createCell(7);
         celda.setCellValue(new HSSFRichTextString("Al"));
         celda.setCellStyle(encabezados);
-        celda = fila.createCell(5);
+        celda = fila.createCell(8);
         celda.setCellValue(new HSSFRichTextString(fechados));
         celda.setCellStyle(encabezados);
 
@@ -662,7 +664,7 @@ public class Metodosporcentajeproducto {
         celda.setCellValue(new HSSFRichTextString("Total de Productos "));
         celda.setCellStyle(encabezados);
 
-        celda = fila.createCell(2);
+        celda = fila.createCell(3);
         celda.setCellValue(productosnum);
         celda.setCellStyle(Numerico);
 
@@ -778,7 +780,7 @@ public class Metodosporcentajeproducto {
         celda.setCellValue(new HSSFRichTextString("Total de Productos"));
         celda.setCellStyle(encabezados);
 
-        celda = fila.createCell(2);
+        celda = fila.createCell(3);
         celda.setCellValue(productosnum20);
         celda.setCellStyle(Numerico);
 
