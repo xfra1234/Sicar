@@ -722,12 +722,12 @@ public class Metodosporcentajeproducto {
             celda.setCellValue(contar);
             celda.setCellStyle(encabezados);
 
-            fila = hoja.createRow(i);
+        
             celda = fila.createCell(1);
             celda.setCellValue(contar);
             celda.setCellStyle(encabezados);
 
-            fila = hoja.createRow(i);
+     
             celda = fila.createCell(2);
             celda.setCellValue(new HSSFRichTextString(Nombreproducto.get(j)));
             celda.setCellStyle(encabezados);
@@ -819,12 +819,12 @@ public class Metodosporcentajeproducto {
             celda.setCellValue(contar);
             celda.setCellStyle(encabezados);
 
-            fila = hoja.createRow(i);
+         
             celda = fila.createCell(1);
             celda.setCellValue(contar);
             celda.setCellStyle(encabezados);
 
-            fila = hoja.createRow(i);
+      
             celda = fila.createCell(2);
             celda.setCellValue(new HSSFRichTextString(Nombreproducto20.get(j)));
             celda.setCellStyle(encabezados);
