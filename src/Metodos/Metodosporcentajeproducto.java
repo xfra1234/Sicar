@@ -716,14 +716,15 @@ public class Metodosporcentajeproducto {
         for (int j = 0; j < productosnum; j++) {
             contar = contar + 1;
             System.out.println("Numero de la Fila"+contar);
+            
             fila = hoja.createRow(i);
             celda = fila.createCell(0);
-            celda.setCellValue(new HSSFRichTextString(contar + ""));
+            celda.setCellValue(contar);
             celda.setCellStyle(encabezados);
 
             fila = hoja.createRow(i);
             celda = fila.createCell(1);
-            celda.setCellValue(new HSSFRichTextString(contar + ""));
+            celda.setCellValue(contar);
             celda.setCellStyle(encabezados);
 
             fila = hoja.createRow(i);
@@ -815,12 +816,12 @@ public class Metodosporcentajeproducto {
             contar = contar + 1;
             fila = hoja.createRow(i);
             celda = fila.createCell(0);
-            celda.setCellValue(new HSSFRichTextString(contar + ""));
+            celda.setCellValue(contar);
             celda.setCellStyle(encabezados);
 
             fila = hoja.createRow(i);
             celda = fila.createCell(1);
-            celda.setCellValue(new HSSFRichTextString(contar + ""));
+            celda.setCellValue(contar);
             celda.setCellStyle(encabezados);
 
             fila = hoja.createRow(i);
