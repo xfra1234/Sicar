@@ -102,7 +102,7 @@ public class Metodosporcentajeproducto {
 
     public void consultasucrusales(String fecha1, String fecha2, String fechauno, String fechados, int sucursal) {
 
-        System.out.println(contador);
+//        System.out.println(contador);
         try {
             int id;
             double cantidad = 0;
@@ -146,11 +146,11 @@ public class Metodosporcentajeproducto {
             e.printStackTrace();
         }
         Iterator<Integer> it = idNumeros.iterator();
-        System.out.println(it);
+//        System.out.println(it);
 
         while (it.hasNext()) {
             contador = contador + 1;
-            System.out.println(it.next());
+//            System.out.println(it.next());
         }
         float cantidadproducto = 0, ventaproducto = 0;
         int alv = 0;
@@ -292,10 +292,10 @@ public class Metodosporcentajeproducto {
             Arrays.sort(arrayPersonas, Collections.reverseOrder());
             imprimeArrayPersonas(arrayPersonas);
             sucursal(fechauno, fechados, sucursal);
-            System.out.println(totalcantidad);
-            System.out.println(alv + " final ");
+//            System.out.println(totalcantidad);
+//            System.out.println(alv + " final ");
             limpiar();
-            System.out.println(contador);
+//            System.out.println(contador);
             Arrays.fill(arrayPersonas, null);
 //             int total=arrayPersonas.length;
 //            arrayPersonas[total]=arrayPersonas[-1];
@@ -310,7 +310,7 @@ public class Metodosporcentajeproducto {
 
     public void Consultabodega(String fecha1, String fecha2, String fechauno, String fechados, int sucursal) {
 
-        System.out.println(contador);
+//        System.out.println(contador);
         try {
             int id;
             double cantidad = 0;
@@ -353,11 +353,11 @@ public class Metodosporcentajeproducto {
             JOptionPane.showMessageDialog(null, e);
         }
         Iterator<Integer> it = idNumeros.iterator();
-        System.out.println(it);
+//        System.out.println(it);
 
         while (it.hasNext()) {
             contador = contador + 1;
-            System.out.println(it.next());
+//            System.out.println(it.next());
         }
         float cantidadproducto = 0, ventaproducto = 0;
         int alv = 0;
@@ -504,10 +504,10 @@ public class Metodosporcentajeproducto {
             Arrays.sort(arrayPersonas, Collections.reverseOrder());
             imprimeArrayPersonas(arrayPersonas);
             sucursal(fechauno, fechados, sucursal);
-            System.out.println(totalcantidad);
-            System.out.println(alv + " final ");
+//            System.out.println(totalcantidad);
+//            System.out.println(alv + " final ");
             limpiar();
-            System.out.println(contador);
+//            System.out.println(contador);
             Arrays.fill(arrayPersonas, null);
 //             int total=arrayPersonas.length;
 //            arrayPersonas[total]=arrayPersonas[-1];
@@ -715,6 +715,7 @@ public class Metodosporcentajeproducto {
 
         for (int j = 0; j < productosnum; j++) {
             contar = contar + 1;
+            System.out.println(contar);
             fila = hoja.createRow(i);
             celda = fila.createCell(0);
             celda.setCellValue(new HSSFRichTextString(contar + ""));
@@ -753,14 +754,13 @@ public class Metodosporcentajeproducto {
             celda.setCellValue((Porcentajeproducto.get(j)));
             celda.setCellStyle(porcentaje);
 
+            i = i + 1;
             //// Formula de utilidad
             String Formula;
             Formula = "(E" + i + "-F" + i + ")*D" + i;
             celda = fila.createCell(7);
             celda.setCellFormula(Formula);
             celda.setCellStyle(Numerico);
-
-            i = i + 1;
 
         }
         hoja.setAutoFilter(new CellRangeAddress(6, i - 1, 1, 8));
@@ -814,7 +814,7 @@ public class Metodosporcentajeproducto {
         for (int j = 0; j < productosnum20; j++) {
             contar = contar + 1;
             fila = hoja.createRow(i);
-            celda = fila.createCell(1);
+            celda = fila.createCell(0);
             celda.setCellValue(new HSSFRichTextString(contar + ""));
             celda.setCellStyle(encabezados);
 
@@ -851,12 +851,12 @@ public class Metodosporcentajeproducto {
             celda.setCellValue((Porcentajeproducto20.get(j)));
             celda.setCellStyle(porcentaje);
             String Formula;
+
+            i = i + 1;
             Formula = "(E" + i + "-F" + i + ")*D" + i;
             celda = fila.createCell(7);
             celda.setCellFormula(Formula);
             celda.setCellStyle(Numerico);
-            i = i + 1;
-
         }
 
         for (int x = 0; x < 7; x++) {
@@ -922,13 +922,13 @@ public class Metodosporcentajeproducto {
                         sumaproductos = sumaproductos + porcentajeporducto;
                         porcentajeporducto = 0;
                         productosnum20 = productosnum20 + 1;
-                        System.out.println(sumaproductos);
+//                        System.out.println(sumaproductos);
                     }
 
                 } else {
                     porcentajeporducto = (array[i].ventap / totalcantidad);
                     sumaproductos = sumaproductos + porcentajeporducto;
-                    System.out.println((i + 1) + ". " + array[i].nombrep + " - Cantidad: " + array[i].cantidadp + array[i].ventap + " Porcentaje  " + porcentajeporducto + " - total procentaje " + sumaproductos);
+//                    System.out.println((i + 1) + ". " + array[i].nombrep + " - Cantidad: " + array[i].cantidadp + array[i].ventap + " Porcentaje  " + porcentajeporducto + " - total procentaje " + sumaproductos);
                     Nombreproducto.add(array[i].nombrep);
                     Cantidadproducto.add(array[i].cantidadp);
                     Ventaproducto.add(array[i].ventap);
@@ -941,7 +941,7 @@ public class Metodosporcentajeproducto {
 
             }
 
-            System.out.println("Productos que formal el 80%" + productosnum);
+//            System.out.println("Productos que formal el 80%" + productosnum);
 
             //System.out.println(array[1].nombrep);
         }
