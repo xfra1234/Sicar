@@ -331,7 +331,7 @@ public class MetodosResurtidosoloproductos_esteaño {
 
                             //// Formula Dias Inventario 
                             Formula = "C" + filaformula + "*30/G" + filaformula;
-                            celda = fila.createCell(9);
+                            celda = fila.createCell(10);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
 
@@ -444,7 +444,7 @@ public class MetodosResurtidosoloproductos_esteaño {
 
                             //// Formula Dias Inventario 
                             Formula = "C" + filaformula + "*30/G" + filaformula;
-                            celda = fila.createCell(9);
+                            celda = fila.createCell(10);
                             celda.setCellFormula(Formula);
                             celda.setCellStyle(Numerico);
 
