@@ -100,214 +100,6 @@ public class Metodosporcentajeproducto {
         precioventa = 0;
     }
 
-    public void consultasucrusales(String fecha1, String fecha2, String fechauno, String fechados, int sucursal) {
-
-        System.out.println(contador);
-        try {
-            int id;
-            double cantidad = 0;
-            if (sucursal == 4 || sucursal == 6) {
-                con = conectar2.conectarMySQL(sucursal);
-            } else {
-                con = conectar.conectarMySQL();
-            }
-            stmt = con.createStatement();
-            rs = stmt.executeQuery("select articulo.art_id form,articulo.descripcion,unidad.nombre from  articulo inner join"
-                    + " unidad on unidad.uni_id =articulo.unidadventa  "
-            );
-            if (sucursal == 4 || sucursal == 6) {
-                con2 = conectar2.conectarMySQL(sucursal);
-            } else {
-                con2 = conectar.conectarMySQL();
-            }
-            stmt2 = con.createStatement();
-
-            while (rs.next()) {
-
-                id = rs.getInt(1);
-
-                rs2 = stmt2.executeQuery("select paquete.paquete from paquete where paquete.paquete= '" + id + "';");
-//                while(rs2.next()){
-//                    if(rs2.getInt(1)==2079){
-//                        JOptionPane.showMessageDialog(null, "olo");
-//                    }
-//                }
-                if (rs2.next()) {
-
-                } else {
-                    idNumeros.add(id);
-                }
-
-            }
-            con.close();
-            con2.close();
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
-            e.printStackTrace();
-        }
-        Iterator<Integer> it = idNumeros.iterator();
-        System.out.println(it);
-
-        while (it.hasNext()) {
-            contador = contador + 1;
-            System.out.println(it.next());
-        }
-        float cantidadproducto = 0, ventaproducto = 0;
-        int alv = 0;
-        int valor = 0;
-        String nombreproducto = "", unidad = "";
-        Persona[] arrayPersonas = new Persona[contador];
-        try {
-            for (int i = 0; i < contador; i++) {
-                valor = idNumeros.get(i);
-
-                if (sucursal == 4 || sucursal == 6) {
-                    con3 = conectar2.conectarMySQL(sucursal);
-                } else {
-                    con3 = conectar.conectarMySQL();
-                }
-                stmt3 = con3.createStatement();
-                rs3 = stmt3.executeQuery("select paquete.articulo from paquete where paquete.articulo= '" + valor + "';");
-                if (rs3.next()) {
-
-                    if (sucursal == 4 || sucursal == 6) {
-                        con = conectar2.conectarMySQL(sucursal);
-                    } else {
-                        con = conectar.conectarMySQL();
-                    }
-                    stmt = con.createStatement();
-                    rs = stmt.executeQuery("select paquete.paquete,paquete.cantidad from paquete where paquete.articulo= '" + valor + "';");
-                    while (rs.next()) {
-                        int idarticulo;
-                        idarticulo = rs.getInt(1);
-//                         if(idarticulo==2078||idarticulo==190){
-//                        JOptionPane.showMessageDialog(null, "olo2");
-//                    }
-                        if (sucursal == 4 || sucursal == 6) {
-                            con2 = conectar2.conectarMySQL(sucursal);
-                        } else {
-                            con2 = conectar.conectarMySQL();
-                        }
-                        stmt2 = con2.createStatement();
-
-                        rs2 = stmt2.executeQuery("select  sum(detallev.cantidad),sum(detallev.importecon)"
-                                + ",sum(detallev.precionorsin)/count(detallev.art_id)"
-                                + "from detallev inner join venta\n"
-                                + "on detallev.ven_id = venta.ven_id inner join articulo on\n"
-                                + " detallev.art_id=articulo.art_id\n"
-                                + "where articulo.art_id='" + idarticulo + "' and\n"
-                                + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "'"
-                                + "and venta.status!= -1 ; ");
-                        while (rs2.next()) {
-                            ventaproducto = ventaproducto + (rs2.getFloat(2));
-//                            precioventa = rs2.getFloat(3);
-                        }
-                        con2.close();
-
-                        if (sucursal == 4 || sucursal == 6) {
-                            con2 = conectar2.conectarMySQL(sucursal);
-                        } else {
-                            con2 = conectar.conectarMySQL();
-                        }
-                        stmt2 = con2.createStatement();
-                        rs2 = stmt2.executeQuery("select sum(detallep.cantidad) from detallep inner join venta\n"
-                                + "on detallep.ven_id = venta.ven_id \n"
-                                + "where detallep.articulo='" + valor + "'"
-                                + "and detallep.paquete='" + idarticulo + "' and\n"
-                                + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "'"
-                                + "and venta.status!= -1  ;");
-                        if (rs2.next()) {
-                            cantidadproducto = cantidadproducto + (rs2.getFloat(1));
-
-                        }
-                        con2.close();
-
-                    }
-                    if (sucursal == 4 || sucursal == 6) {
-                        con2 = conectar2.conectarMySQL(sucursal);
-                    } else {
-                        con2 = conectar.conectarMySQL();
-                    }
-                    stmt2 = con2.createStatement();
-                    rs2 = stmt2.executeQuery("select sum(detallev.cantidad),articulo.descripcion,unidad.nombre"
-                            + ",sum(detallev.importecon),sum(detallev.precionorsin)/count(detallev.art_id) "
-                            + ",detallev.preciocompra from detallev inner join venta\n"
-                            + "on detallev.ven_id = venta.ven_id inner join articulo on\n"
-                            + " detallev.art_id=articulo.art_id inner join unidad on uni_id= articulo.unidadventa\n"
-                            + "where articulo.art_id='" + valor + "' and\n"
-                            + "venta.fecha between '" + fecha1 + "' and '" + fecha2 + "'"
-                            + "and venta.status!= -1  ;");
-                    if (rs2.next()) {
-
-                        cantidadproducto = cantidadproducto + rs2.getFloat(1);
-                        nombreproducto = rs2.getString(2);
-                        unidad = rs2.getString(3);
-                        ventaproducto = ventaproducto + (rs2.getFloat(4));
-                        precioventa = rs2.getFloat(5);
-
-                    }
-                    con2.close();
-
-                    con.close();
-                } else {
-
-                    if (sucursal == 4 || sucursal == 6) {
-                        con2 = conectar2.conectarMySQL(sucursal);
-                    } else {
-                        con2 = conectar.conectarMySQL();
-                    }
-                    stmt2 = con2.createStatement();
-                    rs2 = stmt2.executeQuery("select sum(detallev.cantidad),articulo.descripcion,unidad.nombre"
-                            + ",sum(detallev.importecon)  "
-                            + ",sum(detallev.precionorsin)/count(detallev.art_id), detallev.preciocompra"
-                            + " from detallev inner join venta\n"
-                            + " on detallev.ven_id = venta.ven_id inner join articulo on\n"
-                            + " detallev.art_id=articulo.art_id inner join unidad on uni_id= articulo.unidadventa\n"
-                            + " where articulo.art_id='" + valor + "' and\n"
-                            + " venta.fecha between '" + fecha1 + "' and '" + fecha2 + "'"
-                            + " and venta.status!= -1  ; ");
-                    while (rs2.next()) {
-                        cantidadproducto = cantidadproducto + rs2.getFloat(1);
-                        nombreproducto = rs2.getString(2);
-                        unidad = rs2.getString(3);
-                        ventaproducto = ventaproducto + (rs2.getFloat(4));
-                        precioventa = rs2.getFloat(5);
-                        preciocompra = rs2.getFloat(6);
-
-                    }
-                    con2.close();
-                }
-
-                arrayPersonas[i] = new Persona(nombreproducto, cantidadproducto, ventaproducto, precioventa, preciocompra);
-                totalcantidad = totalcantidad + ventaproducto;
-                cantidadproducto = 0;
-                ventaproducto = 0;
-                preciocompra = 0;
-                precioventa = 0;
-                con3.close();
-                alv = alv + 1;
-
-            }
-
-            Arrays.sort(arrayPersonas, Collections.reverseOrder());
-            imprimeArrayPersonas(arrayPersonas);
-            sucursal(fechauno, fechados, sucursal);
-            System.out.println(totalcantidad);
-            System.out.println(alv + " final ");
-            limpiar();
-            System.out.println(contador);
-            Arrays.fill(arrayPersonas, null);
-//             int total=arrayPersonas.length;
-//            arrayPersonas[total]=arrayPersonas[-1];
-
-        } catch (SQLException e) {
-
-            JOptionPane.showMessageDialog(null, e);
-            e.printStackTrace();
-        }
-
-    }
-
     public void Consultabodega(String fecha1, String fecha2, String fechauno, String fechados, int sucursal) {
 
         System.out.println(contador);
@@ -460,8 +252,28 @@ public class Metodosporcentajeproducto {
 
                     }
                     con2.close();
+//////////////////////obtener el precio de venta y compra en caso de que no haya ventas del articulo////////////////////////////////////
+                    if (preciocompra == 0 || precioventa == 0) {
+                        if (sucursal == 4 || sucursal == 6) {
+                            con2 = conectar2.conectarMySQL(sucursal);
+                        } else {
+                            con2 = conectar.conectarMySQL();
+                        }
+                        stmt2 = con2.createStatement();
+                        rs2 = stmt2.executeQuery("select articulo.precio1,articulo.preciocompra"
+                                + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id"
+                                + " inner join departamento on departamento.dep_id = categoria.dep_id "
+                                + " where articulo.status !=-1 and articulo.art_id='" + valor + "' ");
+
+                        if (rs2.next()) {
+                            precioventa = rs2.getFloat(1);
+                            preciocompra = rs2.getFloat(2);
+                        }
+                        con2.close();
+                    }
 
                     con.close();
+/////////////////////////////////////fin de precio venta y compra /////////////////////////////////////////////////////////////////////
                 } else {
 
                     if (sucursal == 4 || sucursal == 6) {
@@ -633,11 +445,11 @@ public class Metodosporcentajeproducto {
         celda = fila.createCell(0);
         celda.setCellValue(new HSSFRichTextString("Fecha de Creacion:"));
         celda.setCellStyle(encabezados);
-        
+
         celda = fila.createCell(3);
         celda.setCellValue(new HSSFRichTextString(f));
         celda.setCellStyle(encabezados);
-        
+
         celda = fila.createCell(5);
         celda.setCellValue(new HSSFRichTextString("Sucursal: "));
         celda.setCellStyle(encabezados);
@@ -717,19 +529,17 @@ public class Metodosporcentajeproducto {
 
         for (int j = 0; j < productosnum; j++) {
             contar = contar + 1;
-            System.out.println("Numero de la Fila"+contar);
-            
+            System.out.println("Numero de la Fila" + contar);
+
             fila = hoja.createRow(i);
             celda = fila.createCell(0);
             celda.setCellValue(contar);
             celda.setCellStyle(encabezados);
 
-        
             celda = fila.createCell(1);
             celda.setCellValue(contar);
             celda.setCellStyle(encabezados);
 
-     
             celda = fila.createCell(2);
             celda.setCellValue(new HSSFRichTextString(Nombreproducto.get(j)));
             celda.setCellStyle(encabezados);
@@ -821,12 +631,10 @@ public class Metodosporcentajeproducto {
             celda.setCellValue(contar);
             celda.setCellStyle(encabezados);
 
-         
             celda = fila.createCell(1);
             celda.setCellValue(contar);
             celda.setCellStyle(encabezados);
 
-      
             celda = fila.createCell(2);
             celda.setCellValue(new HSSFRichTextString(Nombreproducto20.get(j)));
             celda.setCellStyle(encabezados);
