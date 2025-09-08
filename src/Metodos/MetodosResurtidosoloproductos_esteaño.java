@@ -381,6 +381,7 @@ public class MetodosResurtidosoloproductos_esteaño {
                         }
                         stmt2 = con2.createStatement();
                         rs2 = stmt2.executeQuery("select articulo.descripcion,departamento.nombre,articulo.existencia"
+                                + ",articulo.preciocompra,articulo.precio1"
                                 + " from articulo inner join categoria on categoria.cat_id = articulo.cat_id"
                                 + " inner join departamento on departamento.dep_id = categoria.dep_id "
                                 + " where articulo.status !=-1 and articulo.art_id='" + valor + "' ");
@@ -389,6 +390,11 @@ public class MetodosResurtidosoloproductos_esteaño {
                             nombrearticulo = rs2.getString(1);
                             departamento = rs2.getString(2);
                             existencia = rs2.getFloat(3);
+                              if(preciocompra==0||precioventa==0){
+                                preciocompra=rs2.getFloat(4);
+                                precioventa=rs2.getFloat(5);
+                            }
+
                         }
 
                         con2.close();
