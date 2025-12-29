@@ -68,13 +68,13 @@ public class MetodosReporteDepartamento {
             case 3:
                 abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Cuotas-de-Venta-y-Rentabilidad-Sucursales_-Bodega.xls");
                 guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Bodega del " + fechauno + " al " + fechados + ".xls");
-                excelsucursales(fecha1, fecha2, fechauno, fechados, sucursal);
+                excelbodega(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
 
             case 4:
-                abrirarchivo = ("C:\\Users\\billy\\Documents\\Cuotas-de-Venta-y-Rentabilidad-Sucursales_-Bodega.xls");
-                guardararchivo = ("C:\\Users\\billy\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Bodega pdv del " + fechauno + " al " + fechados + ".xls");
-                excelsucursales(fecha1, fecha2, fechauno, fechados, sucursal);
+                abrirarchivo = ("C:\\Users\\GHIA\\Documents\\Cuotas-de-Venta-y-Rentabilidad-Sucursales_-Bodega.xls");
+                guardararchivo = ("C:\\Users\\GHIA\\Desktop\\Cuotas de Venta y Rentabilidad Sucursales_ Bodega pdv del " + fechauno + " al " + fechados + ".xls");
+                excelsucursalbodega(fecha1, fecha2, fechauno, fechados, sucursal);
                 break;
 
             case 5:
