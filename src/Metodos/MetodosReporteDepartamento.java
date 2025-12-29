@@ -1610,7 +1610,7 @@ public class MetodosReporteDepartamento {
                         + "where venta.caj_id=1 and departamento.dep_id = 22 and venta.status!= -1 and venta.tic_id is  null "
                         + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)"
-                        + "venta.caj_id=3 departamento.dep_id = 22 and venta.status!= -1 and venta.tic_id is  null "
+                        + " or venta.caj_id=3 and  departamento.dep_id = 22 and venta.status!= -1 and venta.tic_id is  null "
                         + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha )  "
                         + "order by  year(fecha), month(fecha) ;");
