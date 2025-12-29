@@ -1311,11 +1311,7 @@ public class MetodosReporteDepartamento {
             try {
 
                 /////////////// obtener las notas de credito
-                if (sucursal == 4 || sucursal == 6) {
-                    con = conectar2.conectarMySQL(sucursal);
-                } else {
-                    con = conectar.conectarMySQL();
-                }
+                con = conectar.conectarMySQL();
 
                 stmt = con.createStatement();
                 rs = stmt.executeQuery("select MONTHNAME(notacredito.fecha) mes ,sum(notacredito.total) as suma "
@@ -1334,12 +1330,7 @@ public class MetodosReporteDepartamento {
                 }
                 con.close();
 
-                if (sucursal == 4 || sucursal == 6) {
-                    con = conectar2.conectarMySQL(sucursal);
-                } else {
-
-                    con = conectar.conectarMySQL();
-                }
+                 con = conectar.conectarMySQL();
                 stmt = con.createStatement();
 
                 totalmeses = 0;
@@ -1390,11 +1381,7 @@ public class MetodosReporteDepartamento {
             filadato = 7;
             try {
 
-                if (sucursal == 4 || sucursal == 6) {
-                    con = conectar2.conectarMySQL(sucursal);
-                } else {
-                    con = conectar.conectarMySQL();
-                }
+                con = conectar.conectarMySQL();
                 stmt = con.createStatement();
 
                 totalmeses = 0;
@@ -1437,11 +1424,7 @@ public class MetodosReporteDepartamento {
             filadato = 8;
             try {
 
-                if (sucursal == 4 || sucursal == 6) {
-                    con = conectar2.conectarMySQL(sucursal);
-                } else {
-                    con = conectar.conectarMySQL();
-                }
+                 con = conectar.conectarMySQL();
                 stmt = con.createStatement();
 
                 totalmeses = 0;
@@ -1490,11 +1473,7 @@ public class MetodosReporteDepartamento {
             try {
                 columnadato = 1;
                 filadato = 12;
-                if (sucursal == 4 || sucursal == 6) {
-                    con = conectar2.conectarMySQL(sucursal);
-                } else {
-                    con = conectar.conectarMySQL();
-                }
+                 con = conectar.conectarMySQL();
                 stmt = con.createStatement();
 
                 totalmeses = 0;
@@ -1535,11 +1514,7 @@ public class MetodosReporteDepartamento {
             filadato = 13;
             try {
 
-                if (sucursal == 4 || sucursal == 6) {
-                    con = conectar2.conectarMySQL(sucursal);
-                } else {
-                    con = conectar.conectarMySQL();
-                }
+                con = conectar.conectarMySQL();
                 stmt = con.createStatement();
 
                 totalmeses = 0;
@@ -1581,11 +1556,7 @@ public class MetodosReporteDepartamento {
             filadato = 14;
             try {
 
-                if (sucursal == 4 || sucursal == 6) {
-                    con = conectar2.conectarMySQL(sucursal);
-                } else {
-                    con = conectar.conectarMySQL();
-                }
+                 con = conectar.conectarMySQL();
                 stmt = con.createStatement();
 
                 totalmeses = 0;
@@ -1634,11 +1605,7 @@ public class MetodosReporteDepartamento {
 
             ///inicia consultas de compras por departamento
             try {
-                if (sucursal == 4 || sucursal == 6) {
-                    con = conectar2.conectarMySQL(sucursal);
-                } else {
-                    con = conectar.conectarMySQL();
-                }
+                 con = conectar.conectarMySQL();
                 stmt = con.createStatement();
                 rs2 = stmt.executeQuery("SET lc_time_names = 'es_ES';");
                 rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes ,sum(detallev.importeCompra) as suma "
@@ -1669,11 +1636,7 @@ public class MetodosReporteDepartamento {
             }
 
             try {
-                if (sucursal == 4 || sucursal == 6) {
-                    con = conectar2.conectarMySQL(sucursal);
-                } else {
-                    con = conectar.conectarMySQL();
-                }
+                con = conectar.conectarMySQL();
                 stmt = con.createStatement();
                 columnadato = 1;
                 filadato = 18;
@@ -1706,11 +1669,7 @@ public class MetodosReporteDepartamento {
             }
 
             try {
-                if (sucursal == 4 || sucursal == 6) {
-                    con = conectar2.conectarMySQL(sucursal);
-                } else {
-                    con = conectar.conectarMySQL();
-                }
+                 con = conectar.conectarMySQL();
                 stmt = con.createStatement();
                 columnadato = 1;
                 filadato = 19;
@@ -1750,11 +1709,7 @@ public class MetodosReporteDepartamento {
             contarmes = 1;
 
             try {
-                if (sucursal == 4 || sucursal == 6) {
-                    con = conectar2.conectarMySQL(sucursal);
-                } else {
-                    con = conectar.conectarMySQL();
-                }
+                 con = conectar.conectarMySQL();
                 stmt = con.createStatement();
                 columnadato = 1;
                 filadato = 34;
@@ -1789,11 +1744,7 @@ public class MetodosReporteDepartamento {
                 e.printStackTrace();
             }
             try {
-                if (sucursal == 4 || sucursal == 6) {
-                    con = conectar2.conectarMySQL(sucursal);
-                } else {
-                    con = conectar.conectarMySQL();
-                }
+                 con = conectar.conectarMySQL();
                 stmt = con.createStatement();
                 columnadato = 1;
                 filadato = 38;
