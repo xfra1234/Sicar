@@ -1251,6 +1251,7 @@ public class MetodosReporteDepartamento {
         }
 
     }
+
 ///////////     fin
     
     ////////////////es el mismo solamente acomodado para que funcione en el servidor de bodega venta al publico
@@ -1311,7 +1312,7 @@ public class MetodosReporteDepartamento {
             try {
 
                 /////////////// obtener las notas de credito
-                if ( sucursal == 6) {
+                if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
@@ -1334,7 +1335,7 @@ public class MetodosReporteDepartamento {
                 }
                 con.close();
 
-                if ( sucursal == 6) {
+                if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
 
@@ -1350,12 +1351,8 @@ public class MetodosReporteDepartamento {
                         + "on articulo.art_id = detallev.art_id\n"
                         + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
                         + "on departamento.dep_id = categoria.dep_id\n"
-                        + "where venta.caj_id=1 and "
-                        + "departamento.dep_id = 24 and venta.status!= -1 and venta.tic_id is not  null "
-                        + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
-                        + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month) "
-                        + " or venta.caj_id=1 and "
-                        + " departamento.dep_id = 24 and venta.status!= -1 and venta.tic_id is not  null "
+                        + "where departamento.dep_id = 24 and venta.status!= -1 and venta.tic_id is not  null "
+                        + " and venta.caj_id!=6 "
                         + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
                         + "order by  year(fecha), month(fecha) ;");
@@ -1394,7 +1391,7 @@ public class MetodosReporteDepartamento {
             filadato = 7;
             try {
 
-                if ( sucursal == 6) {
+                if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
@@ -1409,10 +1406,8 @@ public class MetodosReporteDepartamento {
                         + "on articulo.art_id = detallev.art_id\n"
                         + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
                         + "on departamento.dep_id = categoria.dep_id\n"
-                        + "where venta.caj_id=1 and departamento.dep_id = 23 and venta.status!= -1 and venta.tic_id is not null"
-                        + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
-                        + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)"
-                        + " or venta.caj_id=3 and departamento.dep_id = 23 and venta.status!= -1 and venta.tic_id is not null"
+                        + "where departamento.dep_id = 23 and venta.status!= -1 and venta.tic_id is not null"
+                        + "  and venta.caj_id!=6  "
                         + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
                         + "order by  year(fecha), month(fecha) ;");
@@ -1443,7 +1438,7 @@ public class MetodosReporteDepartamento {
             filadato = 8;
             try {
 
-                if (sucursal == 6) {
+                if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
@@ -1458,10 +1453,8 @@ public class MetodosReporteDepartamento {
                         + "on articulo.art_id = detallev.art_id\n"
                         + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
                         + "on departamento.dep_id = categoria.dep_id\n"
-                        + "where  venta.caj_id=1 and departamento.dep_id = 22 and venta.status!= -1 and venta.tic_id is not  null"
-                        + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
-                        + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  "
-                        + " or venta.caj_id=3 and departamento.dep_id = 22 and venta.status!= -1 and venta.tic_id is not  null"
+                        + "where departamento.dep_id = 22 and venta.status!= -1 and venta.tic_id is not  null "
+                        + " and venta.caj_id!=6 "
                         + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
                         + "order by  year(fecha), month(fecha) ;");
@@ -1498,7 +1491,7 @@ public class MetodosReporteDepartamento {
             try {
                 columnadato = 1;
                 filadato = 12;
-                if ( sucursal == 6) {
+                if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
@@ -1512,10 +1505,8 @@ public class MetodosReporteDepartamento {
                         + "on articulo.art_id = detallev.art_id\n"
                         + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
                         + "on departamento.dep_id = categoria.dep_id\n"
-                        + "where venta.caj_id=1 and departamento.dep_id = 24 and venta.status!= -1 and venta.tic_id is  null "
-                        + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
-                        + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)"
-                        + " or venta.caj_id=3 and departamento.dep_id = 24 and venta.status!= -1 and venta.tic_id is  null "
+                        + "where departamento.dep_id = 24 and venta.status!= -1 and venta.tic_id is  null "
+                        + " and venta.caj_id!=6 "
                         + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
                         + "order by  year(fecha), month(fecha) ;");
@@ -1545,7 +1536,7 @@ public class MetodosReporteDepartamento {
             filadato = 13;
             try {
 
-                if (sucursal == 6) {
+                if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
@@ -1559,12 +1550,10 @@ public class MetodosReporteDepartamento {
                         + "on articulo.art_id = detallev.art_id\n"
                         + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
                         + "on departamento.dep_id = categoria.dep_id\n"
-                        + "where venta.caj_id=1  and departamento.dep_id = 23 and venta.status!= -1 and venta.tic_id is  null "
+                        + "where departamento.dep_id = 23 and venta.status!= -1 and venta.tic_id is  null "
+                        + "  and venta.caj_id!=6 "
                         + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
-                        + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month) "
-                        + " or venta.caj_id=3  and departamento.dep_id = 23 and venta.status!= -1 and venta.tic_id is  null "
-                        + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
-                        + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha )  "
+                        + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
                         + "order by  year(fecha), month(fecha) ;");
                 while (rs.next()) {
                     mes = rs.getString(1);
@@ -1593,7 +1582,7 @@ public class MetodosReporteDepartamento {
             filadato = 14;
             try {
 
-                if (sucursal == 6) {
+                if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
@@ -1607,12 +1596,10 @@ public class MetodosReporteDepartamento {
                         + "on articulo.art_id = detallev.art_id\n"
                         + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
                         + "on departamento.dep_id = categoria.dep_id\n"
-                        + "where venta.caj_id=1 and departamento.dep_id = 22 and venta.status!= -1 and venta.tic_id is  null "
+                        + "where departamento.dep_id = 22 and venta.status!= -1 and venta.tic_id is  null "
+                        + " and venta.caj_id!=6 "
                         + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
-                        + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)"
-                        + " or venta.caj_id=3 and  departamento.dep_id = 22 and venta.status!= -1 and venta.tic_id is  null "
-                        + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
-                        + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha )  "
+                        + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
                         + "order by  year(fecha), month(fecha) ;");
                 while (rs.next()) {
                     mes = rs.getString(1);
@@ -1648,7 +1635,7 @@ public class MetodosReporteDepartamento {
 
             ///inicia consultas de compras por departamento
             try {
-                if (sucursal == 6) {
+                if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
@@ -1661,12 +1648,10 @@ public class MetodosReporteDepartamento {
                         + "on articulo.art_id = detallev.art_id\n"
                         + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
                         + "on departamento.dep_id = categoria.dep_id\n"
-                        + " where venta.caj_id=1 and departamento.dep_id = 24 and venta.status!= -1 "
+                        + "where departamento.dep_id = 24 and venta.status!= -1 "
+                        + " and venta.caj_id!=6 "
                         + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
-                        + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month) "
-                        + " or venta.caj_id=3 and departamento.dep_id = 24 and venta.status!= -1 "
-                        + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
-                        + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha )"
+                        + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
                         + "order by  year(fecha), month(fecha) ;");
                 while (rs.next()) {
                     mes = rs.getString(1);
@@ -1685,7 +1670,7 @@ public class MetodosReporteDepartamento {
             }
 
             try {
-                if ( sucursal == 6) {
+                if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
@@ -1700,12 +1685,10 @@ public class MetodosReporteDepartamento {
                         + "on articulo.art_id = detallev.art_id\n"
                         + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
                         + "on departamento.dep_id = categoria.dep_id\n"
-                        + "where venta.caj_id=1 and departamento.dep_id = 23 and venta.status!= -1  "
+                        + "where departamento.dep_id = 23 and venta.status!= -1  "
+                        + " and venta.caj_id!=6 "
                         + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
-                        + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)"
-                        + " or venta.caj_id=3 and departamento.dep_id = 23 and venta.status!= -1  "
-                        + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
-                        + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha )"
+                        + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
                         + "order by  year(fecha), month(fecha) ;");
                 while (rs.next()) {
                     mes = rs.getString(1);
@@ -1724,7 +1707,7 @@ public class MetodosReporteDepartamento {
             }
 
             try {
-                if ( sucursal == 6) {
+                if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
@@ -1739,10 +1722,8 @@ public class MetodosReporteDepartamento {
                         + "on articulo.art_id = detallev.art_id\n"
                         + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
                         + "on departamento.dep_id = categoria.dep_id\n"
-                        + "where  venta.caj_id=1 and departamento.dep_id = 22 and venta.status!= -1 "
-                        + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
-                        + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month) "
-                       + " or venta.caj_id=3 and departamento.dep_id = 22 and venta.status!= -1 "
+                        + "where departamento.dep_id = 22 and venta.status!= -1 "
+                        + " and venta.caj_id!=6 "
                         + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
                         + "order by  year(fecha), month(fecha) ;");
@@ -1770,7 +1751,7 @@ public class MetodosReporteDepartamento {
             contarmes = 1;
 
             try {
-                if ( sucursal == 6) {
+                if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
@@ -1789,12 +1770,10 @@ public class MetodosReporteDepartamento {
 //              ////////////////////////////////////////////////////////////////////////////////////////////////////  
                 rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes, count(venta.ven_id),year(venta.fecha) as año"
                         + " from venta "
-                        + " where venta.caj_id=1 and venta.status !=-1"
+                        + " where venta.status !=-1"
+                        + " and venta.caj_id!=6 "
                         + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
-                        + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)"
-                        + " or venta.caj_id=1 and venta.status !=-1"
-                        + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
-                        + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(venta.fecha )"
+                        + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(venta.fecha ) "
                         + " order by  year(venta.fecha), month(venta.fecha) ;");
                 while (rs.next()) {
 
@@ -1811,7 +1790,7 @@ public class MetodosReporteDepartamento {
                 e.printStackTrace();
             }
             try {
-                if (sucursal == 6) {
+                if (sucursal == 4 || sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
@@ -1821,10 +1800,8 @@ public class MetodosReporteDepartamento {
                 filadato = 38;
                 rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes, count(nota.not_id),year(venta.fecha) as año"
                         + " from venta inner join nota on nota.not_id = venta.not_id "
-                        + "where venta.caj_id=1  and venta.status !=-1  "
-                        + "and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
-                        + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)"
-                        + " or venta.caj_id=3   and venta.status !=-1  "
+                        + "where venta.status !=-1  "
+                        + " and venta.caj_id!=6 "
                         + "and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(venta.fecha ) "
                         + " order by  year(venta.fecha), month(venta.fecha) ;");
@@ -1862,6 +1839,7 @@ public class MetodosReporteDepartamento {
         }
 
     }
+
 /////////       fun
     
     public String formuladesumas(int mes) {
