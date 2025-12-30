@@ -1335,7 +1335,7 @@ public class MetodosReporteDepartamento {
                 }
                 con.close();
 
-                if (sucursal == 4 || sucursal == 6) {
+                if ( sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
 
@@ -1391,7 +1391,7 @@ public class MetodosReporteDepartamento {
             filadato = 7;
             try {
 
-                if (sucursal == 4 || sucursal == 6) {
+                if ( sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
@@ -1438,7 +1438,7 @@ public class MetodosReporteDepartamento {
             filadato = 8;
             try {
 
-                if (sucursal == 4 || sucursal == 6) {
+                if (sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
@@ -1491,7 +1491,7 @@ public class MetodosReporteDepartamento {
             try {
                 columnadato = 1;
                 filadato = 12;
-                if (sucursal == 4 || sucursal == 6) {
+                if ( sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
@@ -1536,7 +1536,7 @@ public class MetodosReporteDepartamento {
             filadato = 13;
             try {
 
-                if (sucursal == 4 || sucursal == 6) {
+                if (sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
@@ -1582,7 +1582,7 @@ public class MetodosReporteDepartamento {
             filadato = 14;
             try {
 
-                if (sucursal == 4 || sucursal == 6) {
+                if ( sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
@@ -1635,7 +1635,7 @@ public class MetodosReporteDepartamento {
 
             ///inicia consultas de compras por departamento
             try {
-                if (sucursal == 4 || sucursal == 6) {
+                if ( sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
@@ -1670,7 +1670,7 @@ public class MetodosReporteDepartamento {
             }
 
             try {
-                if (sucursal == 4 || sucursal == 6) {
+                if ( sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
@@ -1707,7 +1707,7 @@ public class MetodosReporteDepartamento {
             }
 
             try {
-                if (sucursal == 4 || sucursal == 6) {
+                if ( sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
@@ -1751,7 +1751,7 @@ public class MetodosReporteDepartamento {
             contarmes = 1;
 
             try {
-                if (sucursal == 4 || sucursal == 6) {
+                if ( sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
@@ -1790,7 +1790,7 @@ public class MetodosReporteDepartamento {
                 e.printStackTrace();
             }
             try {
-                if (sucursal == 4 || sucursal == 6) {
+                if ( sucursal == 6) {
                     con = conectar2.conectarMySQL(sucursal);
                 } else {
                     con = conectar.conectarMySQL();
