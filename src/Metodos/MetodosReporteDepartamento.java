@@ -1352,7 +1352,7 @@ public class MetodosReporteDepartamento {
                         + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
                         + "on departamento.dep_id = categoria.dep_id\n"
                         + "where departamento.dep_id = 24 and venta.status!= -1 and venta.tic_id is not  null "
-                        + " and venta.caj_id!=6 "
+                        + " and venta.caj_id!=6 and venta.caj_id!=9 "
                         + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
                         + "order by  year(fecha), month(fecha) ;");
@@ -1407,7 +1407,7 @@ public class MetodosReporteDepartamento {
                         + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
                         + "on departamento.dep_id = categoria.dep_id\n"
                         + "where departamento.dep_id = 23 and venta.status!= -1 and venta.tic_id is not null"
-                        + "  and venta.caj_id!=6  "
+                        + "  and venta.caj_id!=6  and venta.caj_id!=9  "
                         + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
                         + "order by  year(fecha), month(fecha) ;");
@@ -1454,7 +1454,7 @@ public class MetodosReporteDepartamento {
                         + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
                         + "on departamento.dep_id = categoria.dep_id\n"
                         + "where departamento.dep_id = 22 and venta.status!= -1 and venta.tic_id is not  null "
-                        + " and venta.caj_id!=6 "
+                        + " and venta.caj_id!=6  and venta.caj_id!=9 "
                         + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
                         + "order by  year(fecha), month(fecha) ;");
@@ -1506,7 +1506,7 @@ public class MetodosReporteDepartamento {
                         + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
                         + "on departamento.dep_id = categoria.dep_id\n"
                         + "where departamento.dep_id = 24 and venta.status!= -1 and venta.tic_id is  null "
-                        + " and venta.caj_id!=6 "
+                        + " and venta.caj_id!=6  and venta.caj_id!=9 "
                         + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
                         + "order by  year(fecha), month(fecha) ;");
@@ -1551,7 +1551,7 @@ public class MetodosReporteDepartamento {
                         + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
                         + "on departamento.dep_id = categoria.dep_id\n"
                         + "where departamento.dep_id = 23 and venta.status!= -1 and venta.tic_id is  null "
-                        + "  and venta.caj_id!=6 "
+                        + "  and venta.caj_id!=6  and venta.caj_id!=9 "
                         + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
                         + "order by  year(fecha), month(fecha) ;");
@@ -1597,7 +1597,7 @@ public class MetodosReporteDepartamento {
                         + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
                         + "on departamento.dep_id = categoria.dep_id\n"
                         + "where departamento.dep_id = 22 and venta.status!= -1 and venta.tic_id is  null "
-                        + " and venta.caj_id!=6 "
+                        + " and venta.caj_id!=6  and venta.caj_id!=9 "
                         + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
                         + "order by  year(fecha), month(fecha) ;");
@@ -1649,7 +1649,7 @@ public class MetodosReporteDepartamento {
                         + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
                         + "on departamento.dep_id = categoria.dep_id\n"
                         + "where departamento.dep_id = 24 and venta.status!= -1 "
-                        + " and venta.caj_id!=6 "
+                        + " and venta.caj_id!=6  and venta.caj_id!=9 "
                         + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
                         + "order by  year(fecha), month(fecha) ;");
@@ -1686,7 +1686,7 @@ public class MetodosReporteDepartamento {
                         + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
                         + "on departamento.dep_id = categoria.dep_id\n"
                         + "where departamento.dep_id = 23 and venta.status!= -1  "
-                        + " and venta.caj_id!=6 "
+                        + " and venta.caj_id!=6  and venta.caj_id!=9 "
                         + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
                         + "order by  year(fecha), month(fecha) ;");
@@ -1723,7 +1723,7 @@ public class MetodosReporteDepartamento {
                         + "inner join categoria on categoria.cat_id = articulo.cat_id inner join departamento "
                         + "on departamento.dep_id = categoria.dep_id\n"
                         + "where departamento.dep_id = 22 and venta.status!= -1 "
-                        + " and venta.caj_id!=6 "
+                        + " and venta.caj_id!=6  and venta.caj_id!=9 "
                         + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(fecha ) "
                         + "order by  year(fecha), month(fecha) ;");
@@ -1771,7 +1771,7 @@ public class MetodosReporteDepartamento {
                 rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes, count(venta.ven_id),year(venta.fecha) as año"
                         + " from venta "
                         + " where venta.status !=-1"
-                        + " and venta.caj_id!=6 "
+                        + " and venta.caj_id!=6  and venta.caj_id!=9 "
                         + " and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(venta.fecha ) "
                         + " order by  year(venta.fecha), month(venta.fecha) ;");
@@ -1801,7 +1801,7 @@ public class MetodosReporteDepartamento {
                 rs = stmt.executeQuery("select MONTHNAME(venta.fecha) mes, count(nota.not_id),year(venta.fecha) as año"
                         + " from venta inner join nota on nota.not_id = venta.not_id "
                         + "where venta.status !=-1  "
-                        + " and venta.caj_id!=6 "
+                        + " and venta.caj_id!=6  and venta.caj_id!=9 "
                         + "and venta.fecha >= date_sub('" + fecha1 + "', interval 0 month)"
                         + " and venta.fecha <= date_sub('" + fecha2 + "', interval 0 month)  group by month(venta.fecha ) "
                         + " order by  year(venta.fecha), month(venta.fecha) ;");
